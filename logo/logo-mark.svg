@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Little Learners logo"><defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a7bff"/><stop offset="1" stop-color="#2447b8"/></linearGradient></defs><rect width="512" height="512" rx="112" fill="url(#b)"/>
+<ellipse cx="140" cy="305" rx="32" ry="72" transform="rotate(14 140 305)" fill="#f0a81c"/>
+<ellipse cx="372" cy="305" rx="32" ry="72" transform="rotate(-14 372 305)" fill="#f0a81c"/>
+<ellipse cx="256" cy="285" rx="125" ry="135" fill="#ffcf4a"/>
+<ellipse cx="256" cy="345" rx="78" ry="68" fill="#fff2c4"/>
+<g fill="none" stroke="#f2b624" stroke-width="6" stroke-linecap="round"><path d="M226 330q15 14 30 0M256 330q15 14 30 0M241 352q15 14 30 0"/></g>
+<circle cx="210" cy="252" r="46" fill="#fff"/><circle cx="302" cy="252" r="46" fill="#fff"/>
+<circle cx="214" cy="256" r="22" fill="#1c2a63"/><circle cx="298" cy="256" r="22" fill="#1c2a63"/>
+<circle cx="223" cy="247" r="7" fill="#fff"/><circle cx="307" cy="247" r="7" fill="#fff"/>
+<path d="M256 272l-18 28 18 22 18-22z" fill="#ff8a3d"/>
+<path d="M190 168v38q66 34 132 0v-38l-66 28z" fill="#14204f"/>
+<path d="M256 92L392 150 256 204 120 150z" fill="#1c2a63"/>
+<path d="M390 152v52" stroke="#f2b624" stroke-width="8" stroke-linecap="round"/><circle cx="390" cy="212" r="10" fill="#f2b624"/>
+<path d="M256 402q-60-24-122 0v54q62-22 122 0z" fill="#fff"/><path d="M256 402q60-24 122 0v54q-62-22-122 0z" fill="#e1efff"/>
+<path d="M256 402v54" stroke="#9db8ee" stroke-width="4"/>
+<path d="M84 300l6 16 16 6-16 6-6 16-6-16-16-6 16-6zM436 372l5 12 12 5-12 5-5 12-5-12-12-5 12-5z" fill="#fff" opacity=".85"/></svg>
