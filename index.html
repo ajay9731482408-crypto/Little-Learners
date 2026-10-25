@@ -1879,6 +1879,292 @@ function monkey(){
  stop=()=>cancelAnimationFrame(raf);window.__mk={get s(){return{score,over,got,m,pegs,saws}},tap}}
 })();
 </script>
+<!-- ===== v34 patch: layout fixes + Clay Pals + robot levels ===== -->
+<style id="v34">
+/* home: remove the big empty gap, keep title right under the card */
+#hero{min-height:0!important;justify-content:flex-start!important;padding-bottom:24px}
+#hero .hc{margin:14px 0 0!important;padding-top:8px}
+#hero .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+#hero .cta .btn{margin:0}
+/* bottom bar: one scrollable row, never covers content */
+#nav{flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;justify-content:flex-start!important;scroll-snap-type:x proximity;min-height:72px!important;width:min(1180px,calc(100% - 16px))!important;bottom:8px!important;border-radius:24px!important}
+#nav .nv{flex:0 0 auto;scroll-snap-align:center}
+body{padding-bottom:calc(190px + env(safe-area-inset-bottom,0px))!important}
+section{scroll-margin-bottom:120px}
+/* owl: smaller, draggable, sits above the bar */
+#owl{width:54px!important;height:54px!important;font-size:30px!important;right:10px!important;bottom:calc(96px + env(safe-area-inset-bottom,0px))!important;touch-action:none;opacity:.94}
+#owl.drag{transition:none;opacity:.8}
+/* robot game */
+#fb .rg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:min(100%,340px);margin:12px auto}
+#fb .cell{height:auto;aspect-ratio:1;border-radius:18px;background:linear-gradient(145deg,#fff8,#0000000d),var(--bg);box-shadow:inset 0 -4px 0 #0000001a,0 3px 0 var(--line);position:relative;padding:4px}
+#fb .cell svg{width:100%;height:100%;display:block;filter:drop-shadow(0 3px 2px #0003)}
+#fb .cell.goal{background:#fff3b0;box-shadow:0 0 0 3px #f2b624 inset,0 3px 0 #b88710}
+#fb .cell.go{animation:hop .5s}
+@keyframes hop{40%{transform:translateY(-8px) scale(1.06)}}
+#fb .pad{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:min(100%,340px);margin:6px auto}
+#fb .pad .ch{font-size:26px;padding:10px 0;border-radius:18px;background:var(--card);border:2px solid var(--line);box-shadow:0 4px 0 var(--line)}
+#fb .pad .ch:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+#fb .lvl{display:inline-block;font:700 15px Fredoka;background:var(--sun);color:#2a2438;border-radius:999px;padding:2px 12px;margin-bottom:4px}
+/* clay pals floating in hero */
+.pals{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.pals svg{position:absolute;filter:drop-shadow(0 8px 6px #0002);animation:pf 5s ease-in-out infinite}
+@keyframes pf{50%{transform:translateY(-10px) rotate(3deg)}}
+.pals svg:nth-child(2){animation-delay:-1.5s}.pals svg:nth-child(3){animation-delay:-3s}.pals svg:nth-child(4){animation-delay:-.8s}
+</style>
+<script>
+(()=>{
+const D=document,$=q=>D.querySelector(q);
+/* ---- Clay Pals: soft 3D toy characters, drawn as SVG (no downloads) ---- */
+let U=0;
+function sh(c1,c2){const id='g'+(U++);return[id,`<radialGradient id="${id}" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></radialGradient>`]}
+const face=(x,y,k)=>`<circle cx="${x-9}" cy="${y}" r="2.6" fill="#4a2f3d"/><circle cx="${x+9}" cy="${y}" r="2.6" fill="#4a2f3d"/><ellipse cx="${x-15}" cy="${y+6}" rx="4" ry="2.6" fill="#ff8e8e" opacity=".8"/><ellipse cx="${x+15}" cy="${y+6}" rx="4" ry="2.6" fill="#ff8e8e" opacity=".8"/>`;
+window.clay=function(k,s){s=s||64;let [id,gd]=sh('#ffd9cf','#f19a8c'),b='';
+ if(k=='bunny'){[id,gd]=sh('#ffd6cc','#f0958a');b=`<ellipse cx="38" cy="22" rx="8" ry="16" fill="#f4a89c"/><ellipse cx="62" cy="22" rx="8" ry="16" fill="#f4a89c"/><ellipse cx="50" cy="64" rx="34" ry="30" fill="url(#${id})"/>${face(50,60)}`}
+ else if(k=='horn'){[id,gd]=sh('#ffffff','#e6dfe4');b=`<path d="M26 40l-6-18 16 10zM74 40l6-18-16 10z" fill="#c65a4e"/><ellipse cx="50" cy="64" rx="34" ry="28" fill="url(#${id})"/>${face(50,62)}`}
+ else if(k=='cube'){[id,gd]=sh('#cfe6ff','#8cb7e6');b=`<path d="M44 26q6-14 12 0z" fill="#b9a4d8"/><rect x="18" y="26" width="64" height="62" rx="16" fill="url(#${id})"/><circle cx="84" cy="58" r="6" fill="#9a8cc4"/>${face(50,56)}`}
+ else if(k=='spike'){[id,gd]=sh('#ffe49a','#f2b840');b=`<path d="M14 62l-8-6 10-4zM86 62l8-6-10-4zM26 30l-4-10 10 4zM74 30l4-10-10 4z" fill="#6d8fcf"/><ellipse cx="50" cy="62" rx="36" ry="30" fill="url(#${id})"/><circle cx="50" cy="52" r="12" fill="#fff"/><circle cx="50" cy="52" r="6" fill="#e8604c"/><path d="M36 72q14 12 28 0" stroke="#4a2f3d" stroke-width="3" fill="none" stroke-linecap="round"/>`}
+ else if(k=='moon'){[id,gd]=sh('#d9c8f4','#a58fd6');b=`<ellipse cx="50" cy="64" rx="34" ry="30" fill="url(#${id})"/><path d="M30 34q16-18 36-4q-14-2-24 10z" fill="#f6b27a"/><path d="M36 60l6 4m0-4l-6 4M58 60l6 4m0-4l-6 4" stroke="#4a2f3d" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="36" cy="72" rx="4" ry="2.6" fill="#ff8e8e"/><ellipse cx="66" cy="72" rx="4" ry="2.6" fill="#ff8e8e"/>`}
+ else if(k=='star'){[id,gd]=sh('#fff3a8','#f5b82e');b=`<path d="M50 8l12 26 28 3-21 19 6 28-25-14-25 14 6-28L10 37l28-3z" fill="url(#${id})" stroke="#e39b16" stroke-width="3" stroke-linejoin="round"/>`}
+ else if(k=='shroom'){[id,gd]=sh('#ff9a7a','#e8604c');b=`<rect x="38" y="52" width="24" height="30" rx="10" fill="#fff0dc"/><path d="M14 56a36 30 0 0 1 72 0z" fill="url(#${id})"/><circle cx="36" cy="46" r="5" fill="#fff" opacity=".85"/><circle cx="60" cy="40" r="4" fill="#fff" opacity=".85"/>`}
+ return `<svg viewBox="0 0 100 100" width="${s}" height="${s}" role="img" aria-label="${k}"><defs>${gd}</defs><ellipse cx="50" cy="92" rx="30" ry="5" fill="#0002"/>${b}</svg>`};
+/* hero decoration */
+const h=$('#hero');if(h&&!h.querySelector('.pals')){const ks=[['bunny',10,26],['horn',72,18],['spike',6,70],['moon',78,76]];h.insertAdjacentHTML('afterbegin','<div class="pals" aria-hidden="true">'+ks.map(a=>clay(a[0],54).replace('<svg','<svg style="left:'+a[1]+'%;top:'+a[2]+'%"')).join('')+'</div>')}
+/* ---- Robot levels with mushrooms to avoid (Cubetto / LogicPath style) ---- */
+const LV=[{s:[3,1],o:[]},{s:[2,2],o:[[1,3],[2,1]]},{s:[3,0],o:[[1,2],[2,2],[3,2]]},{s:[0,0],o:[[0,2],[1,1],[2,3]]},{s:[3,2],o:[[1,3],[2,3],[2,2],[1,1]]}];
+window.__lv=window.__lv||0;
+window.drawR=function(x,y,m){const L=LV[__lv%LV.length];let g='';
+ for(let j=0;j<4;j++)for(let i=0;i<4;i++){const gl=i==L.s[0]&&j==L.s[1],ob=L.o.some(o=>o[0]==i&&o[1]==j);g+=`<div class="cell${gl?' goal':''}${i==x&&j==y?' go':''}">${i==x&&j==y?clay('cube',100):gl?clay('star',100):ob?clay('shroom',100):''}</div>`}
+ const st=R.c.length?R.c.map((a,i)=>`<span class="stp">${i+1}${a}</span>`).join(''):'Tap arrows to add steps';
+ $('#fb').innerHTML=`<span class="lvl">Level ${__lv%LV.length+1} of ${LV.length}</span><p class="tt">Program the robot to reach the star. Walk around the mushrooms! 🍄</p><div class="rg">${g}</div><div class="pad">${Object.keys(AR).map(a=>`<button class="ch" data-a2="${a}" aria-label="step">${a}</button>`).join('')}</div><p class="tt" style="min-height:40px">${st}</p><div class="row"><button class="btn" id="rrun">▶ Run</button><button class="btn alt" id="rund">↶ Undo</button><button class="btn alt" id="rclr">Clear</button><button class="btn alt" id="rnew">Next level</button></div><div style="font:700 22px Fredoka;min-height:30px">${m||''}</div>`};
+window.newR=function(){R={c:[],run:0};const L=LV[__lv%LV.length];R.sx=L.s[0];R.sy=L.s[1];drawR(0,3)};
+window.runR=async function(){if(R.run||!R.c.length)return;R.run=1;const L=LV[__lv%LV.length];let x=0,y=3;const c=R.c;
+ for(const a of c){const nx=x+AR[a][0],ny=y+AR[a][1];
+  if(nx<0||nx>3||ny<0||ny>3){R.c=[];R.run=0;drawR(0,3,'Oops, off the grid! Try again.');speak('Oops, off the grid. Try again.');return}
+  if(L.o.some(o=>o[0]==nx&&o[1]==ny)){R.c=[];R.run=0;drawR(0,3,'Bump! A mushroom is in the way. 🍄');speak('Bump! A mushroom is in the way.');return}
+  x=nx;y=ny;R.c=c;drawR(x,y);await new Promise(r=>setTimeout(r,550))}
+ const ok=x==R.sx&&y==R.sy;R.c=[];R.run=0;
+ if(ok){drawR(x,y,'You did it! 🎉');speak('You programmed the robot! Great coding!');addPts(3,null,'Puzzle');celebrate('Little coder! 🤖');__lv++;setTimeout(()=>{if(fm=='r')newR()},2200)}
+ else{drawR(0,3,'Not yet. Try again!');speak('Not yet. Try again.')}};
+/* "Next level" button uses the same id as old New button */
+D.addEventListener('click',e=>{if(e.target.id=='rnew'){__lv++}},true);
+if($('#future')&&typeof fm!='undefined'&&fm=='r')newR();
+/* ---- draggable owl so it never blocks a game ---- */
+const ow=$('#owl');if(ow){let sx,sy,ox,oy,mv=0;
+ ow.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY;const r=ow.getBoundingClientRect();ox=r.left;oy=r.top;mv=0;ow.setPointerCapture(e.pointerId)});
+ ow.addEventListener('pointermove',e=>{if(!ow.hasPointerCapture(e.pointerId))return;const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)+Math.abs(dy)>8)mv=1;if(mv){ow.classList.add('drag');ow.style.left=Math.max(4,Math.min(innerWidth-58,ox+dx))+'px';ow.style.top=Math.max(70,Math.min(innerHeight-150,oy+dy))+'px';ow.style.right='auto';ow.style.bottom='auto'}});
+ ow.addEventListener('pointerup',()=>ow.classList.remove('drag'));
+ ow.addEventListener('click',e=>{if(mv){e.stopImmediatePropagation();e.preventDefault();mv=0}},true)}
+/* ---- new resources for grown-ups ---- */
+try{RES.push(['🤖','Blockly Games (google/blockly-games)','Free · open source · ages 8+','Maze and Turtle puzzles teach the same idea as Code the robot. Do one level together.','https://blockly.games'],['🧁','LogicPath (dwildt/logicpath)','Free · MIT · ages 4+','Cubetto-style robot puzzles with icon blocks. The levels here follow the same idea.','https://dwildt.github.io/logicpath'],['🧸','Fluent Emoji 3D (microsoft/fluentui-emoji)','Free · MIT license','Soft 3D clay-style emoji and icons, handy for printables and future art.','https://github.com/microsoft/fluentui-emoji'])}catch(e){}
+})();
+</script>
+
+<!-- ===== v35: School in the USA (researched) ===== -->
+<style id="v35">
+#usa .ust{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+#usa .usg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+#usa .usc{background:var(--card);border-radius:22px;padding:14px 16px;box-shadow:0 5px 0 var(--line);text-align:left;border:0;color:var(--ink);font:600 16px/1.35 Nunito,sans-serif;cursor:pointer}
+#usa .usc b{display:block;font:700 21px Fredoka;margin-bottom:4px}
+#usa .usc ul{margin:4px 0 0 18px;padding:0}
+#usa .usn{font-size:15px;opacity:.8;margin:8px 0}
+#usa .usr a{display:block;text-decoration:none;color:inherit;background:var(--card);border-radius:18px;padding:10px 14px;margin:8px 0;box-shadow:0 3px 0 var(--line)}
+#usa .usr small{display:block;opacity:.75;font-weight:600}
+#usq .opts .btn{font-size:21px}
+</style>
+<script>
+(()=>{
+const D=document,$=q=>D.querySelector(q);
+const ST={
+ pre:{t:'Pre-K · ages 3–5',n:'Head Start’s Early Learning Outcomes Framework (birth to 5) lists the areas of learning. It describes skills and is not a curriculum or checklist.',c:[
+  ['🌟','Approaches to learning','Curiosity, paying attention, managing feelings and following simple routines.'],
+  ['🤝','Social and emotional','Sharing, taking turns, understanding feelings, making friends.'],
+  ['🗣️','Language and communication','Listening, talking, asking questions, learning new words.'],
+  ['📖','Literacy','Rhymes, letter sounds, handling books, early writing.'],
+  ['🧠','Cognition: maths and science','Counting, patterns, sorting, asking “why?”.'],
+  ['🏃','Physical and motor','Running, climbing, holding a crayon, healthy habits.']]},
+ k:{t:'Kindergarten · ages 5–6',n:'Based on the Common Core (maths and reading), NGSS (science) and C3 (social studies). Many states use these; some, like Texas, publish their own, so check yours.',c:[
+  ['🔢','Maths','Count to 100 by ones and tens. Count forward from any number. Write 0 to 20. Count out up to 20 objects. Add and subtract within 10, and be quick within 5. Sort, compare and name shapes.'],
+  ['🔤','Reading','Rhyme and clap syllables. Hear the first, middle and last sound in c-a-t. Know the sound of each consonant and the long and short vowels. Read sight words like the, my, is, are, you. Words are separated by spaces.'],
+  ['📚','Stories','With help, name the characters, setting and big events, and say how pictures match the story.'],
+  ['🔬','Science','Pushes and pulls. What plants and animals need to live. Daily weather. Simple design problems.'],
+  ['🏘️','Social studies','Why we have rules. Community helpers. Simple maps. Wants and needs. American holidays and symbols.']]},
+ g1:{t:'Grade 1 · ages 6–7',n:'The next step up from kindergarten.',c:[
+  ['🔢','Maths','Count to 120 from any number. Add and subtract within 20 and solve word problems with objects, drawings and equations.'],
+  ['🏘️','Social studies','Community helpers and how people live and work together.'],
+  ['🌱','Keep going','Read a little every day, talk about the story, and count everyday things.']]}};
+const QZ=[['Count by tens: 10, 20, 30, …','40',['31','40','35']],['Which word rhymes with cat?','hat',['dog','hat','sun']],['What sound does “sun” start with?','sss',['sss','mmm','ttt']],['How many? 🍎🍎🍎🍎🍎🍎🍎','7',['6','7','8']],['What do plants need to grow?','Water and light',['Candy','Water and light','Toys']],['Who helps put out fires?','Firefighter',['Baker','Firefighter','Pilot']]];
+const RS=[['📺','PBS Kids','Free videos and games for ages 2–8.','https://pbskids.org'],['🏫','PBS LearningMedia','Free classroom videos and activities.','https://www.pbslearningmedia.org'],['🚀','NASA Kids’ Club','Space games for pre-K to grade 4.','https://www.nasa.gov/kidsclub/'],['🏛️','Smithsonian Kids','Games, activities and projects.','https://www.si.edu/kids'],['🦁','National Geographic Kids','Animals, nature and cultures.','https://kids.nationalgeographic.com'],['📖','Read.gov (Library of Congress)','Classic books and read-aloud videos.','https://read.gov'],['🐱','ScratchJr (MIT)','Free first coding app for ages 5–7.','https://www.scratchjr.org'],['📋','Head Start Early Learning Outcomes Framework','What children 0–5 learn, for parents and teachers.','https://headstart.gov/interactive-head-start-early-learning-outcomes-framework-ages-birth-five'],['🗺️','Common Core: standards in your state','See which standards your state uses.','https://thecorestandards.org/standards-in-your-state/']];
+if(!$('#usa')){const a=$('#future')||$('#play');if(a)a.insertAdjacentHTML('beforebegin',`<section id="usa"><h2>School in the USA 🇺🇸</h2><p class="lead">What American children learn from pre-K to Grade 1. Tap a card to hear it, then try the quiz.</p><div class="ust" id="ut"></div><p class="usn" id="un"></p><div class="usg" id="ug"></div><h3 style="font:700 26px Fredoka;margin:18px 0 6px">Quick quiz ⭐</h3><div class="box" id="usq"></div><h3 style="font:700 26px Fredoka;margin:18px 0 6px">Free US resources</h3><div class="usr">${RS.map(r=>`<a href="${r[3]}" target="_blank" rel="noopener"><b>${r[0]} ${r[1]}</b><small>${r[2]}</small></a>`).join('')}</div></section>`)}
+let tab='k',qi=0,qs=0;
+const say=t=>{try{speak(t)}catch(e){}};
+function dt(){$('#ut').innerHTML=Object.keys(ST).map(k=>`<button class="lv" data-ut="${k}" aria-pressed="${k==tab}">${ST[k].t}</button>`).join('');$('#un').textContent=ST[tab].n;$('#ug').innerHTML=ST[tab].c.map((c,i)=>`<button class="usc" data-ui="${i}"><b>${c[0]} ${c[1]}</b>${c[2].split('. ').length>2?'<ul>'+c[2].split(/\.\s+/).filter(Boolean).map(x=>`<li>${x.replace(/\.$/,'')}</li>`).join('')+'</ul>':c[2]}</button>`).join('')}
+function dq(m){const q=QZ[qi];if(!q){$('#usq').innerHTML=`<h3 style="font-size:30px">${qs} of ${QZ.length} ⭐</h3><p class="tt">Great learning! Try again tomorrow.</p><button class="btn" id="uqr">Play again</button>`;return}
+ $('#usq').innerHTML=`<p class="tt" style="font:700 24px Fredoka">${q[0]}</p><div class="opts">${q[2].map(o=>`<button class="btn" data-uo="${o}">${o}</button>`).join('')}</div><div style="font:700 20px Fredoka;min-height:28px;margin-top:8px">${m||''}</div>`;say(q[0].replace(/[^\w\s,?:“”.’]/g,' '))}
+D.addEventListener('click',e=>{const t=e.target;if(!t.closest('#usa'))return;
+ const u=t.closest('[data-ut]');if(u){tab=u.dataset.ut;dt();return}
+ const c=t.closest('[data-ui]');if(c){const x=ST[tab].c[c.dataset.ui];say(x[1]+'. '+x[2]);return}
+ const o=t.closest('[data-uo]');if(o&&!o.disabled){const q=QZ[qi],r=o.dataset.uo==q[1];if(r)qs++;D.querySelectorAll('#usq [data-uo]').forEach(b=>b.disabled=true);o.classList.add(r?'ok':'no');say(r?'Yes! Great job!':'Nice try!');setTimeout(()=>{qi++;if(qi>=QZ.length&&qs>=QZ.length-1){try{addPts(2,null,'Quiz')}catch(e){}}dq()},900);return}
+ if(t.id=='uqr'){qi=0;qs=0;dq()}});
+dt();dq();
+/* nav button (re-added whenever the bar is redrawn) */
+const nav=$('#nav');const add=()=>{if(!nav||nav.querySelector('[data-go="#usa"]'))return;const b=D.createElement('button');b.className='nv';b.dataset.go='#usa';b.setAttribute('aria-label','USA');b.innerHTML='<b>🇺🇸</b>USA';const a=nav.querySelector('[data-go="#ncert"]');a?a.after(b):nav.append(b)};
+add();if(nav)new MutationObserver(add).observe(nav,{childList:true});
+try{RES.push(...RS.filter(r=>/PBS Kids|NASA|Smithsonian|Head Start/.test(r[1])).map(r=>[r[0],r[1],'Free · USA',r[2],r[3]]))}catch(e){}
+})();
+</script>
+
+<!-- ===== v36: Space Lab (NASA Kids' Club style, pre-K) ===== -->
+<style id="v36">
+#space .spt2{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+#space .spsky{background:linear-gradient(#1c1b4a,#3b2f7a 70%,#5a3f94);color:#fff;border-radius:28px;padding:18px;text-align:center;box-shadow:0 7px 0 var(--line);position:relative;overflow:hidden}
+#space .spsky>*{position:relative}
+#space .spsky .tt{font:700 24px Fredoka;margin:4px 0 10px;min-height:34px;color:#fff}
+#space .spsky .opts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+#space .spsky .opts .btn{background:#fffaf0;color:#2a2438;border:0;box-shadow:0 5px 0 #0004;min-width:84px}
+#space .sptwk{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#fff 1.2px,transparent 1.6px),radial-gradient(#ffe9a8 1px,transparent 1.5px);background-size:70px 70px,110px 110px;background-position:0 0,30px 40px;opacity:.6;animation:sptw 6s linear infinite}
+@keyframes sptw{to{background-position:0 140px,30px 260px}}
+#space .spsh{width:78px;height:78px;display:block}
+#space .sprk{width:170px;height:250px;margin:0 auto;display:block;overflow:visible;transition:transform 2s cubic-bezier(.55,0,.9,.35)}
+#space .sprk.shake{animation:spk .09s linear infinite}
+@keyframes spk{0%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}100%{transform:translate(-1px,-2px)}}
+#space .sprk.go{transform:translateY(-420px)}
+#space .sprk .gp{opacity:.16;transition:opacity .35s,transform .35s;transform-origin:center}
+#space .sprk .gp.on{opacity:1}
+#space .sprk .gp.new{animation:sppop .5s}
+@keyframes sppop{40%{transform:scale(1.12)}}
+#space .spfire{transform-origin:85px 196px;animation:spfl .18s infinite alternate}
+@keyframes spfl{to{transform:scaleY(1.3) scaleX(.9)}}
+#space .spsmk circle{fill:#fff;opacity:0;animation:spsm 1.2s ease-out infinite}
+@keyframes spsm{0%{opacity:.8;transform:scale(.3)}100%{opacity:0;transform:translateY(40px) scale(1.6)}}
+#space .spbig{font:700 110px Fredoka;line-height:1;margin:6px 0;text-shadow:0 6px 0 #0004}
+#space .sppat{font-size:46px;letter-spacing:6px;margin:6px 0}
+#space .row{align-items:center;justify-content:center}
+</style>
+<script>
+(()=>{
+const D=document,$=q=>D.querySelector(q);let U=0;
+const say=t=>{try{speak(t)}catch(e){}};
+const fx=k=>{try{sfx(k)}catch(e){}};
+const pts=()=>{try{addPts(2,null,'Space')}catch(e){}};
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const pick=a=>a[Math.random()*a.length|0],shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+function planet(k,s){const id='p'+(U++);const C={earth:['#7fd0ff','#2f7fd0'],mars:['#ffb08a','#d9583a'],saturn:['#ffe9a0','#e0a93a'],jupiter:['#ffd2a1','#d9893f']}[k];
+ let x='';if(k=='earth')x='<path d="M30 28q10-10 22-2q4 12-8 16q-12 2-14-14zM56 58q10-4 14 6q-6 10-16 4z" fill="#5cc26b"/>';
+ if(k=='mars')x='<circle cx="38" cy="40" r="7" fill="#b9432a" opacity=".7"/><circle cx="62" cy="58" r="5" fill="#b9432a" opacity=".7"/><circle cx="55" cy="30" r="4" fill="#b9432a" opacity=".7"/>';
+ if(k=='jupiter')x='<path d="M14 40h72M12 54h76M20 66h60" stroke="#b8672a" stroke-width="6" opacity=".55" stroke-linecap="round"/>';
+ const ring=k=='saturn'?'<ellipse cx="50" cy="52" rx="46" ry="12" fill="none" stroke="#f0c470" stroke-width="7" transform="rotate(-18 50 52)"/>':'';
+ return `<svg class="spsh" viewBox="0 0 100 100" role="img" aria-label="${k}"><defs><radialGradient id="${id}" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="${C[0]}"/><stop offset="1" stop-color="${C[1]}"/></radialGradient><clipPath id="c${id}"><circle cx="50" cy="50" r="32"/></clipPath></defs><circle cx="50" cy="50" r="32" fill="url(#${id})"/><g clip-path="url(#c${id})">${x}</g>${ring}</svg>`}
+const SH={circle:'<circle cx="40" cy="40" r="30" fill="#6ec6ff"/>',square:'<rect x="12" y="12" width="56" height="56" rx="8" fill="#ffb454"/>',triangle:'<path d="M40 8L72 68H8z" fill="#ff7a8a" stroke="#ff7a8a" stroke-width="6" stroke-linejoin="round"/>',rectangle:'<rect x="22" y="6" width="36" height="68" rx="8" fill="#8fd694"/>'};
+const shp=k=>`<svg class="spsh" viewBox="0 0 80 80" aria-label="${k}">${SH[k]}</svg>`;
+/* clay rocket: parts fade in as the child builds it */
+function rocket(n,o){o=o||{};const id='r'+(U++),on=i=>n>i?' on':'',nw=i=>o.fresh==i?' new':'';
+ return `<svg class="sprk${o.shake?' shake':''}${o.go?' go':''}" viewBox="0 0 170 250" role="img" aria-label="rocket"><defs>
+<linearGradient id="${id}b" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#e6e0ff"/><stop offset="1" stop-color="#b9aef0"/></linearGradient>
+<linearGradient id="${id}n" x1="0" x2="1"><stop offset="0" stop-color="#ff9aa6"/><stop offset="1" stop-color="#e8485f"/></linearGradient>
+<radialGradient id="${id}w" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#bfe8ff"/><stop offset="1" stop-color="#3c8de0"/></radialGradient></defs>
+${o.fire?'<g class="spsmk"><circle cx="70" cy="215" r="14"/><circle cx="100" cy="220" r="16" style="animation-delay:.3s"/><circle cx="85" cy="225" r="18" style="animation-delay:.6s"/></g><g class="spfire"><path d="M68 196q17 70 34 0z" fill="#ffb454"/><path d="M75 196q10 44 20 0z" fill="#fff3a8"/></g>':''}
+<g class="gp${on(3)}${nw(3)}"><path d="M52 150l-30 46q-2 8 8 8h22zM118 150l30 46q2 8-8 8h-22z" fill="#ff7a8a" stroke="#e8485f" stroke-width="3" stroke-linejoin="round"/></g>
+<g class="gp${on(1)}${nw(1)}"><rect x="52" y="78" width="66" height="122" rx="22" fill="url(#${id}b)" stroke="#a79be0" stroke-width="3"/><rect x="52" y="168" width="66" height="14" fill="#ffb454" opacity=".9"/></g>
+<g class="gp${on(0)}${nw(0)}"><path d="M85 8Q124 36 118 86H52Q46 36 85 8z" fill="url(#${id}n)" stroke="#e8485f" stroke-width="3" stroke-linejoin="round"/></g>
+<g class="gp${on(2)}${nw(2)}"><circle cx="85" cy="122" r="19" fill="url(#${id}w)" stroke="#fff" stroke-width="6"/><ellipse cx="78" cy="115" rx="5" ry="3" fill="#fff" opacity=".8"/></g></svg>`}
+let g='rk',st={};
+const T=[['rk','🚀 Rocket Builder'],['cd','🔟 Countdown'],['pl','🪐 Find the planet'],['pt','⭐ Star patterns']];
+function tabs(){$('#spt').innerHTML=T.map(t=>`<button class="lv" data-sg="${t[0]}" aria-pressed="${t[0]==g}">${t[1]}</button>`).join('')}
+function shell(h){$('#spb').innerHTML=`<div class="spsky"><div class="sptwk"></div>${h}</div>`}
+const RP=[['triangle','the pointy nose'],['rectangle','the tall body'],['circle','the round window'],['triangle','the two fins, then it can fly']];
+function rk(m,fresh){const s=st.rk||(st.rk={i:0});const q=RP[s.i];
+ const svg=rocket(s.i,{fresh});
+ shell(q?`<p class="tt">Tap the ${q[0]} for ${q[1]}</p>${svg}<div class="opts">${shuf(Object.keys(SH)).map(k=>`<button class="btn" data-rs="${k}" aria-label="${k}">${shp(k)}</button>`).join('')}</div><div class="tt">${m||''}</div>`:`<p class="tt">${m||''}</p>${svg}<div class="opts"><button class="btn" data-sg="rk" data-again="1">Build again</button></div>`);
+ if(q&&!m)say('Tap the '+q[0]+' for '+q[1])}
+async function launch(from){ // 3, 2, 1, blast off
+ for(const n of [3,2,1]){shell(`<p class="tt">${n}</p>${rocket(4,{shake:1})}<div class="spbig">${n}</div>`);fx('pop');say(String(n));await wait(900)}
+ shell(`<p class="tt">Blast off! 🚀</p>${rocket(4,{fire:1,shake:1})}`);fx('whoosh');say('Blast off!');await wait(350);
+ const r=$('#spb .sprk');if(r){r.classList.remove('shake');r.classList.add('go')}await wait(2200);
+ pts();fx('ok');from=='cd'?cd(1):rk('Great job, little astronaut! 🌟')}
+function cd(done){const s=st.cd||(st.cd={n:5,c:5});
+ shell(`<div class="row"><button class="lv" data-cn="5" aria-pressed="${s.n==5}">From 5</button><button class="lv" data-cn="10" aria-pressed="${s.n==10}">From 10</button></div>${done?`<p class="tt">You launched the rocket! 🚀</p>${rocket(4,{})}<div class="opts"><button class="btn" data-cn="${s.n}">Again</button></div>`:`<p class="tt">Tap the button to count down</p><div class="spbig">${s.c}</div><div class="opts"><button class="btn" id="cdt" style="font-size:28px">Tap ${s.c}</button></div>`}`)}
+const PN={earth:'Earth is our home.',mars:'Mars is the red planet.',saturn:'Saturn has big rings.',jupiter:'Jupiter is the biggest planet.'};
+function pl(m){const s=st.pl||(st.pl={});s.t=s.t||pick(Object.keys(PN));const o=shuf(Object.keys(PN)).filter(k=>k!=s.t).slice(0,2).concat(s.t);
+ shell(`<p class="tt">Find ${s.t[0].toUpperCase()+s.t.slice(1)}</p><div class="opts">${shuf(o).map(k=>`<button class="btn" data-pp="${k}" aria-label="${k}">${planet(k)}</button>`).join('')}</div><div class="tt">${m||''}</div>`);if(!m)say('Find '+s.t)}
+const PS=[['⭐','🌙'],['🪐','☄️'],['🚀','🌍']];
+function pt(m){const s=st.pt||(st.pt={});if(!s.a){const p=pick(PS),aab=Math.random()<.4,seq=aab?[p[0],p[0],p[1]]:[p[0],p[1]];let a=[];for(let i=0;i<seq.length*2;i++)a.push(seq[i%seq.length]);a.push(seq[(seq.length*2)%seq.length]);s.a=a;s.p=p}
+ s.ans=s.a[s.a.length-1];shell(`<p class="tt">What comes next?</p><div class="sppat">${s.a.slice(0,-1).join(' ')} ❓</div><div class="opts">${s.p.map(e=>`<button class="btn" data-pe="${e}" style="font-size:40px">${e}</button>`).join('')}</div><div class="tt">${m||''}</div>`);if(!m)say('What comes next?')}
+const R={rk,cd,pl,pt};
+function draw(){tabs();R[g]()}
+if(!$('#space')){const a=$('#usa')||$('#future')||$('#play');if(a)a.insertAdjacentHTML('beforebegin',`<section id="space"><h2>Space Lab 🚀</h2><p class="lead">Little space games for pre-K, inspired by NASA Kids’ Club. No timers, no rush. Tap and listen!</p><div class="spt2" id="spt"></div><div id="spb"></div><p class="lead" style="margin-top:14px;font-size:16px">Want more? Visit <a href="https://www.nasa.gov/kidsclub" target="_blank" rel="noopener">NASA Kids’ Club</a>, free games for pre-K to grade 4 (ask a grown-up to help).</p></section>`)}
+D.addEventListener('click',e=>{const t=e.target;if(!t.closest('#space'))return;
+ const sg=t.closest('[data-sg]');if(sg){g=sg.dataset.sg;if(sg.dataset.again)st.rk={i:0};draw();return}
+ const rs=t.closest('[data-rs]');if(rs){const s=st.rk,q=RP[s.i];if(rs.dataset.rs==q[0]){const k=s.i;s.i++;fx('ok');if(s.i>=RP.length){rk('Ready to launch! 🚀',k);say('Great! Ready to launch!');setTimeout(()=>launch('rk'),900)}else{rk('Great! ⭐',k);say('Yes!')}}else{fx('no');say('Try again');rk('Try again 💫')}return}
+ const cn=t.closest('[data-cn]');if(cn){const n=+cn.dataset.cn;st.cd={n,c:n};cd();return}
+ if(t.id=='cdt'){const s=st.cd;say(String(s.c));fx('pop');s.c--;if(s.c<=0){s.c=s.n;launch('cd')}else cd();return}
+ const pp=t.closest('[data-pp]');if(pp){const s=st.pl;if(pp.dataset.pp==s.t){fx('ok');say(PN[s.t]);pl('Yes! '+PN[s.t]);pts();s.t=0;setTimeout(()=>pl(),2400)}else{fx('no');say('Try again');pl('Try again 💫')}return}
+ const pe=t.closest('[data-pe]');if(pe){const s=st.pt;if(pe.dataset.pe==s.ans){fx('ok');say('Yes! Great pattern!');pt('Yes! ⭐');pts();setTimeout(()=>{st.pt={};pt()},1600)}else{fx('no');say('Try again');pt('Try again 💫')}}});
+draw();
+const nav=$('#nav');const add=()=>{if(!nav||nav.querySelector('[data-go="#space"]'))return;const b=D.createElement('button');b.className='nv';b.dataset.go='#space';b.setAttribute('aria-label','Space');b.innerHTML='<b>🚀</b>Space';const a=nav.querySelector('[data-go="#usa"]')||nav.querySelector('[data-go="#ncert"]');a?a.after(b):nav.append(b)};
+add();if(nav)new MutationObserver(add).observe(nav,{childList:true});
+try{RES.push(['🌌','NASA Space Place','Free · ages 5+','Short space articles, games and crafts from NASA. Pick one planet a week.','https://spaceplace.nasa.gov'],['🛰️','Space Explorer for the Kids (darkaeon10)','Free · MIT license','Open-source game: fly a spaceship to the eight planets and read a fact on each. A model for a future flying game.','https://github.com/darkaeon10/SpaceExplorerForTheKids'],['🪐','Hello Bennu (quynhhgoogoo/Bennu)','Free · open source','NASA Space Apps game that teaches the order of planets: Earth, Mars, then the Sun.','https://github.com/quynhhgoogoo/Bennu'],['⭐','radarhere/spacegame','Free · open source','Calm space game with no lasers or explosions: dodge asteroids and collect stars.','https://github.com/radarhere/spacegame'],['🎙️','Kokoro TTS (hexgrad, via kokoro-js)','Free · Apache-2.0','Natural-sounding open voice that runs inside the browser. Used for the optional Natural voice button.','https://www.npmjs.com/package/kokoro-js'])}catch(e){}
+})();
+</script>
+
+<!-- ===== v37: hero fix, natural voice, sound effects ===== -->
+<style id="v37">
+#hero{min-height:auto!important;padding-bottom:150px!important;justify-content:flex-start!important}
+#hero .hc{transform:none!important;opacity:1!important;margin-top:14px!important}
+#hero .cta{position:relative;z-index:8;margin-top:18px}
+#hero .cta .btn{min-width:150px}
+#knat{font:700 16px Fredoka;border:3px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+#knat[data-s=on]{background:var(--green);color:#fff;border-color:var(--green)}
+#knat[data-s=load]{opacity:.85}
+</style>
+<script>
+(()=>{
+const D=document,$=q=>D.querySelector(q),sy=window.speechSynthesis;
+const L=k=>{try{return localStorage.getItem(k)}catch(e){return null}},S=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const AC=()=>{const c=window._ac||(window._ac=new(window.AudioContext||window.webkitAudioContext)());if(c.state=='suspended')c.resume();return c};
+/* ---- soft sound effects ---- */
+function tone(f,t,d,v,ty){const c=AC(),o=c.createOscillator(),g=c.createGain(),b=c.currentTime+t;o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,b);g.gain.exponentialRampToValueAtTime(v||.12,b+.02);g.gain.exponentialRampToValueAtTime(.0001,b+d);o.connect(g).connect(c.destination);o.start(b);o.stop(b+d+.05)}
+window.sfx=k=>{try{if(k=='ok'){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.35,.1,'triangle'))}
+ else if(k=='no'){tone(330,0,.25,.08);tone(262,.18,.35,.08)}
+ else if(k=='pop'){tone(740,0,.12,.1,'triangle')}
+ else if(k=='whoosh'){const c=AC(),n=c.sampleRate*1.6,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=b;f.type='bandpass';f.frequency.setValueAtTime(300,c.currentTime);f.frequency.exponentialRampToValueAtTime(3000,c.currentTime+1.5);g.gain.setValueAtTime(.001,c.currentTime);g.gain.exponentialRampToValueAtTime(.35,c.currentTime+.4);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+1.6);s.connect(f).connect(g).connect(c.destination);s.start()}}catch(e){}};
+/* ---- voice: pick the best installed voice, calmer pitch, whole sentences ---- */
+if(sy&&!sy.__v37){sy.__v37=1;
+ const os=sy.speak.bind(sy),oc=sy.cancel.bind(sy);let best={},epoch=0,cur=null,chain=Promise.resolve(),K=null,KV='af_heart';
+ const BAD=/espeak|compact|festival|pico|zarvox|trinoids|whisper|bubbles|bells|boing|cellos|deranged|hysterical|organ|wobble|bahh|albert|good news|bad news|superstar|jester/i;
+ const score=(v,lang)=>{const n=v.name,l=(v.lang||'').replace('_','-').toLowerCase();return(/natural|neural|online|enhanced|premium|wavenet/i.test(n)?60:0)+(/google/i.test(n)?35:0)+(/samantha|aria|jenny|ava|serena|allison|karen|moira|libby|sonia|zira|heera|neerja|veena|lekha|nicky|joelle/i.test(n)?25:0)+(!v.localService?15:0)+(lang&&l.startsWith(lang.toLowerCase().slice(0,5))?20:0)-(BAD.test(n)?100:0)};
+ const voices=()=>sy.getVoices().filter(v=>/^en/i.test(v.lang));
+ const bestFor=lang=>{const k=lang||'en',vs=voices();if(!vs.length)return null;const w=L('vn')||L('sv'),m=w&&vs.find(v=>v.name===w);if(m)return m;if(best[k]&&best[k].n==vs.length)return best[k].v;const v=vs.slice().sort((a,b)=>score(b,lang)-score(a,lang))[0];best[k]={n:vs.length,v};return v};
+ sy.onvoiceschanged=(p=>function(){best={};p&&p.apply(this,arguments)})(sy.onvoiceschanged);
+ /* optional natural voice: Kokoro (Apache-2.0) running in the browser */
+ const cache=new Map();
+ async function loadK(cb){if(K)return K;const m=await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm');K=await m.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:p=>{if(p&&p.status=='progress'&&cb)cb(Math.round(p.progress||0))}});return K}
+ async function playK(u,id){const t=u.text;let b=cache.get(t);if(!b){const a=await K.generate(t,{voice:KV,speed:Math.min(1.05,Math.max(.85,(u.rate||.9)+.05))});b={d:a.audio,sr:a.sampling_rate};cache.set(t,b)}
+  if(id!==epoch)return;const c=AC(),buf=c.createBuffer(1,b.d.length,b.sr);buf.copyToChannel(b.d,0);const s=c.createBufferSource();s.buffer=buf;s.connect(c.destination);cur=s;await new Promise(r=>{s.onended=r;s.start()});u.onend&&u.onend({})}
+ sy.speak=function(u){try{
+   if(u.lang&&!/^en/i.test(u.lang))return os(u);
+   if(K&&u.text&&u.text.length<220){const id=epoch;chain=chain.then(()=>playK(u,id)).catch(()=>{if(id===epoch)os(u)});return}
+   const v=bestFor(u.lang);if(v&&(!u.voice||score(u.voice,u.lang)<score(v,u.lang))){u.voice=v;u.lang=v.lang}
+   u.pitch=Math.min(u.pitch||1,1.02);u.rate=Math.min(.95,Math.max(.8,u.rate||.9))}catch(e){}
+  return os(u)};
+ sy.cancel=function(){epoch++;try{cur&&cur.stop()}catch(e){}cur=null;return oc()};
+ /* speak(): sentence-level chunks (commas no longer chop the rhythm) */
+ const v36=window.speak;
+ window.speak=function(t,cb,r,p){if(L('vo')==='0'){cb&&cb();return}
+  const s=String(t||'').replace(/[\u{1F000}-\u{1FFFF}\u2600-\u27BF\uFE0F]/gu,'').replace(/\s+/g,' ').trim();if(!s){cb&&cb();return}
+  sy.cancel();const parts=s.match(/[^.!?]+[.!?]*/g)||[s],g=+L('vr')||1;
+  parts.forEach((x,i)=>{const u=new SpeechSynthesisUtterance(x.trim());u.lang='en-US';u.rate=Math.min(.95,Math.max(.8,(r||.88)*g));u.pitch=1;if(i==parts.length-1)u.onend=u.onerror=()=>cb&&cb();sy.speak(u)})};
+ /* hero button: Natural voice */
+ const cta=$('#hero .cta');
+ if(cta&&!$('#knat')){const b=D.createElement('button');b.id='knat';b.dataset.s='off';b.textContent='🎙️ Natural voice';cta.append(b);
+  const set=(s,t)=>{b.dataset.s=s;b.textContent=t};
+  const go=async()=>{if(K){const on=b.dataset.s=='on';if(on){K=null;S('kok','0');set('off','🎙️ Natural voice')}else{await loadK();set('on','🎙️ Natural voice: on')}return}
+   set('load','Loading 0%…');try{await loadK(p=>set('load','Loading '+p+'%…'));S('kok','1');set('on','🎙️ Natural voice: on');window.speak('Hello! I am Professor Owl. Let us learn together!')}catch(e){K=null;set('off','Voice not available here');setTimeout(()=>set('off','🎙️ Natural voice'),3500)}};
+  b.onclick=()=>{if(b.dataset.s=='load')return;if(!K&&!confirm('Natural voice downloads a large file (roughly 90 MB). Use Wi-Fi. Continue?'))return;go()};
+  if(/^https?:$/.test(location.protocol)&&L('kok')==='1')go()}
+}
+})();
+</script>
+
 <script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})</script>
 </body>
 </html>
