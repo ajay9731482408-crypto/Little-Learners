@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Little Learners</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ecdcb8"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@withicons/web@0.6/dist/cdn.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@withicons/dynamic@latest/dist/cdn/lite.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@withicons/dynamic@latest/dist/cdn/lite.js"></script>
 <script>
 window.LVS=function(f){if(document.documentElement.dataset.skin=='Clay')return'clay';var n=f&&f.n||'';if(n=='Halloween')return'halloween';if(/Diwali|Bhai Dooj|Guru Nanak|Holi/.test(n))return'rangoli';if(/Christmas|New Year/.test(n))return'christmas';return'plush'};
 </script>
@@ -77,6 +78,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .res a{display:block;text-decoration:none;color:inherit;text-align:left}
 .res small{display:block;opacity:.75;font-weight:600;font-size:15px}
 footer{text-align:center;padding:30px 20px;opacity:.7;font-size:15px}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 section,footer{position:relative;z-index:1}
 #wall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -407,11 +409,11 @@ const f=document.getElementById('flow');if(f){f.insertAdjacentHTML('afterbegin',
 <footer>Tip: in Chrome, ⋮ menu → Cast, save and share → Install page as app.</footer>
 
 <button id="owl" aria-label="Talk to Professor Owl">🦉</button>
-<div id="chat" role="dialog" aria-label="Professor Owl"><div class="row" id="vr" style="margin:0 0 8px"></div><div id="log" aria-live="polite"></div>
+<div id="chat" role="dialog" aria-label="Professor Owl"><div class="row" id="vr" style="margin:0 0 8px"></div><div id="log" aria-live="polite" data-lenis-prevent></div>
  <form id="cf"><input id="ci" placeholder="Say or type…" aria-label="Message"><button class="btn" type="button" id="cm" aria-label="Speak">🎤</button><button class="btn" type="submit">Go</button></form></div>
 <nav id="nav"></nav>
-<div id="pinm" class="mod" hidden><div class="mbox" style="text-align:center"><h3 id="pt" style="margin-top:0"></h3><input id="pi" type="password" inputmode="numeric" maxlength="4" aria-label="PIN"><div id="pe"></div><div class="row"><button class="btn alt" id="pcx">Cancel</button><button class="btn" id="pok">OK</button></div></div></div>
-<div id="pm" class="mod" hidden><div class="mbox"><div class="row" style="justify-content:space-between;margin:0"><h2 style="margin:0">Grown-ups 💛</h2><button class="btn alt" id="pcl">Close</button></div><div id="pb"></div></div></div>
+<div id="pinm" class="mod" hidden data-lenis-prevent><div class="mbox" style="text-align:center"><h3 id="pt" style="margin-top:0"></h3><input id="pi" type="password" inputmode="numeric" maxlength="4" aria-label="PIN"><div id="pe"></div><div class="row"><button class="btn alt" id="pcx">Cancel</button><button class="btn" id="pok">OK</button></div></div></div>
+<div id="pm" class="mod" hidden data-lenis-prevent><div class="mbox"><div class="row" style="justify-content:space-between;margin:0"><h2 style="margin:0">Grown-ups 💛</h2><button class="btn alt" id="pcl">Close</button></div><div id="pb"></div></div></div>
 <div id="cel"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
@@ -496,7 +498,7 @@ gsap.registerPlugin(ScrollTrigger);
 const lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)lenis.scrollTo(g.dataset.go,{offset:-10})});
 const bmd=()=>LS('bm')||'both';let vl;const loadV=()=>vl||(vl=new Promise((ok,no)=>{const L=u=>new Promise((r,j)=>{const e=document.createElement('script');e.src=u;e.onload=r;e.onerror=j;document.head.appendChild(e)});L('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js').then(()=>{try{Object.defineProperty(THREE.BufferAttribute.prototype,'length',{get(){return this.array.length},configurable:true})}catch(e){}const w=console.warn;console.warn=function(){const m=arguments[0];if(typeof m=='string'&&m.indexOf('BufferAttribute: .length')>-1)return;return w.apply(console,arguments)};return L('https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js')}).then(ok,e=>{vl=null;no(e)})}));
-let vt;const mkV=()=>{if(bmd()=='cartoon'||bmd()=='off'||vt)return;loadV().then(()=>{if(vt||bmd()=='cartoon'||bmd()=='off')return;const a=SK[sk];try{vt=VANTA.BIRDS({el:'#vanta',mouseControls:true,touchControls:true,gyroControls:false,backgroundColor:a[5],color1:a[6],color2:a[7],birdSize:1.6,wingSpan:26,quantity:3})}catch(e){}}).catch(()=>{})},kV=()=>{try{vt&&vt.destroy()}catch(e){}vt=null};
+let vt;const mkV=()=>{if(bmd()=='cartoon'||bmd()=='off'||vt)return;if(matchMedia('(prefers-reduced-motion:reduce)').matches||(navigator.connection&&navigator.connection.saveData))return;loadV().then(()=>{if(vt||bmd()=='cartoon'||bmd()=='off')return;const a=SK[sk];try{vt=VANTA.BIRDS({el:'#vanta',mouseControls:true,touchControls:true,gyroControls:false,backgroundColor:a[5],color1:a[6],color2:a[7],birdSize:1.6,wingSpan:26,quantity:3})}catch(e){}}).catch(()=>{})},kV=()=>{try{vt&&vt.destroy()}catch(e){}vt=null};
 gsap.to('.hc',{yPercent:25,opacity:.2,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
 $('#nav').innerHTML=[['🏠','Worlds','#learn'],['🎭','Stories','#tales'],['✏️','Write','#write'],['🔢','Maths','#maths'],['📘','NCERT','#ncert'],['🧩','Play','#play'],['🎵','Rhymes','#rhy'],['🎨','Paint','#paint'],['🏆','Stamps','#win']].map(n=>`<button class="nv" data-go="${n[2]}"><b>${n[0]}</b>${n[1]}</button>`).join('');
 $('#tm').onclick=()=>{const d=document.documentElement,k=d.dataset.theme!='dark';d.dataset.theme=k?'dark':'light';LS('theme',d.dataset.theme);$('#tm').textContent=k?'☀️':'🌙'};
@@ -789,7 +791,7 @@ pf.onpointerup=pf.onpointercancel=()=>pd=false;
 function loop(){fx.clearRect(0,0,640,640);sp=sp.filter(q=>q.l>0);sp.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.15;q.l-=.02;fx.globalAlpha=Math.max(q.l,0);fx.fillStyle=q.c;fx.font='22px serif';fx.fillText('✦',q.x,q.y)});fx.globalAlpha=1;ra=sp.length?requestAnimationFrame(loop):0}
 $('#pcr').innerHTML=[['rb','🌈'],['#e8604c','🔴'],['#2f5bd0','🔵'],['#4c9a52','🟢'],['#f2b624','🟡'],['#8a4fc7','🟣']].map(c=>`<button class="ch" data-pc="${c[0]}">${c[1]}</button>`).join('')+'<button class="btn alt" id="pcl2">Clear</button>';
 $('#pcr').onclick=e=>{const b=e.target.closest('[data-pc]');if(b)pcol=b.dataset.pc;if(e.target.id=='pcl2')px.clearRect(0,0,640,640)};
-setInterval(liveIcons,3e4);liveIcons();renderM();renderN();if(LS('mu'))$('#mu').textContent='🎵';
+setInterval(()=>{if(!document.hidden)liveIcons()},3e4);liveIcons();renderM();renderN();if(LS('mu'))$('#mu').textContent='🎵';
 setSkin(sk);mkV();ScrollTrigger.create({trigger:'#hero',start:'top bottom',end:'bottom top',onEnter:()=>!vt&&mkV(),onEnterBack:()=>!vt&&mkV(),onLeave:kV});festUI();if(locked){document.body.classList.add('locked');$('#lk').textContent='🔒'}
 hud();
 </script>
@@ -883,7 +885,7 @@ $('#pb').addEventListener('click',e=>{const b=e.target.closest('[data-x]');if(b)
  if(e.target.closest('[data-sk]'))setTimeout(renderSet,60)});
 $('#pb').addEventListener('change',e=>{const s=e.target.dataset.s;if(!s)return;LS(s,e.target.value);if(s=='n'){name=e.target.value.trim();hud()}if(s=='vn'||s=='vr')speak('Hello! I am Professor Owl.');if(s=='mv'&&LS('mu'))bgm(true)});
 $('#pa').onclick=()=>askPin('Grown-up PIN',()=>{parent();const pb=$('#pb');const o=pb.querySelector('svg');o&&o.remove();pb.insertAdjacentHTML('afterbegin','<div id="dsh"></div><div id="set2"></div><div id="set3"></div><div id="set"></div>');lastH='';refreshDash(1);renderSet();window.set2&&set2();window.set3&&set3();$('#pm').hidden=false});
-setInterval(()=>{if(!$('#pm').hidden)refreshDash()},2000);
+setInterval(()=>{if(!document.hidden&&!$('#pm').hidden)refreshDash()},2000);
 if(sy)sy.onvoiceschanged=()=>{if(!$('#pm').hidden)renderSet()};
 })();
 </script>
@@ -945,7 +947,7 @@ $('#pb').addEventListener('click',e=>{const b=e.target.closest('[data-y]');if(!b
  if(y=='reset'){if(confirm('Reset all points, minutes and stamps?'))askPin('Grown-up PIN to reset',()=>{try{['lg','mn','p','te','dgd'].forEach(k=>localStorage.removeItem(k))}catch(x){}location.reload()});return}
  if(y[0]=='g')LS('dg',v);else if(y[0]=='b')LS('bk',v);else if(y[0]=='q'){LS('qh',v);LS('qo','')}
  set2()});
-setInterval(()=>{if(!$('#pm').hidden)set2()},2000);
+setInterval(()=>{if(!document.hidden&&!$('#pm').hidden)set2()},2000);
 })();
 </script>
 <script>
@@ -1192,7 +1194,7 @@ function live2(){const d=new Date(),M=d.toLocaleString('en',{month:'short'}).toU
  $('#fstrip').innerHTML=up.map((x,i)=>`<button class="fc" data-fn="${x.n}" style="background:linear-gradient(135deg,${CS[i%4]})">${FIC(x.n,46)}<b>${x.n}</b><small>${x.d?x.d+' day'+(x.d>1?'s':''):'Today!'}</small></button>`).join('')}
 D.addEventListener('click',e=>{const b=e.target.closest('[data-fn]');if(!b)return;const n=b.dataset.fn,x=FE.find(y=>y[0]==n);if(!x)return;const d=Math.round((new Date(x[1]+'T00:00:00')-T0())/864e5);speak(d>0?n+' is in '+d+' day'+(d>1?'s':'')+'!':d==0?'Happy '+n+'!':n);celebrate(d==0?'Happy '+n+'! '+x[2]:n+' '+x[2],x[3])});
 window.festUI=()=>{const f=fest(),n=nf(),b=$('#fest');document.body.classList.toggle('fes',!!f);if(f){b.className='pill fb';b.innerHTML=`${FIC(f.n,30)} ${f.d?`Happy ${f.n} in ${f.d} day${f.d>1?'s':''}!`:`Happy ${f.n}!`}`;if(LS('fs')!=tk()&&LS('d')){LS('fs',tk());setTimeout(()=>celebrate(`Happy ${f.n}! ${f.i}`,f.ic),1800)}}else if(n){b.className='pill';b.innerHTML=`${FIC(n.n,24)} ${n.n} in ${n.d} day${n.d>1?'s':''}`}wall()};
-window.live2=live2;live2();festUI();setInterval(live2,3e4);customElements.whenDefined('with-live-icon').then(()=>{try{live2()}catch(e){}});
+window.live2=live2;live2();festUI();setInterval(()=>{if(!document.hidden)live2()},3e4);customElements.whenDefined('with-live-icon').then(()=>{try{live2()}catch(e){}});
 })();
 </script>
 <script>
@@ -1667,7 +1669,7 @@ D.addEventListener('pointerleave',()=>{if(tiltEl){tiltEl.style.transform='';tilt
 /* ---------- run ---------- */
 let t0=0;const run=()=>{clearTimeout(t0);t0=setTimeout(()=>{try{watchMods();injectHub();names();hideEmoji();hindi();motion()}catch(e){}},350)};
 new MutationObserver(run).observe(D.body,{childList:true,subtree:true});
-setInterval(names,1500);
+setInterval(()=>{if(!document.hidden)names()},1500);
 run();
 D.documentElement.lang=D.documentElement.lang||'en';
 })();
@@ -1718,7 +1720,7 @@ D.addEventListener('click',e=>{if(menu.hidden)return;if(menu.contains(e.target))
 D.addEventListener('keydown',e=>{if(e.key=='Escape'&&!menu.hidden){open(false);btn.focus();e.stopPropagation()}},true);
 const sync=()=>{try{gather();who();if(!menu.hidden)labels()}catch(e){}};
 new MutationObserver(()=>{clearTimeout(sync.t);sync.t=setTimeout(sync,120)}).observe(top,{childList:true,subtree:true,characterData:true});
-setInterval(sync,1500);setTimeout(sync,400);sync();
+setInterval(()=>{if(!document.hidden)sync()},1500);setTimeout(sync,400);sync();
 })();
 </script>
 <script>
@@ -1779,7 +1781,7 @@ const dash=()=>{const p=$('#pb');if(!p||!p.querySelector('#dsh'))return;let x=$(
  <h4>Weekly activity</h4><div class="pdw">${d.w.map((v,i)=>`<div>${v||''}<u style="height:${v/mx*80}%"></u>${'SMTWTFS'[new Date(dk(6-i)+'T12:00').getDay()]}</div>`).join('')}</div>
  <div class="pdn"><span>🦒</span><div><b>${d.act>=5?'Great consistency!':d.act>=2?'Good start!':'Let’s get started!'}</b>${nm()} ${d.act>=5?'is building strong learning habits.':'learns best with a few short sessions each week.'}</div></div>`;
  if(!x){x=document.createElement('div');x.id='pdx';p.querySelector('#dsh').before(x)}if(x.dataset.h!=h){x.dataset.h=h;x.innerHTML=h}};
-home();setInterval(()=>{home();dash()},1500)})();
+home();setInterval(()=>{if(!document.hidden){home();dash()}},1500)})();
 </script>
 <script>(()=>{const r=document.documentElement,$=q=>document.querySelector(q),OK=/^#[0-9a-f]{6}\|#[0-9a-f]{6}$/i,ap=v=>{if(!OK.test(v))return 0;const c=v.split('|');r.style.setProperty('--bsk',c[0]);r.style.setProperty('--bsk2',c[1]);return 1};
 const PAL=[['blue','#4cc3e8'],['red','#e8604c'],['green','#4c9a52'],['yellow','#f2b624'],['purple','#8a4fc7'],['pink','#f48fb1']],K={shirt:'--bshirt',shorts:'--bshorts',shoes:'--bshoes'},DEF={shirt:0,shorts:0,shoes:1};let CL={};
@@ -2308,7 +2310,7 @@ if(go)go.addEventListener('click',()=>{if(LSg('kok')==='1'||!CAN()&&LSg('vskip')
 if(LSg('d')&&CAN()&&LSg('kok')!=='1'&&LSg('vskip')!=='1')setTimeout(()=>{if(!isOn())window.openVoicePack('gate')},1200);
 /* menu entry: the settings menu collects any quick pill added to #top */
 {const right=D.querySelector('#top > span:last-child');if(right&&!D.getElementById('vpb')){const p=D.createElement('button');p.type='button';p.className='pill';p.id='vpb';p.textContent='🎙️';p.setAttribute('aria-label','Download natural voice');p.onclick=()=>window.openVoicePack('menu');right.append(p)}
- const lab=()=>{const p=D.getElementById('vpb');if(p)p.setAttribute('aria-label',isOn()?'Natural voice: on ✓':'Download natural voice')};setInterval(lab,1000);lab()}
+ const lab=()=>{const p=D.getElementById('vpb');if(p)p.setAttribute('aria-label',isOn()?'Natural voice: on ✓':'Download natural voice')};setInterval(()=>{if(!document.hidden)lab()},1000);lab()}
 /* ---------- swap places: Puzzle time <-> Pick a world ---------- */
 {const L=D.getElementById('learn'),P=D.getElementById('play');if(L&&P&&!L.dataset.sw){L.dataset.sw=1;const m=D.createComment('sw');L.replaceWith(m);P.replaceWith(L);m.replaceWith(P);
  let busyN=0;const swapNav=()=>{if(busyN)return;const n=D.getElementById('nav');if(!n)return;const a=n.querySelector('[data-go="#learn"]'),c=n.querySelector('[data-go="#play"]');if(!a||!c||n.dataset.sw=='1'&&0)return;
@@ -2326,13 +2328,13 @@ if(typeof WORLDS!='undefined'&&$$('#wg')){
  const draw=i=>{cur=i;const w=WORLDS[i];seq++;
   wg.querySelectorAll('.wx').forEach(b=>b.setAttribute('aria-pressed',b.dataset.i==i));
   wd.hidden=false;
-  wd.innerHTML=`<div class="wstp"><b>2</b>Tap a picture to hear it</div><div class="wh"><h3>${w[0]} ${w[1]}</h3><span class="wp" id="wpr"></span></div><div class="wk">${w[2].map((x,n)=>`<button style="background:${BG[i]};--n:${n}" data-w="${word(x)}" aria-label="${word(x)}"><i>${x[0]}</i>${word(x)}</button>`).join('')}</div><button class="wall" id="wall">🔊 Hear all</button>`;
+  wd.innerHTML=`<div class="wstp"><b>2</b>Tap a picture to hear it</div><div class="wh"><h3>${w[0]} ${w[1]}</h3><span class="wp" id="wpr"></span></div><div class="wk">${w[2].map((x,n)=>`<button style="background:${BG[i]};--n:${n}" data-w="${word(x)}" aria-label="${word(x)}"><i>${x[0]}</i>${word(x)}</button>`).join('')}</div><button class="wall" id="wallall">🔊 Hear all</button>`;
   prog();try{wd.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}catch(e){}};
  const prog=()=>{if(cur<0)return;const n=WORLDS[cur][2].filter(x=>heard.has(word(x))).length,t=WORLDS[cur][2].length,p=$$('#wpr');if(p)p.textContent=n>=t?'All heard! ⭐':n+' of '+t+' heard'};
  const hit=(b,e)=>{const t=b.dataset.w;try{speak(t)}catch(x){}b.classList.remove('say');void b.offsetWidth;b.classList.add('say');b.classList.add('seen');
   if(!heard.has(t)){heard.add(t);try{addPts(1,e||null,'Words')}catch(x){}}prog()};
  wg.onclick=e=>{const t=e.target.closest('.wx');if(t)draw(+t.dataset.i)};
- wd.onclick=e=>{const a=e.target.closest('#wall');if(a){const id=++seq,bs=[...wd.querySelectorAll('.wk button')];let k=0;const next=()=>{if(id!==seq||k>=bs.length)return;const b=bs[k++];b.classList.remove('say');void b.offsetWidth;b.classList.add('say','seen');heard.add(b.dataset.w);prog();try{speak(b.dataset.w,()=>setTimeout(next,250))}catch(x){next()}};next();return}
+ wd.onclick=e=>{const a=e.target.closest('.wall');if(a){const id=++seq,bs=[...wd.querySelectorAll('.wk button')];let k=0;const next=()=>{if(id!==seq||k>=bs.length)return;const b=bs[k++];b.classList.remove('say');void b.offsetWidth;b.classList.add('say','seen');heard.add(b.dataset.w);prog();try{speak(b.dataset.w,()=>setTimeout(next,250))}catch(x){next()}};next();return}
   const b=e.target.closest('.wk button');if(b){seq++;hit(b,e)}};
 }
 })();
@@ -2700,6 +2702,7 @@ html.pz *,section.off *,header.off *{animation-play-state:paused!important}
  document.querySelectorAll('section,header#hero').forEach(x=>io.observe(x))})();
 </script>
 
+<script>document.addEventListener("visibilitychange",()=>{if(!document.hidden)try{liveIcons();window.live2&&live2()}catch(e){}});</script>
 <script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})</script>
 </body>
 </html>
