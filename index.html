@@ -465,7 +465,7 @@ const RES=[['🏛️','Harvard Center on the Developing Child','Free · parents'
 const STAMPS=['🚲','📖','🌙','🕯️','🚂','🛋️','✉️','🎩','🎈','🦄'];
 
 function pop(x,y){const a=['⭐','🎉','✨','💛','🌈'];for(let i=0;i<12;i++){const b=document.createElement('div');b.className='bit';b.textContent=a[i%5];b.style.left=x+'px';b.style.top=y+'px';document.body.append(b);gsap.to(b,{x:gsap.utils.random(-150,150),y:gsap.utils.random(-200,-30),rotation:gsap.utils.random(-120,120),opacity:0,duration:1.1,ease:'power2.out',onComplete:()=>b.remove()})}}
-const mid=()=>[innerWidth/2,innerHeight/2];
+
 function addPts(n,e,k){const o=Math.floor(pts/30),r0=rank();pts+=n;LS('p',pts);if(k)logp(n,k);hud();e?pop(e.clientX,e.clientY):pop(...mid());if(Math.floor(pts/30)>o)celebrate('New stamp! 🎉');else if(rank()!=r0)celebrate('You are now '+rank()+'!')}
 const tk=(o=0)=>new Date(Date.now()-o*864e5-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
 function logp(n,k){try{const l=JSON.parse(LS('lg')||'{}'),d=tk();l[d]=l[d]||{};l[d][k]=(l[d][k]||0)+n;LS('lg',JSON.stringify(l))}catch(e){}}
@@ -2641,7 +2641,7 @@ function kid(st,ex,fr,m){const key=st.k+ex+fr+m;if(kc[key])return kc[key];
  const c=document.createElement('canvas');c.width=24;c.height=34;const x=c.getContext('2d'),R=(cl,a,b,w,h)=>{x.fillStyle=cl;x.fillRect(a,b,w,h)},up=ex=='cheer';
  const lf=[0,-1,0,1][fr%4],rf=[0,1,0,-1][fr%4];
  R(st.pants,7,23,4,7);R(st.pants,13,23,4,7);R('#3a2a2a',6+lf,30,5,3);R('#3a2a2a',13+rf,30,5,3);
- if(st.long&&0){}
+ 
  R(st.shirt,6,15,12,9);R(col(st.shirt,-.18),6,21,12,2);R(st.pants,6,23,12,1);
  if(up){R(st.shirt,3,9,3,7);R(st.shirt,18,9,3,7);R(st.skin,3,6,3,3);R(st.skin,18,6,3,3)}else{R(st.shirt,3,15,3,6);R(st.shirt,18,15,3,6);R(st.skin,3,21,3,3);R(st.skin,18,21,3,3)}
  R(st.skin,6,3,12,12);x.clearRect(6,14,1,1);x.clearRect(17,14,1,1);
