@@ -5,15 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Little Learners</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ecdcb8"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@withicons/web@0.6/dist/cdn.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/@withicons/dynamic@latest/dist/cdn/lite.js"></script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><meta name="color-scheme" content="light dark">
 <script>
 window.LVS=function(f){if(document.documentElement.dataset.skin=='Clay')return'clay';var n=f&&f.n||'';if(n=='Halloween')return'halloween';if(/Diwali|Bhai Dooj|Guru Nanak|Holi/.test(n))return'rangoli';if(/Christmas|New Year/.test(n))return'christmas';return'plush'};
 </script>
 
 <script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{--bg:#ecdcb8;--card:#fffaf0;--ink:#2a2438;--coral:#e8604c;--blue:#2f5bd0;--green:#4c9a52;--sun:#f2b624;--line:#2a243822;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 :root[data-theme="dark"]{--bg:#1c1b34;--card:#2a2850;--ink:#fff3d6;--line:#fff3d633}
@@ -220,7 +218,7 @@ body{padding-bottom:120px}
 </style>
 <style>#cvs #ink{background:transparent}#cvs #g{background:var(--bg)}</style>
 <style>@media(min-width:900px){#cvs{width:min(60vh,460px)}}</style>
-</head>
+<style>@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}button,.tile,.nv,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}body.tab-hidden *{animation-play-state:paused!important}</style><script>document.addEventListener("visibilitychange",function(){document.body&&document.body.classList.toggle("tab-hidden",document.hidden)})</script></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div id="wall"></div>
@@ -2218,13 +2216,15 @@ if(sy&&!sy.__v37){sy.__v37=1;
  async function loadK(cb){if(KI){K=KI;return K}
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
   const files={},rep=p=>{if(!p||!p.file)return;if(p.status=='progress'||p.status=='done'){const f=files[p.file]||(files[p.file]={l:0,t:0});if(p.total){f.t=p.total}f.l=p.status=='done'?(f.t||f.l):(p.loaded||0);let L2=0,T=0;for(const k in files){L2+=files[k].l;T+=files[k].t}if(T){const pc=Math.min(99,Math.round(L2/T*100));window.dispatchEvent(new CustomEvent('kokpct',{detail:{pc,mb:Math.round(L2/1048576),tmb:Math.round(T/1048576)}}));cb&&cb(pc)}}};
-  let last;for(let a=0;a<2;a++){try{const m=await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm');KI=await m.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:rep});K=KI;return K}catch(e){last=e}}
+  let last;for(const u of ['https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm','https://esm.sh/kokoro-js@1.2.0','https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm']){try{const m=await import(u);KI=await m.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:rep});K=KI;return K}catch(e){last=e}}
   throw last}
- async function playK(u,id){if(id!==epoch)return;const t=u.text;let b=cache.get(t);if(!b){const a=await K.generate(t,{voice:KV,speed:Math.min(1.05,Math.max(.85,(u.rate||.9)+.05))});b={d:a.audio,sr:a.sampling_rate};cache.set(t,b)}
+ const GP=new Map();let gq=Promise.resolve();
+ function genK(u){const t=u.text;if(cache.has(t))return Promise.resolve(cache.get(t));if(GP.has(t))return GP.get(t);const p=gq.then(()=>K.generate(t,{voice:KV,speed:Math.min(1.05,Math.max(.85,(u.rate||.9)+.05))})).then(a=>{const b={d:a.audio,sr:a.sampling_rate};cache.set(t,b);GP.delete(t);return b},e=>{GP.delete(t);throw e});gq=p.catch(()=>{});GP.set(t,p);return p}
+ async function playK(u,id){if(id!==epoch)return;const t=u.text;let b=cache.get(t);if(!b)b=await genK(u);
   if(id!==epoch)return;const c=AC(),buf=c.createBuffer(1,b.d.length,b.sr);buf.copyToChannel(b.d,0);const s=c.createBufferSource();s.buffer=buf;s.connect(c.destination);cur=s;await new Promise(r=>{s.onended=r;s.start()});u.onend&&u.onend({})}
  sy.speak=function(u){try{
    if(u.lang&&!/^en/i.test(u.lang))return os(u);
-   if(K&&u.text&&u.text.length<220){const id=epoch;chain=chain.then(()=>playK(u,id)).catch(()=>{if(id===epoch)os(u)});return}
+   if(K&&u.text&&u.text.length<220){const id=epoch;genK(u).catch(()=>{});chain=chain.then(()=>playK(u,id)).catch(()=>{if(id===epoch)os(u)});return}
    const v=bestFor(u.lang);if(v&&(!u.voice||score(u.voice,u.lang)<score(v,u.lang))){u.voice=v;u.lang=v.lang}
    u.pitch=Math.min(u.pitch||1,1.02);u.rate=Math.min(.95,Math.max(.8,u.rate||.9))}catch(e){}
   return os(u)};
@@ -2309,16 +2309,17 @@ function warn(){const w=[];if(!/^https?:$/.test(location.protocol))w.push('Open 
  if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(e=>{if(e.quota&&e.usage!=null&&e.quota-e.usage<200*1048576)w.push('This phone is low on free space.');done()}).catch(done);else done()}
 function skipUI(){const on=isOn();show('#vskip',!must());txt('#vskip',on?(mode=='menu'?'Close':'Continue ➜'):mode=='menu'?'Not now':'Continue with phone voice')}
 function close(){v.hidden=true;if(mode=='flow'){const s2=$$('#s2');if(s2){s2.hidden=false;const p=$$('#pn');p&&p.focus()}}}
-window.openVoicePack=function(m){mode=m||'menu';v.hidden=false;const on=isOn();show('#vp',false);show('#vhear',on);show('#vgo',!on);show('#voff',on&&mode=='menu');
+window.openVoicePack=function(m){mode=m||'menu';v.hidden=false;if(!busy)$$('#vgo').disabled=false;const on=isOn();show('#vp',false);show('#vhear',on);show('#vgo',!on);show('#voff',on&&mode=='menu');
  txt('#vt',on?'Natural voice is on. ✅ It is downloaded and saved on this phone.':isDl()?'Natural voice is downloaded on this phone ✅ but switched off.':must()?'To start, download the teacher’s voice. It is about 90 MB, downloads once and is saved on this phone. Please use Wi-Fi.':'Get a warm, natural voice. It downloads once (about 90 MB) and is saved on this phone.');
  txt('#vgo',fails?'↻ Try again':isDl()?'▶ Turn on natural voice':'⬇ Download natural voice');skipUI();warn();return true};
-$$('#vgo').onclick=()=>{if(busy)return;busy=1;$$('#vgo').disabled=true;show('#vp',true);txt('#vn','Starting…');$$('#vf').style.width='3%';window.__kokGo&&window.__kokGo()};
+$$('#vgo').onclick=()=>{if(busy)return;busy=1;clearTimeout(window.__vwd);window.__vwd=setTimeout(()=>{if(busy&&!isOn()){busy=0;$$('#vgo').disabled=false;txt('#vn','Still working… you can close this and keep playing.')}},90000);$$('#vgo').disabled=true;show('#vp',true);txt('#vn','Starting…');$$('#vf').style.width='3%';window.__kokGo&&window.__kokGo()};
 $$('#vskip').onclick=()=>{if(must())return;if(!isOn())LSs('vskip','1');close()};
 $$('#voff').onclick=()=>{window.__kokOff&&window.__kokOff();close()};
+v.addEventListener('click',e=>{if(e.target!==v)return;if(!busy&&!isOn())LSs('vskip','1');close()});addEventListener('keydown',e=>{if(e.key=='Escape'&&!v.hidden)close()});
 $$('#vhear').onclick=()=>{try{window.speak('Hello! I am Professor Owl. Say it with me!')}catch(e){}};
 addEventListener('kokpct',e=>{const d=e.detail;loading=1;pct=d.pc;$$('#vf').style.width=d.pc+'%';txt('#vn',d.pc+'%  ·  '+d.mb+' of '+d.tmb+' MB')});
 addEventListener('kokok',()=>{busy=0;loading=0;pct=100;LSs('kokdl','1');$$('#vgo').disabled=false;$$('#vf').style.width='100%';txt('#vn','Done! Saved on this phone. ✅');show('#vgo',false);show('#vhear',true);txt('#vt','Natural voice is on. ✅');skipUI()});
-addEventListener('kokfail',e=>{busy=0;loading=0;fails++;$$('#vgo').disabled=false;show('#vp',false);txt('#vgo','↻ Try again');const w=$$('#vw');w.hidden=false;w.textContent=fails>=2?'Still could not download. You can continue with the phone voice and try again later from the menu.':'Could not download. Check internet and free space, then try again.';skipUI()});
+addEventListener('kokfail',e=>{busy=0;loading=0;fails++;$$('#vgo').disabled=false;show('#vp',false);txt('#vgo','↻ Try again');const w=$$('#vw');w.hidden=false;const dt=String(e.detail||'').slice(0,80);w.textContent=(fails>=2?'Still could not load the voice. You can use the phone voice and try again later from the menu.':'Could not load the voice. Check internet and free space, then try again.')+(dt?' ('+dt+')':'');skipUI()});
 /* ---------- onboarding: voice step between name and PIN ---------- */
 const go=$$('#go');
 if(go)go.addEventListener('click',()=>{if(LSg('kok')==='1'||!CAN()&&LSg('vskip')==='1')return;const s2=$$('#s2');if(s2)s2.hidden=true;window.openVoicePack('flow')});
@@ -2725,7 +2726,7 @@ html.pz *,section.off *,header.off *{animation-play-state:paused!important}
 #talk .tkbar{display:flex;align-items:center;gap:10px;margin:4px 0 10px;font:700 16px Fredoka}
 #talk .tkfuel{flex:1;height:20px;border-radius:99px;background:#0002;position:relative}
 #talk .tkfuel i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#ffb454,#ff6b6b);transition:width .7s cubic-bezier(.2,.8,.2,1)}
-#talk .tkfuel span{position:absolute;top:-12px;left:0;font-size:30px;transform:translateX(-50%);transition:left .7s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 2px 0 #0003);will-change:left}
+#talk .tkfuel span{position:absolute;top:-12px;left:0;font-size:30px;transition:left .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 2px 0 #0003);will-change:left}
 #talk .tkq{font:700 clamp(24px,6.2vw,34px) Fredoka;min-height:84px;display:flex;align-items:center;justify-content:center;margin:6px 0;line-height:1.2}
 #talk .tkst{min-height:26px;font:700 17px Fredoka;opacity:.85}
 #talk .tkfb{text-align:left;margin:10px 0;display:grid;gap:8px}
@@ -2822,7 +2823,7 @@ sec.innerHTML='<h2>Talk Time 🦉</h2><p class="lead">Owl asks a question. Answe
 const anchor=$('#space')||$('#usa')||$('#future')||$('#play');if(anchor)anchor.insertAdjacentElement('beforebegin',sec);else D.body.appendChild(sec);
 const pill=D.createElement('button');pill.id='tkpill';pill.hidden=true;pill.type='button';pill.textContent='🦉 Listening…';D.body.appendChild(pill);
 const $$=q=>sec.querySelector(q),st=t=>{$$('#tkst').textContent=t;pill.textContent='🦉 '+t};
-const fuel=n=>{const p=Math.min(100,n/5*100);$$('#tkf').style.width=p+'%';$$('#tkr').style.left=p+'%';$$('#tks').textContent=n+'/5'};
+const fuel=n=>{const p=Math.min(100,n/5*100);$$('#tkf').style.width=p+'%';$$('#tkr').style.left=p+'%';$$('#tkr').style.transform='translateX(-'+p+'%)';$$('#tks').textContent=n+'/5'};
 const show=(id,on)=>{$$(id).hidden=!on};
 function ask(){const t=++S.t;S.mode='ans';S.retry=0;S.cur=S.qs[S.i];$$('#tkfb').hidden=true;$$('#tkin').value='';
  $$('#tkq').textContent=S.cur[0];show('#tkgo',false);show('#tknx',false);show('#tkmic',!S.hf);$$('#tkmic').classList.remove('pulse');st('Owl is asking…');
@@ -2857,7 +2858,7 @@ function checkRep(text){const a=words(S.rep),b=words(text),hit=a.filter(w=>b.inc
  const ok=hit>=.7;if(ok){try{__burst($$('.tk'));addPts(1,null,'English')}catch(e){}}
  const m=ok?'Perfect! You said it just right! 🌟':'Good try! Practise it again later. 💪';$$('#tkst').textContent=m;say(m.replace(/[^\w\s!.,’']/g,''),()=>{if(t!==S.t)return;S.hf?setTimeout(()=>{if(t===S.t)advance()},500):(show('#tknx',true),st('Tap Next ▶'))})}
 function advance(){S.i++;if(S.i>=S.qs.length)return finish();ask()}
-function finish(){S.t++;window.__tkStop();const r=$$('#tkr');try{r.animate([{transform:'translateX(-50%) translateY(0) scale(1)',opacity:1},{transform:'translateX(-50%) translateY(-170px) scale(.5)',opacity:0}],{duration:1400,easing:'cubic-bezier(.5,0,.9,.4)'})}catch(e){}
+function finish(){S.t++;window.__tkStop();const r=$$('#tkr');try{r.animate([{transform:'translateX(-100%) translateY(0) scale(1)',opacity:1},{transform:'translateX(-100%) translateY(-170px) scale(.5)',opacity:0}],{duration:1400,easing:'cubic-bezier(.5,0,.9,.4)'})}catch(e){}
  const total=S.stars,best=S.rs.slice().sort((a,b)=>b.stars-a.stars)[0],top=Object.entries(S.fixes).sort((a,b)=>b[1]-a[1])[0];
  try{addPts(5,null,'English')}catch(e){}$$('#tkfb').hidden=false;
  $$('#tkfb').innerHTML='<div class="tkc ok"><small>Blast off! 🚀</small>You earned '+total+' stars today, '+esc(nm())+'!</div>'+(best?'<div class="tkc ok"><small>Best sentence</small>'+esc(best.fix)+'</div>':'')+(top?'<div class="tkc tp"><small>Next time, practise</small>'+esc(CATN[top[0]]||top[0])+'</div>':'');
@@ -2890,6 +2891,112 @@ const nav=$('#nav');if(nav){const add=()=>{if(nav.querySelector('[data-go="#talk
 const sb=$('#spb');if(sb)new MutationObserver(()=>{const k=sb.querySelector('.spsky');if(!k)return;const r=k.querySelector('.sprk'),z=!!(r&&(r.classList.contains('shake')||r.classList.contains('go')));
  if(z!==k.classList.contains('zoom'))k.classList.toggle('zoom',z);
  const t=(k.querySelector('.tt')||{}).textContent||'';if(/Great|Ready|launched|Yes|Perfect/i.test(t)&&k.dataset.b!==t){k.dataset.b=t;__burst(k)}}).observe(sb,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
+
+<!-- ===== v51: stamp medals + open/share, Explore polish, speaking animation ===== -->
+<style id="v51">
+/* stamps */
+.stamp:not(.lock){cursor:pointer}.stamp.lock{cursor:pointer}
+#stm{position:fixed;inset:0;z-index:95;background:#1b1838b8;display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
+#stm[hidden]{display:none}
+#stm .stb{position:relative;background:var(--card);color:var(--ink);border-radius:32px;padding:26px 20px 20px;width:min(380px,100%);text-align:center;box-shadow:0 10px 0 #0004;animation:stin .45s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes stin{from{transform:scale(.7) translateY(40px);opacity:0}}
+#stm .stx{position:absolute;right:12px;top:10px;width:44px;height:44px;border-radius:50%;border:0;background:#0001;font-size:20px;color:inherit}
+#stm .big{position:relative;width:210px;margin:6px auto 0;overflow:hidden;border-radius:24px}
+#stm .big svg{width:100%;height:auto;display:block;animation:stspin .9s cubic-bezier(.2,1.1,.3,1) both;filter:drop-shadow(0 8px 0 #0002)}
+@keyframes stspin{from{transform:rotateY(180deg) scale(.5)}}
+#stm .big::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,#fff9 50%,transparent 60%);transform:translateX(-120%);animation:stshine 2.4s .9s ease-in-out infinite}
+@keyframes stshine{to{transform:translateX(120%)}}
+#stm.lk .big svg{filter:grayscale(1) opacity(.45)}#stm.lk .big::after{display:none}
+#stm h3{font:700 28px Fredoka;margin:10px 0 2px}#stm p{margin:0 0 12px;font:600 17px Nunito,sans-serif;opacity:.85}
+#stm .row{justify-content:center}
+/* explore */
+#et{display:grid!important;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+#et .lv{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:20px;min-width:0;font:700 15px Fredoka;line-height:1.1}
+#et .lv i{font-style:normal;font-size:30px;line-height:1.1;transition:transform .25s}
+#et .lv[aria-pressed=true]{background:linear-gradient(160deg,#2f5bd0,#5b8cff);color:#fff;transform:translateY(-2px);box-shadow:0 5px 0 #1d3f94}
+#et .lv[aria-pressed=true] i{transform:scale(1.2) rotate(-6deg)}
+#explore .box{background:linear-gradient(#fff,#eaf7ff);border-radius:28px}
+#es{background:radial-gradient(circle at 50% 28%,#fff,#dff1ff 70%);box-shadow:inset 0 0 0 3px #bfe0f5}
+#ec{background:#fff;border:3px solid var(--line);border-radius:22px;padding:10px 14px;margin:10px 0!important;box-shadow:0 4px 0 var(--line)}
+#ec.pop{animation:ecp .4s cubic-bezier(.2,1.3,.3,1)}@keyframes ecp{from{transform:scale(.92);opacity:.4}}
+#ep{display:inline-block;background:#ffe9a8;color:#6a4a00;border-radius:99px;padding:4px 14px}
+#ebt .btn{font-size:16px;padding:8px 14px}
+/* English tab + talk tidy */
+#talk .tkhow{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+#talk .tkhow span{background:#0000000d;border-radius:99px;padding:8px 14px;font:700 17px Fredoka}
+#talk .tk::before{content:"🦉";position:absolute;right:14px;bottom:12px;font-size:34px;opacity:.9;transform-origin:50% 100%}
+/* speaking animation */
+body.talking #owl{animation:owlt .45s ease-in-out infinite alternate;box-shadow:0 0 0 0 #ffb45466}
+body.talking #owl::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid #ffb454;animation:owlr 1s ease-out infinite}
+@keyframes owlt{to{transform:scale(1.1) rotate(-4deg)}}@keyframes owlr{from{transform:scale(.9);opacity:.9}to{transform:scale(1.5);opacity:0}}
+body.talking #talk .tk::before{animation:owlb .4s ease-in-out infinite alternate}
+@keyframes owlb{to{transform:translateY(-6px) rotate(-8deg)}}
+body.talking #tkq,body.talking #spb .tt{text-shadow:0 0 14px #ffb45488}
+</style>
+<script>
+(()=>{
+const D=document,$=q=>D.querySelector(q),LSg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},LSs=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const nm=()=>LSg('n')||'Friend',pts=()=>+LSg('p')||0;
+/* ---------- stamp medals ---------- */
+const NAMES=['First Star','Super Cup','Rocket Pilot','Little Champion','Kind Heart','Lightning Brain','Brave Explorer','Story Hero','Maths Whiz','Word Wizard'];
+const P=['<path d="M12 2l3 6.5 7 .9-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.9z"/>','<path d="M7 3h10v6a5 5 0 0 1-10 0zM7 5H3.5v1.5A3.5 3.5 0 0 0 7 10M17 5h3.5v1.5A3.5 3.5 0 0 1 17 10M11 14h2v4h-2zM7.5 19h9v2h-9z"/>','<path d="M12 2c3 3 4 6 4 9l3 4-3 1-1 5h-6l-1-5-3-1 3-4c0-3 1-6 4-9z"/>','<path d="M2.5 8l4.5 4 5-7 5 7 4.5-4-2 12H4.5z"/>','<path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.7A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/>','<path d="M13 2L5 14h6l-1 8 8-12h-6z"/>'];
+const C=['#e8604c','#2f5bd0','#4c9a52','#d98a12','#8a4fc7','#14919b'];
+const TIER=[['#ffd9b0','#c9783a','#8a4f1f'],['#ffffff','#b8c2d4','#7c879b'],['#fff3b0','#f0b92a','#b9810c']];
+let U=0;
+const seal=(cx,cy,r,n,d)=>Array.from({length:2*n},(_,k)=>{const a=k*Math.PI/n,rr=k%2?r-d:r;return(cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1)}).join(' ');
+function medal(i,w){const id='m'+(U++),t=TIER[i<3?0:i<6?1:2],c=C[i%6];
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 112" width="${w||84}" height="${Math.round((w||84)*112/96)}" aria-hidden="true" style="display:block;margin:0 auto"><defs><radialGradient id="${id}g" cx=".35" cy=".28" r=".95"><stop offset="0" stop-color="${t[0]}"/><stop offset=".55" stop-color="${t[1]}"/><stop offset="1" stop-color="${t[2]}"/></radialGradient><linearGradient id="${id}r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="#0004"/></linearGradient></defs>
+<path d="M27 66L14 110l17-8 9 9 9-46z" fill="${c}"/><path d="M27 66L14 110l17-8 9 9 9-46z" fill="url(#${id}r)" opacity=".55"/><path d="M69 66l13 44-17-8-9 9-9-46z" fill="${c}"/><path d="M69 66l13 44-17-8-9 9-9-46z" fill="url(#${id}r)" opacity=".55"/>
+<polygon points="${seal(48,44,42,16,4)}" fill="url(#${id}g)" stroke="${t[2]}" stroke-width="1.5" stroke-linejoin="round"/><circle cx="48" cy="44" r="32" fill="${c}" stroke="#fff" stroke-opacity=".85" stroke-width="2.5"/><circle cx="48" cy="44" r="27" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-dasharray="2.5 3.5"/>
+<g transform="translate(29.500 25.500) scale(1.58)" fill="#fff">${P[i%6]}</g><ellipse cx="36" cy="26" rx="16" ry="7" fill="#fff" opacity=".28" transform="rotate(-28 36 26)"/><circle cx="76" cy="76" r="11" fill="#fff" stroke="${t[2]}" stroke-width="2"/><text x="76" y="80.500" text-anchor="middle" font-family="Fredoka,Nunito,sans-serif" font-weight="700" font-size="13" fill="${t[2]}">${i+1}</text></svg>`}
+window.SB=(i,e)=>medal(i,84)+`<span class="sk">${e}</span>`;
+/* remember the day each stamp was earned */
+const dates=()=>{try{return JSON.parse(LSg('sdt')||'{}')}catch(e){return{}}};
+const today=()=>new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+const mark=()=>{const n=Math.floor(pts()/30),d=dates();let ch=0;for(let i=0;i<n;i++)if(!d[i]){d[i]=today();ch=1}if(ch)LSs('sdt',JSON.stringify(d))};
+if(typeof window.hud=='function'){const h=window.hud;window.hud=function(){const r=h.apply(this,arguments);try{mark()}catch(e){}return r}}
+try{mark();window.hud&&window.hud()}catch(e){}
+/* stamp viewer: open, hear, save, share */
+const m=D.createElement('div');m.id='stm';m.hidden=true;m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-label','Stamp');
+m.innerHTML='<div class="stb"><button class="stx" aria-label="Close">✕</button><div class="big" id="stbig"></div><h3 id="stn"></h3><p id="stp"></p><div class="row" id="stbt"><button class="btn" id="stsh">📤 Share</button><button class="btn alt" id="stsv">⬇ Save</button><button class="btn alt" id="sthr">🔊 Hear</button></div></div>';D.body.appendChild(m);
+let cur=-1,blob=null;
+const shot=async i=>{const W=1080,H=1350,c=D.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+ const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#bfe3f5');g.addColorStop(1,'#fff3d0');x.fillStyle=g;x.fillRect(0,0,W,H);
+ const cols=['#e8604c','#2f5bd0','#4c9a52','#f2b624','#8a4fc7'];for(let k=0;k<44;k++){x.fillStyle=cols[k%5]+'88';x.beginPath();x.arc((k*173)%W,(k*97)%H,6+k%9,0,7);x.fill()}
+ const img=new Image();await new Promise(r=>{img.onload=r;img.onerror=r;img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(medal(i,420))});
+ x.drawImage(img,W/2-300,230,600,700);x.textAlign='center';x.fillStyle='#2a2438';x.font='700 84px Fredoka,Nunito,sans-serif';x.fillText(NAMES[i%10],W/2,1040);
+ x.font='700 48px Fredoka,Nunito,sans-serif';x.fillText(nm()+' earned Stamp '+(i+1)+'!',W/2,1118);x.font='600 38px Nunito,sans-serif';x.fillStyle='#4a4560';x.fillText((dates()[i]||today())+'  ·  '+pts()+' points',W/2,1180);
+ x.font='700 44px Fredoka,Nunito,sans-serif';x.fillStyle='#e8604c';x.fillText('⭐ '+(D.title||'Little Learners'),W/2,1280);
+ return new Promise(r=>c.toBlob(b=>r(b),'image/png'))};
+async function open(i){cur=i;blob=null;const n=Math.floor(pts()/30),ok=i<n;m.classList.toggle('lk',!ok);
+ $('#stbig').innerHTML=medal(i,210);$('#stn').textContent=NAMES[i%10];
+ $('#stp').textContent=ok?'Earned '+(dates()[i]||today())+' · '+pts()+' points':'Earn '+((i+1)*30-pts())+' more points to win this stamp!';
+ $('#stbt').style.display=ok?'':'none';m.hidden=false;
+ if(ok){try{window.__burst&&__burst($('#stbig'))}catch(e){}try{speak(ok?'Well done, '+nm()+'! '+NAMES[i%10]+'.':'')}catch(e){}blob=await shot(i)}else{try{speak('Keep going! You can do it.')}catch(e){}}}
+const close=()=>{m.hidden=true;cur=-1;try{speechSynthesis.cancel()}catch(e){}};
+m.addEventListener('click',async e=>{const t=e.target;if(t===m||t.closest('.stx'))return close();const b=t.closest('button');if(!b)return;
+ if(b.id=='sthr'){try{speak('Well done, '+nm()+'! You earned the '+NAMES[cur%10]+' stamp.')}catch(x){}return}
+ if(cur<0)return;const i=cur,b0=blob||(blob=await shot(i)),fn='stamp-'+(i+1)+'.png';
+ const save=()=>{const a=D.createElement('a');a.href=URL.createObjectURL(b0);a.download=fn;D.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)};
+ if(b.id=='stsv')return save();
+ if(b.id=='stsh'){const f=new File([b0],fn,{type:'image/png'}),txt=nm()+' earned the '+NAMES[i%10]+' stamp! ⭐';
+  try{if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:'My stamp',text:txt});else if(navigator.share){await navigator.share({title:'My stamp',text:txt});}else save()}catch(x){if(x&&x.name!='AbortError')save()}}});
+D.addEventListener('click',e=>{const s=e.target.closest('#st .stamp');if(!s)return;const i=[...s.parentNode.children].indexOf(s);if(i>=0)open(i)});
+D.addEventListener('keydown',e=>{if(e.key=='Escape'&&!m.hidden)close()});
+/* ---------- Explore: icon chips, animated fact card ---------- */
+const chips=()=>D.querySelectorAll('#et .lv:not([data-f])').forEach(b=>{b.dataset.f=1;b.dataset.eh=1;const r=b.textContent.trim().match(/^(\S+)\s+(.*)$/u);if(r)b.innerHTML='<i>'+r[1]+'</i><span>'+r[2]+'</span>'});
+const et=$('#et');if(et){chips();new MutationObserver(chips).observe(et,{childList:true})}
+const ec=$('#ec');if(ec)new MutationObserver(()=>{ec.classList.remove('pop');void ec.offsetWidth;ec.classList.add('pop')}).observe(ec,{childList:true,characterData:true,subtree:true});
+/* ---------- speaking animation: owl moves while any voice plays ---------- */
+if(typeof window.speak=='function'){const o=window.speak;let tm=0;const off=()=>{clearTimeout(tm);D.body.classList.remove('talking')};
+ window.speak=function(t,cb,r,p){D.body.classList.add('talking');clearTimeout(tm);tm=setTimeout(off,14000);return o.call(this,t,function(){off();cb&&cb.apply(this,arguments)},r,p)}}
+/* ---------- Talk Time first-view tidy + English tab icon + highlight ---------- */
+const q=$('#tkq');if(q&&q.textContent=='Ready to talk?')q.innerHTML='<div><div style="margin-bottom:10px">Ready to talk?</div><div class="tkhow"><span>👂 Listen</span><span>🎤 Answer</span><span>✨ Improve</span></div></div>';
+const nav=$('#nav');if(nav){const ic='<svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>';
+ const fixTab=()=>{const b=nav.querySelector('[data-go="#talk"]');if(b&&!b.dataset.v){b.dataset.v=1;b.style.setProperty('--c','#f08a24');b.style.setProperty('--cb','#f08a2433');const i=b.querySelector('b');if(i)i.innerHTML='<span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#f08a24,#f08a24aa);box-shadow:0 3px 0 #f08a2466">'+ic+'</span>'}};fixTab();new MutationObserver(fixTab).observe(nav,{childList:true});
+ const tk=$('#talk');if(tk)new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;nav.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.go=='#talk'))},{rootMargin:'-40% 0px -50% 0px'}).observe(tk)}
 })();
 </script>
 
