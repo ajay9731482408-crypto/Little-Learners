@@ -1722,8 +1722,9 @@ function labels(){Object.keys(rows).forEach(k=>{const r=rows[k],b=r.querySelecto
 function who(){const w=$('#who');if(!w||w.querySelector('.wn'))return;const m=w.textContent.trim().match(/^(\S+)\s+(.*?)\s*(⭐\s*\d+)?$/u);if(!m)return;w.classList.add('who2');w.textContent='';const a=D.createElement('span');a.className='wav';a.setAttribute('aria-hidden','true');a.textContent=m[1];const n=D.createElement('span');n.className='wn';n.textContent=m[2];const s=D.createElement('span');s.className='wst';s.textContent=m[3]||'⭐ 0';s.setAttribute('aria-label',(m[3]||'⭐ 0').replace('⭐','').trim()+' stars');w.append(a,n,s)}
 function open(v){menu.hidden=!v;btn.setAttribute('aria-expanded',v);if(v){gather();labels();setTimeout(()=>{const f=menu.querySelector('button');f&&f.focus()},30)}}
 btn.addEventListener('click',e=>{e.stopPropagation();open(menu.hidden)});
-D.addEventListener('click',e=>{if(menu.hidden)return;if(menu.contains(e.target)){const r=e.target.closest('.trow');if(r&&!e.target.closest('button')){const b=r.querySelector('button');b&&b.click()}setTimeout(labels,160);return}if(e.target!==btn&&!btn.contains(e.target))open(false)},true);
+D.addEventListener('click',e=>{if(menu.hidden)return;if(menu.contains(e.target)){const r=e.target.closest('.trow'),bb=e.target.closest('button')||(r&&r.querySelector('button'));if(r&&!e.target.closest('button')){const b=r.querySelector('button');b&&b.click()}if(bb&&/^(vpb|sk|lk)$/.test(bb.id))setTimeout(()=>open(false),60);setTimeout(labels,160);return}if(e.target!==btn&&!btn.contains(e.target))open(false)},true);
 D.addEventListener('keydown',e=>{if(e.key=='Escape'&&!menu.hidden){open(false);btn.focus();e.stopPropagation()}},true);
+D.addEventListener('pointerdown',e=>{if(menu.hidden||menu.contains(e.target)||btn.contains(e.target))return;open(false)},true);
 const sync=()=>{try{gather();who();if(!menu.hidden)labels()}catch(e){}};
 new MutationObserver(()=>{clearTimeout(sync.t);sync.t=setTimeout(sync,120)}).observe(top,{childList:true,subtree:true,characterData:true});
 setInterval(()=>{if(!document.hidden)sync()},1500);setTimeout(sync,400);sync();
@@ -2212,10 +2213,29 @@ if(sy&&!sy.__v37){sy.__v37=1;
  sy.onvoiceschanged=(p=>function(){best={};p&&p.apply(this,arguments)})(sy.onvoiceschanged);
  /* optional natural voice: Kokoro (Apache-2.0) running in the browser */
  const cache=new Map();
- let KI=null;
+let KI=null;
+ /* Natural voice runs in a Web Worker so the page never freezes while it loads or speaks */
+ function kokWorker(){let tts=null;self.onmessage=async e=>{const m=e.data;
+  if(m.t==='init'){try{let mod,last;for(const u of m.urls){try{mod=await import(u);break}catch(x){last=x}}if(!mod)throw last;
+   tts=await mod.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:p=>self.postMessage({t:'prog',p})});
+   self.postMessage({t:'ready'})}catch(x){self.postMessage({t:'err',m:String(x&&x.message||x)})}}
+  else if(m.t==='gen'){try{const a=await tts.generate(m.text,{voice:m.voice,speed:m.speed}),d=a.audio;self.postMessage({t:'audio',id:m.id,d:d,sr:a.sampling_rate},[d.buffer])}catch(x){self.postMessage({t:'gerr',id:m.id,m:String(x&&x.message||x)})}}}}
+ let WK=null,WID=0;const WP=new Map();
+ function workerK(rep){return new Promise((ok,no)=>{let w;
+  try{w=new Worker(URL.createObjectURL(new Blob(['('+kokWorker.toString()+')()'],{type:'text/javascript'})),{type:'module'})}catch(e){return no(e)}
+  WK=w;
+  w.onmessage=e=>{const m=e.data;
+   if(m.t==='prog')rep(m.p);
+   else if(m.t==='ready')ok({generate:(text,o)=>new Promise((res,rej)=>{const id=++WID;WP.set(id,{res,rej});w.postMessage({t:'gen',id,text,voice:o.voice,speed:o.speed})})});
+   else if(m.t==='err')no(new Error(m.m));
+   else if(m.t==='audio'){const q=WP.get(m.id);WP.delete(m.id);q&&q.res({audio:m.d,sampling_rate:m.sr})}
+   else if(m.t==='gerr'){const q=WP.get(m.id);WP.delete(m.id);q&&q.rej(new Error(m.m))}};
+  w.onerror=e=>no(new Error(e&&e.message||'voice worker failed'));
+  w.postMessage({t:'init',urls:['https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm','https://esm.sh/kokoro-js@1.2.0']})})}
  async function loadK(cb){if(KI){K=KI;return K}
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
   const files={},rep=p=>{if(!p||!p.file)return;if(p.status=='progress'||p.status=='done'){const f=files[p.file]||(files[p.file]={l:0,t:0});if(p.total){f.t=p.total}f.l=p.status=='done'?(f.t||f.l):(p.loaded||0);let L2=0,T=0;for(const k in files){L2+=files[k].l;T+=files[k].t}if(T){const pc=Math.min(99,Math.round(L2/T*100));window.dispatchEvent(new CustomEvent('kokpct',{detail:{pc,mb:Math.round(L2/1048576),tmb:Math.round(T/1048576)}}));cb&&cb(pc)}}};
+  if(window.Worker&&typeof Blob=='function'){KI=await workerK(rep);K=KI;return K}
   let last;for(const u of ['https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm','https://esm.sh/kokoro-js@1.2.0','https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm']){try{const m=await import(u);KI=await m.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:rep});K=KI;return K}catch(e){last=e}}
   throw last}
  const GP=new Map();let gq=Promise.resolve();
@@ -2243,7 +2263,7 @@ if(sy&&!sy.__v37){sy.__v37=1;
    set('load','Loading 0%…');try{await loadK(p=>set('load','Loading '+p+'%…'));S('kok','1');set('on','🎙️ Natural voice: on');window.dispatchEvent(new Event('kokok'));window.speak('Hello! I am Professor Owl. Let us learn together!')}catch(e){K=null;set('off','🎙️ Natural voice');window.dispatchEvent(new CustomEvent('kokfail',{detail:String(e&&e.message||e)}))}};
   window.__kokGo=go;window.__kokOn=()=>!!K;window.__kokOff=()=>{K=null;S('kok','0');set('off','🎙️ Natural voice')};
   b.onclick=()=>{if(b.dataset.s=='load')return;if(K){go();return}if(window.openVoicePack)window.openVoicePack('menu');else go()};
-  if(/^https?:$/.test(location.protocol)&&L('kok')==='1')go()}
+  if(/^https?:$/.test(location.protocol)&&L('kok')==='1'){const st=()=>go();setTimeout(()=>{window.requestIdleCallback?requestIdleCallback(st,{timeout:8000}):st()},4000)}}
 }
 })();
 </script>
@@ -2262,6 +2282,7 @@ if(sy&&!sy.__v37){sy.__v37=1;
 #vpk .vbtn.alt{background:transparent;color:inherit;border:3px solid var(--line,#0003);box-shadow:none;font-size:18px}
 #vpk .vbtn[disabled]{opacity:.5}
 #vpk .vw{color:#b45309;font-size:14px;margin-top:8px}
+#vpk [hidden]{display:none!important}
 /* world picker */
 .wstp{display:flex;align-items:center;gap:10px;margin:14px 0 8px;font:700 20px Fredoka}
 .wstp b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#f2b624;color:#2a2438;font-size:18px}
@@ -2315,8 +2336,8 @@ window.openVoicePack=function(m){mode=m||'menu';v.hidden=false;if(!busy)$$('#vgo
 $$('#vgo').onclick=()=>{if(busy)return;busy=1;clearTimeout(window.__vwd);window.__vwd=setTimeout(()=>{if(busy&&!isOn()){busy=0;$$('#vgo').disabled=false;txt('#vn','Still working… you can close this and keep playing.')}},90000);$$('#vgo').disabled=true;show('#vp',true);txt('#vn','Starting…');$$('#vf').style.width='3%';window.__kokGo&&window.__kokGo()};
 $$('#vskip').onclick=()=>{if(must())return;if(!isOn())LSs('vskip','1');close()};
 $$('#voff').onclick=()=>{window.__kokOff&&window.__kokOff();close()};
-v.addEventListener('click',e=>{if(e.target!==v)return;if(!busy&&!isOn())LSs('vskip','1');close()});addEventListener('keydown',e=>{if(e.key=='Escape'&&!v.hidden)close()});
-$$('#vhear').onclick=()=>{try{window.speak('Hello! I am Professor Owl. Say it with me!')}catch(e){}};
+v.addEventListener('pointerup',e=>{if(e.target===v&&!v.hidden){if(!busy&&!isOn())LSs('vskip','1');close()}});v.addEventListener('click',e=>{if(e.target!==v)return;if(!busy&&!isOn())LSs('vskip','1');close()});addEventListener('keydown',e=>{if(e.key=='Escape'&&!v.hidden)close()});
+$$('#vhear').onclick=()=>{const h=$$('#vhear');if(h.disabled)return;h.disabled=true;setTimeout(()=>{h.disabled=false},2500);try{window.speak('Hello! I am Professor Owl. Say it with me!')}catch(e){}};
 addEventListener('kokpct',e=>{const d=e.detail;loading=1;pct=d.pc;$$('#vf').style.width=d.pc+'%';txt('#vn',d.pc+'%  ·  '+d.mb+' of '+d.tmb+' MB')});
 addEventListener('kokok',()=>{busy=0;loading=0;pct=100;LSs('kokdl','1');$$('#vgo').disabled=false;$$('#vf').style.width='100%';txt('#vn','Done! Saved on this phone. ✅');show('#vgo',false);show('#vhear',true);txt('#vt','Natural voice is on. ✅');skipUI()});
 addEventListener('kokfail',e=>{busy=0;loading=0;fails++;$$('#vgo').disabled=false;show('#vp',false);txt('#vgo','↻ Try again');const w=$$('#vw');w.hidden=false;const dt=String(e.detail||'').slice(0,80);w.textContent=(fails>=2?'Still could not load the voice. You can use the phone voice and try again later from the menu.':'Could not load the voice. Check internet and free space, then try again.')+(dt?' ('+dt+')':'');skipUI()});
