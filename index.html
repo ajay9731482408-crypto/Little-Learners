@@ -10,6 +10,7 @@
 window.LVS=function(f){if(document.documentElement.dataset.skin=='Clay')return'clay';var n=f&&f.n||'';if(n=='Halloween')return'halloween';if(/Diwali|Bhai Dooj|Guru Nanak|Holi/.test(n))return'rangoli';if(/Christmas|New Year/.test(n))return'christmas';return'plush'};
 </script>
 
+<script>addEventListener('pointerdown',function(){window.__ug=1},{once:true,capture:true,passive:true});addEventListener('keydown',function(){window.__ug=1},{once:true,capture:true});</script>
 <script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet"></noscript>
 <style>
@@ -218,7 +219,7 @@ body{padding-bottom:120px}
 </style>
 <style>#cvs #ink{background:transparent}#cvs #g{background:var(--bg)}</style>
 <style>@media(min-width:900px){#cvs{width:min(60vh,460px)}}</style>
-<style>@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}button,.tile,.nv,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}body.tab-hidden *{animation-play-state:paused!important}</style><script>document.addEventListener("visibilitychange",function(){document.body&&document.body.classList.toggle("tab-hidden",document.hidden)})</script></head>
+<style>@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}button,.tile,.nv,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}body.tab-hidden *{animation-play-state:paused!important}</style><script>document.addEventListener("visibilitychange",function(){document.body&&document.body.classList.toggle("tab-hidden",document.hidden)})</script><style id="ctafix">#hero .cta{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:14px!important;width:100%;margin:18px auto 0!important;position:relative;z-index:8}#hero .cta>*{position:static!important;margin:0!important;transform:none!important;width:min(86%,320px)!important;min-width:0!important;text-align:center;justify-content:center}#hero .cta>.btn{padding:14px 20px}#hero .cta>#knat{padding:10px 16px;font-size:17px;line-height:1.2}</style></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div id="wall"></div>
@@ -2073,9 +2074,9 @@ if(!$('#usa')){const a=$('#future')||$('#play');if(a)a.insertAdjacentHTML('befor
 let tab='k',qi=0,qs=0;
 const say=t=>{try{speak(t)}catch(e){}};
 function dt(){$('#ut').innerHTML=Object.keys(ST).map(k=>`<button class="lv" data-ut="${k}" aria-pressed="${k==tab}">${ST[k].t}</button>`).join('');$('#un').textContent=ST[tab].n;$('#ug').innerHTML=ST[tab].c.map((c,i)=>`<button class="usc" data-ui="${i}"><b>${c[0]} ${c[1]}</b>${c[2].split('. ').length>2?'<ul>'+c[2].split(/\.\s+/).filter(Boolean).map(x=>`<li>${x.replace(/\.$/,'')}</li>`).join('')+'</ul>':c[2]}</button>`).join('')}
-function dq(m){const q=QZ[qi];if(!q){$('#usq').innerHTML=`<h3 style="font-size:30px">${qs} of ${QZ.length} ⭐</h3><p class="tt">Great learning! Try again tomorrow.</p><button class="btn" id="uqr">Play again</button>`;return}
- $('#usq').innerHTML=`<p class="tt" style="font:700 24px Fredoka">${q[0]}</p><div class="opts">${q[2].map(o=>`<button class="btn" data-uo="${o}">${o}</button>`).join('')}</div><div style="font:700 20px Fredoka;min-height:28px;margin-top:8px">${m||''}</div>`;say(q[0].replace(/[^\w\s,?:“”.’]/g,' '))}
-D.addEventListener('click',e=>{const t=e.target;if(!t.closest('#usa'))return;
+let uQ=0;function dq(m){const q=QZ[qi];if(!q){$('#usq').innerHTML=`<h3 style="font-size:30px">${qs} of ${QZ.length} ⭐</h3><p class="tt">Great learning! Try again tomorrow.</p><button class="btn" id="uqr">Play again</button>`;return}
+ $('#usq').innerHTML=`<p class="tt" style="font:700 24px Fredoka">${q[0]}</p><div class="opts">${q[2].map(o=>`<button class="btn" data-uo="${o}">${o}</button>`).join('')}</div><div style="font:700 20px Fredoka;min-height:28px;margin-top:8px">${m||''}</div>`;if(uQ)say(q[0].replace(/[^\w\s,?:“”.’]/g,' '))}
+D.addEventListener('click',e=>{const t=e.target;if(t.closest('#usa'))uQ=1;if(!t.closest('#usa'))return;
  const u=t.closest('[data-ut]');if(u){tab=u.dataset.ut;dt();return}
  const c=t.closest('[data-ui]');if(c){const x=ST[tab].c[c.dataset.ui];say(x[1]+'. '+x[2]);return}
  const o=t.closest('[data-uo]');if(o&&!o.disabled){const q=QZ[qi],r=o.dataset.uo==q[1];if(r)qs++;D.querySelectorAll('#usq [data-uo]').forEach(b=>b.disabled=true);o.classList.add(r?'ok':'no');say(r?'Yes! Great job!':'Nice try!');setTimeout(()=>{qi++;if(qi>=QZ.length&&qs>=QZ.length-1){try{addPts(2,null,'Quiz')}catch(e){}}dq()},900);return}
@@ -2262,7 +2263,7 @@ let KI=null;
  sy.cancel=function(){epoch++;try{cur&&cur.stop()}catch(e){}cur=null;return oc()};
  /* speak(): sentence-level chunks (commas no longer chop the rhythm) */
  const v36=window.speak;
- window.speak=function(t,cb,r,p){if(L('vo')==='0'){cb&&cb();return}
+ window.speak=function(t,cb,r,p){if(L('vo')==='0'||!window.__ug){cb&&cb();return}
   const s=String(t||'').replace(/[\u{1F000}-\u{1FFFF}\u2600-\u27BF\uFE0F]/gu,'').replace(/\s+/g,' ').trim();if(!s){cb&&cb();return}
   sy.cancel();const parts=s.match(/[^.!?]+[.!?]*/g)||[s],g=+L('vr')||1;
   parts.forEach((x,i)=>{const u=new SpeechSynthesisUtterance(x.trim());u.lang='en-US';u.rate=Math.min(.95,Math.max(.8,(r||.88)*g));u.pitch=1;if(i==parts.length-1)u.onend=u.onerror=()=>cb&&cb();sy.speak(u)})};
@@ -2270,12 +2271,12 @@ let KI=null;
  const cta=$('#hero .cta');
  if(cta&&!$('#knat')){const b=D.createElement('button');b.id='knat';b.dataset.s='off';b.textContent='🎙️ Natural voice';cta.append(b);
   const set=(s,t)=>{b.dataset.s=s;b.textContent=t};
-  const go=async()=>{if(K){const on=b.dataset.s=='on';if(on){K=null;S('kok','0');set('off','🎙️ Natural voice')}else{await loadK();set('on','🎙️ Natural voice: on')}return}
-   set('load','Loading 0%…');S('kokbusy','1');window.__kokLoad=1;try{await loadK(p=>set('load','Loading '+p+'%…'));S('kokbusy','0');window.__kokLoad=0;S('kokcrash','0');S('kok','1');set('on','🎙️ Natural voice: on');window.dispatchEvent(new Event('kokok'));window.speak('Hello! I am Professor Owl. Let us learn together!')}catch(e){K=null;S('kokbusy','0');window.__kokLoad=0;set('off','🎙️ Natural voice');window.dispatchEvent(new CustomEvent('kokfail',{detail:String(e&&e.message||e)}))}};
+  const go=async(auto)=>{if(K){const on=b.dataset.s=='on';if(on){K=null;S('kok','0');set('off','🎙️ Natural voice')}else{await loadK();set('on','🎙️ Natural voice: on')}return}
+   set('load','Loading 0%…');S('kokbusy','1');window.__kokLoad=1;try{await loadK(p=>set('load','Loading '+p+'%…'));S('kokbusy','0');window.__kokLoad=0;S('kokcrash','0');S('kok','1');set('on','🎙️ Natural voice: on');window.dispatchEvent(new Event('kokok'));if(auto!==1)window.speak('Hello! I am Professor Owl. Let us learn together!')}catch(e){K=null;S('kokbusy','0');window.__kokLoad=0;set('off','🎙️ Natural voice');window.dispatchEvent(new CustomEvent('kokfail',{detail:String(e&&e.message||e)}))}};
   window.__kokGo=go;window.__kokOn=()=>!!K;window.__kokOff=()=>{K=null;S('kok','0');set('off','🎙️ Natural voice')};
   b.onclick=()=>{if(b.dataset.s=='load')return;if(K){go();return}if(window.openVoicePack)window.openVoicePack('menu');else go()};
   if(/^https?:$/.test(location.protocol)&&L('kok')==='1'&&(L('kokbusy')==='1'||navigator.deviceMemory&&navigator.deviceMemory<=2)){S('kok','0');S('kokbusy','0');S('kokcrash','1')}
-  else if(/^https?:$/.test(location.protocol)&&L('kok')==='1'){const st=()=>go();setTimeout(()=>{window.requestIdleCallback?requestIdleCallback(st,{timeout:8000}):st()},4000)}}
+  else if(/^https?:$/.test(location.protocol)&&L('kok')==='1'){const st=()=>go(1);setTimeout(()=>{window.requestIdleCallback?requestIdleCallback(st,{timeout:8000}):st()},4000)}}
 }
 })();
 </script>
