@@ -2239,16 +2239,23 @@ let KI=null;
  async function loadK(cb){if(KI){K=KI;return K}
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
   const files={},rep=p=>{if(!p||!p.file)return;if(p.status=='progress'||p.status=='done'){const f=files[p.file]||(files[p.file]={l:0,t:0});if(p.total){f.t=p.total}f.l=p.status=='done'?(f.t||f.l):(p.loaded||0);let L2=0,T=0;for(const k in files){L2+=files[k].l;T+=files[k].t}if(T){const pc=Math.min(99,Math.round(L2/T*100));window.dispatchEvent(new CustomEvent('kokpct',{detail:{pc,mb:Math.round(L2/1048576),tmb:Math.round(T/1048576)}}));cb&&cb(pc)}}};
-  if(window.Worker&&typeof Blob=='function'){KI=await workerK(rep);K=KI;return K}
+  if(window.Worker&&typeof Blob=='function'){KI=await workerK(rep);K=KI;hydrate().then(prewarm);return K}
   let last;for(const u of ['https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm','https://esm.sh/kokoro-js@1.2.0','https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/+esm']){try{const m=await import(u);KI=await m.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:rep});K=KI;return K}catch(e){last=e}}
   throw last}
+ /* saved voice clips: phrases already spoken once play instantly, even after a restart */
+ const IDBK={open(){return this.p||(this.p=new Promise(r=>{try{const q=indexedDB.open('llvoice',1);q.onupgradeneeded=()=>q.result.createObjectStore('a');q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}}))},
+  async all(){const db=await this.open(),o=[];if(!db)return o;return new Promise(r=>{try{const c=db.transaction('a').objectStore('a').openCursor();c.onsuccess=()=>{const x=c.result;if(x){o.push([x.key,x.value]);x.continue()}else r(o)};c.onerror=()=>r(o)}catch(e){r(o)}})},
+  async put(k,v){const db=await this.open();if(!db)return;try{db.transaction('a','readwrite').objectStore('a').put(v,k)}catch(e){}}};
+ const hydrate=()=>IDBK.all().then(a=>a.forEach(x=>{if(!cache.has(x[0])&&x[1]&&x[1].d)cache.set(x[0],x[1])})).catch(()=>{});
+ const WARM=['Which side has more','How many','What comes next','Which number is missing','Tap the biggest number','Tap the smallest number','Yes!','Try again','Great!','Well done!','Great job!','Great saying!'];
+ function prewarm(){let i=0;const step=()=>{if(!K||i>=WARM.length)return;const t=WARM[i++];if(cache.has(t))return step();if(document.hidden){i--;return setTimeout(step,4000)}genK({text:t,rate:.88}).catch(()=>{}).then(()=>setTimeout(step,900))};setTimeout(step,2500)}
  const GP=new Map();let gq=Promise.resolve();
- function genK(u){const t=u.text;if(cache.has(t))return Promise.resolve(cache.get(t));if(GP.has(t))return GP.get(t);const p=gq.then(()=>K.generate(t,{voice:KV,speed:Math.min(1.05,Math.max(.85,(u.rate||.9)+.05))})).then(a=>{const b={d:a.audio,sr:a.sampling_rate};cache.set(t,b);if(cache.size>40)cache.delete(cache.keys().next().value);GP.delete(t);return b},e=>{GP.delete(t);throw e});gq=p.catch(()=>{});GP.set(t,p);return p}
+ function genK(u){const t=u.text;if(cache.has(t))return Promise.resolve(cache.get(t));if(GP.has(t))return GP.get(t);const p=gq.then(()=>K.generate(t,{voice:KV,speed:Math.min(1.05,Math.max(.85,(u.rate||.9)+.05))})).then(a=>{const b={d:a.audio,sr:a.sampling_rate};cache.set(t,b);if(t.length<=70)IDBK.put(t,b);if(cache.size>100)cache.delete(cache.keys().next().value);GP.delete(t);return b},e=>{GP.delete(t);throw e});gq=p.catch(()=>{});GP.set(t,p);return p}
  async function playK(u,id){if(id!==epoch)return;const t=u.text;let b=cache.get(t);if(!b)b=await genK(u);
   if(id!==epoch)return;const c=AC(),buf=c.createBuffer(1,b.d.length,b.sr);buf.copyToChannel(b.d,0);const s=c.createBufferSource();s.buffer=buf;s.connect(c.destination);cur=s;await new Promise(r=>{s.onended=r;s.start()});u.onend&&u.onend({})}
  sy.speak=function(u){try{
    if(u.lang&&!/^en/i.test(u.lang))return os(u);
-   if(K&&u.text&&u.text.length<220){const id=epoch;genK(u).catch(()=>{});chain=chain.then(()=>playK(u,id)).catch(()=>{if(id===epoch)os(u)});return}
+   if(K&&u.text&&u.text.length<220){if(cache.has(u.text)){const id=epoch;chain=chain.then(()=>playK(u,id)).catch(()=>{if(id===epoch)os(u)});return}if(GP.size<4)genK(u).catch(()=>{})}
    const v=bestFor(u.lang);if(v&&(!u.voice||score(u.voice,u.lang)<score(v,u.lang))){u.voice=v;u.lang=v.lang}
    u.pitch=Math.min(u.pitch||1,1.02);u.rate=Math.min(.95,Math.max(.8,u.rate||.9))}catch(e){}
   return os(u)};
