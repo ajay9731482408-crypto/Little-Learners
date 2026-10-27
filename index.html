@@ -391,7 +391,19 @@ const f=document.getElementById('flow');if(f){f.insertAdjacentHTML('afterbegin',
  <div class="box"><div id="cvs"><canvas id="g"></canvas><canvas id="ink"></canvas></div>
  <div class="row"><button class="btn alt" id="pv">◀</button><button class="btn alt" id="cs">Aa</button><button class="btn alt" id="clr">Clear</button><button class="btn" id="chk">Check ✔</button><button class="btn alt" id="nxl">▶</button></div><div id="wf" class="big" style="font-size:28px;min-height:36px"></div></div></section>
 
+<section id="nums"><h2>Write numbers ✏️</h2><p class="lead" id="nw-lead"></p>
+ <div class="box"><div class="row" id="nw-lv" role="group" aria-label="Class"></div><div class="row" id="nw-gr" role="group" aria-label="Number range"></div><div class="nch" id="nw-ch" role="tablist" aria-label="Choose a number"></div>
+ <div id="nw-bd"><svg id="nw-gd" aria-hidden="true"></svg><canvas id="nw-cv" aria-label="Drawing area. Trace the number with your finger."></canvas><div id="nw-ms" role="status" aria-live="polite"></div></div>
+ <div class="row"><button class="btn alt" id="nw-pv" aria-label="Previous number">◀</button><button class="btn alt" id="nw-wa">Watch</button><button class="btn alt" id="nw-cl">Clear</button><button class="btn alt" id="nw-nx" aria-label="Next number">▶</button></div>
+ <div class="row"><button class="btn" id="nw-ok">Check ✔</button><button class="btn alt" id="nw-ct">🔊 Count</button><button class="btn alt" id="nw-sy" aria-label="Say the number">🦉</button><button class="btn alt" id="nw-hi" hidden aria-pressed="false">हिंदी</button></div>
+ <div id="nw-ob"></div><p id="nw-wd"></p></div></section>
+
 <section id="maths"><h2>Maths 🔢</h2><p class="lead">Counting, adding, patterns and clocks. Easy for Nursery, bigger for UKG.</p><div class="row" id="mt"></div><div class="box" id="mb"></div></section>
+<section id="tables"><h2>Maths tables ✖️</h2><p class="lead" id="tbl-lead">Pick a table. Tap a line to hear it, or listen to the whole table.</p>
+ <div class="box"><div class="row" id="tbl-lv" role="group" aria-label="Class"></div><div class="nch" id="tbl-ch" role="tablist" aria-label="Choose a table"></div>
+ <h3 id="tbl-h" style="margin:4px 0 6px"></h3><div id="tbl-rows"></div>
+ <div class="row"><button class="btn" id="tbl-play">🔊 Listen</button><button class="btn alt" id="tbl-mode"></button></div></div></section>
+
 <section id="ncert"><h2>NCERT path 📘</h2><p class="lead">Practice that follows the NCERT Balvatika stages (Nursery, LKG, UKG) and a first look at Class 1 and 2.</p><div class="row" id="nt"></div><div class="box" id="nb"></div></section>
 <section id="play"><h2>Puzzle time 🧩</h2>
  <div class="row" id="gt"></div><div class="box" id="gm"></div></section>
@@ -3031,6 +3043,129 @@ const q=$('#tkq');if(q&&q.textContent=='Ready to talk?')q.innerHTML='<div><div s
 const nav=$('#nav');if(nav){const ic='<svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>';
  const fixTab=()=>{const b=nav.querySelector('[data-go="#talk"]');if(b&&!b.dataset.v){b.dataset.v=1;b.style.setProperty('--c','#f08a24');b.style.setProperty('--cb','#f08a2433');const i=b.querySelector('b');if(i)i.innerHTML='<span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#f08a24,#f08a24aa);box-shadow:0 3px 0 #f08a2466">'+ic+'</span>'}};fixTab();new MutationObserver(fixTab).observe(nav,{childList:true});
  const tk=$('#talk');if(tk)new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;nav.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.go=='#talk'))},{rootMargin:'-40% 0px -50% 0px'}).observe(tk)}
+})();
+</script>
+
+<style id="numcss">
+#nums,#tables{--h1:#2f5bd0;--h2:#3fb7e8;--nwb:#2f5bd0}#tables{--h1:#e8604c;--h2:#ff9f1c}
+:root[data-theme=dark] #nums{--nwb:#8fb0ff}
+.nch{display:flex;gap:8px;overflow-x:auto;padding:8px 6px 12px;scrollbar-width:none}.nch::-webkit-scrollbar{display:none}
+.nch button{flex:none;position:relative;min-width:52px;min-height:52px;padding:0 6px;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:700 22px Fredoka,sans-serif;cursor:pointer}
+.nch button[aria-selected=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nch button.dn::after{content:"✓";position:absolute;top:-6px;right:-5px;width:20px;height:20px;border-radius:50%;background:#2f9e5a;color:#fff;font-size:12px;display:grid;place-items:center;border:2px solid var(--card)}
+#nw-bd{position:relative;margin:6px auto 12px;background:#e6f3f5;border-radius:26px;overflow:hidden}
+:root[data-theme=dark] #nw-bd{background:#262a55}
+#nw-bd svg,#nw-bd canvas{position:absolute;inset:0;width:100%;height:100%}#nw-bd canvas{touch-action:none;cursor:crosshair}
+#nw-ms{position:absolute;left:0;right:0;bottom:12px;margin:auto;width:max-content;max-width:90%;background:var(--card);color:var(--ink);border-radius:20px;padding:8px 18px;font:700 24px Fredoka,sans-serif;box-shadow:0 6px 18px #0003;opacity:0;pointer-events:none;transition:opacity .25s}#nw-ms.on{opacity:1}
+#nw-ob{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:2px;font-size:28px;line-height:1.2;margin:6px 0;min-height:10px}
+#nw-ob span{display:inline-block;transition:transform .2s}#nw-ob .hi{transform:scale(1.5)}
+#nw-ob i{display:inline-block;margin:2px;border-radius:4px;background:#2f5bd0}#nw-ob .t{width:14px;height:56px}#nw-ob .o{width:14px;height:14px;background:#f2b624}
+#nw-wd{font:700 22px Fredoka,sans-serif;margin-top:8px}#nw-wd small{font:600 16px Nunito,sans-serif;opacity:.8}
+.tr{display:flex;flex-direction:column;align-items:center;width:100%;margin:6px 0;padding:8px 14px;border-radius:18px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:700 26px Fredoka,sans-serif;cursor:pointer}
+.tr.on{background:var(--sun);color:#2a2438;border-color:var(--sun)}.tr small{font:600 15px Nunito,sans-serif;opacity:.75}
+@media(prefers-reduced-motion:reduce){#nw-ob span,#nw-ms{transition:none}}
+</style>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),LS=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){}},NS='http://www.w3.org/2000/svg',RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const lvl=()=>LS('l')||'LKG',MAXN={Nursery:20,LKG:50,UKG:100},MAXT={Nursery:5,LKG:10,UKG:20};
+const O='zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(' '),TN='_ _ twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
+const W=n=>n<20?O[n]:n<100?TN[n/10|0]+(n%10?'-'+O[n%10]:''):W(n/100|0)+' hundred'+(n%100?' '+W(n%100):'');
+const HI='शून्य एक दो तीन चार पाँच छह सात आठ नौ दस ग्यारह बारह तेरह चौदह पंद्रह सोलह सत्रह अठारह उन्नीस बीस इक्कीस बाईस तेईस चौबीस पच्चीस छब्बीस सत्ताईस अट्ठाईस उनतीस तीस इकतीस बत्तीस तैंतीस चौंतीस पैंतीस छत्तीस सैंतीस अड़तीस उनतालीस चालीस इकतालीस बयालीस तैंतालीस चौवालीस पैंतालीस छियालीस सैंतालीस अड़तालीस उनचास पचास इक्यावन बावन तिरेपन चौवन पचपन छप्पन सत्तावन अट्ठावन उनसठ साठ इकसठ बासठ तिरेसठ चौंसठ पैंसठ छियासठ सड़सठ अड़सठ उनहत्तर सत्तर इकहत्तर बहत्तर तिहत्तर चौहत्तर पचहत्तर छिहत्तर सतहत्तर अठहत्तर उनासी अस्सी इक्यासी बयासी तिरासी चौरासी पचासी छियासी सत्तासी अट्ठासी नवासी नब्बे इक्यानवे बानवे तिरानवे चौरानवे पचानवे छियानवे सत्तानवे अट्ठानवे निन्यानवे सौ'.split(' ');
+const dv=n=>String(n).replace(/\d/g,d=>'०१२३४५६७८९'[d]);
+/* stroke order for 0-9 (viewBox 100x140), one list of strokes per digit */
+const D=[['M50 10C25 10 14 40 14 70C14 100 25 130 50 130C75 130 86 100 86 70C86 40 75 10 50 10'],['M30 38L56 12L56 130'],['M20 40C22 20 38 10 52 10C72 10 84 24 82 42C80 60 60 82 20 126L84 126'],['M20 22C32 8 66 6 76 24C84 40 66 62 44 64C70 64 88 78 84 100C80 124 40 136 18 112'],['M64 10L16 92L88 92','M64 10L64 130'],['M30 12L24 68C36 56 52 54 64 58C84 66 86 98 72 116C58 134 30 132 18 114','M30 12L80 12'],['M70 12C40 30 18 62 18 96C18 122 34 132 50 132C72 132 84 114 84 96C84 76 68 64 50 64C34 64 20 78 18 96'],['M16 14L86 14L44 130'],['M50 66C26 62 20 34 36 20C48 8 66 12 72 28C78 46 62 62 50 66C74 70 86 96 78 116C70 134 40 136 26 118C14 100 26 70 50 66'],['M80 46C80 26 66 12 48 12C28 12 16 28 16 46C16 64 30 76 48 76C68 76 80 64 80 46','M80 46C80 86 70 116 40 132']];
+const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e};
+let hv=null,lang='en';
+const hvChk=()=>{try{hv=speechSynthesis.getVoices().find(v=>/^hi/i.test(v.lang))||null}catch(e){}const b=$('#nw-hi');if(b)b.hidden=!hv;if(!hv)lang='en'};
+try{speechSynthesis.addEventListener('voiceschanged',hvChk)}catch(e){}hvChk();
+const sp=(t,r=.85,l)=>new Promise(res=>{let d=0;const f=()=>{if(!d){d=1;res()}};try{if(l=='hi'&&hv){const u=new SpeechSynthesisUtterance(t);u.lang='hi-IN';u.voice=hv;u.rate=.8;u.onend=u.onerror=f;speechSynthesis.cancel();speechSynthesis.speak(u)}else if(typeof speak=='function')speak(t,f,r);else f()}catch(e){f()}setTimeout(f,2500+t.length*120)});
+const stopAll=()=>{tok=0;ttok=0;try{speechSynthesis.cancel()}catch(e){}$('#nw-ct').textContent='🔊 Count';$('#tbl-play').textContent='🔊 Listen';mark(-1)};
+/* class buttons share the app's data-lv handler, so the whole app follows */
+const lvRow=id=>{$(id).innerHTML=['Nursery','LKG','UKG'].map(l=>`<button class="lv" data-lv="${l}" aria-pressed="${l==lvl()}">${l}</button>`).join('')};
+
+/* ===== Write numbers ===== */
+let n=1,gi=0,paths=[],samples=[],user=[],cur=null,WU=100,raf=0,tok=0;
+const bd=$('#nw-bd'),gd=$('#nw-gd'),cv=$('#nw-cv'),ctx=cv.getContext('2d'),ms=$('#nw-ms');
+const M=()=>MAXN[lvl()]||50,GR=()=>{const g=[[0,10]];for(let a=11;a<=M();a+=10)g.push([a,Math.min(a+9,M())]);return g};
+const done=()=>{try{return new Set(JSON.parse(LS('nwd_'+lvl())||'[]'))}catch(e){return new Set}};
+function chips(){const g=GR()[gi],d=done();let h='';for(let i=g[0];i<=g[1];i++)h+=`<button role="tab" class="${d.has(i)?'dn':''}" aria-selected="${i==n}" data-n="${i}" aria-label="Number ${i}">${i}</button>`;$('#nw-ch').innerHTML=h;
+ $('#nw-gr').innerHTML=GR().map((x,i)=>`<button class="lv" data-g="${i}" aria-pressed="${i==gi}">${x[0]}–${x[1]}</button>`).join('');
+ const c=$('#nw-ch [aria-selected=true]');c&&c.scrollIntoView({inline:'center',block:'nearest',behavior:RM?'auto':'smooth'})}
+function build(){const s=String(n),k=s.length;WU=(k-1)*92+100;bd.style.aspectRatio=WU+'/140';bd.style.width='min(100%,'+Math.round(360*WU/140)+'px)';
+ gd.setAttribute('viewBox','0 0 '+WU+' 140');gd.innerHTML='';paths=[];samples=[];const g1=mk('g',{}),g2=mk('g',{}),g3=mk('g',{}),marks=[];gd.append(g1,g2,g3);let c=0;
+ [...s].forEach((ch,di)=>{const ox=di*92-2;D[+ch].forEach(d=>{c++;const T='translate('+ox+' 0)';
+  g1.append(mk('path',{d,transform:T,fill:'none',stroke:'rgba(120,120,160,.28)','stroke-width':15,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  const dots=mk('path',{d,transform:T,fill:'none',stroke:'var(--nwb)','stroke-width':3.2,'stroke-linecap':'round','stroke-dasharray':'.1 6.4'});g2.append(dots);const L=dots.getTotalLength();paths.push({p:dots,L,ox,d});
+  for(let l=0;l<=L;l+=3){const q=dots.getPointAtLength(l);samples.push({x:q.x+ox,y:q.y})}
+  [.3,.62].forEach(f=>{const p=dots.getPointAtLength(L*f),q=dots.getPointAtLength(L*f+1),a=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;g3.append(mk('polygon',{points:'-3.6,-4 4.6,0 -3.6,4',fill:'var(--nwb)',stroke:'#fff','stroke-width':1.2,transform:'translate('+(p.x+ox)+' '+p.y+') rotate('+a+')'}))});
+  let st=dots.getPointAtLength(0);st={x:st.x+ox,y:st.y};if(marks.some(m=>Math.hypot(m.x-st.x,m.y-st.y)<8))st={x:st.x+8,y:st.y+7};marks.push(st);
+  g3.append(mk('circle',{cx:st.x,cy:st.y,r:5.6,fill:'#1E9E5A',stroke:'#fff','stroke-width':1.4}));
+  const t=mk('text',{x:st.x,y:st.y+2.6,'text-anchor':'middle','font-size':7.5,'font-weight':700,fill:'#fff','font-family':'Fredoka,sans-serif'});t.textContent=c;g3.append(t)})})}
+function size(){const r=bd.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,3);cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);redraw()}
+function redraw(){ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);const k=cv.width/WU;ctx.setTransform(k,0,0,k,0,0);ctx.lineCap=ctx.lineJoin='round';ctx.strokeStyle=ctx.fillStyle='#e8604c';ctx.lineWidth=6.5*Math.sqrt(WU/100);
+ user.forEach(s=>{if(s.length==1){ctx.beginPath();ctx.arc(s[0].x,s[0].y,ctx.lineWidth/2,0,7);ctx.fill();return}ctx.beginPath();ctx.moveTo(s[0].x,s[0].y);for(let i=1;i<s.length;i++)ctx.lineTo(s[i].x,s[i].y);ctx.stroke()})}
+const pt=e=>{const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*WU,y:(e.clientY-r.top)/r.height*140}};
+cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);hide();cur=[pt(e)];user.push(cur);redraw()});
+cv.addEventListener('pointermove',e=>{if(!cur)return;(e.getCoalescedEvents?e.getCoalescedEvents():[e]).forEach(v=>cur.push(pt(v)));redraw()});
+['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>cur=null));new ResizeObserver(size).observe(bd);
+function show(t,t2){ms.textContent=t;ms.classList.add('on');clearTimeout(show.t);if(t2)show.t=setTimeout(hide,t2)}function hide(){ms.classList.remove('on')}
+function clear(){user=[];cur=null;redraw();hide();stopDemo()}
+const EMO=['🍎','🐥','⭐','🎈','🐟','🌸','🦋','🍓','🚗','🐞'];
+function info(){const o=$('#nw-ob');o.innerHTML=n<1?'':n<=20?`<span>${EMO[n%10]}</span>`.repeat(n):'<i class="t"></i>'.repeat(n/10|0)+'<i class="o"></i>'.repeat(n%10);
+ const t=n/10|0,u=n%10;$('#nw-wd').innerHTML=`<b>${n}</b> · ${W(n)}${n<=100?' · '+dv(n)+' '+HI[n]:''}`+(n>=10?`<br><small>${t} ten${t>1?'s':''} + ${u} one${u==1?'':'s'}</small>`:'')}
+function mark(i){if(n>20)return;[...$('#nw-ob').children].forEach((c,k)=>c.classList.toggle('hi',k==i))}
+function go(i){stopAll();const m=M();n=Math.max(0,Math.min(m,i));if(n==m+1)n=0;gi=GR().findIndex(g=>n>=g[0]&&n<=g[1]);clear();build();chips();info();$('#nw-lead').textContent=`Trace the dotted number with your finger. Class ${lvl()}: 0 to ${m}.`}
+function stopDemo(){cancelAnimationFrame(raf);gd.querySelectorAll('.dm').forEach(e=>e.remove())}
+function watch(){clear();const dot=mk('circle',{r:5.2,fill:'#FF9A1F',stroke:'#fff','stroke-width':1.5,class:'dm'}),tr=paths.map(o=>mk('path',{d:o.d,transform:'translate('+o.ox+' 0)',fill:'none',stroke:'#FF9A1F','stroke-width':5,'stroke-linecap':'round',class:'dm',opacity:.85}));
+ tr.forEach((t,i)=>{gd.append(t);t.style.strokeDasharray=paths[i].L;t.style.strokeDashoffset=paths[i].L});gd.append(dot);
+ if(RM){tr.forEach(t=>t.style.strokeDashoffset=0);dot.remove();setTimeout(stopDemo,1500);return}
+ const per=1300,gap=300,t0=performance.now(),tot=paths.length*(per+gap);
+ (function step(now){const t=now-t0;if(t>tot+300){stopDemo();return}const i=Math.min(paths.length-1,Math.floor(t/(per+gap))),f=Math.max(0,Math.min(1,(t-i*(per+gap))/per)),e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2,o=paths[i];
+  tr.forEach((x,k)=>x.style.strokeDashoffset=k<i?0:k==i?o.L*(1-e):paths[k].L);const p=o.p.getPointAtLength(o.L*e);dot.setAttribute('cx',p.x+o.ox);dot.setAttribute('cy',p.y);raf=requestAnimationFrame(step)})(t0)}
+function check(e){const pts=user.flat();if(pts.length<8){show('Trace the number first! ☝️',1800);return}
+ const px=bd.getBoundingClientRect().width/WU,tc=Math.min(30,Math.max(11,28/px)),ta=Math.min(34,Math.max(13,33/px)),near=(a,l,t)=>l.some(b=>Math.hypot(a.x-b.x,a.y-b.y)<t);
+ const cover=samples.filter(s=>near(s,pts,tc)).length/samples.length,acc=pts.filter(p=>near(p,samples,ta)).length/pts.length,sc=Math.min(cover,acc),st=sc>=.85?3:sc>=.7?2:sc>=.5?1:0;
+ if(!st){show(cover<.5?'Cover all the dots ✏️':'Stay on the dots! Try again 💪',2200);sp('Try again');return}
+ try{addPts(st,e,'Write')}catch(x){}
+ if(st>=2){const d=done();d.add(n);LS('nwd_'+lvl(),JSON.stringify([...d]));chips()}
+ show(['','Good try! ⭐','Great! ⭐⭐','Super! ⭐⭐⭐'][st],2200);sp((st==3?'Super! ':'Good! ')+W(n));if(st==3)try{celebrate('Super! 🌟')}catch(x){}}
+async function count(){if(tok){stopAll();hide();return}const my=tok=Date.now();$('#nw-ct').textContent='⏹ Stop';
+ for(let i=1;i<=n&&tok==my;i++){mark(i-1);show(String(i));await sp(lang=='hi'?HI[i]:W(i),1,lang);await new Promise(r=>setTimeout(r,60))}
+ if(tok==my){tok=0;$('#nw-ct').textContent='🔊 Count';mark(-1);hide();await sp(lang=='hi'?HI[n]:W(n)+'!',.85,lang)}}
+$('#nw-ch').onclick=e=>{const b=e.target.closest('[data-n]');if(b)go(+b.dataset.n)};
+$('#nw-gr').onclick=e=>{const b=e.target.closest('[data-g]');if(b)go(GR()[+b.dataset.g][0])};
+$('#nw-pv').onclick=()=>go(n-1<0?M():n-1);$('#nw-nx').onclick=()=>go(n+1>M()?0:n+1);$('#nw-cl').onclick=clear;$('#nw-wa').onclick=watch;$('#nw-ok').onclick=check;$('#nw-ct').onclick=count;
+$('#nw-sy').onclick=()=>sp(lang=='hi'?HI[n]:W(n),.8,lang);
+$('#nw-hi').onclick=e=>{lang=lang=='hi'?'en':'hi';e.currentTarget.setAttribute('aria-pressed',lang=='hi')};
+
+/* ===== Maths tables ===== */
+let T=2,ttok=0,mode=LS('tbm')||'are';
+const PL=['','ones','twos','threes','fours','fives','sixes','sevens','eights','nines','tens'];
+const line=(t,k)=>mode=='are'?(t==1?`one ${O[k]} is ${W(k)}`:`${W(t)} ${PL[k]} are ${W(t*k)}`):`${W(t)} times ${W(k)} is ${W(t*k)}`;
+function tblDraw(){const m=MAXT[lvl()]||10;if(T>m)T=m;$('#tbl-ch').innerHTML=Array.from({length:m},(_,i)=>`<button role="tab" aria-selected="${i+1==T}" data-t="${i+1}">${i+1}</button>`).join('');
+ $('#tbl-h').textContent='Table of '+T;$('#tbl-rows').innerHTML=Array.from({length:10},(_,i)=>`<button class="tr" data-k="${i+1}"><b>${T} × ${i+1} = ${T*(i+1)}</b><small>${line(T,i+1)}</small></button>`).join('');
+ $('#tbl-mode').textContent=mode=='are'?'Say: “twos are”':'Say: “times”';const c=$('#tbl-ch [aria-selected=true]');c&&c.scrollIntoView({inline:'center',block:'nearest'})}
+const hl=k=>document.querySelectorAll('#tbl-rows .tr').forEach(r=>r.classList.toggle('on',+r.dataset.k==k));
+$('#tbl-ch').onclick=e=>{const b=e.target.closest('[data-t]');if(b){stopAll();T=+b.dataset.t;tblDraw()}};
+$('#tbl-rows').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;stopAll();hl(+b.dataset.k);sp(line(T,+b.dataset.k),.8)};
+$('#tbl-mode').onclick=()=>{mode=mode=='are'?'times':'are';LS('tbm',mode);tblDraw()};
+$('#tbl-play').onclick=async()=>{if(ttok){stopAll();hl(0);return}const my=ttok=Date.now();$('#tbl-play').textContent='⏹ Stop';
+ for(let k=1;k<=10&&ttok==my;k++){hl(k);await sp(line(T,k),.8);await new Promise(r=>setTimeout(r,250))}
+ if(ttok==my){ttok=0;$('#tbl-play').textContent='🔊 Listen';hl(0);try{addPts(2,null,'Maths')}catch(x){}}};
+
+/* ===== follow the class setting everywhere ===== */
+let L0='';const sync=()=>{const l=lvl();if(l==L0)return;L0=l;lvRow('#nw-lv');lvRow('#tbl-lv');$('#tbl-lead').textContent=`Class ${l}: tables 1 to ${MAXT[l]}. Tap a line to hear it, or listen to the whole table.`;go(Math.min(n,M()));tblDraw()};
+document.addEventListener('click',e=>{if(e.target.closest('[data-lv]'))setTimeout(sync,0)});
+['nums','tables'].forEach(id=>new IntersectionObserver(es=>{if(es[0].isIntersecting){sync();document.querySelectorAll('#nav .nv').forEach(b=>b.classList.toggle('on',b.dataset.go=='#'+id))}else stopAll()},{rootMargin:'-40% 0px -50% 0px'}).observe($('#'+id)));
+sync();
+
+/* ===== bottom bar buttons (re-added whenever the bar is redrawn) ===== */
+const nav=$('#nav'),sv=(p,f,fo,s,z)=>`<svg viewBox="0 0 24 24" width="${z}" height="${z}" fill="${f}" fill-opacity="${fo}" stroke="${s}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${p}"/></svg>`;
+const ico=(p,c,em)=>{const m=LS('ip')||'color';return m=='emoji'?`<span style="font-size:26px;line-height:1.2">${em}</span>`:m=='line'?sv(p,'var(--sun)','.3','currentColor',26):m=='bold'?sv(p,c,'1','currentColor',26):`<span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,${c},${c}aa);box-shadow:0 3px 0 ${c}66">${sv(p,'#fff','.25','#fff',24)}</span>`};
+const NB=[['#nums','Numbers','M8 6l3-2v15M14 9a3 3 0 1 1 5 2l-5 8h5','#14919b','🔟','#write'],['#tables','Tables','M6 6l12 12M18 6L6 18','#ff9f1c','✖️','#maths']];
+const add=()=>{if(!nav)return;NB.forEach(x=>{const a=nav.querySelector(`[data-go="${x[5]}"]`);if(!a||nav.querySelector(`[data-go="${x[0]}"]`))return;const b=document.createElement('button');b.className='nv';b.dataset.go=x[0];b.setAttribute('aria-label',x[1]);b.style.setProperty('--c',x[3]);b.style.setProperty('--cb',x[3]+'33');b.innerHTML=`<b>${ico(x[2],x[3],x[4])}</b>${x[1]}`;a.after(b)})};
+add();if(nav)new MutationObserver(add).observe(nav,{childList:true});
 })();
 </script>
 
