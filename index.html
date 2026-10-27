@@ -2117,7 +2117,7 @@ try{RES.push(...RS.filter(r=>/PBS Kids|NASA|Smithsonian|Head Start/.test(r[1])).
 </style>
 <script>
 (()=>{
-const D=document,$=q=>D.querySelector(q);let U=0;
+const D=document,$=q=>D.querySelector(q);let U=0,SQ=0;
 const say=t=>{try{speak(t)}catch(e){}};
 const fx=k=>{try{sfx(k)}catch(e){}};
 const pts=()=>{try{addPts(2,null,'Space')}catch(e){}};
@@ -2150,7 +2150,7 @@ const RP=[['triangle','the pointy nose'],['rectangle','the tall body'],['circle'
 function rk(m,fresh){const s=st.rk||(st.rk={i:0});const q=RP[s.i];
  const svg=rocket(s.i,{fresh});
  shell(q?`<p class="tt">Tap the ${q[0]} for ${q[1]}</p>${svg}<div class="opts">${shuf(Object.keys(SH)).map(k=>`<button class="btn" data-rs="${k}" aria-label="${k}">${shp(k)}</button>`).join('')}</div><div class="tt">${m||''}</div>`:`<p class="tt">${m||''}</p>${svg}<div class="opts"><button class="btn" data-sg="rk" data-again="1">Build again</button></div>`);
- if(q&&!m)say('Tap the '+q[0]+' for '+q[1])}
+ if(q&&!m&&SQ)say('Tap the '+q[0]+' for '+q[1])}
 async function launch(from){ // 3, 2, 1, blast off
  for(const n of [3,2,1]){shell(`<p class="tt">${n}</p>${rocket(4,{shake:1})}<div class="spbig">${n}</div>`);fx('pop');say(String(n));await wait(900)}
  shell(`<p class="tt">Blast off! 🚀</p>${rocket(4,{fire:1,shake:1})}`);fx('whoosh');say('Blast off!');await wait(350);
@@ -2179,6 +2179,7 @@ D.addEventListener('click',e=>{const t=e.target;if(!t.closest('#space'))return;
  const pp=t.closest('[data-pp]');if(pp){const s=st.pl;if(pp.dataset.pp==s.t){fx('ok');say(PN[s.t]);pl('Yes! '+PN[s.t]);pts();s.t=0;setTimeout(()=>pl(),2400)}else{fx('no');say('Try again');pl('Try again 💫')}return}
  const pe=t.closest('[data-pe]');if(pe){const s=st.pt;if(pe.dataset.pe==s.ans){fx('ok');say('Yes! Great pattern!');pt('Yes! ⭐');pts();setTimeout(()=>{st.pt={};pt()},1600)}else{fx('no');say('Try again');pt('Try again 💫')}}});
 draw();
+{const sp=$('#space');if(sp)sp.addEventListener('pointerdown',()=>{SQ=1},{once:true,capture:true})}
 const nav=$('#nav');const add=()=>{if(!nav||nav.querySelector('[data-go="#space"]'))return;const b=D.createElement('button');b.className='nv';b.dataset.go='#space';b.setAttribute('aria-label','Space');b.innerHTML='<b>'+(window.SPICON?SPICON():'🚀')+'</b>Space';const a=nav.querySelector('[data-go="#usa"]')||nav.querySelector('[data-go="#ncert"]');a?a.after(b):nav.append(b)};
 add();if(nav)new MutationObserver(add).observe(nav,{childList:true});
 try{RES.push(['🌌','NASA Space Place','Free · ages 5+','Short space articles, games and crafts from NASA. Pick one planet a week.','https://spaceplace.nasa.gov'],['🛰️','Space Explorer for the Kids (darkaeon10)','Free · MIT license','Open-source game: fly a spaceship to the eight planets and read a fact on each. A model for a future flying game.','https://github.com/darkaeon10/SpaceExplorerForTheKids'],['🪐','Hello Bennu (quynhhgoogoo/Bennu)','Free · open source','NASA Space Apps game that teaches the order of planets: Earth, Mars, then the Sun.','https://github.com/quynhhgoogoo/Bennu'],['⭐','radarhere/spacegame','Free · open source','Calm space game with no lasers or explosions: dodge asteroids and collect stars.','https://github.com/radarhere/spacegame'],['🎙️','Kokoro TTS (hexgrad, via kokoro-js)','Free · Apache-2.0','Natural-sounding open voice that runs inside the browser. Used for the optional Natural voice button.','https://www.npmjs.com/package/kokoro-js'])}catch(e){}
