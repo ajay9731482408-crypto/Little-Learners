@@ -711,7 +711,6 @@ function parent(){const l=JSON.parse(LS('lg')||'{}'),days=[...Array(7)].map((_,i
  <h3>Real app lock</h3><p style="font-size:15px">A web page cannot block other apps. 🔒 asks for your PIN when your child leaves or exits full screen. For a true lock use <b>Android: Settings → Security → App pinning</b> or <b>iPhone: Settings → Accessibility → Guided Access</b>.</p>
  <div class="row"><button class="btn alt" id="cpin">Change PIN</button></div>
  <h3>Trusted resources</h3><div class="grid res">${RES.map(r=>`<a href="${r[4]}" target="_blank" rel="noopener"><div class="stamp"><div style="font-size:36px">${r[0]}</div><b style="font-family:Fredoka">${r[1]}</b><small style="display:block;opacity:.7">${r[2]}</small><small style="display:block">${r[3]}</small></div></a>`).join('')}</div>`}
-$('#pa').onclick=()=>askPin('Grown-up PIN',()=>{parent();$('#pm').hidden=false});
 $('#pcl').onclick=()=>$('#pm').hidden=true;
 $('#pb').addEventListener('change',e=>{if(e.target.id=='fpv'){e.target.checked?LS('fp','1'):LS('fp',''); festUI()}});
 $('#pb').addEventListener('click',e=>{if(e.target.id=='cpin'){$('#pm').hidden=true;LS('pin','');askPin('',()=>{})}});
@@ -1782,13 +1781,13 @@ const draw=()=>{const lesson=L()>0;let g,h,sub,info='';
  $('#sb').innerHTML=`<div class="sh">${hero}</div>${lesson?`<div class="sc"><div class="si">${info}<button class="btn" id="sp" aria-label="Hear it" style="margin-left:auto;padding:8px 14px">🔊</button></div></div>`:''}
  <div class="sc"><h4>${lesson?q.t:(T=='mem'?'Flip two cards':'Pick the answer')}</h4>${T=='mem'?'<div class="mem">'+MM.c.map((c,k)=>`<button class="mc${MM.f[k]?' up':''}" data-c="${k}" aria-label="Card">${MM.f[k]?c:'❔'}</button>`).join('')+'</div>':`<div class="so${q.tx?' tx':''}">${q.o.map((o,k)=>`<button data-k="${k}">${o[0]}</button>`).join('')}</div>`}</div>
  <div class="sf" aria-live="polite"><span>🦖</span><div id="sfb">Ready? Give it a try!<small>You can do it!</small></div></div>
- <div class="sn">${lesson?'<button id="bk" aria-label="Back">‹</button>':''}<button class="nx" id="nx">Next →</button></div>
+ <div class="sn">${lesson?'<button id="lbk" aria-label="Back">‹</button>':''}<button class="nx" id="nx">Next →</button></div>
  ${[['Words & letters',['en','hi','miss','opp','col']],['Numbers',['num','cnt','add','sub','cmp','seq']],['Think & play',['shp','pat','odd','big','mem']]].map(g=>`<h5>${g[0]}</h5><div class="stl">${g[1].map(id=>TL.find(t=>t[0]==id)).map(t=>`<button data-t="${t[0]}" style="background:${t[3]}" aria-pressed="${t[0]==T}"><i>${t[1]}</i>${t[2]}</button>`).join('')}</div>`).join('')}`;
  const sp=()=>say(lesson?(T=='hi'?`${HI[i][0]} से ${HI[i][2]}`:T=='en'?q.w:q.w):q.w,q.h);
  if($('#sp'))$('#sp').onclick=sp;
  document.querySelectorAll('.mc').forEach(b=>b.onclick=e=>{const k=+b.dataset.c;if(MM.f[k]||MM.o.length>1)return;MM.f[k]=1;b.textContent=MM.c[k];b.classList.add('up');MM.o.push(k);if(MM.o.length==2){const[a,c]=MM.o;if(MM.c[a]==MM.c[c]){MM.o=[];if(++MM.m==3){ok=1;$('#sfb').innerHTML='Awesome!<small>You found them all!</small>';say('You found them all!');if(window.addPts)addPts(2,e,'Study')}else $('#sfb').innerHTML='A match!<small>Keep going!</small>'}else setTimeout(()=>{MM.f[a]=MM.f[c]=0;const bs=document.querySelectorAll('.mc');[a,c].forEach(z=>{if(bs[z]){bs[z].textContent='❔';bs[z].classList.remove('up')}});MM.o=[]},800)}});
  document.querySelectorAll('.so button').forEach(b=>b.onclick=e=>{if(ok)return;const o=q.o[+b.dataset.k];if(o[1]){ok=1;b.classList.add('ok');$('#sfb').innerHTML='Awesome!<small>You\'re doing great!</small>';say(q.w,q.h);if(window.addPts)addPts(1,e,'Study')}else{b.classList.add('no');setTimeout(()=>b.classList.remove('no'),450);$('#sfb').innerHTML='Almost!<small>Try another one.</small>'}});
- $('#nx').onclick=()=>{if(L())i=(i+1)%L();mk();draw()};if($('#bk'))$('#bk').onclick=()=>{i=(i+L()-1)%L();mk();draw()};
+ $('#nx').onclick=()=>{if(L())i=(i+1)%L();mk();draw()};if($('#lbk'))$('#lbk').onclick=()=>{i=(i+L()-1)%L();mk();draw()};
  document.querySelectorAll('.stl button').forEach(b=>b.onclick=()=>{T=window.stT=b.dataset.t;i=0;mk();draw();$('#study').scrollIntoView({behavior:'smooth'})})};
 mk();draw()})();
 </script>
@@ -1882,7 +1881,7 @@ const t=document.getElementById('ttl');if(t){t.style.cursor='pointer';t.addEvent
 R=I('M5 12h14M13 6l6 6-6 6'),L=I('M19 12H5M11 18l-6-6 6-6'),V=I('M11 5 6 9H3v6h3l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13');
 let busy=0;const fix=()=>{if(busy)return;busy=1;
  document.querySelectorAll('.btn,.nx').forEach(b=>{const t=b.lastChild;if(t&&t.nodeType==3&&/→\s*$/.test(t.textContent)){t.textContent=t.textContent.replace(/\s*→\s*$/,' ');b.insertAdjacentHTML('beforeend',R)}});
- document.querySelectorAll('#bk').forEach(b=>{if(b.textContent.trim()=='‹')b.innerHTML=L});
+ document.querySelectorAll('#lbk').forEach(b=>{if(b.textContent.trim()=='‹')b.innerHTML=L});
  document.querySelectorAll('#sp').forEach(b=>{if(b.textContent.trim()=='🔊')b.innerHTML=V});
  busy=0};
 new MutationObserver(fix).observe(document.body,{childList:true,subtree:true});fix()})();
@@ -2098,8 +2097,7 @@ D.addEventListener('click',e=>{const t=e.target;if(t.closest('#usa'))uQ=1;if(!t.
  if(t.id=='uqr'){qi=0;qs=0;dq()}});
 dt();dq();
 /* nav button (re-added whenever the bar is redrawn) */
-const nav=$('#nav');const add=()=>{if(1)return;if(!nav||nav.querySelector('[data-go="#usa"]'))return;const b=D.createElement('button');b.className='nv';b.dataset.go='#usa';b.setAttribute('aria-label','USA');b.innerHTML='<b>🇺🇸</b>USA';const a=nav.querySelector('[data-go="#ncert"]');a?a.after(b):nav.append(b)};
-add();if(nav)new MutationObserver(add).observe(nav,{childList:true});
+const nav=$('#nav');
 try{RES.push(...RS.filter(r=>/PBS Kids|NASA|Smithsonian|Head Start/.test(r[1])).map(r=>[r[0],r[1],'Free · USA',r[2],r[3]]))}catch(e){}
 })();
 </script>
@@ -3206,5 +3204,477 @@ document.addEventListener('selectionchange',function(){var s=getSelection(),b=q(
 @keyframes tw{50%{opacity:.25}}@keyframes ffl{50%{opacity:.2;transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){#mapx .st,#mapx .ff{animation:none}}
 </style>
+<style id="v52">
+#st .stamp{background:#fffdf5 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");border:0;border-radius:14px;box-shadow:0 6px 16px #5a431c26,inset 0 0 0 1px #e7d9b5;outline:0;padding:22px 14px 14px;position:relative}
+#st .stamp::before{content:"";position:absolute;inset:7px;border:2px dashed #e0cfa4;border-radius:10px;pointer-events:none}
+#st .stamp:nth-child(odd){transform:rotate(-1.2deg)}
+#st .stamp:nth-child(even){transform:rotate(1deg)}
+#st .stamp .pm{position:absolute;top:10px;right:10px;font:700 10px Fredoka,sans-serif;color:#7a6a4f;border:2px double #9c8c6c;border-radius:50%;width:54px;height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.05;transform:rotate(12deg);opacity:.8;background:#fffdf5cc}
+#st .stamp .dt{font:600 12px Nunito,sans-serif;color:#6b5b3e;margin-top:6px}
+#st .stamp.lock{filter:grayscale(.85);opacity:.8}
+#st .stamp.fresh{animation:v52shine 1.6s ease-out 2}
+@keyframes v52shine{0%{box-shadow:0 0 0 0 #ffd23c}60%{box-shadow:0 0 0 14px #ffd23c00}100%{box-shadow:0 6px 16px #5a431c26}}
+@media(prefers-reduced-motion:reduce){#st .stamp.fresh{animation:none}}
+</style>
+<script>
+(()=>{
+const NAMES=['Sky','Sun','Moon','Star','Leaf','Wave','Rocket','Tiger','Rainbow','Crown'];
+const LS=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+const J=k=>{try{return JSON.parse(LS(k)||'null')}catch(e){return null}};
+const fmtD=new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric'});
+const decorate=()=>{
+  const st=document.getElementById('st');if(!st)return;
+  const pts=+(LS('p')||0);
+  const sdt=J('sdt')||{},seen=J('v52seen')||[];
+  let dirtyDates=false,dirtySeen=false;
+  [...st.querySelectorAll('.stamp')].forEach((el,i)=>{
+    if(!el.querySelector(':scope > .pm')){const pm=document.createElement('span');pm.className='pm';pm.textContent=NAMES[i%10];el.prepend(pm)}
+    let dt=el.querySelector(':scope > .dt');
+    if(!dt){dt=document.createElement('div');dt.className='dt';el.appendChild(dt)}
+    const locked=el.classList.contains('lock');
+    let txt;
+    if(!locked){
+      if(!sdt[i]){sdt[i]=fmtD.format(new Date());dirtyDates=true}
+      txt='Earned '+sdt[i];
+      if(!seen.includes(i)){seen.push(i);dirtySeen=true;el.classList.add('fresh')}
+    }else{
+      txt='Locked: '+Math.max(0,(i+1)*30-pts)+' pts to go';
+    }
+    if(dt.textContent!==txt)dt.textContent=txt; // guard: avoids observer loop
+  });
+  if(dirtyDates)LS('sdt',JSON.stringify(sdt));
+  if(dirtySeen)LS('v52seen',JSON.stringify(seen));
+};
+const st=document.getElementById('st');
+if(st){new MutationObserver(decorate).observe(st,{childList:true,subtree:false});}
+decorate();
+setInterval(decorate,2000);
+})();
+</script>
+<script>
+(()=>{
+// One consistent English voice for the whole Time world, chosen once and cached.
+let voice=null,inTime=false;
+const pick=()=>{try{const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));voice=vs.find(v=>/en-IN/i.test(v.lang))||vs.find(v=>/en-(GB|US)/i.test(v.lang))||vs[0]||null}catch(e){}};
+pick();
+try{speechSynthesis.addEventListener('voiceschanged',pick)}catch(e){}
+// Mark clicks that happen inside the Time world so only its speech is fixed to one voice.
+document.addEventListener('pointerdown',e=>{inTime=!!(e.target.closest&&e.target.closest('#tmb,#tt'))},true);
+// Wrap speak once: Time-world English always uses the cached voice and steady rate/pitch.
+try{
+  const orig=speechSynthesis.speak.bind(speechSynthesis);
+  speechSynthesis.speak=u=>{
+    try{
+      if(inTime&&/^en/i.test(u.lang||'en')){
+        if(!voice)pick();
+        if(voice)u.voice=voice;
+        u.lang=voice?voice.lang:'en-US';
+        u.rate=.85;u.pitch=1.05;
+      }
+    }catch(e){}
+    return orig(u);
+  };
+}catch(e){}
+// Fast response: cut any old speech the instant a word is tapped.
+document.addEventListener('click',e=>{
+  if(e.target.closest&&e.target.closest('#tmb .wc')){try{speechSynthesis.cancel()}catch(x){}}
+},true);
+})();
+</script>
+<style id="v54">
+#airplane .ap-card{background:#fffdf5;border-radius:18px;padding:16px;box-shadow:0 6px 16px #1f5fbf1f;text-align:center}
+#airplane .ap-card h3{font:700 20px Fredoka,sans-serif;margin:0 0 6px}
+#airplane .ap-opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+#airplane .ap-opts button{font:600 16px Nunito,sans-serif;padding:8px 14px;border-radius:12px;border:2px solid #2f5bd0;background:#fff;cursor:pointer;min-height:44px}
+#airplane .ap-opts button.ok{background:#4c9a52;color:#fff;border-color:#4c9a52}
+#airplane .ap-opts button.no{background:#fde2dc;border-color:#e8604c}
+#airplane .ap-fb{min-height:24px;font:700 16px Nunito,sans-serif;margin-top:8px}
+#airplane .res-card{display:block;text-decoration:none;color:inherit}
+@media(prefers-reduced-motion:reduce){#airplane *{transition:none!important;animation:none!important}}
+</style>
+<script>
+(()=>{
+const ACT=[
+ {t:'✈️ Scenic View',q:'Look out the window! How many clouds? ☁️☁️☁️',o:['2','3','4'],a:'3',s:'Three clouds! Lovely view.'},
+ {t:'🎒 Pack My Bag',q:'Packing for a sunny beach trip. Which one goes in the bag?',o:['🩴 Sandals','⛄ Snowman'],a:'🩴 Sandals',s:'Sandals are perfect for the beach!'},
+ {t:'🔍 I Spy',q:'I spy something round that rolls. What is it?',o:['🏠 House','⚽ Ball','🚪 Door'],a:'⚽ Ball',s:'Yes, a ball rolls!'},
+ {t:'🔢 Count & Write',q:'Count the seats: 🪑🪑🪑🪑 How many are there?',o:['3','4','5'],a:'4',s:'Four seats!'},
+ {t:'💺 Seat Match',q:'Seat 7 is here. Which seat comes right after it?',o:['6','8','9'],a:'8',s:'Eight comes after seven.'},
+ {t:'🔁 What Comes Next?',q:'✈️ 🌤️ ✈️ 🌤️ ✈️ … what comes next?',o:['✈️','🌤️'],a:'🌤️',s:'Cloud comes next!'},
+ {t:'🔤 Alphabet Match',q:'Which letter does the word Airplane start with?',o:['B','A','P'],a:'A',s:'A for Airplane!'},
+ {t:'🎨 Color the Airplane',q:'Pick a colour for your airplane!',o:['🔴 Red','🔵 Blue','🟢 Green'],a:null,s:'What a bright airplane!'}
+];
+const RES=[
+ ['🧸','PBS KIDS','Games and videos for early learners','https://pbskids.org'],
+ ['🔤','Starfall','Reading, phonics and maths games','https://www.starfall.com'],
+ ['🎓','Khan Academy Kids','Free lessons, books and activities','https://learn.khanacademy.org/khan-academy-kids'],
+ ['🚀','NASA Kids\' Club','Space, planes and science for kids','https://www.nasa.gov/kidsclub/index.html']
+];
+const sec=document.createElement('section');
+sec.id='airplane';
+sec.innerHTML=`<h2>Airplane & Travel ✈️</h2><p class="lead">Tap an answer. Every activity says the answer out loud.</p>
+<div class="grid" id="apg">${ACT.map((x,i)=>`<div class="ap-card" data-k="${i}"><h3>${x.t}</h3><p class="tt">${x.q}</p><div class="ap-opts">${x.o.map(o=>`<button data-o="${o}">${o}</button>`).join('')}</div><div class="ap-fb" aria-live="polite"></div></div>`).join('')}</div>
+<h3 style="margin-top:22px">Free learning resources 📚</h3>
+<div class="grid res">${RES.map(r=>`<a class="res-card" href="${r[3]}" target="_blank" rel="noopener"><div class="stamp"><div style="font-size:36px">${r[0]}</div><b style="font-family:Fredoka">${r[1]}</b><small style="display:block">${r[2]}</small></div></a>`).join('')}</div>`;
+const win=document.getElementById('win');
+win?win.after(sec):document.body.appendChild(sec);
+const say=t=>{try{if(localStorage.getItem('vo')==='0')return;if(window.speak)speak(t)}catch(e){}};
+sec.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-o]');if(!b)return;
+  const card=b.closest('.ap-card'),x=ACT[+card.dataset.k],fb=card.querySelector('.ap-fb');
+  if(x.a===null||b.dataset.o===x.a){
+    card.querySelectorAll('button').forEach(z=>z.disabled=true);
+    b.classList.add('ok');fb.textContent='⭐ '+x.s;say(x.s);
+    try{addPts(2,e,'Airplane')}catch(err){}
+  }else{
+    b.classList.add('no');fb.textContent='Try again!';say('Try again!');
+  }
+});
+})();
+</script>
+<script>
+/* v55: clearer Numbers and Space icons in the bottom nav. Re-applied whenever the nav re-renders. */
+(()=>{
+const nav=document.getElementById('nav');if(!nav)return;
+const LS=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const tile=(inner,c)=>`<span class="v55t" style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,${c},${c}cc);box-shadow:0 3px 0 ${c}66">${inner}</span>`;
+const ROCKET=`<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c3.2 2.6 4.6 6.2 4.2 10.2L14.4 15H9.6l-1.8-2.3C7.4 8.7 8.8 5.1 12 2.5z" fill="#fff" fill-opacity=".28"/><circle cx="12" cy="8.4" r="1.8" fill="#fff"/><path d="M9.6 12.6L6.4 15v3.2l3.2-1.4M14.4 12.6l3.2 2.4v3.2l-3.2-1.4"/><path d="M10.2 15.6L12 21.6l1.8-6" fill="#fff" fill-opacity=".7"/></svg>`;
+const NUM=`<span style="font:700 13px/1 Fredoka,'Trebuchet MS',sans-serif;color:#fff;letter-spacing:-.3px;text-shadow:0 1px 0 #0002">1·2·3</span>`;
+const apply=()=>{
+  const emoji=LS('ip')==='emoji';
+  nav.querySelectorAll('[data-go="#nums"] > b').forEach(b=>{
+    if(b.querySelector('.v55t')||(emoji&&b.textContent.trim()))return;
+    b.innerHTML=emoji?'🔢':tile(NUM,'#2f5bd0');
+  });
+  nav.querySelectorAll('[data-go="#space"] > b').forEach(b=>{
+    if(b.querySelector('.v55t')||(emoji&&b.textContent.trim()))return;
+    b.innerHTML=emoji?'🚀':tile(ROCKET,'#14919b');
+  });
+};
+apply();
+new MutationObserver(apply).observe(nav,{childList:true,subtree:true});
+})();
+</script>
+<style id="v57">
+/* language switch: EN / both / हिं. Elements tagged lang="hi" or lang="en" are hidden per mode. */
+html[data-ui="en"] [lang="hi"]{display:none!important}
+.bi>span{display:block}
+/* growth dashboard */
+.gx{font-family:Nunito,'Trebuchet MS',sans-serif;color:var(--ink,#2a2438);margin:0 0 18px}
+.gx-hero{background:linear-gradient(135deg,#8a4fc7,#e8604c);color:#fff;border-radius:24px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 10px 24px #8a4fc755}
+.gx-hero h3{font:700 26px Fredoka,sans-serif;margin:4px 0 8px}
+.gx-kicker{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.9;font-weight:700}
+.gx-pill{display:inline-block;background:#ffffff33;border-radius:999px;padding:3px 10px;font-weight:700;font-size:13px}
+.gx-ring{text-align:center}
+.gx-ring small{display:block;font-weight:700;font-size:12px;margin-top:2px}
+.gx-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+@media(min-width:720px){.gx-stats{grid-template-columns:repeat(4,1fr)}}
+.gx-t{background:var(--card,#fff);border-radius:20px;padding:14px;box-shadow:0 6px 18px #1f1a3a12}
+.gx-t .ic{font-size:22px;line-height:1}
+.gx-t .v{font:700 28px/1.1 Fredoka,sans-serif;margin:8px 0 2px}
+.gx-t .v small{font:600 12px Nunito,sans-serif;opacity:.7;margin-left:3px}
+.gx-t .l{font-size:12px;font-weight:700;opacity:.75}
+.gx-chip{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;border-radius:999px;padding:3px 9px;background:#4c9a5226;color:#2f6b35}
+.gx-chip.dn{background:#e8604c26;color:#a33d2a}
+.gx-grid2{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:820px){.gx-grid2{grid-template-columns:1.5fr 1fr}}
+.gx-card{background:var(--card,#fff);border-radius:20px;padding:16px;box-shadow:0 6px 18px #1f1a3a12;min-width:0}
+.gx-card>h4{font:700 17px Fredoka,sans-serif;margin:0 0 10px}
+.gx-card>h4 small{display:block;font:600 12px Nunito,sans-serif;opacity:.6;margin-top:2px}
+.gx-heat{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.gx-heat i{aspect-ratio:1;border-radius:8px;background:#8882}
+.gx-legend{display:flex;gap:4px;align-items:center;font-size:11px;opacity:.7;margin-top:10px}
+.gx-legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.gx-bar{display:grid;grid-template-columns:118px 1fr 36px;gap:10px;align-items:center;margin:10px 0;font-size:14px}
+.gx-bar b{font-weight:700}
+.gx-track{height:12px;border-radius:99px;background:#8881;overflow:hidden}
+.gx-track i{display:block;height:100%;border-radius:99px}
+.gx-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.gx-steps li{border-radius:16px;padding:12px 14px;background:color-mix(in srgb,var(--gc) 14%,transparent);border-left:5px solid var(--gc)}
+.gx-steps .t{font:700 16px Fredoka,sans-serif}
+.gx-steps .w{font-size:13px;margin-top:6px;line-height:1.45}
+.gx-note{font-size:12px;opacity:.6;margin:12px 4px 0}
+@media(prefers-reduced-motion:reduce){.gx-track i{transition:none}}
+/* bottom nav: calmer labels and a clear active state */
+#nav .nv{font-size:11px;font-weight:700;border-radius:16px;transition:background .2s,transform .15s}
+#nav .nv b{transition:transform .2s}
+#nav .nv.on b{transform:translateY(-2px) scale(1.06)}
+</style>
+<script>
+/* v57: language switch, start-at-top, redesigned growth dashboard */
+(()=>{
+/* start at the top, no stale hash */
+try{history.scrollRestoration='manual'}catch(e){}
+const toTop=()=>{try{if(window.lenis)lenis.scrollTo(0,{immediate:true})}catch(e){}window.scrollTo(0,0)};
+if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+toTop();window.addEventListener('load',()=>{toTop();setTimeout(toTop,300)});
+
+/* language switch */
+
+/* growth dashboard */
+const RD=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const J=(k,d)=>{try{const v=JSON.parse(RD(k)||'null');return v==null?d:v}catch(e){return d}};
+const dk=o=>new Date(Date.now()-o*864e5-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const T=(hi,en)=>`<span lang="hi">${hi}</span><span lang="en">${en}</span>`;
+const SK=[['Words','शब्द','#e8604c'],['Write','लिखना','#2f5bd0'],['Puzzle','पहेली','#f2b624'],['Rhymes','कविता','#8a4fc7'],['Talk','बातचीत','#3fb7e8'],['Story','कहानी','#ff8fab'],['Maths','गणित','#4c9a52'],['NCERT','पाठ','#ff9f1c']];
+const ALIAS={English:'Talk',Study:'NCERT',Quiz:'Words',Space:'NCERT',Airplane:'Puzzle',Arcade:'Puzzle'};
+const NEXT={Words:['3 अक्षर वाले शब्द पढ़ें','Read 3-letter words aloud'],Write:['अपना नाम बिना देखे लिखें','Write own name without tracing'],Puzzle:['3 टुकड़ों वाली पहेली','Try 3-piece puzzles'],Rhymes:['नई तुकबंदी खुद बनाएँ','Make up a new rhyme'],Talk:['पूरा वाक्य बोलें (क्योंकि…)','Speak full sentences using “because”'],Story:['कहानी अपने शब्दों में सुनाएँ','Retell a story in own words'],Maths:['अगला स्तर: 10 तक जोड़','Next level: addition within 10'],NCERT:['स्कूल के पाठ से मिलान करें','Match with this week’s school lesson']};
+const LVL=['Nursery','LKG','UKG'];
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+const data=()=>{
+  const lg=J('lg',{}),mn=J('mn',{});
+  const day=o=>{const d=dk(o),row={};Object.entries(lg[d]||{}).forEach(([k,v])=>{const b=SK.some(s=>s[0]==k)?k:ALIAS[k];if(b)row[b]=(row[b]||0)+(+v||0)});
+    return{d,pts:Object.values(row).reduce((a,b)=>a+b,0),row,min:Math.round((+mn[d]||0)/60)}};
+  const d7=[...Array(7)].map((_,i)=>day(6-i)),p7=[...Array(7)].map((_,i)=>day(13-i)),d28=[...Array(28)].map((_,i)=>day(27-i));
+  const sk={};SK.forEach(s=>sk[s[0]]=d7.reduce((a,x)=>a+(x.row[s[0]]||0),0));
+  let streak=0;for(let i=0;i<400;i++){const x=day(i);if(x.pts>0||x.min>0)streak++;else if(i>0)break}
+  return{d7,p7,d28,sk,streak,pts:+(RD('p')||0),lvl:RD('l')||'LKG',name:RD('n')||'',
+    active:d7.filter(x=>x.pts>0||x.min>0).length,pts7:d7.reduce((a,x)=>a+x.pts,0),prev7:p7.reduce((a,x)=>a+x.pts,0),min7:d7.reduce((a,x)=>a+x.min,0)};
+};
+const score=D=>{const cons=Math.min(1,D.active/5),bal=SK.filter(s=>D.sk[s[0]]>0).length/8,chal=Math.min(1,D.pts7/60);return Math.round(100*(.4*cons+.3*bal+.3*chal))};
+
+const advise=D=>{
+  if(D.active<3)return[{p:0,hi:'अभी डेटा कम है',en:'Not enough data yet',why:`अभी ${D.active} दिन सक्रिय। 3 दिन खेलने के बाद सलाह दिखेगी।`,why2:`Only ${D.active} active day(s). Advice appears after 3 days of play.`}];
+  const out=[],avg=D.min7/7;
+  if(D.active<4)out.push({p:1,hi:'हर दिन 10 मिनट खेलें',en:'Play 10 minutes every day',why:`इस हफ़्ते ${D.active} दिन सक्रिय। छोटे, रोज़ के सत्र आदत जल्दी बनाते हैं।`,why2:`Active on ${D.active} of 7 days. Short daily sessions build the habit faster than long, rare ones.`});
+  if(avg>35)out.push({p:2,hi:'खेल के साथ बाहर खेलने का समय रखें',en:'Balance screen time with outdoor play',why:`औसत ${Math.round(avg)} मिनट रोज़। छोटे बच्चे 15–25 मिनट के सत्र में सबसे अच्छा सीखते हैं।`,why2:`Average ${Math.round(avg)} min/day. Young children learn best in 15–25 minute sessions.`});
+  else if(avg>0&&avg<8)out.push({p:3,hi:'सत्र को लगभग 15 मिनट तक बढ़ाएँ',en:'Stretch sessions to about 15 minutes',why:`औसत सिर्फ ${Math.round(avg)} मिनट। थोड़ा लंबा सत्र गहरी समझ देता है।`,why2:`Average only ${Math.round(avg)} min/day. A slightly longer session builds deeper understanding.`});
+  const untouched=SK.filter(s=>!D.sk[s[0]]);
+  if(untouched.length){const u=untouched[0];out.push({p:2,hi:`नया कौशल आज़माएँ: ${u[1]}`,en:`Try a new skill: ${u[0]}`,why:`इस हफ़्ते ${u[1]} पर कोई गतिविधि नहीं हुई, यही क्षेत्र छूटा है।`,why2:`No ${u[0]} activity this week, so this is the one area not practised.`})}
+  const top=[...SK].sort((a,b)=>D.sk[b[0]]-D.sk[a[0]])[0];
+  if(D.sk[top[0]]>=30)out.push({p:2,hi:'आगे बढ़ें: '+NEXT[top[0]][0],en:'Move on: '+NEXT[top[0]][1],why:`${top[1]} में इस हफ़्ते ${D.sk[top[0]]} अंक। बच्चा इसमें सहज है, अब चुनौती बढ़ाने का समय है।`,why2:`${D.sk[top[0]]} points in ${top[0]} this week. The child is comfortable here, so raise the challenge.`});
+  if(D.sk.Talk<5)out.push({p:2,hi:NEXT.Talk[0],en:'Speak one full sentence every day',why:`बातचीत में इस हफ़्ते सिर्फ ${D.sk.Talk} अंक। “क्योंकि” वाले पूरे वाक्य भाषा सबसे तेज़ बढ़ाते हैं।`,why2:`Only ${D.sk.Talk} Talk points this week. Full sentences with “because” grow language fastest.`});
+  if(D.pts7>=60&&D.lvl!=='UKG'){const nx=LVL[LVL.indexOf(D.lvl)+1];out.push({p:1,hi:`${nx} स्तर के सवाल आज़माएँ`,en:`Try ${nx} level questions`,why:`इस हफ़्ते ${D.pts7} अंक मिले। ${D.lvl} अब आसान लग रहा है।`,why2:`${D.pts7} points this week. ${D.lvl} now looks comfortable.`})}
+  if(D.streak>=5)out.push({p:4,hi:'शाबाश! लगातार खेलने की तारीफ़ करें',en:'Great streak. Praise the consistency',why:`${D.streak} दिन लगातार सक्रिय।`,why2:`${D.streak} days in a row.`});
+  return out.sort((a,b)=>a.p-b.p).slice(0,4);
+};
+
+const ring=(s,light)=>`<svg viewBox="0 0 110 110" width="104" role="img" aria-label="Growth score ${s}">
+  <circle cx="55" cy="55" r="44" fill="none" stroke="${light?'#ffffff44':'#8883'}" stroke-width="11"/>
+  <circle cx="55" cy="55" r="44" fill="none" stroke="${light?'#fff':'url(#gxg)'}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${s/100*276.5} 276.5" transform="rotate(-90 55 55)"/>
+  <defs><linearGradient id="gxg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8604c"/><stop offset=".5" stop-color="#f2b624"/><stop offset="1" stop-color="#4c9a52"/></linearGradient></defs>
+  <text x="55" y="63" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="27" font-weight="700" fill="currentColor">${s}</text></svg>`;
+
+const bars=D=>{const mx=Math.max(10,...D.d7.map(x=>x.pts)),cols=['#e8604c','#ff9f1c','#f2b624','#4c9a52','#3fb7e8','#8a4fc7','#ff8fab'];
+  const gl=[0,.5,1].map(f=>`<line x1="0" x2="340" y1="${130-f*110}" y2="${130-f*110}" stroke="#8883" stroke-dasharray="${f?'4 4':''}"/><text x="0" y="${124-f*110}" font-size="10" fill="currentColor" opacity=".6">${Math.round(mx*f)}</text>`).join('');
+  return`<svg viewBox="0 0 340 170" width="100%" role="img" aria-label="Points, last 7 days">${gl}
+  ${D.d7.map((x,i)=>{const h=x.pts/mx*110,y=130-h,cx=i*48+26;return`<g><rect x="${cx-15}" y="${y}" width="30" height="${Math.max(h,x.pts?4:0)}" rx="9" fill="${cols[i]}"/><text x="${cx}" y="${y-6}" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">${x.pts||''}</text><text x="${cx}" y="152" text-anchor="middle" font-size="11" fill="currentColor" opacity=".75">${DAYS[new Date(x.d+'T12:00').getDay()]}</text></g>`}).join('')}
+  </svg>`};
+
+const radar=D=>{const mx=Math.max(10,...SK.map(s=>D.sk[s[0]])),cx=120,cy=108,R=72;
+  const pt=(i,v)=>{const a=i*Math.PI*2/8-Math.PI/2;return[cx+R*v*Math.cos(a),cy+R*v*Math.sin(a)]};
+  const poly=SK.map((s,i)=>pt(i,Math.max(.05,D.sk[s[0]]/mx)).map(n=>n.toFixed(1)).join(',')).join(' ');
+  return`<svg viewBox="0 0 240 230" width="100%" style="max-width:260px" role="img" aria-label="Skill balance">
+  ${[.33,.66,1].map(r=>`<polygon points="${SK.map((s,i)=>pt(i,r).join(',')).join(' ')}" fill="none" stroke="#8884"/>`).join('')}
+  ${SK.map((s,i)=>{const[x,y]=pt(i,1);const[lx,ly]=pt(i,1.22);return`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#8883"/><text x="${lx}" y="${ly+4}" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">${s[0]}</text>`}).join('')}
+  <polygon points="${poly}" fill="#8a4fc7" fill-opacity=".28" stroke="#8a4fc7" stroke-width="2.5" stroke-linejoin="round"/>
+  </svg>`};
+
+const heat=D=>{const lv=p=>p==0?0:p<10?1:p<30?2:p<60?3:4,op=[0,.28,.5,.75,1];
+  return`<div class="gx-heat">${D.d28.map(x=>`<i title="${x.d}: ${x.pts} pts" style="background:${lv(x.pts)?`rgba(76,154,82,${op[lv(x.pts)]})`:'#8882'}"></i>`).join('')}</div>
+  <div class="gx-legend">Less ${[0,1,2,3,4].map(l=>`<i style="background:${l?`rgba(76,154,82,${op[l]})`:'#8882'}"></i>`).join('')} More</div>`};
+
+const build=()=>{
+  const D=data(),s=score(D),avg=Math.round(D.min7/7),stamps=Math.floor(D.pts/30),diff=D.pts7-D.prev7,mx=Math.max(10,...SK.map(x=>D.sk[x[0]])),steps=advise(D);
+  const stat=(ic,hi,en,v,unit,chip)=>`<div class="gx-t"><div class="ic">${ic}</div><div class="v">${v}<small>${unit}</small></div><div class="l">${T(hi,en)}</div>${chip||''}</div>`;
+  return`<div class="gx">
+  <div class="gx-hero">
+    <div>
+      <div class="gx-kicker">${T('बच्चे का विकास','Growth dashboard')}</div>
+      <h3>${esc(D.name||'—')}</h3>
+      <span class="gx-pill">${esc(D.lvl)}</span>
+    </div>
+    <div class="gx-ring">${ring(s,true)}<small>${T('विकास स्कोर','Growth score')}</small></div>
+  </div>
+  <div class="gx-stats">
+    ${stat('⭐',"इस हफ़्ते के अंक",'Points this week',D.pts7,'',`<span class="gx-chip${diff<0?' dn':''}">${diff>=0?'▲ +':'▼ '}${diff} ${T('पिछले हफ़्ते से','vs last week')}</span>`)}
+    ${stat('📅','सक्रिय दिन','Active days',D.active,'/ 7')}
+    ${stat('⏱️','औसत समय','Avg per day',avg,T('मिनट','min'))}
+    ${stat('🔥','लगातार दिन','Day streak',D.streak,T('दिन','days'))}
+  </div>
+  <div class="gx-grid2">
+    <div class="gx-card"><h4>${T('पिछले 7 दिन','Last 7 days')}<small>${T('हर दिन के अंक','Points per day')}</small></h4>${bars(D)}</div>
+    <div class="gx-card"><h4>${T('कौशल संतुलन','Skill balance')}<small>${T('कौशल पर इस हफ़्ते का फ़ोकस','Focus across skills this week')}</small></h4>${radar(D)}</div>
+    <div class="gx-card"><h4>${T('पिछले 28 दिन','Last 28 days')}<small>${T('जितना गहरा रंग, उतना ज़्यादा खेल','Darker = more play')}</small></h4>${heat(D)}</div>
+    <div class="gx-card"><h4>${T('कौशल के अंक','Points by skill')}<small>${T('इस हफ़्ते','This week')}</small></h4>
+      ${SK.map(x=>`<div class="gx-bar"><span class="bi">${T(x[1],x[0])}</span><div class="gx-track"><i style="width:${D.sk[x[0]]/mx*100}%;background:${x[2]}"></i></div><b>${D.sk[x[0]]}</b></div>`).join('')}
+    </div>
+    <div class="gx-card" style="grid-column:1/-1"><h4>${T('🧭 अगला विकास कदम','🧭 Next growth steps')}<small>${T('हर सलाह के साथ कारण भी','Each step comes with its reason')}</small></h4>
+      <ul class="gx-steps">${steps.map((t,i)=>`<li style="--gc:${['#e8604c','#2f5bd0','#4c9a52','#8a4fc7'][i%4]}"><div class="t bi">${T(esc(t.hi),esc(t.en))}</div><div class="w bi">${T('📌 <b>कारण:</b> '+esc(t.why),'📌 <b>Why:</b> '+esc(t.why2))}</div></li>`).join('')}</ul>
+    </div>
+  </div>
+  <p class="gx-note">${T('यह सलाह इसी फ़ोन पर सेव खेल के आँकड़ों से बनती है। कुछ भी बाहर नहीं जाता।','Advice is built from play data saved on this phone only. Nothing leaves the phone.')}</p>
+  </div>`;
+};
+
+const tick=()=>{
+  const pm=document.getElementById('pm'),pb=document.getElementById('pb');
+  if(!pm||!pb||pm.hidden)return;
+  let host=document.getElementById('gx');
+  if(!host){host=document.createElement('div');host.id='gx';pb.parentNode.insertBefore(host,pb);host.dataset.h=''}
+  const h=build();
+  if(host.dataset.h!==h){host.innerHTML=h;host.dataset.h=h}
+};
+setInterval(tick,3000);
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#pa,#pgb'))setTimeout(tick,1200)});
+})();
+</script>
+<style id="v58">
+<script>
+/* v58: language labels, PIN auto-submit at 4 digits */
+(()=>{
+const auto=(inp,btn)=>{if(inp&&btn)inp.addEventListener('input',()=>{if(inp.value.length===4)btn.click()})};
+auto(document.getElementById('pi'),document.getElementById('pok'));
+auto(document.getElementById('pn'),document.getElementById('go2'));
+})();
+</script>
+<style id="v59">
+/* Grown-up area: one consistent design (bottom sheet on phones, sticky header, 48px targets, clear selected state). */
+#pm.mod,#pinm.mod{background:rgba(22,16,44,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:0;place-items:center}
+#pm .mbox{background:var(--card,#fff);border-radius:28px;padding:0;max-width:760px;width:min(760px,calc(100% - 24px));max-height:90vh;overflow:auto;overscroll-behavior:contain;box-shadow:0 24px 60px #0006;color:var(--ink,#2a2438);margin:auto}
+#pm .mbox>.gx-head{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;background:var(--card,#fff);border-bottom:1px solid #8883}
+#pm .mbox>.gx-head h2{margin:0;font:700 26px/1.1 Fredoka,'Trebuchet MS',sans-serif}
+#pm .mbox>.gx-head small{display:block;font:600 13px Nunito,sans-serif;opacity:.65;margin-top:2px}
+#pm #pcl{min-height:48px;min-width:48px;padding:0 18px;border-radius:999px;font:700 16px Fredoka,sans-serif}
+#pm #gx{padding:16px 20px 0}
+#pm #pb{padding:8px 20px 24px}
+#pm #pb h3{font:700 20px Fredoka,sans-serif;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+#pm #pb .row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+#pm #pb .btn,#pm #pb .lv,#pm #pb button{min-height:48px;min-width:48px;padding:10px 16px;border-radius:16px;border:2px solid #8883;background:var(--card,#fff);color:var(--ink,#2a2438);font:700 15px Fredoka,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,transform .1s}
+#pm #pb .btn:active,#pm #pb .lv:active,#pm #pb button:active{transform:scale(.97)}
+#pm #pb [aria-pressed="true"]{background:#ff9f1c;border-color:#2f5bd0;color:#2a2438;box-shadow:0 3px 0 #2f5bd0}
+#pm #pb button:focus-visible,#pm .mbox button:focus-visible{outline:3px solid #2f5bd0;outline-offset:2px}
+#pm #pb .btn.alt{background:#8881}
+#pm #pb input,#pm #pb select{min-height:48px;border-radius:14px;border:2px solid #8884;padding:8px 12px;font:600 16px Nunito,sans-serif;background:var(--card,#fff);color:var(--ink,#2a2438);max-width:100%}
+#pm #pb p,#pm #pb li{font-size:15px;line-height:1.5}
+#pm #pb a{color:#2f5bd0;font-weight:700}
+#pm #pb ul{padding-left:20px}
+#pm #set,#pm #set2,#pm #set3{margin-top:4px}
+#pm #pb .tip,#pm #pb [style*="border"]{border-radius:20px}
+@media(max-width:640px){
+  #pm.mod,#pinm.mod{place-items:end center;padding:0}
+  #pm .mbox{width:100%;max-width:none;border-radius:28px 28px 0 0;max-height:94vh;margin:0}
+  #pm .mbox>.gx-head{padding:14px 16px}
+  #pm #gx{padding:14px 16px 0}
+  #pm #pb{padding:6px 16px 28px}
+}
+/* bottom menu: floating pill, labels readable, clear active state */
+#nav{background:var(--card,#fff);border-radius:24px;box-shadow:0 10px 28px #1f1a3a33;border:1px solid #8882}
+#nav .nv{min-width:68px;min-height:56px;padding:6px 8px;gap:3px;font-size:12px;font-weight:800;letter-spacing:.01em;border-radius:18px;color:var(--ink,#2a2438)}
+#nav .nv b{font-size:24px}
+#nav .nv.on{box-shadow:inset 0 -3px 0 #2f5bd0}
+@media(prefers-reduced-motion:reduce){#nav .nv,#nav .nv b,#pm #pb button{transition:none!important}}
+</style>
+<script>
+/* v59: open the grown-up area at the top every time (not the middle of the last scroll). */
+(()=>{
+const reset=()=>{[document.getElementById('pm'),document.querySelector('#pm .mbox')].forEach(e=>{if(e)e.scrollTop=0})};
+const pm=document.getElementById('pm');
+if(pm){
+  /* give the header a class so the sticky bar is styled */
+  const mb=pm.querySelector('.mbox');
+  const first=mb&&mb.firstElementChild;
+  if(first&&!first.classList.contains('gx-head'))first.classList.add('gx-head');
+  new MutationObserver(()=>{if(!pm.hidden){reset();requestAnimationFrame(reset)}}).observe(pm,{attributes:true,attributeFilter:['hidden']});
+}
+})();
+</script>
+<style id="v60">
+/* Menu: one ☰ button opens a sheet with the language switch and the settings that used to crowd the top bar. */
+#top>span:last-child{display:none!important}
+#hmb{position:fixed;top:10px;right:10px;z-index:240;width:48px;height:48px;border-radius:50%;border:0;background:var(--card,#fff);color:var(--ink,#2a2438);box-shadow:0 4px 14px #0003;font-size:22px;cursor:pointer;display:grid;place-items:center}
+#hmb:focus-visible{outline:3px solid #2f5bd0;outline-offset:2px}
+body:has(#pm:not([hidden])) #hmb,body:has(#pinm:not([hidden])) #hmb{display:none}
+#hmenu.mod{background:rgba(22,16,44,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);place-items:end center;padding:0}
+#hmenu .sheet{background:var(--card,#fff);color:var(--ink,#2a2438);width:min(560px,100%);border-radius:28px 28px 0 0;padding:8px 18px 26px;max-height:90vh;overflow:auto;box-shadow:0 -10px 40px #0005}
+@media(min-width:700px){#hmenu.mod{place-items:center}#hmenu .sheet{border-radius:28px}}
+#hmenu .grip{width:44px;height:5px;border-radius:9px;background:#8885;margin:4px auto 10px}
+#hmenu h2{font:700 24px/1.2 Fredoka,'Trebuchet MS',sans-serif;margin:4px 0 6px;display:flex;justify-content:space-between;align-items:center}
+#hmenu h2 span[lang]{font-size:16px;opacity:.7;margin-left:6px}
+#hmenu .mclose{width:48px;height:48px;border-radius:50%;border:0;background:#8882;color:inherit;font-size:18px;cursor:pointer}
+#hmenu h3{font:800 12px Nunito,sans-serif;text-transform:uppercase;letter-spacing:.08em;opacity:.65;margin:20px 4px 8px}
+.mrow{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:10px 14px;margin:6px 0;border-radius:20px;border:0;background:#8881;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background .15s,transform .1s}
+.mrow:hover{background:#8882}
+.mrow:active{transform:scale(.98)}
+.mrow:focus-visible{outline:3px solid #2f5bd0;outline-offset:2px}
+.mrow .mi{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:22px;background:var(--card,#fff);box-shadow:0 2px 0 #0002;flex:none}
+.mrow .mt{flex:1;min-width:0}
+.mrow .mt b{display:block;font:700 17px Fredoka,sans-serif}
+.mrow .mt small{font-size:12px;opacity:.7}
+.mrow .ms{font-size:22px;flex:none}
+.mrow .go{font-size:18px;opacity:.5;flex:none}
+@media(prefers-reduced-motion:reduce){.mrow{transition:none}}
+</style>
+<script>
+/* v60: build the menu sheet and move the language switch into it. Rows click the original controls, so their behaviour is unchanged. */
+(()=>{
+const ROWS=[['mu','🎵','Music <span lang="hi">संगीत</span>','background music'],['sk','🎨','Colour theme <span lang="hi">रंग</span>','pick a look'],['tm','🌙','Dark mode <span lang="hi">डार्क मोड</span>','light or dark'],['lk','🔒','Child lock <span lang="hi">लॉक</span>','keep the app for the child'],['pgb','👨‍👩‍👧','Grown-ups <span lang="hi">बड़ों के लिए</span>','progress & settings']];
+const hm=document.createElement('div');
+hm.id='hmenu';hm.className='mod';hm.hidden=true;
+hm.setAttribute('role','dialog');hm.setAttribute('aria-modal','true');hm.setAttribute('aria-label','Menu');
+hm.innerHTML=`<div class="sheet"><div class="grip"></div>
+ <h2><span>Menu<span lang="hi">मेनू</span></span><button class="mclose" aria-label="Close menu">✕</button></h2>
+ <h3>Language · भाषा</h3><div id="hmlang"></div>
+ <h3>Settings · सेटिंग्स</h3><div id="hmrows"></div></div>`;
+document.body.appendChild(hm);
+const rows=hm.querySelector('#hmrows');
+rows.innerHTML=ROWS.map(r=>`<button class="mrow" data-src="${r[0]}"><span class="mi" aria-hidden="true">${r[1]}</span><span class="mt"><b>${r[2]}</b><small>${r[3]}</small></span><span class="ms" data-state="${r[0]}"></span><span class="go" aria-hidden="true">›</span></button>`).join('');
+const refresh=()=>ROWS.forEach(r=>{const src=document.getElementById(r[0]),el=rows.querySelector(`[data-state="${r[0]}"]`);if(el&&src)el.textContent=src.textContent.trim()});
+const open=()=>{refresh();hm.hidden=false;const c=hm.querySelector('.mclose');c&&c.focus()};
+const close=()=>{hm.hidden=true;const b=document.getElementById('hmb');b&&b.focus()};
+const btn=document.createElement('button');
+btn.id='hmb';btn.type='button';btn.setAttribute('aria-label','Menu');btn.setAttribute('aria-haspopup','dialog');btn.textContent='☰';
+document.body.appendChild(btn);
+btn.addEventListener('click',open);
+hm.addEventListener('click',e=>{
+  if(e.target===hm||e.target.closest('.mclose')){close();return}
+  const r=e.target.closest('.mrow');if(!r)return;
+  hm.hidden=true;
+  const src=document.getElementById(r.dataset.src);if(src)src.click();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!hm.hidden)close()});
+})();
+</script>
+<style id="v61">
+/* Menu, colourful: a two-option language switch and tinted settings rows. */
+#hmb{background:linear-gradient(135deg,#8a4fc7,#e8604c);color:#fff;font-size:22px}
+#hmenu .sheet{background:linear-gradient(180deg,color-mix(in srgb,#ffd23c 28%,var(--card,#fff)) 0,var(--card,#fff) 200px)}
+#hmenu h2{color:#2f5bd0}
+#hmenu h3{color:#8a4fc7;opacity:1}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px;border-radius:20px;background:color-mix(in srgb,#2f5bd0 12%,var(--card,#fff));margin-top:4px}
+.seg button{min-height:56px;border:0;border-radius:15px;background:transparent;color:var(--ink,#2a2438);font:800 16px Fredoka,'Trebuchet MS',sans-serif;cursor:pointer;transition:background .2s,color .2s,transform .1s;padding:6px 10px}
+.seg button:active{transform:scale(.98)}
+.seg button[aria-checked="true"]{background:linear-gradient(135deg,#2f5bd0,#8a4fc7);color:#fff;box-shadow:0 4px 14px #2f5bd055}
+.seg button:focus-visible{outline:3px solid #ffd23c;outline-offset:2px}
+html[data-ui] .seg [lang]{display:inline!important}
+.mrow{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 18%,var(--card,#fff)),color-mix(in srgb,var(--c2) 8%,var(--card,#fff)));border:2px solid color-mix(in srgb,var(--c) 28%,transparent)}
+.mrow .mi{background:linear-gradient(135deg,var(--c),var(--c2));box-shadow:0 4px 0 color-mix(in srgb,var(--c) 45%,transparent);border-radius:16px;color:#fff}
+.mrow .mt b{color:var(--c)}
+.mrow .ms{background:color-mix(in srgb,var(--c) 14%,transparent);border-radius:12px;padding:4px 8px}
+.mrow .go{color:var(--c);opacity:1}
+.mrow .ms:empty{display:none}
+</style>
+<script>
+/* v61: one clean language switch (English by default; English + हिन्दी). Hindi-only was removed because most UI text is English. */
+(()=>{
+const KEY='uiL2';
+const get=()=>{try{return localStorage.getItem(KEY)}catch(e){return null}};
+const put=v=>{try{localStorage.setItem(KEY,v)}catch(e){}};
+const setUI=m=>{m=m==='both'?'both':'en';document.documentElement.dataset.ui=m;document.querySelectorAll('#langSeg button').forEach(b=>{const on=b.dataset.ui===m;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1});put(m)};
+const seg=document.createElement('div');
+seg.id='langSeg';seg.className='seg';seg.setAttribute('role','radiogroup');seg.setAttribute('aria-label','Language');
+seg.innerHTML='<button type="button" role="radio" data-ui="en"><span>English</span></button><button type="button" role="radio" data-ui="both"><span>English + <span lang="hi">हिन्दी</span></span></button>';
+const host=document.getElementById('hmlang');
+if(host)host.replaceChildren(seg);
+seg.addEventListener('click',e=>{const b=e.target.closest('button[data-ui]');if(b)setUI(b.dataset.ui)});
+seg.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();const bs=[...seg.querySelectorAll('button')];const i=bs.findIndex(b=>b===document.activeElement);const n=bs[(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length];n.focus();setUI(n.dataset.ui)});
+setUI(get()||'en');
+const rows=document.getElementById('hmrows');
+const C=[['mu','🎵','Music <span lang="hi">संगीत</span>','background music','#ff4d8d','#ff8fab'],['sk','🎨','Colour theme <span lang="hi">रंग</span>','pick a look','#8a4fc7','#b58cff'],['tm','🌙','Dark mode <span lang="hi">डार्क मोड</span>','light or dark','#2f5bd0','#3fb7e8'],['lk','🔒','Child lock <span lang="hi">लॉक</span>','keep the app for the child','#e8604c','#ff9f1c'],['pgb','👨‍👩‍👧','Grown-ups <span lang="hi">बड़ों के लिए</span>','progress & settings','#2e8b57','#a3d977']];
+if(rows)rows.innerHTML=C.map(r=>`<button class="mrow" data-src="${r[0]}" style="--c:${r[4]};--c2:${r[5]}"><span class="mi" aria-hidden="true">${r[1]}</span><span class="mt"><b>${r[2]}</b><small>${r[3]}</small></span><span class="ms" data-state="${r[0]}"></span><span class="go" aria-hidden="true">›</span></button>`).join('');
+})();
+</script>
 </body>
 </html>
