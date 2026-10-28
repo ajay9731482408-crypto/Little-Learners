@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
 <style id="boot-css">html.boot body>*:not(#bootsp){visibility:hidden!important}
 #bootsp{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 38%,#fff7d6 0,#dff3f8 45%,#cfe8ff 100%);color:#1f2a52;font-family:Fredoka,'Trebuchet MS',sans-serif;text-align:center;transition:opacity .35s ease,transform .35s ease}
 html[data-theme=dark] #bootsp{background:radial-gradient(circle at 50% 38%,#3a2f6b 0,#1b1830 70%);color:#fff3d6}
@@ -32,8 +33,9 @@ html[data-ui=en] #bootsp [lang=hi]{display:none!important}
 @keyframes btip{0%{opacity:0;transform:translateY(6px)}8%,30%{opacity:1;transform:none}38%,100%{opacity:0}}
 @keyframes bfl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(12deg)}}
 @media(prefers-reduced-motion:reduce){#bootsp *{animation:none!important}#bootsp .tp p:first-child{opacity:1}}</style>
-<script>document.documentElement.classList.add('boot');try{if(localStorage.getItem('uiL3')==='en')document.documentElement.dataset.ui='en'}catch(e){}setTimeout(function(){window.__bootDone&&window.__bootDone()},2600);</script>
-<meta charset="utf-8">
+<script>document.documentElement.classList.add('boot');try{if(localStorage.getItem('uiL3')==='en')document.documentElement.dataset.ui='en'}catch(e){}setTimeout(function(){window.__bootDone&&window.__bootDone()},1800);</script>
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"><link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"><link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"><link rel="preconnect" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://cdn.jsdelivr.net">
+<script>(function(){var si=window.setInterval,P={1500:1,2000:1,2500:1,3000:1};window.setInterval=function(f,t){var a=[].slice.call(arguments,2);if(typeof f==='function'&&P[t])return si.apply(window,[function(){if(!document.hidden)f.apply(this,a)},t]);return si.apply(window,arguments)}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Little Learners</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ecdcb8"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
@@ -251,7 +253,13 @@ body{padding-bottom:120px}
 </style>
 <style>#cvs #ink{background:transparent}#cvs #g{background:var(--bg)}</style>
 <style>@media(min-width:900px){#cvs{width:min(60vh,460px)}}</style>
-<style>@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}button,.tile,.nv,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}body.tab-hidden *{animation-play-state:paused!important}</style><script>document.addEventListener("visibilitychange",function(){document.body&&document.body.classList.toggle("tab-hidden",document.hidden)})</script><style id="ctafix">#hero .cta{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:14px!important;width:100%;margin:18px auto 0!important;position:relative;z-index:8}#hero .cta>*{position:static!important;margin:0!important;transform:none!important;width:min(86%,320px)!important;min-width:0!important;text-align:center;justify-content:center}#hero .cta>.btn{padding:14px 20px}#hero .cta>#knat{padding:10px 16px;font-size:17px;line-height:1.2}</style></head>
+<style>@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}button,.tile,.nv,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}body.tab-hidden *{animation-play-state:paused!important}</style><script>document.addEventListener("visibilitychange",function(){document.body&&document.body.classList.toggle("tab-hidden",document.hidden)})</script><style id="ctafix">#hero .cta{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:14px!important;width:100%;margin:18px auto 0!important;position:relative;z-index:8}#hero .cta>*{position:static!important;margin:0!important;transform:none!important;width:min(86%,320px)!important;min-width:0!important;text-align:center;justify-content:center}#hero .cta>.btn{padding:14px 20px}#hero .cta>#knat{padding:10px 16px;font-size:17px;line-height:1.2}</style><style id="perf">
+#main>section{content-visibility:auto;contain-intrinsic-size:auto 1000px}
+#main>section.off *,#main>section.off *::before,#main>section.off *::after{animation-play-state:paused!important}
+html{touch-action:manipulation;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
 <body>
 <div id="bootsp" role="status" aria-live="polite" aria-label="Loading Little Learners"><div class="fl" aria-hidden="true"><i>⭐</i><i>🎈</i><i>🔤</i><i>🌈</i><i>🚀</i></div><div class="bx"><div class="gl" aria-hidden="true"></div><div class="ow-w" aria-hidden="true"><div class="ow">🦉</div><i class="osh"></i></div><h1>Little Learners</h1><div class="hn" lang="hi">लिटिल लर्नर्स</div><div class="pb" aria-hidden="true"><u></u></div><div class="ld">Getting ready… <span lang="hi">तैयार हो रहे हैं…</span></div><div class="tp" aria-hidden="true"><p>Trying bravely matters more than being perfect! <span lang="hi">बहादुरी से कोशिश करना ज़्यादा ज़रूरी है!</span></p><p>Listen first, then say it out loud. <span lang="hi">पहले सुनो, फिर ज़ोर से बोलो।</span></p><p>A few minutes every day make you strong! <span lang="hi">रोज़ थोड़ा-थोड़ा सीखो, मज़बूत बनो!</span></p></div></div></div>
 <a class="skip" href="#main">Skip to content</a>
@@ -384,7 +392,7 @@ col:z=>B('#ffd24a','#ef7d1c','<circle cx="14" cy="16" r="4" fill="#e8402a"/><cir
 .stl{gap:12px}.stl button{min-height:104px;border-radius:22px;box-shadow:0 5px 0 #0001}#sb h5{margin:20px 0 4px;padding-left:4px;opacity:.9}
 .so.tx button{font-size:20px}
 .bgv{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}.bgv .cl{position:absolute;left:-220px;width:130px;height:40px;border-radius:40px;background:#fff;opacity:.85;animation:cld linear infinite}.bgv .cl:before,.bgv .cl:after{content:"";position:absolute;background:#fff;border-radius:50%}.bgv .cl:before{width:56px;height:56px;left:20px;top:-26px}.bgv .cl:after{width:44px;height:44px;left:68px;top:-18px}
-.bgv .c1{top:12%;animation-duration:46s}.bgv .c2{top:30%;animation-duration:64s;animation-delay:-30s;transform:scale(.7)}.bgv .c3{top:52%;animation-duration:80s;animation-delay:-12s;transform:scale(1.2);opacity:.6}@keyframes cld{to{left:110%}}
+.bgv .c1{top:12%;animation-duration:46s}.bgv .c2{top:30%;animation-duration:64s;animation-delay:-30s;transform:scale(.7)}.bgv .c3{top:52%;animation-duration:80s;animation-delay:-12s;transform:scale(1.2);opacity:.6}@keyframes cld{to{translate:calc(100vw + 260px) 0}}
 .bgv .sun{position:absolute;right:7%;top:5%;width:96px;height:96px;border-radius:50%;background:radial-gradient(#fff6b0 0,#ffd93d 45%,#ffd93d00 72%);animation:sunp 4s ease-in-out infinite}@keyframes sunp{50%{transform:scale(1.12);opacity:.85}}
 .bgv .bl{position:absolute;bottom:-60px;font-size:34px;animation:rise 15s linear infinite}.bgv .b1{left:9%}.bgv .b2{left:80%;animation-delay:-7s;animation-duration:19s}@keyframes rise{to{transform:translateY(-120vh) rotate(12deg)}}
 .bgv .hl{position:absolute;left:-12%;right:-12%;bottom:-70px;height:130px;border-radius:50%;background:#8fcf7a;opacity:.65}
@@ -3670,8 +3678,11 @@ btn.addEventListener('click',open);
 hm.addEventListener('click',e=>{
   if(e.target===hm||e.target.closest('.mclose')){close();return}
   const r=e.target.closest('.mrow');if(!r)return;
-  hm.hidden=true;
+  /* v68: quick switches (music, colour theme, dark mode) keep the menu open and just refresh their state; rows that open another dialog still close it */
+  const stay=['mu','sk','tm'].includes(r.dataset.src);
+  if(!stay)hm.hidden=true;
   const src=document.getElementById(r.dataset.src);if(src)src.click();
+  if(stay)setTimeout(refresh,0);
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!hm.hidden)close()});
 })();
@@ -3820,8 +3831,8 @@ setInterval(run,2500);
 (()=>{
 const D=document,R=D.documentElement;
 let released=0;
-const t0=performance.now();window.__bootDone=()=>{if(released)return;const w=800-(performance.now()-t0);if(w>0){setTimeout(()=>{released||window.__bootDone()},w);released=0;if(!window.__bw){window.__bw=1;return}}released=1;const b=D.getElementById('bootsp');R.classList.remove('boot');if(b){b.classList.add('out');setTimeout(()=>b.remove(),400)}};
-const settle=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(window.__bootDone,450)));
+const t0=performance.now();window.__bootDone=()=>{if(released)return;const w=300-(performance.now()-t0);if(w>0){setTimeout(()=>{released||window.__bootDone()},w);released=0;if(!window.__bw){window.__bw=1;return}}released=1;const b=D.getElementById('bootsp');R.classList.remove('boot');if(b){b.classList.add('out');setTimeout(()=>b.remove(),400)}};
+const settle=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(window.__bootDone,120)));
 if(D.readyState==='complete')settle();else{D.addEventListener('DOMContentLoaded',settle,{once:true});addEventListener('load',settle,{once:true})}
 
 const RM=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -3925,5 +3936,54 @@ body.talking #talk .tk::before{animation:owlb .8s ease-in-out infinite}
 @keyframes sbob{0%,100%{transform:none}50%{transform:translateY(-8px) rotate(-4deg)}}
 @media(prefers-reduced-motion:reduce){#owl,body.talking #owl,#talk .tk::before,body.talking #talk .tk::before,.sg i{animation:none!important}}
 </style>
+<script>/* Explore > Body: polished 2D vector kid. Reuses the app's quiz, tour, progress, speech and skin-tone logic. */
+(()=>{
+const N=['leg','knee','foot','toes','arm','elbow','hand','fingers','body','shoulder','neck','chest','tummy','ear','head','hair','eye','nose','mouth'];
+const A={hair:[118,60,0],eye:[130,108,0],nose:[150,124,0],shoulder:[98,186,0],arm:[78,214,0],hand:[73,294,0],leg:[126,330,0],foot:[122,408,0],
+head:[172,76,1],ear:[208,110,1],mouth:[158,140,1],neck:[158,166,1],chest:[172,204,1],tummy:[170,262,1],body:[176,312,1],elbow:[220,236,1],fingers:[228,310,1],knee:[176,352,1],toes:[184,416,1]};
+const $=s=>document.querySelector(s),S=v=>`style="fill:var(${v})"`,sk='--bsk,#ffd2a6',sk2='--bsk2,#f2b98a',sh='--bshirt,#e8604c',so='--bshorts,#5b7bd5';
+const css=document.createElement('style');css.textContent=`#x2{width:100%;border-radius:34px;overflow:hidden;box-shadow:0 8px 0 #c9dbe6;background:#cfeefa;line-height:0}#x2 svg{width:100%;height:auto;display:block;-webkit-tap-highlight-color:transparent}
+#x2 [data-n]{cursor:pointer}#x2 .no{pointer-events:none}
+#x2 .fl{animation:xf 3.6s ease-in-out infinite}@keyframes xf{50%{transform:translateY(-4px)}}
+#x2 .bl{transform-box:fill-box;transform-origin:center;animation:xb 4.2s infinite}@keyframes xb{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+#x2 .aw{transform-origin:278px 186px;animation:xw 3.2s ease-in-out 1}@keyframes xw{0%{transform:rotate(0)}12%,40%{transform:rotate(-150deg)}20%,32%{transform:rotate(-135deg)}60%,100%{transform:rotate(0)}}
+#x2 .cl{animation:xc 40s linear infinite}@keyframes xc{to{transform:translateX(420px)}}
+#x2 .sel{filter:drop-shadow(0 0 6px #ffb703) brightness(1.1);animation:xs .7s ease-in-out infinite alternate}@keyframes xs{to{filter:drop-shadow(0 0 12px #ff8fab) brightness(1.2)}}
+#x2 .pp{transform-box:fill-box;transform-origin:center;animation:xp .45s}@keyframes xp{40%{transform:scale(1.2)}}
+#x2 .pill{fill:#fff;stroke:#2a2438;stroke-width:2}#x2 text{font:700 13px Fredoka,Nunito,sans-serif;fill:#2a2438}#x2 .ln{stroke:#2a2438;stroke-width:2;fill:none}
+@media(prefers-reduced-motion:reduce){#x2 *{animation:none!important}}`;document.head.append(css);
+const arm=s=>{const X=d=>150+s*d,g=(c,b)=>`<g ${b}>${c}</g>`,l=(a,b,c,d,n,f)=>`<path data-n="${n}" d="M${X(a)} ${b}L${X(c)} ${d}" stroke-width="24" stroke-linecap="round" style="stroke:var(${f})"/>`;
+return `<g ${s>0?'class="aw"':''}>${l(52,186,70,236,'arm',sk)}${l(70,236,76,282,'arm',sk)}<circle data-n="elbow" cx="${X(70)}" cy="236" r="14" ${S(sk2)}/><ellipse data-n="hand" cx="${X(77)}" cy="294" rx="14" ry="14" ${S(sk)}/>`+[-7,0,7].map(o=>`<path data-n="fingers" d="M${X(77+o)} 302v11" stroke-width="8" stroke-linecap="round" style="stroke:var(${sk})"/>`).join('')+`<circle data-n="shoulder" cx="${X(52)}" cy="188" r="20" ${S(sh)}/><path class="no" d="M${X(40)} 192q10 10 24 2" stroke="#0002" stroke-width="3" fill="none" stroke-linecap="round"/></g>`},
+leg=s=>{const X=d=>150+s*d;return `<path data-n="leg" d="M${X(24)} 305V392" stroke-width="30" stroke-linecap="round" style="stroke:var(${sk})"/><circle data-n="knee" cx="${X(24)}" cy="352" r="16" ${S(sk2)}/><ellipse data-n="foot" cx="${X(27)}" cy="406" rx="25" ry="11" ${S(sk)}/>`+[0,1,2,3,4].map(k=>`<circle data-n="toes" cx="${X(27+(k-2)*9*(1))}" cy="${415+Math.abs(k-2)*-.4}" r="4.5" ${S(sk2)}/>`).join('')};
+const svg=`<svg viewBox="0 0 360 440" role="img" aria-label="Body parts. Tap a part."><defs><linearGradient id="xg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe8ff"/><stop offset=".7" stop-color="#fff1cf"/></linearGradient></defs>
+<rect class="no" width="360" height="440" fill="url(#xg)"/><path class="no" d="M360 90V440H120z" fill="#ff8fab" opacity=".35"/><circle class="no" cx="52" cy="62" r="28" fill="#ffd23f"/>
+<g class="no cl" fill="#fff" opacity=".9"><g transform="translate(-140 40)"><ellipse cx="40" cy="20" rx="34" ry="14"/><ellipse cx="62" cy="12" rx="22" ry="14"/></g><g transform="translate(-260 100) scale(.8)"><ellipse cx="40" cy="20" rx="34" ry="14"/><ellipse cx="62" cy="12" rx="22" ry="14"/></g></g>
+<ellipse class="no" cx="180" cy="440" rx="230" ry="46" fill="#9bd77f"/><ellipse class="no" cx="180" cy="420" rx="86" ry="12" fill="#0002"/>
+<g transform="translate(30 0)"><g class="fl">${leg(-1)}${leg(1)}
+<path data-n="body" d="M118 290Q150 297 182 290L186 322Q186 332 176 332H160Q153 332 153 322V316H147V322Q147 332 140 332H124Q114 332 114 322z" ${S(so)}/><path class="no" d="M118 296Q150 303 182 296" stroke="#fff6" stroke-width="5" fill="none"/>
+<path data-n="tummy" d="M120 236Q150 242 180 236L182 292Q150 300 118 292z" ${S(sh)}/><path data-n="chest" d="M112 176Q150 166 188 176L190 246Q150 254 110 246z" ${S(sh)}/><path class="no" d="M118 250Q150 258 182 250" stroke="#0001" stroke-width="3" fill="none"/>
+<path class="no" d="M150 205l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="#ffd23f"/><path class="no" d="M132 172Q150 192 168 172" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>
+${arm(1)}${arm(-1)}<rect data-n="neck" x="138" y="150" width="24" height="28" rx="10" ${S(sk)}/><path class="no" d="M138 164Q150 174 162 164V176H138z" fill="#0001"/>
+<ellipse data-n="ear" cx="93" cy="110" rx="12" ry="16" ${S(sk2)}/><ellipse data-n="ear" cx="207" cy="110" rx="12" ry="16" ${S(sk2)}/><ellipse data-n="head" cx="150" cy="104" rx="58" ry="55" ${S(sk)}/><path class="no" d="M106 96Q108 70 130 62" stroke="#fff7" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path data-n="hair" d="M96 98Q90 56 128 46Q150 38 176 46Q212 58 204 98Q194 76 172 72Q150 82 124 72Q104 78 96 98z" style="fill:#5a3a24"/><path data-n="hair" d="M150 48Q156 28 178 32Q164 36 164 52z" style="fill:#5a3a24"/>
+<circle class="no" cx="112" cy="126" r="10" fill="#ff8fa3" opacity=".55"/><circle class="no" cx="188" cy="126" r="10" fill="#ff8fa3" opacity=".55"/>
+${[-1,1].map(s=>`<g class="bl"><ellipse data-n="eye" cx="${150+s*21}" cy="108" rx="11" ry="14" fill="#fff"/><circle data-n="eye" cx="${150+s*21}" cy="110" r="7" fill="#4a2c17"/><circle class="no" cx="${150+s*21+2}" cy="106" r="2.5" fill="#fff"/></g><path class="no" d="M${150+s*33} 90Q${150+s*21} 82 ${150+s*9} 90" stroke="#5a3a24" stroke-width="4" fill="none" stroke-linecap="round"/>`).join('')}
+<ellipse data-n="nose" cx="150" cy="124" rx="6" ry="5" ${S(sk2)}/><path data-n="mouth" d="M133 138Q150 160 167 138Q150 144 133 138z" fill="#d6334f" stroke="#d6334f" stroke-width="6" stroke-linejoin="round"/><path class="no" d="M142 146Q150 153 158 146Q150 150 142 146z" fill="#ff8fa3"/></g></g><g id="lab"></g></svg>`;
+const wait=setInterval(()=>{const es=$('#explore #es');if(!es||!$('#et')||!$('#lbs'))return;clearInterval(wait);
+const st=document.createElement('div');st.id='x2';st.innerHTML=svg;es.parentNode.insertBefore(st,es);let sel=null,all=false;const lab=st.querySelector('#lab');
+const paint=()=>{st.querySelectorAll('[data-n]').forEach(e=>e.classList.toggle('sel',e.dataset.n==sel));const L=all?N:sel?[sel]:[];let h='';
+ for(const side of[0,1]){const a=L.filter(n=>A[n][2]==side).map(n=>({n,x:A[n][0]+30,y:A[n][1]})).sort((p,q)=>p.y-q.y);let y=0;a.forEach(o=>{y=Math.max(o.y-11,y+25);o.ly=y});const ov=y+22-436;if(ov>0)a.forEach(o=>o.ly-=ov);
+  a.forEach(o=>{const w=o.n.length*8+18,x0=side?356-w:4,ex=side?x0:x0+w;h+=`<path class="ln" d="M${o.x} ${o.y}L${ex} ${o.ly+11}"/><circle cx="${o.x}" cy="${o.y}" r="4" fill="#2a2438"/><rect class="pill" x="${x0}" y="${o.ly}" width="${w}" height="22" rx="11"/><text x="${x0+w/2}" y="${o.ly+16}" text-anchor="middle">${o.n}</text>`})}lab.innerHTML=h};
+const sync=()=>{const on=(($('#et [aria-pressed=true]')||{dataset:{et:'body'}}).dataset.et)=='body';st.style.display=on?'':'none';es.style.display=on?'none':''};
+new MutationObserver(sync).observe($('#et'),{childList:true,subtree:true,attributes:true});sync();
+new MutationObserver(()=>{const c=[...$('#lbs').children];all=c.length>1;if(c.length==1)sel=c[0].textContent.trim();else if(!c.length)sel=null;paint()}).observe($('#lbs'),{childList:true});
+st.addEventListener('click',e=>{const t=e.target.closest('[data-n]');if(!t)return;const n=t.dataset.n,g=es.querySelector('[data-p="'+N.indexOf(n)+'"]');
+ st.querySelectorAll('[data-n="'+n+'"]').forEach(x=>{x.classList.remove('pp');void x.getBBox();x.classList.add('pp')});
+ if(!/^Tap the/.test(($('#ec')||{}).textContent||''))sel=n;paint();g&&g.dispatchEvent(new MouseEvent('click',{bubbles:true,clientX:e.clientX,clientY:e.clientY}))});
+},300)})();
+</script>
+<script>(function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('off',!e.isIntersecting)})},{rootMargin:'300px 0px'});
+function go(){document.querySelectorAll('#main>section').forEach(function(x){if(!x.__io){x.__io=1;io.observe(x)}})}
+go();addEventListener('load',function(){go();setTimeout(go,1500)});})();</script>
 </body>
 </html>
