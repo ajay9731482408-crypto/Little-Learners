@@ -39,7 +39,7 @@ html[data-ui=en] #bootsp [lang=hi]{display:none!important}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Little Learners</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ecdcb8"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><meta name="color-scheme" content="light">
 <script>
 window.LVS=function(f){if(document.documentElement.dataset.skin=='Clay')return'clay';var n=f&&f.n||'';if(n=='Halloween')return'halloween';if(/Diwali|Bhai Dooj|Guru Nanak|Holi/.test(n))return'rangoli';if(/Christmas|New Year/.test(n))return'christmas';return'plush'};
 </script>
@@ -3334,27 +3334,35 @@ document.addEventListener('click',e=>{
 })();
 </script>
 <style id="v54">
-#airplane .ap-card{background:#fffdf5;border-radius:18px;padding:16px;box-shadow:0 6px 16px #1f5fbf1f;text-align:center}
-#airplane .ap-card h3{font:700 20px Fredoka,sans-serif;margin:0 0 6px}
-#airplane .ap-opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
-#airplane .ap-opts button{font:600 16px Nunito,sans-serif;padding:8px 14px;border-radius:12px;border:2px solid #2f5bd0;background:#fff;cursor:pointer;min-height:44px}
-#airplane .ap-opts button.ok{background:#4c9a52;color:#fff;border-color:#4c9a52}
-#airplane .ap-opts button.no{background:#fde2dc;border-color:#e8604c}
-#airplane .ap-fb{min-height:24px;font:700 16px Nunito,sans-serif;margin-top:8px}
+/* v70: every colour is explicit, so answers stay readable on light, dark and phone "force dark" modes */
+#airplane #apg{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+#airplane .ap-card{position:relative;background:var(--card,#fffdf5);color:var(--ink,#1f3a5f);border-radius:22px;padding:18px 14px 14px;box-shadow:0 6px 16px #1f5fbf1f;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+#airplane .ap-card h3{font:700 20px/1.2 Fredoka,sans-serif;margin:0;padding:0 34px}
+#airplane .ap-card .tt{font:700 19px/1.4 Fredoka,sans-serif;margin:2px 0 0;color:inherit}
+#airplane .ap-say{position:absolute;top:8px;right:8px;width:40px;height:40px;min-height:40px;padding:0;border-radius:50%;border:2px solid #2f5bd0;background:#fff;color:#2f5bd0;font-size:18px;cursor:pointer;color-scheme:light}
+#airplane .ap-plane{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:36px;background:var(--pc,#d9e6f5);transition:background .25s}
+#airplane .ap-opts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px;width:100%}
+#airplane .ap-opts button{font:700 20px/1.1 Fredoka,Nunito,sans-serif;padding:10px 18px;min-width:64px;min-height:52px;border-radius:16px;border:3px solid #2f5bd0;background:#fff;color:#1f3a5f;-webkit-text-fill-color:#1f3a5f;cursor:pointer;color-scheme:light;box-shadow:0 3px 0 #2f5bd055;transition:transform .12s}
+#airplane .ap-opts button:active{transform:translateY(2px);box-shadow:none}
+#airplane .ap-opts button.ok{background:#4c9a52;color:#fff;-webkit-text-fill-color:#fff;border-color:#3a7d40}
+#airplane .ap-opts button.no{background:#fde2dc;border-color:#e8604c;color:#7a2412;-webkit-text-fill-color:#7a2412}
+#airplane .ap-opts button:disabled:not(.ok){opacity:.55}
+#airplane .ap-fb{min-height:26px;font:700 17px Nunito,sans-serif;margin-top:4px;color:inherit}
 #airplane .res-card{display:block;text-decoration:none;color:inherit}
 @media(prefers-reduced-motion:reduce){#airplane *{transition:none!important;animation:none!important}}
 </style>
 <script>
 (()=>{
+/* o = answer buttons, n = spoken names (for picture-only answers), sp = what is read aloud */
 const ACT=[
- {t:'✈️ Scenic View',q:'Look out the window! How many clouds? ☁️☁️☁️',o:['2','3','4'],a:'3',s:'Three clouds! Lovely view.'},
- {t:'🎒 Pack My Bag',q:'Packing for a sunny beach trip. Which one goes in the bag?',o:['🩴 Sandals','⛄ Snowman'],a:'🩴 Sandals',s:'Sandals are perfect for the beach!'},
- {t:'🔍 I Spy',q:'I spy something round that rolls. What is it?',o:['🏠 House','⚽ Ball','🚪 Door'],a:'⚽ Ball',s:'Yes, a ball rolls!'},
- {t:'🔢 Count & Write',q:'Count the seats: 🪑🪑🪑🪑 How many are there?',o:['3','4','5'],a:'4',s:'Four seats!'},
- {t:'💺 Seat Match',q:'Seat 7 is here. Which seat comes right after it?',o:['6','8','9'],a:'8',s:'Eight comes after seven.'},
- {t:'🔁 What Comes Next?',q:'✈️ 🌤️ ✈️ 🌤️ ✈️ … what comes next?',o:['✈️','🌤️'],a:'🌤️',s:'Cloud comes next!'},
- {t:'🔤 Alphabet Match',q:'Which letter does the word Airplane start with?',o:['B','A','P'],a:'A',s:'A for Airplane!'},
- {t:'🎨 Color the Airplane',q:'Pick a colour for your airplane!',o:['🔴 Red','🔵 Blue','🟢 Green'],a:null,s:'What a bright airplane!'}
+ {t:'✈️ Scenic View',q:'Look out the window! How many clouds? ☁️☁️☁️',sp:'Look out the window! How many clouds?',o:['2','3','4'],a:'3',s:'Three clouds! Lovely view.'},
+ {t:'🎒 Pack My Bag',q:'Packing for a sunny beach trip. Which one goes in the bag?',sp:'Packing for a sunny beach trip. Which one goes in the bag?',o:['🩴 Sandals','⛄ Snowman'],a:'🩴 Sandals',s:'Sandals are perfect for the beach!'},
+ {t:'🔍 I Spy',q:'I spy something round that rolls. What is it?',sp:'I spy something round that rolls. What is it?',o:['🏠 House','⚽ Ball','🚪 Door'],a:'⚽ Ball',s:'Yes, a ball rolls!'},
+ {t:'🔢 Count & Write',q:'Count the seats: 🪑🪑🪑🪑 How many are there?',sp:'Count the seats. How many are there?',o:['3','4','5'],a:'4',s:'Four seats!'},
+ {t:'💺 Seat Match',q:'Seat 7 is here. Which seat comes right after it?',sp:'Seat seven is here. Which seat comes right after it?',o:['6','8','9'],a:'8',s:'Eight comes after seven.'},
+ {t:'🔁 What Comes Next?',q:'✈️ 🌤️ ✈️ 🌤️ ✈️ … what comes next?',sp:'Airplane, cloud, airplane, cloud, airplane. What comes next?',o:['✈️','🌤️'],n:['airplane','cloud'],a:'🌤️',s:'Cloud comes next!'},
+ {t:'🔤 Alphabet Match',q:'Which letter does the word Airplane start with?',sp:'Which letter does the word airplane start with?',o:['B','A','P'],a:'A',s:'A for Airplane!'},
+ {t:'🎨 Color the Airplane',q:'Pick a colour for your airplane!',sp:'Pick a colour for your airplane!',o:['🔴 Red','🔵 Blue','🟢 Green'],a:null,s:'What a bright airplane!',plane:{'🔴 Red':'#f4a193','🔵 Blue':'#9db8f5','🟢 Green':'#a8d9ab'}}
 ];
 const RES=[
  ['🧸','PBS KIDS','Games and videos for early learners','https://pbskids.org'],
@@ -3362,21 +3370,26 @@ const RES=[
  ['🎓','Khan Academy Kids','Free lessons, books and activities','https://learn.khanacademy.org/khan-academy-kids'],
  ['🚀','NASA Kids\' Club','Space, planes and science for kids','https://www.nasa.gov/kidsclub/index.html']
 ];
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 const sec=document.createElement('section');
 sec.id='airplane';
-sec.innerHTML=`<h2>Airplane & Travel ✈️</h2><p class="lead">Tap an answer. Every activity says the answer out loud.</p>
-<div class="grid" id="apg">${ACT.map((x,i)=>`<div class="ap-card" data-k="${i}"><h3>${x.t}</h3><p class="tt">${x.q}</p><div class="ap-opts">${x.o.map(o=>`<button data-o="${o}">${o}</button>`).join('')}</div><div class="ap-fb" aria-live="polite"></div></div>`).join('')}</div>
+sec.innerHTML=`<h2>Airplane & Travel ✈️</h2><p class="lead">Tap an answer. Tap 🔊 to hear the question.</p>
+<div class="grid" id="apg">${ACT.map((x,i)=>`<div class="ap-card" data-k="${i}"><h3>${x.t}</h3><button class="ap-say" type="button" aria-label="Hear the question">🔊</button>${x.plane?'<div class="ap-plane" aria-hidden="true">✈️</div>':''}<p class="tt">${x.q}</p><div class="ap-opts">${x.o.map((o,j)=>`<button type="button" data-o="${esc(o)}"${x.n?` aria-label="${x.n[j]}"`:''}>${o}</button>`).join('')}</div><div class="ap-fb" aria-live="polite"></div></div>`).join('')}</div>
 <h3 style="margin-top:22px">Free learning resources 📚</h3>
 <div class="grid res">${RES.map(r=>`<a class="res-card" href="${r[3]}" target="_blank" rel="noopener"><div class="stamp"><div style="font-size:36px">${r[0]}</div><b style="font-family:Fredoka">${r[1]}</b><small style="display:block">${r[2]}</small></div></a>`).join('')}</div>`;
 const win=document.getElementById('win');
 win?win.after(sec):document.body.appendChild(sec);
 const say=t=>{try{if(localStorage.getItem('vo')==='0')return;if(window.speak)speak(t)}catch(e){}};
 sec.addEventListener('click',e=>{
+  const card=e.target.closest('.ap-card');if(!card)return;
+  const x=ACT[+card.dataset.k];
+  if(e.target.closest('.ap-say')){say(x.sp);return}
   const b=e.target.closest('button[data-o]');if(!b)return;
-  const card=b.closest('.ap-card'),x=ACT[+card.dataset.k],fb=card.querySelector('.ap-fb');
+  const fb=card.querySelector('.ap-fb');
   if(x.a===null||b.dataset.o===x.a){
-    card.querySelectorAll('button').forEach(z=>z.disabled=true);
+    card.querySelectorAll('.ap-opts button').forEach(z=>z.disabled=true);
     b.classList.add('ok');fb.textContent='⭐ '+x.s;say(x.s);
+    if(x.plane){const p=card.querySelector('.ap-plane');if(p)p.style.setProperty('--pc',x.plane[b.dataset.o]||'')}
     try{addPts(2,e,'Airplane')}catch(err){}
   }else{
     b.classList.add('no');fb.textContent='Try again!';say('Try again!');
@@ -3769,9 +3782,10 @@ if(pm){
    Uses a data-hi attribute + CSS ::after, so button/heading text is never changed (speech and game logic stay safe). */
 const HI={"adventure map": "साहसिक नक्शा", "finish a world to unlock the next one": "एक दुनिया पूरी करो, अगली खुल जाएगी!", "hello, friend": "नमस्ते दोस्त!", "pick your buddy, your name and your class": "अपना साथी, नाम और कक्षा चुनो।", "grown-up pin": "बड़ों का पिन", "parents: choose a 4-digit pin. it protects progress, settings and the child lock": "माता-पिता: 4 अंकों का पिन चुनें। यह प्रगति, सेटिंग्स और चाइल्ड लॉक को सुरक्षित रखता है।", "meet professor owl": "प्रोफेसर उल्लू से मिलो", "letters, rhymes, puzzles and a talking professor": "अक्षर, कविताएँ, पहेलियाँ और बोलने वाले प्रोफेसर।", "lets learn": "चलो सीखें!", "speak lab": "बोलने की लैब", "pick a world": "दुनिया चुनो", "tap a world, then tap each card to hear the word. say it back": "दुनिया चुनो, फिर हर कार्ड दबाकर शब्द सुनो। उसे दोहराओ!", "story theatre": "कहानी मंच", "paper-craft stories that read to you. listen, look and answer the question at the end": "काग़ज़ की कहानियाँ जो तुम्हें पढ़कर सुनाती हैं। सुनो, देखो और आख़िर में सवाल का जवाब दो।", "study studio": "पढ़ाई का स्टूडियो", "pick a tile. see it, hear it, then try it": "एक टाइल चुनो। देखो, सुनो, फिर करके देखो!", "write a to z": "A से Z तक लिखो", "trace the dotted letter with your finger. stay on the dots": "बिंदुओं वाले अक्षर पर उँगली फेरो। बिंदुओं पर ही रहो!", "write numbers": "संख्याएँ लिखो", "maths": "गणित", "counting, adding, patterns and clocks. easy for nursery, bigger for ukg": "गिनती, जोड़, पैटर्न और घड़ियाँ। नर्सरी के लिए आसान, यूकेजी के लिए थोड़ा बड़ा।", "maths tables": "पहाड़े", "pick a table. tap a line to hear it, or listen to the whole table": "एक पहाड़ा चुनो। सुनने के लिए पंक्ति दबाओ, या पूरा पहाड़ा सुनो।", "ncert path": "एनसीईआरटी पथ", "practice that follows the ncert balvatika stages (nursery, lkg, ukg) and a first look at class 1 and 2": "एनसीईआरटी बालवाटिका के चरणों (नर्सरी, एलकेजी, यूकेजी) और कक्षा 1-2 की पहली झलक के अनुसार अभ्यास।", "puzzle time": "पहेली का समय", "rhymes & songs": "कविता और गीत", "tap a rhyme. sing along as each line lights up": "कविता दबाओ। हर पंक्ति चमके तो साथ गाओ!", "magic paint": "जादुई रंग", "draw with your finger. watch the sparkles fall": "उँगली से चित्र बनाओ। चमकते सितारे गिरते देखो!", "my stamps": "मेरे स्टिकर", "for grown-ups": "बड़ों के लिए", "progress chart, tips, voices, themes and trusted resources are behind your pin": "प्रगति चार्ट, सुझाव, आवाज़ें, थीम और भरोसेमंद संसाधन आपके पिन के पीछे हैं।", "grown-ups": "बड़ों के लिए", "explore & discover": "खोजो और जानो", "tap a part to hear its name and a fun fact. then press \"quiz me\"": "किसी हिस्से को दबाकर उसका नाम और मज़ेदार तथ्य सुनो। फिर \"मुझसे पूछो\" दबाओ।", "think like a coder": "कोडर की तरह सोचो", "little games about robots, patterns and how computers learn from examples": "रोबोट, पैटर्न और कंप्यूटर उदाहरणों से कैसे सीखते हैं, इस पर छोटे खेल।", "listen to teacher, then say it yourself. trying bravely matters more than being perfect": "पहले टीचर को सुनो, फिर खुद बोलो। बहादुरी से कोशिश करना सही होने से ज़्यादा ज़रूरी है!", "for the most natural indian accent, pick an english (india) voice. voices come from your phone, so install one in settings → text-to-speech if none shows": "सबसे प्राकृतिक भारतीय लहजे के लिए English (India) आवाज़ चुनें। आवाज़ें फ़ोन से आती हैं, कोई न दिखे तो सेटिंग्स → टेक्स्ट-टू-स्पीच में इंस्टॉल करें।", "these links open other websites. ask a grown-up first": "ये लिंक दूसरी वेबसाइटें खोलते हैं। पहले किसी बड़े से पूछो।", "todays path": "आज का रास्ता", "do these four things today": "आज ये चार काम करो।", "time world": "समय की दुनिया", "days, months, morning to night, and the clock. tap a card to hear english, then hindi": "दिन, महीने, सुबह से रात और घड़ी। कार्ड दबाकर पहले अंग्रेज़ी, फिर हिंदी सुनो।", "fast maths": "तेज़ गणित", "four tricks that make adding quick. learn one, then race the clock": "जोड़ को तेज़ करने की चार तरकीबें। एक सीखो, फिर घड़ी से दौड़ लगाओ!", "school in the usa": "अमेरिका में स्कूल", "what american children learn from pre-k to grade 1. tap a card to hear it, then try the quiz": "अमेरिकी बच्चे प्री-के से ग्रेड 1 तक क्या सीखते हैं। सुनने के लिए कार्ड दबाओ, फिर क्विज़ खेलो।", "space lab": "अंतरिक्ष लैब", "little space games for pre-k, inspired by nasa kids club. no timers, no rush. tap and listen": "प्री-के के लिए छोटे अंतरिक्ष खेल। कोई टाइमर नहीं, कोई जल्दी नहीं। दबाओ और सुनो!", "want more? visit nasa kids club, free games for pre-k to grade 4 (ask a grown-up to help)": "और चाहिए? NASA किड्स क्लब देखें, प्री-के से ग्रेड 4 तक मुफ़्त खेल (किसी बड़े की मदद लें)।", "talk time": "बातचीत का समय", "owl asks a question. answer out loud! owl listens, helps you say it better, and fills the rocket with fuel": "उल्लू सवाल पूछता है। ज़ोर से जवाब दो! उल्लू सुनता है, बेहतर बोलने में मदद करता है और रॉकेट में ईंधन भरता है।", "airplane & travel": "हवाई जहाज़ और यात्रा", "tap an answer. every activity says the answer out loud": "जवाब दबाओ। हर गतिविधि जवाब ज़ोर से बोलती है।", "teachers voice": "टीचर की आवाज़", "time for a break": "आराम का समय!", "great learning today. professor owl says bye": "आज बहुत अच्छा सीखा। प्रोफेसर उल्लू अलविदा कहते हैं!", "sleepy time": "सोने का समय", "little learners is resting. see you in the morning": "लिटिल लर्नर्स आराम कर रहा है। सुबह मिलते हैं!", "stretch break": "स्ट्रेच ब्रेक!", "stand up, reach for the sky, touch your toes and wiggle your fingers": "खड़े हो जाओ, आसमान छुओ, पंजे छुओ और उँगलियाँ हिलाओ।", "secret games": "गुप्त खेल", "you found them": "तुमने ढूँढ लिए!", "quick question": "छोटा सवाल", "quick quiz": "छोटी क्विज़", "free us resources": "अमेरिका के मुफ़्त संसाधन", "free learning resources": "सीखने के मुफ़्त संसाधन", "ideas for this week": "इस हफ़्ते के विचार", "class": "कक्षा", "theme": "थीम", "teacher voice": "टीचर की आवाज़", "festive mode": "त्योहार मोड", "real app lock": "असली ऐप लॉक", "trusted resources": "भरोसेमंद संसाधन", "childs name": "बच्चे का नाम", "daily time limit": "रोज़ की समय सीमा", "music & sound": "संगीत और आवाज़", "icon style (bottom bar)": "आइकन शैली (नीचे की पट्टी)", "birds": "पक्षी", "background icons (pick many)": "पृष्ठभूमि के आइकन (कई चुनें)", "daily goal (points)": "रोज़ का लक्ष्य (अंक)", "movement break": "हिलने-डुलने का ब्रेक", "bedtime (rests until 7 am)": "सोने का समय (सुबह 7 बजे तक आराम)", "settings": "सेटिंग्स", "menu": "मेनू", "language": "भाषा", "music": "संगीत", "colour theme": "रंग", "dark mode": "डार्क मोड", "child lock": "बच्चा लॉक", "reset": "फिर से", "next": "अगला", "back": "वापस", "say it": "बोलो", "find & learn": "खोजो और सीखो", "slow": "धीरे", "your turn": "तुम्हारी बारी", "listen": "सुनो", "hear it": "सुनो", "hear again": "फिर सुनो", "hear all": "सब सुनो", "hear": "सुनो", "explain": "समझाओ", "play again": "फिर खेलो", "cancel": "रद्द करें", "ok": "ठीक है", "close": "बंद करें", "go": "चलो", "start": "शुरू करें", "clear": "मिटाओ", "check": "जाँचो", "watch": "देखो", "count": "गिनो", "undo": "वापस", "new": "नया", "again": "फिर से", "send": "भेजें", "save": "सहेजें", "share": "शेयर करें", "run": "चलाओ", "pictures": "चित्र", "sing with me": "मेरे साथ गाओ", "tune": "धुन", "play story": "कहानी चलाओ", "replay story": "कहानी फिर चलाओ", "practise": "अभ्यास करो", "test voice": "आवाज़ जाँचो", "race again": "फिर दौड़ लगाओ", "learn the trick": "तरकीब सीखो", "speed round": "तेज़ राउंड", "teacher explains": "टीचर समझाते हैं", "say the time": "समय बोलो", "test me": "मेरी परीक्षा लो", "quiz me": "मुझसे पूछो", "continue learning": "सीखना जारी रखो", "next level": "अगला स्तर", "build again": "फिर बनाओ", "answer": "जवाब दो", "auto": "अपने आप", "yes": "हाँ", "no": "नहीं", "hot": "गर्म", "cold": "ठंडा", "hot & cold": "गर्म और ठंडा", "match": "मिलाओ", "other half": "दूसरा आधा", "spell it": "वर्तनी बोलो", "change pin": "पिन बदलें", "lock app": "ऐप लॉक करें", "reset progress": "प्रगति मिटाएँ", "share weekly report": "साप्ताहिक रिपोर्ट भेजें", "open grown-ups area": "बड़ों का हिस्सा खोलें", "secret game": "गुप्त खेल", "grown-up: add 10 minutes": "बड़े: 10 मिनट और दें", "grown-up: open for today": "बड़े: आज के लिए खोलें", "i stretched": "मैंने स्ट्रेच किया!", "download natural voice": "प्राकृतिक आवाज़ डाउनलोड करें", "hear the voice": "आवाज़ सुनो", "use phone voice for now": "अभी फ़ोन की आवाज़ इस्तेमाल करें", "turn natural voice off": "प्राकृतिक आवाज़ बंद करें", "from 5": "5 से", "from 10": "10 से", "hour −": "घंटा −", "hour +": "घंटा +", "min −5": "मिनट −5", "min +5": "मिनट +5", "hindi helper": "हिंदी मददगार", "search resources": "संसाधन खोजो", "points": "अंक", "minutes": "मिनट", "volume": "आवाज़ का स्तर", "speed": "गति", "preview festive mode now": "त्योहार मोड अभी देखें", "for grown-ups: progress and resources": "बड़ों के लिए: प्रगति और संसाधन", "count on": "आगे गिनो", "make 10": "10 बनाओ", "doubles": "दोगुना", "near doubles": "लगभग दोगुना", "mix": "मिलाजुला", "day streak": "लगातार दिन", "stars": "सितारे", "stamps": "स्टिकर", "ready to learn something fun today": "आज कुछ मज़ेदार सीखने के लिए तैयार?", "next adventure": "अगला साहसिक कारनामा", "all worlds done": "सारी दुनिया पूरी!", "you finished the map": "तुमने नक्शा पूरा कर लिया!", "featured lesson": "आज का पाठ", "ad-free": "विज्ञापन-मुक्त", "saved on this device": "इस डिवाइस पर सुरक्षित", "english & hindi": "अंग्रेज़ी और हिंदी", "you can do it": "तुम कर सकते हो!", "keep going": "लगे रहो!", "try another one": "एक और कोशिश करो।", "owl says": "उल्लू कहता है", "owl heard": "उल्लू ने सुना", "say it like this": "ऐसे बोलो", "perfect words": "बिल्कुल सही शब्द!", "tip": "सुझाव", "best sentence": "सबसे अच्छा वाक्य", "next time, practise": "अगली बार अभ्यास करो", "parent dashboard · last 7 days": "अभिभावक डैशबोर्ड · पिछले 7 दिन", "stars earned this week": "इस हफ़्ते कमाए सितारे", "active days": "सक्रिय दिन", "stars today": "आज के सितारे", "ready to talk": "बात करने के लिए तैयार?", "worlds": "दुनिया", "stories": "कहानियाँ", "study": "पढ़ाई", "write": "लिखना", "ncert": "एनसीईआरटी", "puzzles": "पहेलियाँ", "songs": "गीत", "paint": "रंग", "explore": "खोजो", "coder": "कोडर", "play": "खेल", "rhymes": "कविता", "talk": "बातचीत", "parents": "माता-पिता", "numbers": "संख्याएँ", "tables": "पहाड़े", "speak": "बोलो", "time": "समय", "fast": "तेज़", "space": "अंतरिक्ष", "travel": "यात्रा", "usa": "अमेरिका", "english": "अंग्रेज़ी"};
 const PAT=[["^brave tries:? (\\d+)$", "बहादुर कोशिशें: $1"], ["^scene (\\d+) of (\\d+)$", "दृश्य $1 / $2"], ["^level (\\d+)$", "स्तर $1"], ["^(\\d+) min$", "$1 मिनट"], ["^hands-free: on$", "हैंड्स-फ्री: चालू"], ["^hands-free: off$", "हैंड्स-फ्री: बंद"], ["^music on$", "संगीत चालू"], ["^music off$", "संगीत बंद"], ["^voice on$", "आवाज़ चालू"], ["^voice off$", "आवाज़ बंद"], ["^do these four things today\\.? (\\d+)/4 done$", "आज ये चार काम करो। $1/4 पूरे।"]].map(p=>[new RegExp(p[0]),p[1]]);
+PAT.push([/^count · (\d+)\/(\d+)$/,'गिनती · $1/$2'],[/^seedling · (\d+) points\. next stamp in (\d+) points$/,'नन्हा पौधा · $1 अंक। अगला स्टैम्प $2 अंक पर।'],[/^explorer · (\d+) points\. next stamp in (\d+) points$/,'खोजी · $1 अंक। अगला स्टैम्प $2 अंक पर।'],[/^scholar · (\d+) points\. next stamp in (\d+) points$/,'विद्वान · $1 अंक। अगला स्टैम्प $2 अंक पर।'],[/^professor · (\d+) points\. next stamp in (\d+) points$/,'प्रोफ़ेसर · $1 अंक। अगला स्टैम्प $2 अंक पर।']);
 PAT.push([/^class (\w+): tables (\d+) to (\d+)\. tap a line to hear it, or listen to the whole table$/,'कक्षा $1: पहाड़े $2 से $3। सुनने के लिए पंक्ति दबाओ, या पूरा पहाड़ा सुनो।'],[/^table of (\d+)$/,'$1 का पहाड़ा']);
 const norm=t=>t.replace(/[\u2018\u2019\u201C\u201D"'`]/g,'').replace(/\p{Extended_Pictographic}|\p{So}|[\uFE0F\u200D\u2190-\u21FF\u25A0-\u25FF\u2700-\u27BF\u2713\u2714\u2715\u2716\u279C\u203A\u2039]/gu,'').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim().toLowerCase().replace(/[.!?:\s]+$/,'');
-const EXTRA={"think": "सोचो", "off": "बंद", "on": "चालू", "nursery": "नर्सरी", "lkg": "एलकेजी", "ukg": "यूकेजी", "good start": "अच्छी शुरुआत!", "healthy growth": "सेहतमंद विकास", "future-ready and exam path": "भविष्य के लिए तैयार और परीक्षा का रास्ता", "save weekly report": "साप्ताहिक रिपोर्ट सहेजें", "share weekly report": "साप्ताहिक रिपोर्ट भेजें"};Object.assign(HI,EXTRA);const DK={};Object.keys(HI).forEach(k=>{DK[norm(k)]=HI[k]});
+const EXTRA={"think": "सोचो", "off": "बंद", "on": "चालू", "nursery": "नर्सरी", "lkg": "एलकेजी", "ukg": "यूकेजी", "good start": "अच्छी शुरुआत!", "healthy growth": "सेहतमंद विकास", "future-ready and exam path": "भविष्य के लिए तैयार और परीक्षा का रास्ता", "save weekly report": "साप्ताहिक रिपोर्ट सहेजें", "abc": "एबीसी", "speaking": "बोलना", "phonics": "ध्वनि पाठ", "clock": "घड़ी", "hindi": "हिंदी", "games": "खेल", "storyline online": "स्टोरीलाइन ऑनलाइन", "storyweaver": "स्टोरीवीवर", "pratham books": "प्रथम बुक्स", "learnenglish kids": "लर्न इंग्लिश किड्स", "super simple songs": "सुपर सिंपल सॉन्ग्स", "starfall": "स्टारफ़ॉल", "oxford owl": "ऑक्सफ़ोर्ड आउल", "pbs kids": "पीबीएस किड्स", "cbeebies": "सीबीबीज़", "khan academy kids": "खान एकेडमी किड्स", "topmarks": "टॉपमार्क्स", "diksha": "दीक्षा", "ncert books": "एनसीईआरटी किताबें", "national geographic kids": "नेशनल जियोग्राफ़िक किड्स", "days": "दिन", "months": "महीने", "day parts": "दिन के हिस्से", "the letter a": "अक्षर A", "trace the dotted number with your finger. class lkg: 0 to 50": "बिंदुओं वाली संख्या पर उँगली फेरो। कक्षा एलकेजी: 0 से 50", "add": "जोड़ो", "more": "ज़्यादा", "pattern": "पैटर्न", "missing": "छूटा हुआ", "class 1–2": "कक्षा 1–2", "balvatika 2 · lkg": "बालवाटिका 2 · एलकेजी", "topics follow the balvatika syllabus summaries and school lists. check your schools plan": "विषय बालवाटिका पाठ्यक्रम और स्कूल की सूचियों पर आधारित हैं। अपने स्कूल की योजना जाँच लें।", "body": "शरीर", "organs": "अंग", "digestion": "पाचन", "heart": "दिल", "breathing": "साँस", "brain": "दिमाग", "bones": "हड्डियाँ", "plant": "पौधा", "water": "पानी", "senses": "इंद्रियाँ", "show names": "नाम दिखाओ", "pre-k · ages 3–5": "प्री-के · उम्र 3–5", "kindergarten · ages 5–6": "किंडरगार्टन · उम्र 5–6", "grade 1 · ages 6–7": "कक्षा 1 · उम्र 6–7", "rocket builder": "रॉकेट बनाओ", "countdown": "उलटी गिनती", "find the planet": "ग्रह ढूँढो", "star patterns": "तारों के पैटर्न", "say space words": "अंतरिक्ष के शब्द बोलो", "want more? visit nasa kids club (opens in a new tab), free games for pre-k to grade 4 (ask a grown-up to help)": "और चाहिए? नासा किड्स क्लब देखो (नए टैब में खुलता है), प्री-के से कक्षा 4 तक मुफ़्त खेल (किसी बड़े की मदद लो)।", "code the robot": "रोबोट को कोड दो", "teach the robot": "रोबोट को सिखाओ", "two easy steps: choose a world, then tap the pictures to hear the words": "दो आसान कदम: एक दुनिया चुनो, फिर तस्वीरें दबाकर शब्द सुनो।", "all": "सभी", "scenic view": "सुंदर नज़ारा", "pack my bag": "मेरा बैग लगाओ", "i spy": "मैं देखता हूँ", "count & write": "गिनो और लिखो", "seat match": "सीट मिलाओ", "what comes next": "आगे क्या आएगा?", "alphabet match": "अक्षर मिलाओ", "color the airplane": "हवाई जहाज़ को रंगो", "airplane & travel": "हवाई यात्रा", "free learning resources": "मुफ़्त सीखने के साधन", "share weekly report": "साप्ताहिक रिपोर्ट भेजें"};Object.assign(HI,EXTRA);const DK={};Object.keys(HI).forEach(k=>{DK[norm(k)]=HI[k]});
 const lookup=t=>{const k=norm(t);if(!k)return null;if(DK[k])return DK[k];for(const p of PAT){if(p[0].test(k))return k.replace(p[0],p[1])}return null};
 const SPAN_SEL='h2,h3,summary,.lead,.tag,.panel > p,#mapx p,.hc > p,#trust span,.hbs small,.hbg small,#fadv small,#fadv b,.pdc small,.pdg small';
 const ATTR_SEL='.nv,button.btn,button.alt,button.lv,button.ch[aria-label],.mbox label,#spk label,section label';
@@ -3985,5 +3999,590 @@ st.addEventListener('click',e=>{const t=e.target.closest('[data-n]');if(!t)retur
 <script>(function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('off',!e.isIntersecting)})},{rootMargin:'300px 0px'});
 function go(){document.querySelectorAll('#main>section').forEach(function(x){if(!x.__io){x.__io=1;io.observe(x)}})}
 go();addEventListener('load',function(){go();setTimeout(go,1500)});})();</script>
+<style id="v70css">
+/* v70: native controls follow the app's own theme (fixes white-on-white text on dark-mode phones) */
+html{color-scheme:light}
+html[data-theme=dark]{color-scheme:dark}
+/* Sound check */
+#snd70 .sheet{max-height:86vh;overflow:auto}
+.snd70l{list-style:none;margin:6px 0 12px;padding:0;display:grid;gap:8px}
+.snd70l li{background:color-mix(in srgb,#2f5bd0 8%,var(--card,#fff));color:var(--ink,#1f3a5f);border-radius:14px;padding:10px 12px;font:600 15px/1.35 Nunito,sans-serif}
+.snd70l b{display:block;font:700 16px Fredoka,sans-serif}
+.snd70l span{display:block;opacity:.85;word-break:break-word}
+.snd70g{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.snd70g button{flex:1 1 140px;min-height:48px;border-radius:14px;border:2px solid #2f5bd0;background:#fff;color:#1f3a5f;-webkit-text-fill-color:#1f3a5f;font:700 16px Fredoka,sans-serif;cursor:pointer;color-scheme:light}
+.snd70g button[aria-pressed=true]{background:#2f5bd0;color:#fff;-webkit-text-fill-color:#fff}
+.snd70f{display:grid;gap:4px;margin:10px 0;color:var(--ink,#1f3a5f);font:700 15px Fredoka,sans-serif}
+.snd70f select{min-height:46px;border-radius:12px;border:2px solid #2f5bd0;background:#fff;color:#1f3a5f;font:600 15px Nunito,sans-serif;padding:0 8px;color-scheme:light}
+.snd70f input[type=range]{width:100%;min-height:36px}
+#snd70toast{position:fixed;left:50%;bottom:calc(110px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);max-width:min(92vw,420px);background:#2a2438;color:#fff;border-radius:16px;padding:10px 16px;font:700 15px/1.3 Nunito,sans-serif;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99999}
+#snd70toast.on{opacity:1;transform:translate(-50%,0)}
+/* locked stamps were unreadable in dark theme */
+html[data-theme=dark] .stamp.lock .h3,html[data-theme=dark] .stamp.lock small{color:#3a3556}
+</style>
+<script id="v70">
+/* ==========================================================================
+   v70: sound, voice, music and singing, rebuilt on top of the existing app.
+   - one reliable speech queue (short chunks, never cut off, always finishes)
+   - Hindi voice picked and checked, English voice picked for natural sound
+   - gentle generative background music (pads, music-box, reverb), ducks under speech
+   - "Sing with me": melody plus voice, line by line, in time
+   - soft sound effects, Sound check panel in the menu
+   - small performance guards (off-screen video, hidden tab)
+   No external files. Everything old keeps working because the old names are kept.
+   ========================================================================== */
+(()=>{
+'use strict';
+if(window.__v70)return;window.__v70=1;
+const D=document,W=window,sy=W.speechSynthesis;
+const LSg=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const LSs=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const $=q=>D.querySelector(q);
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const isAndroid=/Android/i.test(navigator.userAgent);
+
+/* ---------------------------------------------------------------- VOICES */
+const BAD=/espeak|compact|festival|pico|zarvox|trinoids|whisper|bubbles|bells|boing|cellos|deranged|hysterical|organ|wobble|bahh|albert|good news|bad news|superstar|jester|ralph|fred|junior|kathy|bruce|princess/i;
+const NAT=/natural|neural|online|enhanced|premium|wavenet|siri/i;
+const GOOD=/samantha|aria|jenny|ava|serena|allison|karen|moira|libby|sonia|zira|heera|neerja|veena|lekha|swara|kalpana|isha|priya|tessa|nicky|joelle|natasha|madhur|prabhat/i;
+const nl=l=>String(l||'').replace('_','-').toLowerCase();
+const vscore=(v,pref)=>{
+  const n=v.name,l=nl(v.lang);let s=0;
+  if(NAT.test(n))s+=60;
+  if(/google/i.test(n))s+=30;
+  if(GOOD.test(n))s+=25;
+  if(!v.localService&&navigator.onLine!==false)s+=12;
+  if(v.localService&&navigator.onLine===false)s+=45;
+  if(l===pref)s+=30;else if(l.slice(0,2)===pref.slice(0,2))s+=10;
+  if(BAD.test(n))s-=150;
+  return s;
+};
+let vcache={};
+const voicesFor=p=>sy?sy.getVoices().filter(v=>nl(v.lang).startsWith(p)):[];
+function bestVoice(p){
+  if(!sy)return null;
+  const vs=voicesFor(p);if(!vs.length)return null;
+  const saved=LSg('vn')||LSg('sv');
+  if(p==='en'&&saved){const m=vs.find(v=>v.name===saved);if(m)return m}
+  const key=p+vs.length+(navigator.onLine===false?'o':'n');
+  if(vcache[key])return vcache[key];
+  const pref=p==='en'?'en-in':'hi-in';
+  return vcache[key]=vs.slice().sort((a,b)=>vscore(b,pref)-vscore(a,pref))[0];
+}
+if(sy){try{sy.addEventListener('voiceschanged',()=>{vcache={}})}catch(e){}try{sy.getVoices()}catch(e){}}
+
+/* --------------------------------------------------------------- TEXT PREP */
+const EMOJI=/[\u{1F000}-\u{1FFFF}\u2600-\u27BF\uFE0F\u200D\u2190-\u21FF\u2B00-\u2BFF]/gu;
+function prep(t){
+  return String(t==null?'':t)
+    .replace(/<\/?[a-z][^>]*>/gi,' ').replace(/&amp;/g,' and ').replace(/&/g,' and ')
+    .replace(EMOJI,'').replace(/\u2212/g,' minus ').replace(/\s=\s/g,' equals ').replace(/\s\+\s/g,' plus ').replace(/\u00D7/g,' times ').replace(/\u00F7/g,' divided by ').replace(/[\u201C\u201D]/g,'"').replace(/[\u2018\u2019]/g,"'")
+    .replace(/\s*[\u2013\u2014]\s*/g,', ').replace(/\u2026/g,'.')
+    .replace(/\s+/g,' ').trim();
+}
+/* sentences first; very long ones are split at commas so no phone voice cuts them off */
+function chunk(s,max=140){
+  const out=[];
+  (s.match(/[^.!?\u0964]+[.!?\u0964]*/g)||[s]).forEach(p=>{
+    p=p.trim();if(!p)return;
+    if(p.length<=max){out.push(p);return}
+    let cur='';
+    (p.match(/[^,;:]+[,;:]?/g)||[p]).forEach(q=>{
+      q=q.trim();
+      if((cur+' '+q).trim().length>max&&cur){out.push(cur.trim());cur=q}else cur=(cur+' '+q).trim();
+    });
+    if(cur)out.push(cur.trim());
+  });
+  return out;
+}
+/* "talk minimum": a short cheer is never read as a long speech */
+function brief(s){
+  if((LSg('vt')||'short')!=='short'||s.length>90)return s;
+  const parts=s.match(/[^.!?]+[.!?]*/g)||[s];
+  const tiny=parts.every(p=>p.trim().split(/\s+/).length<=5);
+  return parts.length>2&&tiny?parts.slice(0,2).join(' ').trim():s;
+}
+
+/* ------------------------------------------------------------ SPEECH CORE */
+const kit=()=>{try{const P=VK[vk];return{pitch:P[1],rate:P[2]}}catch(e){return{pitch:1,rate:.9}}};
+let job=null,lastTxt='',lastAt=0,epoch=0;
+const kokOn=()=>{try{return W.__kokOn&&W.__kokOn()}catch(e){return false}};
+const talk=on=>{try{D.body.classList.toggle('talking',!!on)}catch(e){}};
+
+function stopSpeech(){
+  epoch++;
+  const j=job;job=null;
+  try{sy&&sy.cancel()}catch(e){}
+  if(j)j.finish();
+  talk(false);
+}
+
+function speak(text,cb,r,p,opt){
+  opt=opt||{};
+  if(LSg('vo')==='0'||!W.__ug||!sy){cb&&setTimeout(cb,0);return}
+  let s=prep(text);
+  if(!s){cb&&setTimeout(cb,0);return}
+  const now=Date.now();
+  if(!opt.force&&s===lastTxt&&now-lastAt<2200){cb&&setTimeout(cb,0);return}
+  lastTxt=s;lastAt=now;
+  if(!opt.full)s=brief(s);
+  const busy=sy.speaking||sy.pending;
+  const prev=job;job=null;epoch++;
+  const my=epoch;
+  if(busy){try{sy.cancel()}catch(e){}}
+  if(prev)prev.finish();
+  const k=kit();
+  const rate=clamp((r||.88)*1.05*(k.rate/.9)*(+LSg('vr')||1),.7,1.05);
+  const pitch=clamp(1+(k.pitch*(p||1.1)/1.1-1)*.5,.75,1.12);
+  const lang=opt.lang||'en';
+  const parts=chunk(s);
+  const j={done:false,w1:0,w2:0,finish(){if(this.done)return;this.done=true;clearTimeout(this.w1);clearTimeout(this.w2);talk(false);cb&&setTimeout(cb,0)}};
+  job=j;
+  talk(true);
+  let i=0;
+  const next=()=>{
+    if(j.done)return;
+    if(my!==epoch||job!==j){j.finish();return}
+    if(i>=parts.length){job=null;j.finish();return}
+    const part=parts[i++],u=new SpeechSynthesisUtterance(part);
+    u.lang=lang==='hi'?'hi-IN':'en-US';u.rate=rate;u.pitch=pitch;
+    let started=false,ended=false;
+    const fin=()=>{if(ended)return;ended=true;clearTimeout(j.w1);clearTimeout(j.w2);setTimeout(next,i>=parts.length?0:90)};
+    u.onstart=()=>{started=true;clearTimeout(j.w1)};
+    u.onend=fin;u.onerror=fin;
+    /* if the voice never starts, do not hang the app */
+    j.w1=setTimeout(()=>{if(!started&&!kokOn())fin()},5000);
+    /* last resort: estimated time with plenty of margin */
+    j.w2=setTimeout(fin,Math.max(4000,part.length/(11*rate)*1000*1.8+3000));
+    try{if(sy.paused)sy.resume()}catch(e){}
+    try{sy.speak(u)}catch(e){fin()}
+  };
+  setTimeout(next,busy?90:0);
+}
+W.speak=(t,cb,r,p)=>speak(t,cb,r,p);
+W.stopSpeech=stopSpeech;
+
+/* every direct speechSynthesis.speak() in the app (Hindi, Time world...) also gets the right voice */
+let hindiWarned=false;
+if(sy){
+  const orig=sy.speak.bind(sy);
+  sy.speak=function(u){
+    try{
+      const l=nl(u.lang||'en');
+      if(l.startsWith('hi')){
+        const hv=bestVoice('hi');
+        if(hv){u.voice=hv;u.lang=hv.lang}
+        else if(!hindiWarned){hindiWarned=true;toast('Hindi voice not found. Open Menu → Sound check to fix it.')}
+        u.rate=clamp(u.rate||.85,.65,.95);u.pitch=1;
+      }else if(l.startsWith('en')){
+        const v=bestVoice('en');
+        if(v&&(!u.voice||vscore(u.voice,'en-in')<vscore(v,'en-in'))){u.voice=v;u.lang=v.lang}
+        u.pitch=clamp(u.pitch||1,.8,1.1);
+      }
+    }catch(e){}
+    return orig(u);
+  };
+}
+function toast(msg){
+  let t=$('#snd70toast');
+  if(!t){t=D.createElement('div');t.id='snd70toast';t.setAttribute('role','status');D.body.appendChild(t)}
+  t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),4200);
+}
+
+/* ------------------------------------------------------------------ AUDIO */
+let ctx=null,chain=null;
+const getCtx=()=>{
+  try{
+    ctx=W._ac&&W._ac.state!=='closed'?W._ac:(W._ac=new(W.AudioContext||W.webkitAudioContext)());
+    if(ctx.state==='suspended')ctx.resume();
+    return ctx;
+  }catch(e){return null}
+};
+const impulse=(c,sec,decay)=>{
+  const n=c.sampleRate*sec|0,b=c.createBuffer(2,n,c.sampleRate);
+  for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,decay)}
+  return b;
+};
+function build(){
+  const c=getCtx();if(!c)return null;
+  if(chain&&chain.c===c)return chain;
+  const comp=c.createDynamicsCompressor();
+  comp.threshold.value=-18;comp.ratio.value=3;comp.attack.value=.01;comp.release.value=.25;
+  comp.connect(c.destination);
+  /* music bus: dry + reverb, warm low-pass, own master volume */
+  const bus=c.createGain(),dry=c.createGain(),wet=c.createGain(),conv=c.createConvolver(),lp=c.createBiquadFilter(),master=c.createGain();
+  conv.buffer=impulse(c,2.2,2.6);dry.gain.value=.85;wet.gain.value=.3;
+  lp.type='lowpass';lp.frequency.value=3400;lp.Q.value=.3;master.gain.value=0;
+  bus.connect(dry);bus.connect(conv);conv.connect(wet);dry.connect(lp);wet.connect(lp);lp.connect(master);master.connect(comp);
+  /* sound effects bus: straight to the compressor */
+  const sfx=c.createGain();sfx.gain.value=.9;sfx.connect(comp);
+  chain={c,bus,master,sfx,comp};
+  return chain;
+}
+const mf=m=>440*Math.pow(2,(m-69)/12);
+
+/* instruments. dest defaults to the music bus. */
+function bell(f,t,d,v,dest){
+  const A=build();if(!A)return;const c=A.c,g=c.createGain(),g2=c.createGain(),o1=c.createOscillator(),o2=c.createOscillator();
+  o1.type='sine';o2.type='sine';o1.frequency.value=f;o2.frequency.value=f*3.01;
+  g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  g2.gain.setValueAtTime(.0001,t);g2.gain.linearRampToValueAtTime(v*.22,t+.004);g2.gain.exponentialRampToValueAtTime(.0001,t+d*.35);
+  o1.connect(g);o2.connect(g2);g.connect(dest||A.bus);g2.connect(dest||A.bus);
+  o1.start(t);o2.start(t);o1.stop(t+d+.05);o2.stop(t+d*.4+.05);
+  o1.onended=()=>{try{g.disconnect();g2.disconnect()}catch(e){}};
+}
+function pad(f,t,d,v){
+  const A=build();if(!A)return;const c=A.c,g=c.createGain();
+  const a=Math.min(.9,d*.4),r=Math.min(1.4,d*.5);
+  g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+a);g.gain.setValueAtTime(v,t+Math.max(a,d-r));g.gain.linearRampToValueAtTime(.0001,t+d+r);
+  [['sine',-5],['triangle',5]].forEach(x=>{const o=c.createOscillator();o.type=x[0];o.frequency.value=f;o.detune.value=x[1];o.connect(g);o.start(t);o.stop(t+d+r+.05)});
+  g.connect(A.bus);
+}
+function pluck(f,t,d,v){
+  const A=build();if(!A)return;const c=A.c,g=c.createGain(),o=c.createOscillator(),lp=c.createBiquadFilter();
+  o.type='triangle';o.frequency.value=f;lp.type='lowpass';lp.frequency.setValueAtTime(900,t);lp.frequency.exponentialRampToValueAtTime(260,t+d);
+  g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(lp);lp.connect(g);g.connect(A.bus);o.start(t);o.stop(t+d+.05);
+}
+function flute(f,t,d,v){
+  const A=build();if(!A)return;const c=A.c,g=c.createGain(),o=c.createOscillator(),o2=c.createOscillator(),lfo=c.createOscillator(),lg=c.createGain(),lp=c.createBiquadFilter();
+  o.type='triangle';o.frequency.value=f;o2.type='sine';o2.frequency.value=f*2;
+  lfo.frequency.value=5.2;lg.gain.value=f*.006;lfo.connect(lg);lg.connect(o.frequency);
+  lp.type='lowpass';lp.frequency.value=2400;
+  g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.06);g.gain.setValueAtTime(v*.85,t+Math.max(.07,d-.12));g.gain.linearRampToValueAtTime(.0001,t+d);
+  const g2=c.createGain();g2.gain.value=.18;o2.connect(g2);g2.connect(lp);o.connect(lp);lp.connect(g);g.connect(A.bus);
+  o.start(t);o2.start(t);lfo.start(t);o.stop(t+d+.05);o2.stop(t+d+.05);lfo.stop(t+d+.05);
+  o.onended=()=>{try{g.disconnect()}catch(e){}};
+}
+function shaker(t,v){
+  const A=build();if(!A)return;const c=A.c,n=c.sampleRate*.06|0,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);
+  for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);
+  const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();
+  s.buffer=b;f.type='highpass';f.frequency.value=6000;g.gain.value=v;s.connect(f);f.connect(g);g.connect(A.bus);s.start(t);
+}
+
+/* ------------------------------------------------------- BACKGROUND MUSIC */
+const MAJ=[[0,4,7],[9,12,16],[5,9,12],[7,11,14]],MIN=[[0,3,7],[8,12,15],[5,8,12],[7,10,14]];
+const MOODS={
+  calm:{bpm:58,root:48,prog:MAJ,sc:[0,2,4,7,9],dens:.45,shk:0,vol:1},
+  play:{bpm:96,root:55,prog:MAJ,sc:[0,2,4,7,9],dens:.7,shk:1,vol:.9},
+  dream:{bpm:46,root:57,prog:MIN,sc:[0,3,5,7,10],dens:.32,shk:0,vol:1},
+  tw:{bpm:66,root:48,prog:[MAJ[0],MAJ[2],MAJ[0],MAJ[3]],sc:[0,2,4,7,9],dens:0,shk:0,vol:1,tune:1}
+};
+const TWK=[0,0,7,7,9,9,7,-1,5,5,4,4,2,2,0,-1,7,7,5,5,4,4,2,-1,7,7,5,5,4,4,2,-1,0,0,7,7,9,9,7,-1,5,5,4,4,2,2,0,-1];
+const Music={
+  running:false,mood:null,timer:null,step:0,nextT:0,last:3,ext:1,story:null,
+  vol(){return clamp(+LSg('mv')||.5,.05,1)},
+  want(){ /* story music wins; otherwise the menu toggle */
+    if(this.story)return this.story;
+    return LSg('mu')?(LSg('mt')||'calm'):null;
+  },
+  apply(){
+    const w=this.want();
+    if(!w){this.halt();return}
+    if(this.running&&this.mood===w){this.level();return}
+    this.begin(MOODS[w]?w:'calm');
+  },
+  begin(k){
+    this.halt(true);
+    const A=build();if(!A)return;
+    this.running=true;this.mood=k;this.step=0;this.nextT=A.c.currentTime+.12;this.last=3;
+    this.timer=setInterval(()=>this.tick(),110);
+    this.level(true);
+  },
+  halt(quick){
+    this.running=false;this.mood=null;clearInterval(this.timer);this.timer=null;
+    if(chain&&chain.master){try{const t=chain.c.currentTime;chain.master.gain.cancelScheduledValues(t);chain.master.gain.setTargetAtTime(0,t,quick?.05:.25)}catch(e){}}
+  },
+  level(slow){
+    if(!chain||!this.running)return;
+    const talking=!!(sy&&sy.speaking)||W.__v70talk;
+    const M=MOODS[this.mood]||MOODS.calm;
+    const target=.2*this.vol()*2*M.vol*(talking?.3:1)*this.ext;
+    try{chain.master.gain.setTargetAtTime(target,chain.c.currentTime,slow?1.1:.28)}catch(e){}
+  },
+  tick(){
+    if(!this.running||!chain)return;
+    const c=chain.c;
+    if(D.hidden)return;
+    if(c.state==='suspended')c.resume();
+    this.level();
+    const M=MOODS[this.mood]||MOODS.calm,beat=60/M.bpm,slot=beat/2;
+    if(this.nextT<c.currentTime-.5)this.nextT=c.currentTime+.05; /* woke up late: do not burst */
+    while(this.nextT<c.currentTime+.6){this.slot(M,this.step,this.nextT,beat);this.nextT+=slot;this.step++}
+  },
+  slot(M,s,t,beat){
+    const bar=Math.floor(s/8),inBar=s%8,chord=M.prog[bar%4];
+    if(inBar===0){
+      chord.forEach((n,i)=>pad(mf(M.root+n+(i?0:0)),t,beat*4,.05));
+      pad(mf(M.root+chord[0]-12),t,beat*4,.04);
+    }
+    if(inBar===0||inBar===4)pluck(mf(M.root+chord[0]-12),t,beat*1.8,.11);
+    if(M.shk&&inBar%2===1)shaker(t,.025);
+    if(M.tune){
+      if(inBar%2===0){const n=TWK[(s/2|0)%TWK.length];if(n>=0)bell(mf(M.root+12+n),t,beat*1.7,.1)}
+      return;
+    }
+    if(Math.random()<M.dens*(inBar%2===0?1:.55)){
+      const pool=[];[12,24].forEach(o=>M.sc.forEach(d=>pool.push(M.root+o+d)));
+      const cs=chord.map(n=>(n%12));
+      let idx=clamp(this.last+(Math.random()*5|0)-2,0,pool.length-1);
+      if(inBar===0){const ct=pool.map((m,i)=>[m,i]).filter(x=>cs.includes((x[0]-M.root)%12)).sort((a,b)=>Math.abs(a[1]-idx)-Math.abs(b[1]-idx))[0];if(ct)idx=ct[1]}
+      this.last=idx;
+      bell(mf(pool[idx]),t,beat*(1.4+Math.random()*1.2),.085*(inBar===0?1.1:.85));
+    }
+    if(M.shk===0&&this.mood==='dream'&&inBar===6&&Math.random()<.4)bell(mf(M.root+36+M.sc[Math.random()*5|0]),t,beat*3,.04);
+  },
+  startStory(minor,seed){this.story=minor?'dream':(seed%2?'calm':'play');this.apply()},
+  stopStory(){this.story=null;this.apply()}
+};
+W.Music=Music;
+/* the old toggle and settings keep working: they call bgm(on) */
+W.bgm=on=>{
+  LSs('mu',on?'1':'');
+  const b=$('#mu');if(b)b.textContent=on?'🎵':'🔇';
+  try{clearInterval(mt)}catch(e){}
+  getCtx();
+  Music.apply();
+};
+if(LSg('mu')){D.addEventListener('pointerdown',function f(){D.removeEventListener('pointerdown',f,true);Music.apply()},true)}
+
+/* story/pixel-video music: replace the harsh square-wave chiptune with the same gentle engine */
+if(W.CHIP){
+  const C=W.CHIP;
+  C.start=title=>{
+    C.stop(true);if(!C.on)return;
+    let h=0;for(const ch of String(title))h=(h*31+ch.charCodeAt(0))>>>0;
+    C.run=1;Music.startStory(!!C.minor,h);
+  };
+  C.stop=keep=>{C.run=0;if(keep!==true)Music.stopStory()};
+}
+
+/* ----------------------------------------------------------- SOUND EFFECTS */
+function sfxPlay(k){
+  const A=build();if(!A)return;const c=A.c,t=c.currentTime+.01,d=A.sfx;
+  if(k==='tap'||k==='pop')bell(k==='tap'?988:1318,t,.16,.07,d);
+  else if(k==='ok')[72,76,79,84].forEach((m,i)=>bell(mf(m),t+i*.075,.55,.1,d));
+  else if(k==='no'){bell(233,t,.35,.09,d);bell(196,t+.16,.5,.09,d)}
+  else if(k==='ask')[76,81].forEach((m,i)=>bell(mf(m),t+i*.12,.4,.08,d));
+  else if(k==='whoosh'){
+    const n=c.sampleRate*.5|0,b=c.createBuffer(1,n,c.sampleRate),x=b.getChannelData(0);
+    for(let i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.sin(Math.PI*i/n);
+    const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();
+    s.buffer=b;f.type='bandpass';f.Q.value=.8;f.frequency.setValueAtTime(400,t);f.frequency.exponentialRampToValueAtTime(2600,t+.45);g.gain.value=.12;
+    s.connect(f);f.connect(g);g.connect(d);s.start(t);
+  }
+}
+W.sfx=k=>{try{sfxPlay(k)}catch(e){}};
+if(W.CHIP)W.CHIP.sfx=k=>{if(!W.CHIP.on)return;try{sfxPlay(k)}catch(e){}};
+
+/* ----------------------------------------------------------------- SINGING */
+const TUNES=[
+  [/twinkle|baa|abc|alphabet/i,[[0,0,7,7,9,9,7],[5,5,4,4,2,2,0],[7,7,5,5,4,4,2],[7,7,5,5,4,4,2]]],
+  [/row/i,[[0,0,0,2,4],[4,2,4,5,7],[12,12,12,7,7,7,4,4,4,0,0,0],[7,5,4,2,0]]],
+  [/itsy|spider/i,[[7,0,0,0,2,4,4,4,2,0,2,4,0],[4,4,5,7,7,5,4,5,7,4],[0,0,2,4,4,2,0,2,4,0],[7,0,0,0,2,4,4,4,2,0,2,4,0]]]
+];
+const CH=[MAJ[0],MAJ[2],MAJ[0],MAJ[3]];
+const sylls=line=>(String(line).toLowerCase().match(/[a-z']+/g)||[]).reduce((a,w)=>{
+  let m=w.replace(/'/g,'').match(/[aeiouy]+/g);let n=m?m.length:1;
+  if(n>1&&/[^aeiouy]e$/.test(w)&&!/le$/.test(w))n--;
+  return a+Math.max(1,n);
+},0);
+function seeded(seed){let a=seed|0;return()=>{a=(a+0x6D2B79F5)|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function melodyFor(title,lines){
+  const fam=TUNES.find(x=>x[0].test(title));
+  const out=[];
+  lines.forEach((ln,i)=>{
+    const n=sylls(ln);let base;
+    if(fam)base=fam[1][i%fam[1].length];
+    else{
+      let h=0;for(const ch of title)h=(h*31+ch.charCodeAt(0))>>>0;
+      const R=seeded(h+i*977),P=[0,2,4,7,9,12];let k=[0,1,2][R()*3|0];base=[];
+      for(let j=0;j<n;j++){base.push(P[k]);k=clamp(k+(R()<.5?-1:1)*(R()<.7?1:2),0,P.length-1)}
+      base[n-1]=i%2?0:(i%4===0?4:7);
+    }
+    out.push(Array.from({length:n},(_,j)=>base[Math.round(j*(base.length-1)/Math.max(1,n-1))]));
+  });
+  return out;
+}
+let singTok=0,singing=false;
+const rhymeInfo=()=>{
+  const b=$('#rb');if(!b)return null;
+  const lines=[...b.querySelectorAll('#lyr span')];if(!lines.length)return null;
+  const h=b.querySelector('h3');
+  return{b,lines,title:(h?h.textContent:'').replace(EMOJI,'').trim()};
+};
+function setBtn(on){
+  const s=$('#sing');if(s)s.textContent=on?'⏹ Stop':'🎵 Sing with me';
+}
+function stopSing(){
+  singTok++;
+  if(singing){singing=false;Music.ext=1;Music.level();setBtn(false)}
+  stopSpeech();
+}
+async function singLine(text,notes,i,calib){
+  const A=build();if(!A)return calib;
+  const c=A.c,n=notes.length,nd=.4,T=n*nd,root=60;
+  const chord=CH[i%4];
+  let t0=0;
+  const sdone=new Promise(res=>{
+    const j=prep(text);
+    if(LSg('vo')==='0'||!W.__ug||!sy){res(0);return}
+    const u=new SpeechSynthesisUtterance(j);
+    const v=bestVoice('en');if(v){u.voice=v;u.lang=v.lang}else u.lang='en-US';
+    u.rate=clamp(.8*calib,.6,1.05);u.pitch=1.08;
+    let began=0,ended=0;
+    const fin=()=>{if(ended)return;ended=1;res(began?(performance.now()-began)/1000:0)};
+    u.onstart=()=>{began=performance.now();t0=c.currentTime};
+    u.onend=fin;u.onerror=fin;
+    setTimeout(fin,Math.max(5000,T*2500));
+    try{sy.cancel();setTimeout(()=>{try{sy.speak(u)}catch(e){fin()}},70)}catch(e){fin()}
+  });
+  /* melody: starts with the voice; if no start event arrives, after a short delay */
+  await Promise.race([new Promise(r=>{const w=setInterval(()=>{if(t0){clearInterval(w);r()}},20);setTimeout(()=>{clearInterval(w);r()},900)})]);
+  const t=(t0||c.currentTime)+.05;
+  chord.forEach(m=>pad(mf(root-12+m),t,T,.045));
+  pluck(mf(root-24+chord[0]),t,nd*3,.1);pluck(mf(root-24+chord[0]),t+T/2,nd*3,.08);
+  notes.forEach((m,j)=>flute(mf(root+12+m),t+j*nd,nd*.95,.09));
+  bell(mf(root+24+notes[n-1]),t+T,1.2,.05);
+  const dur=await sdone;
+  const rest=Math.max(0,(t+T)-c.currentTime);
+  await wait(rest*1000+380);
+  if(dur>0.8)calib=clamp(calib*Math.sqrt(dur/T),.7,1.35);
+  return calib;
+}
+async function sing(ev){
+  const R=rhymeInfo();if(!R)return;
+  if(singing){stopSing();return}
+  const my=++singTok;singing=true;setBtn(true);stopSpeech();
+  Music.ext=.25;Music.level();
+  const mel=melodyFor(R.title,R.lines.map(l=>l.textContent));
+  let calib=1;
+  try{
+    for(let i=0;i<R.lines.length;i++){
+      if(my!==singTok)return;
+      R.lines.forEach(x=>x.classList.remove('now'));R.lines[i].classList.add('now');
+      calib=await singLine(R.lines[i].textContent,mel[i],i,calib);
+    }
+    if(my===singTok){R.lines.forEach(x=>x.classList.remove('now'));try{addPts(3,ev,'Rhymes')}catch(e){}}
+  }finally{
+    if(my===singTok){singing=false;Music.ext=1;Music.level();setBtn(false)}
+  }
+}
+async function tuneOnly(){
+  const R=rhymeInfo();if(!R)return;
+  if(singing)stopSing();
+  const my=++singTok;singing=true;stopSpeech();Music.ext=.25;Music.level();
+  const mel=melodyFor(R.title,R.lines.map(l=>l.textContent)),A=build();if(!A)return;
+  try{
+    for(let i=0;i<mel.length&&my===singTok;i++){
+      R.lines.forEach(x=>x.classList.remove('now'));R.lines[i].classList.add('now');
+      const t=A.c.currentTime+.05,nd=.42;
+      CH[i%4].forEach(m=>pad(mf(48+m),t,mel[i].length*nd,.045));
+      mel[i].forEach((m,j)=>bell(mf(72+m),t+j*nd,nd*1.8,.11));
+      await wait(mel[i].length*nd*1000+300);
+    }
+  }finally{if(my===singTok){singing=false;Music.ext=1;Music.level();R.lines.forEach(x=>x.classList.remove('now'))}}
+}
+/* take over the buttons before the old handlers run (they are kept for everything else) */
+D.addEventListener('click',e=>{
+  const t=e.target;if(!t||!t.closest)return;
+  const b=t.closest('#sing,#tune,#tune2,#you,#rg [data-r],#rlv [data-rl]');
+  if(!b)return;
+  if(b.id==='sing'){e.stopImmediatePropagation();e.preventDefault();sing(e)}
+  else if(b.id==='tune'||b.id==='tune2'){e.stopImmediatePropagation();e.preventDefault();tuneOnly()}
+  else{stopSing()}
+},true);
+new MutationObserver(()=>{
+  const y=$('#rb #you');
+  if(y&&!$('#rb #tune2')&&!$('#rb #tune')){
+    const b=D.createElement('button');b.className='btn alt';b.id='tune2';b.type='button';b.textContent='🎼 Hear the tune';
+    y.after(b);
+  }
+}).observe($('#rb')||D.body,{childList:true});
+
+/* ------------------------------------------- STOP TALKING WHEN LEAVING */
+D.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#nav .nv,#nav button'))stopSing()},true);
+D.addEventListener('visibilitychange',()=>{
+  if(D.hidden){stopSing();try{ctx&&ctx.state==='running'&&ctx.suspend()}catch(e){}}
+  else{try{ctx&&ctx.state==='suspended'&&ctx.resume()}catch(e){}Music.apply()}
+});
+addEventListener('pagehide',stopSing);
+
+/* ---------------------------------------------------------- SOUND CHECK */
+function voiceLine(v){return v?`${v.name} (${v.lang}${v.localService?', offline':', online'})`:null}
+function panel(){
+  let p=$('#snd70');
+  if(!p){
+    p=D.createElement('div');p.id='snd70';p.className='mod';p.hidden=true;
+    p.setAttribute('role','dialog');p.setAttribute('aria-modal','true');p.setAttribute('aria-label','Sound check');
+    p.innerHTML='<div class="sheet"><div class="grip"></div><h2><span>Sound check</span><button class="mclose" aria-label="Close">✕</button></h2><div id="snd70body"></div></div>';
+    D.body.appendChild(p);
+    p.addEventListener('click',e=>{
+      if(e.target===p||e.target.closest('.mclose')){p.hidden=true;stopSing();return}
+      const b=e.target.closest('[data-t]');if(!b)return;
+      const k=b.dataset.t;
+      if(k==='en')speak('Hello! I am Professor Owl. Let us learn together.',null,.88,1.1,{force:1,full:1});
+      else if(k==='hi')speak('नमस्ते! मैं प्रोफेसर उल्लू हूँ।',null,.85,1,{lang:'hi',force:1,full:1});
+      else if(k==='music'){LSs('mu','1');W.bgm(true);const m=$('#mu');if(m)m.textContent='🎵';setTimeout(refresh,300)}
+      else if(k==='fx'){['tap','ok','no'].forEach((x,i)=>setTimeout(()=>sfxPlay(x),i*700))}
+      else if(k==='sing'){stopSing();const R=rhymeInfo();if(R)sing();else toast('Open Rhymes and pick a song first.')}
+      else if(k==='short'||k==='full'){LSs('vt',k);refresh()}
+    });
+    p.addEventListener('change',e=>{
+      if(e.target.id==='snd70v'){LSs('vn',e.target.value);vcache={};speak('This is my voice.',null,.88,1.1,{force:1})}
+      if(e.target.id==='snd70r'){LSs('vr',e.target.value);speak('This is my speed.',null,.88,1.1,{force:1})}
+      if(e.target.id==='snd70m'){LSs('mv',e.target.value);Music.level()}
+    });
+  }
+  return p;
+}
+function refresh(){
+  const p=$('#snd70body');if(!p)return;
+  const en=bestVoice('en'),hi=bestVoice('hi'),vs=voicesFor('en');
+  const kok=kokOn(),ok=x=>x?'✅':'⚠️';
+  const rows=[
+    [ok(!!sy),'Speech',sy?'available':'not supported in this browser'],
+    [ok(!!en),'English voice',en?voiceLine(en):'none found. Install a text-to-speech voice in Android Settings.'],
+    [ok(!!hi),'Hindi voice',hi?voiceLine(hi):'not found. Settings → Languages → Text-to-speech → Google → Install voice data → Hindi.'],
+    [kok?'✅':'➖','Natural voice pack',kok?'on':'off (optional, in the hero button)'],
+    [ctx&&ctx.state==='running'?'✅':'➖','Audio',ctx?ctx.state:'starts on first tap'],
+    [Music.running?'✅':'➖','Background music',Music.running?'playing: '+Music.mood:'off']
+  ];
+  const sel=LSg('vn')||(en&&en.name)||'';
+  p.innerHTML=`<ul class="snd70l">${rows.map(r=>`<li><b>${r[0]} ${r[1]}</b><span>${r[2]}</span></li>`).join('')}</ul>
+  <div class="snd70g"><button data-t="en">🔊 Test English</button><button data-t="hi">🔊 Test Hindi</button><button data-t="music">🎵 Test music</button><button data-t="fx">✨ Test sounds</button><button data-t="sing">🎤 Test singing</button></div>
+  <label class="snd70f">English voice<select id="snd70v">${vs.map(v=>`<option value="${v.name.replace(/"/g,'&quot;')}"${v.name===sel?' selected':''}>${v.name} (${v.lang})</option>`).join('')||'<option>none</option>'}</select></label>
+  <label class="snd70f">Speaking speed<input id="snd70r" type="range" min=".8" max="1.2" step=".05" value="${+LSg('vr')||1}"></label>
+  <label class="snd70f">Music volume<input id="snd70m" type="range" min=".1" max="1" step=".05" value="${+LSg('mv')||.5}"></label>
+  <div class="snd70g"><button data-t="short" aria-pressed="${(LSg('vt')||'short')==='short'}">Talk: short</button><button data-t="full" aria-pressed="${LSg('vt')==='full'}">Talk: full</button></div>`;
+}
+function openPanel(){const p=panel();refresh();p.hidden=false;const c=p.querySelector('.mclose');c&&c.focus()}
+(()=>{
+  const rows=$('#hmrows');if(!rows)return;
+  const hid=D.createElement('button');hid.id='snd70btn';hid.hidden=true;hid.type='button';hid.addEventListener('click',openPanel);D.body.appendChild(hid);
+  const r=D.createElement('button');r.className='mrow';r.dataset.src='snd70btn';
+  r.innerHTML='<span class="mi" aria-hidden="true">🔧</span><span class="mt"><b>Sound check <span lang="hi">आवाज़ जाँच</span></b><small>voice, Hindi, music</small></span><span class="go" aria-hidden="true">›</span>';
+  rows.appendChild(r);
+})();
+if(sy)try{sy.addEventListener('voiceschanged',()=>{const p=$('#snd70');if(p&&!p.hidden)refresh()})}catch(e){}
+
+/* ------------------------------------------------------------- PERFORMANCE */
+/* pixel videos only redraw while they are on screen */
+try{
+  if(W.PIXV&&W.PIXV.frame&&'IntersectionObserver' in W){
+    const io=new IntersectionObserver(es=>es.forEach(x=>{x.target.__off=!x.isIntersecting}),{rootMargin:'80px'});
+    const f0=W.PIXV.frame;
+    W.PIXV.frame=function(cx,S,t){
+      const cv=cx&&cx.canvas;
+      if(cv){if(!cv.__io){cv.__io=1;io.observe(cv)}if(cv.__off&&t>.5)return}
+      return f0.apply(this,arguments);
+    };
+  }
+}catch(e){}
+})();
+
+</script>
 </body>
 </html>
