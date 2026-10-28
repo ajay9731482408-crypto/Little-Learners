@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style id="boot-css">html.boot body>*:not(#bootsp){visibility:hidden!important}
+#bootsp{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 38%,#fff7d6 0,#dff3f8 45%,#cfe8ff 100%);color:#1f2a52;font-family:Fredoka,'Trebuchet MS',sans-serif;text-align:center;transition:opacity .35s ease,transform .35s ease}
+html[data-theme=dark] #bootsp{background:radial-gradient(circle at 50% 38%,#3a2f6b 0,#1b1830 70%);color:#fff3d6}
+#bootsp.out{opacity:0;transform:scale(1.04);pointer-events:none}
+#bootsp .bx{position:relative;display:grid;justify-items:center;gap:6px;padding:0 24px;width:min(92vw,420px)}
+#bootsp .gl{position:absolute;left:50%;top:-6px;width:210px;height:210px;margin-left:-105px;border-radius:50%;background:radial-gradient(circle,#ffd96688,transparent 65%);animation:bgl 2.4s ease-in-out infinite}
+#bootsp .ow{position:relative;font-size:92px;line-height:1;filter:drop-shadow(0 10px 0 #0002);animation:bow 1.3s ease-in-out infinite;transform-origin:50% 90%}
+#bootsp h1{margin:6px 0 0;font:700 34px/1.1 Fredoka,'Trebuchet MS',sans-serif;background:linear-gradient(90deg,#e8604c,#f2b624,#4c9a52,#2f5bd0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#bootsp .hn{font:800 19px Nunito,'Noto Sans Devanagari',system-ui,sans-serif;opacity:.8}
+#bootsp .pb{width:min(70vw,260px);height:12px;margin-top:18px;border-radius:12px;background:#2f5bd01f;overflow:hidden;box-shadow:inset 0 2px 0 #0001}
+#bootsp .pb u{display:block;height:100%;width:100%;border-radius:12px;background:linear-gradient(90deg,#e8604c,#f2b624,#4c9a52,#2f5bd0);transform-origin:left;transform:scaleX(.08);animation:bfill 2.2s cubic-bezier(.2,.7,.2,1) forwards}
+#bootsp.out .pb u{animation:none;transform:scaleX(1);transition:transform .25s}
+#bootsp .ld{margin-top:8px;font:700 16px Nunito,system-ui,sans-serif;opacity:.7}
+#bootsp .tp{position:relative;height:46px;width:100%;margin-top:14px}
+#bootsp .tp p{position:absolute;inset:0;margin:0;font:700 16px/1.25 Nunito,system-ui,sans-serif;opacity:0;animation:btip 7.5s infinite}
+#bootsp .tp p:nth-child(2){animation-delay:2.5s}#bootsp .tp p:nth-child(3){animation-delay:5s}
+#bootsp .tp [lang=hi]{display:block;font-weight:800;opacity:.85}
+#bootsp .fl i{position:absolute;font-style:normal;font-size:28px;opacity:.5;animation:bfl 6s ease-in-out infinite}
+#bootsp .fl i:nth-child(1){left:9%;top:16%}#bootsp .fl i:nth-child(2){right:11%;top:22%;animation-delay:-1.5s}#bootsp .fl i:nth-child(3){left:14%;bottom:18%;animation-delay:-3s}#bootsp .fl i:nth-child(4){right:12%;bottom:14%;animation-delay:-4.5s}#bootsp .fl i:nth-child(5){left:46%;top:7%;animation-delay:-2s}
+html[data-ui=en] #bootsp [lang=hi]{display:none!important}
+@keyframes bow{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+@keyframes bgl{50%{transform:scale(1.15);opacity:.7}}
+@keyframes bfill{to{transform:scaleX(.92)}}
+@keyframes btip{0%{opacity:0;transform:translateY(6px)}8%,30%{opacity:1;transform:none}38%,100%{opacity:0}}
+@keyframes bfl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(12deg)}}
+@media(prefers-reduced-motion:reduce){#bootsp *{animation:none!important}#bootsp .tp p:first-child{opacity:1}}</style>
+<script>document.documentElement.classList.add('boot');try{if(localStorage.getItem('uiL3')==='en')document.documentElement.dataset.ui='en'}catch(e){}setTimeout(function(){window.__bootDone&&window.__bootDone()},2600);</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Little Learners</title>
@@ -221,6 +248,7 @@ body{padding-bottom:120px}
 <style>@media(min-width:900px){#cvs{width:min(60vh,460px)}}</style>
 <style>@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}button,.tile,.nv,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}body.tab-hidden *{animation-play-state:paused!important}</style><script>document.addEventListener("visibilitychange",function(){document.body&&document.body.classList.toggle("tab-hidden",document.hidden)})</script><style id="ctafix">#hero .cta{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:14px!important;width:100%;margin:18px auto 0!important;position:relative;z-index:8}#hero .cta>*{position:static!important;margin:0!important;transform:none!important;width:min(86%,320px)!important;min-width:0!important;text-align:center;justify-content:center}#hero .cta>.btn{padding:14px 20px}#hero .cta>#knat{padding:10px 16px;font-size:17px;line-height:1.2}</style></head>
 <body>
+<div id="bootsp" role="status" aria-live="polite" aria-label="Loading Little Learners"><div class="fl" aria-hidden="true"><i>⭐</i><i>🎈</i><i>🔤</i><i>🌈</i><i>🚀</i></div><div class="bx"><div class="gl" aria-hidden="true"></div><div class="ow" aria-hidden="true">🦉</div><h1>Little Learners</h1><div class="hn" lang="hi">लिटिल लर्नर्स</div><div class="pb" aria-hidden="true"><u></u></div><div class="ld">Getting ready… <span lang="hi">तैयार हो रहे हैं…</span></div><div class="tp" aria-hidden="true"><p>Trying bravely matters more than being perfect! <span lang="hi">बहादुरी से कोशिश करना ज़्यादा ज़रूरी है!</span></p><p>Listen first, then say it out loud. <span lang="hi">पहले सुनो, फिर ज़ोर से बोलो।</span></p><p>A few minutes every day make you strong! <span lang="hi">रोज़ थोड़ा-थोड़ा सीखो, मज़बूत बनो!</span></p></div></div></div>
 <a class="skip" href="#main">Skip to content</a>
 <div id="wall"></div>
 <div id="flow">
@@ -489,7 +517,8 @@ async function H(x){try{const b=await crypto.subtle.digest('SHA-256',new TextEnc
 function askPin(msg,cb,hard){const m=$('#pinm'),i=$('#pi');m.hidden=false;$('#pt').textContent=LS('pin')?msg:'Create a 4-digit grown-up PIN';i.value='';$('#pe').textContent='';$('#pcx').hidden=!!hard;setTimeout(()=>i.focus(),60);
  $('#pok').onclick=async()=>{const v=i.value.trim();if(!/^\d{4}$/.test(v)){$('#pe').textContent='Enter 4 digits';return}const h=await H(v),st=LS('pin');if(!st||h===st){if(!st)LS('pin',h);m.hidden=true;cb()}else{$('#pe').textContent='Wrong PIN';gsap.fromTo('#pinm .mbox',{x:-12},{x:0,duration:.4,ease:'elastic.out(1,.3)'})}};
  i.onkeydown=e=>{if(e.key=='Enter')$('#pok').click()};$('#pcx').onclick=()=>m.hidden=true}
-function celebrate(msg,ic){const c=$('#cel');c.innerHTML=`<div class="cm">${msg}</div>`;c.className='on';const set=ic||['🎉','⭐','🎊','✨','🌈'];for(let i=0;i<26;i++){const x=document.createElement('span');x.textContent=set[i%set.length];x.style.cssText=`left:${Math.random()*100}%;top:-40px;font-size:${24+Math.random()*28}px`;c.append(x);gsap.to(x,{y:innerHeight+80,rotation:gsap.utils.random(-300,300),duration:gsap.utils.random(2,3.5),ease:'power1.in',delay:Math.random()*.6})}gsap.fromTo('#cel .cm',{scale:.3,opacity:0},{scale:1,opacity:1,duration:.7,ease:'elastic.out(1,.5)'});speak(msg.replace(/[^\w !']/g,''));setTimeout(()=>{c.className='';c.innerHTML=''},3600)}
+function celebrate(msg,ic){if(window.__celebrate2){window.__celebrate2(msg,ic);try{speak(String(msg).replace(/[^\w !']/g,''))}catch(e){}return}return celebrateOld(msg,ic)}
+function celebrateOld(msg,ic){const c=$('#cel');c.innerHTML=`<div class="cm">${msg}</div>`;c.className='on';const set=ic||['🎉','⭐','🎊','✨','🌈'];for(let i=0;i<26;i++){const x=document.createElement('span');x.textContent=set[i%set.length];x.style.cssText=`left:${Math.random()*100}%;top:-40px;font-size:${24+Math.random()*28}px`;c.append(x);gsap.to(x,{y:innerHeight+80,rotation:gsap.utils.random(-300,300),duration:gsap.utils.random(2,3.5),ease:'power1.in',delay:Math.random()*.6})}gsap.fromTo('#cel .cm',{scale:.3,opacity:0},{scale:1,opacity:1,duration:.7,ease:'elastic.out(1,.5)'});speak(msg.replace(/[^\w !']/g,''));setTimeout(()=>{c.className='';c.innerHTML=''},3600)}
 const VK={girl:['👧',1.35,.9,'f'],boy:['👦',1,.9,'m'],robot:['🤖',.55,.72,'m'],prof:['🧑‍🏫',.8,.8,'m']};let vk=VK[LS('vk')]?LS('vk'):'girl';
 const isF=n=>/female|zira|samantha|karen|moira|tessa|veena|aria|jenny|heera|priya|susan|hazel|fiona|sara|swara/i.test(n);
 function voiceFor(){const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^en/i.test(v.lang)),f=VK[vk][3]=='f';return vs.find(v=>f?isF(v.name):!isF(v.name)&&/male|david|mark|daniel|alex|rishi|guy|ravi|fred|george|james|prabhat/i.test(v.name))||vs.find(v=>/en-(IN|GB|US)/i.test(v.lang))||vs[0]}
@@ -3659,18 +3688,18 @@ html[data-ui] .seg [lang]{display:inline!important}
 <script>
 /* v61: one clean language switch (English by default; English + हिन्दी). Hindi-only was removed because most UI text is English. */
 (()=>{
-const KEY='uiL2';
+const KEY='uiL3';
 const get=()=>{try{return localStorage.getItem(KEY)}catch(e){return null}};
 const put=v=>{try{localStorage.setItem(KEY,v)}catch(e){}};
-const setUI=m=>{m=m==='both'?'both':'en';document.documentElement.dataset.ui=m;document.querySelectorAll('#langSeg button').forEach(b=>{const on=b.dataset.ui===m;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1});put(m)};
+const setUI=(m,sv)=>{m=m==='both'?'both':'en';document.documentElement.dataset.ui=m;document.querySelectorAll('#langSeg button').forEach(b=>{const on=b.dataset.ui===m;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1});if(sv)put(m)};
 const seg=document.createElement('div');
 seg.id='langSeg';seg.className='seg';seg.setAttribute('role','radiogroup');seg.setAttribute('aria-label','Language');
 seg.innerHTML='<button type="button" role="radio" data-ui="en"><span>English</span></button><button type="button" role="radio" data-ui="both"><span>English + <span lang="hi">हिन्दी</span></span></button>';
 const host=document.getElementById('hmlang');
 if(host)host.replaceChildren(seg);
-seg.addEventListener('click',e=>{const b=e.target.closest('button[data-ui]');if(b)setUI(b.dataset.ui)});
-seg.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();const bs=[...seg.querySelectorAll('button')];const i=bs.findIndex(b=>b===document.activeElement);const n=bs[(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length];n.focus();setUI(n.dataset.ui)});
-setUI(get()||'en');
+seg.addEventListener('click',e=>{const b=e.target.closest('button[data-ui]');if(b)setUI(b.dataset.ui,1)});
+seg.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();const bs=[...seg.querySelectorAll('button')];const i=bs.findIndex(b=>b===document.activeElement);const n=bs[(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length];n.focus();setUI(n.dataset.ui,1)});
+setUI(get()||'both');
 const rows=document.getElementById('hmrows');
 const C=[['mu','🎵','Music <span lang="hi">संगीत</span>','background music','#ff4d8d','#ff8fab'],['sk','🎨','Colour theme <span lang="hi">रंग</span>','pick a look','#8a4fc7','#b58cff'],['tm','🌙','Dark mode <span lang="hi">डार्क मोड</span>','light or dark','#2f5bd0','#3fb7e8'],['lk','🔒','Child lock <span lang="hi">लॉक</span>','keep the app for the child','#e8604c','#ff9f1c'],['pgb','👨‍👩‍👧','Grown-ups <span lang="hi">बड़ों के लिए</span>','progress & settings','#2e8b57','#a3d977']];
 if(rows)rows.innerHTML=C.map(r=>`<button class="mrow" data-src="${r[0]}" style="--c:${r[4]};--c2:${r[5]}"><span class="mi" aria-hidden="true">${r[1]}</span><span class="mt"><b>${r[2]}</b><small>${r[3]}</small></span><span class="ms" data-state="${r[0]}"></span><span class="go" aria-hidden="true">›</span></button>`).join('');
@@ -3682,6 +3711,21 @@ if(rows)rows.innerHTML=C.map(r=>`<button class="mrow" data-src="${r[0]}" style="
 h2 .i18n-hi,.nv .i18n-hi{display:block;font-size:.5em;line-height:1.2;margin-top:2px}
 .nv .i18n-hi{font-size:10px}
 button .i18n-in{font-size:.8em;opacity:.8;margin-left:4px}
+
+/* v65b: Hindi line under every English label (shown when "English + हिन्दी" is on).
+   Headings/descriptions get a real child span (h2::after is the rainbow underline); buttons and nav use ::after. */
+.hi-add{display:block;font-family:Nunito,'Noto Sans Devanagari',system-ui,sans-serif;font-weight:700;letter-spacing:0;text-transform:none;line-height:1.35}
+h2>.hi-add,h3>.hi-add,summary>.hi-add{font-size:.55em;margin-top:3px;opacity:.85}
+.lead>.hi-add,p>.hi-add,.tag>.hi-add{font-size:.9em;margin-top:4px;opacity:.8}
+#trust span>.hi-add,.hbs small>.hi-add,.hbg small>.hi-add,#fadv small>.hi-add,#fadv b>.hi-add,.pdc small>.hi-add,.pdg small>.hi-add{font-size:.9em;margin-top:1px}
+button[data-hi]::after,label[data-hi]::after{content:attr(data-hi);font-family:Nunito,'Noto Sans Devanagari',system-ui,sans-serif;font-weight:700;display:inline;font-size:.78em;margin-left:.4em;opacity:.85;text-transform:none}
+html[data-ui="en"] [data-hi]::after{display:none!important}
+.nv[data-hi]::after{display:block!important;font-size:10px;line-height:1.15;margin:0;opacity:.9;white-space:nowrap}
+/* navigation bar: last item can scroll fully into view, items snap neatly */
+#nav{padding-inline:10px!important;scroll-padding-inline:16px;scroll-snap-type:x proximity}
+#nav .nv{scroll-snap-align:center;flex:0 0 auto;min-width:68px}
+#nav .nv::after{white-space:nowrap}
+#nav::after{content:"";flex:0 0 64px}
 /* Grown-ups panel opens at the top of the sheet */
 #pm.mod{place-items:start center}
 #pm .mbox{margin:24px auto}
@@ -3699,36 +3743,144 @@ if(pm){
   new MutationObserver(()=>{if(!pm.hidden){[0,80,250,700,1200].forEach(t=>setTimeout(()=>{if(!pm.hidden){settle()}},t))}}).observe(pm,{attributes:true,attributeFilter:['hidden']});
   new MutationObserver(()=>{if(!pm.hidden)top0()}).observe(pm,{childList:true,subtree:true});
 }
-/* 2. Hindi translations of the English labels */
-const HI={
- 'Hello, friend!':'नमस्ते दोस्त!','Grown-up PIN':'बड़ों का पिन','Pick a world':'दुनिया चुनो','Story theatre':'कहानी मंच',
- 'Study studio':'पढ़ाई का स्टूडियो','Write A to Z':'A से Z तक लिखो','Write numbers':'संख्याएँ लिखो','Maths':'गणित',
- 'Maths tables':'पहाड़े','NCERT path':'एनसीईआरटी पथ','Puzzle time':'पहेली का समय','Rhymes & songs':'कविता और गीत',
- 'Magic paint':'जादुई रंग','My stamps':'मेरे स्टिकर','For grown-ups':'बड़ों के लिए','Explore & discover':'खोजो और जानो',
- 'Grown-ups':'बड़ों के लिए','Menu':'मेनू','Settings':'सेटिंग्स','Language':'भाषा','Music':'संगीत','Colour theme':'रंग',
- 'Dark mode':'डार्क मोड','Child lock':'बच्चा लॉक','Worlds':'दुनिया','Stories':'कहानियाँ','Write':'लिखना','NCERT':'एनसीईआरटी',
- 'Play':'खेल','Rhymes':'कविता','Paint':'रंग','Stamps':'स्टिकर','Talk':'बातचीत','Parents':'माता-पिता','Numbers':'संख्याएँ',
- 'Tables':'पहाड़े','Speak':'बोलो','Time':'समय','Fast':'तेज़','English':'अंग्रेज़ी','Close':'बंद करें','Start':'शुरू करें',
- 'Next':'अगला','Back':'वापस','Check':'जाँचो','Watch':'देखो','Clear':'मिटाओ','Quiz me':'मुझसे पूछो','Test me':'मेरी परीक्षा लो',
- 'Say the time':'समय बोलो','Count':'गिनो','Listen':'सुनो','Lock app':'ऐप लॉक करें','Reset progress':'प्रगति मिटाएँ',
- 'Share weekly report':'साप्ताहिक रिपोर्ट भेजें'
-};
-const clean=t=>t.replace(/[\p{Extended_Pictographic}️‍]/gu,'').replace(/\s+/g,' ').trim();
-const ownText=el=>[...el.childNodes].filter(n=>n.nodeType===3).map(n=>n.nodeValue).join('');
-const SEL='h2,.nv,button.btn,button.alt,button.lv';
+/* 2. v65: Hindi under EVERY English label (headings, descriptions, buttons, tabs, nav, settings).
+   Uses a data-hi attribute + CSS ::after, so button/heading text is never changed (speech and game logic stay safe). */
+const HI={"adventure map": "साहसिक नक्शा", "finish a world to unlock the next one": "एक दुनिया पूरी करो, अगली खुल जाएगी!", "hello, friend": "नमस्ते दोस्त!", "pick your buddy, your name and your class": "अपना साथी, नाम और कक्षा चुनो।", "grown-up pin": "बड़ों का पिन", "parents: choose a 4-digit pin. it protects progress, settings and the child lock": "माता-पिता: 4 अंकों का पिन चुनें। यह प्रगति, सेटिंग्स और चाइल्ड लॉक को सुरक्षित रखता है।", "meet professor owl": "प्रोफेसर उल्लू से मिलो", "letters, rhymes, puzzles and a talking professor": "अक्षर, कविताएँ, पहेलियाँ और बोलने वाले प्रोफेसर।", "lets learn": "चलो सीखें!", "speak lab": "बोलने की लैब", "pick a world": "दुनिया चुनो", "tap a world, then tap each card to hear the word. say it back": "दुनिया चुनो, फिर हर कार्ड दबाकर शब्द सुनो। उसे दोहराओ!", "story theatre": "कहानी मंच", "paper-craft stories that read to you. listen, look and answer the question at the end": "काग़ज़ की कहानियाँ जो तुम्हें पढ़कर सुनाती हैं। सुनो, देखो और आख़िर में सवाल का जवाब दो।", "study studio": "पढ़ाई का स्टूडियो", "pick a tile. see it, hear it, then try it": "एक टाइल चुनो। देखो, सुनो, फिर करके देखो!", "write a to z": "A से Z तक लिखो", "trace the dotted letter with your finger. stay on the dots": "बिंदुओं वाले अक्षर पर उँगली फेरो। बिंदुओं पर ही रहो!", "write numbers": "संख्याएँ लिखो", "maths": "गणित", "counting, adding, patterns and clocks. easy for nursery, bigger for ukg": "गिनती, जोड़, पैटर्न और घड़ियाँ। नर्सरी के लिए आसान, यूकेजी के लिए थोड़ा बड़ा।", "maths tables": "पहाड़े", "pick a table. tap a line to hear it, or listen to the whole table": "एक पहाड़ा चुनो। सुनने के लिए पंक्ति दबाओ, या पूरा पहाड़ा सुनो।", "ncert path": "एनसीईआरटी पथ", "practice that follows the ncert balvatika stages (nursery, lkg, ukg) and a first look at class 1 and 2": "एनसीईआरटी बालवाटिका के चरणों (नर्सरी, एलकेजी, यूकेजी) और कक्षा 1-2 की पहली झलक के अनुसार अभ्यास।", "puzzle time": "पहेली का समय", "rhymes & songs": "कविता और गीत", "tap a rhyme. sing along as each line lights up": "कविता दबाओ। हर पंक्ति चमके तो साथ गाओ!", "magic paint": "जादुई रंग", "draw with your finger. watch the sparkles fall": "उँगली से चित्र बनाओ। चमकते सितारे गिरते देखो!", "my stamps": "मेरे स्टिकर", "for grown-ups": "बड़ों के लिए", "progress chart, tips, voices, themes and trusted resources are behind your pin": "प्रगति चार्ट, सुझाव, आवाज़ें, थीम और भरोसेमंद संसाधन आपके पिन के पीछे हैं।", "grown-ups": "बड़ों के लिए", "explore & discover": "खोजो और जानो", "tap a part to hear its name and a fun fact. then press \"quiz me\"": "किसी हिस्से को दबाकर उसका नाम और मज़ेदार तथ्य सुनो। फिर \"मुझसे पूछो\" दबाओ।", "think like a coder": "कोडर की तरह सोचो", "little games about robots, patterns and how computers learn from examples": "रोबोट, पैटर्न और कंप्यूटर उदाहरणों से कैसे सीखते हैं, इस पर छोटे खेल।", "listen to teacher, then say it yourself. trying bravely matters more than being perfect": "पहले टीचर को सुनो, फिर खुद बोलो। बहादुरी से कोशिश करना सही होने से ज़्यादा ज़रूरी है!", "for the most natural indian accent, pick an english (india) voice. voices come from your phone, so install one in settings → text-to-speech if none shows": "सबसे प्राकृतिक भारतीय लहजे के लिए English (India) आवाज़ चुनें। आवाज़ें फ़ोन से आती हैं, कोई न दिखे तो सेटिंग्स → टेक्स्ट-टू-स्पीच में इंस्टॉल करें।", "these links open other websites. ask a grown-up first": "ये लिंक दूसरी वेबसाइटें खोलते हैं। पहले किसी बड़े से पूछो।", "todays path": "आज का रास्ता", "do these four things today": "आज ये चार काम करो।", "time world": "समय की दुनिया", "days, months, morning to night, and the clock. tap a card to hear english, then hindi": "दिन, महीने, सुबह से रात और घड़ी। कार्ड दबाकर पहले अंग्रेज़ी, फिर हिंदी सुनो।", "fast maths": "तेज़ गणित", "four tricks that make adding quick. learn one, then race the clock": "जोड़ को तेज़ करने की चार तरकीबें। एक सीखो, फिर घड़ी से दौड़ लगाओ!", "school in the usa": "अमेरिका में स्कूल", "what american children learn from pre-k to grade 1. tap a card to hear it, then try the quiz": "अमेरिकी बच्चे प्री-के से ग्रेड 1 तक क्या सीखते हैं। सुनने के लिए कार्ड दबाओ, फिर क्विज़ खेलो।", "space lab": "अंतरिक्ष लैब", "little space games for pre-k, inspired by nasa kids club. no timers, no rush. tap and listen": "प्री-के के लिए छोटे अंतरिक्ष खेल। कोई टाइमर नहीं, कोई जल्दी नहीं। दबाओ और सुनो!", "want more? visit nasa kids club, free games for pre-k to grade 4 (ask a grown-up to help)": "और चाहिए? NASA किड्स क्लब देखें, प्री-के से ग्रेड 4 तक मुफ़्त खेल (किसी बड़े की मदद लें)।", "talk time": "बातचीत का समय", "owl asks a question. answer out loud! owl listens, helps you say it better, and fills the rocket with fuel": "उल्लू सवाल पूछता है। ज़ोर से जवाब दो! उल्लू सुनता है, बेहतर बोलने में मदद करता है और रॉकेट में ईंधन भरता है।", "airplane & travel": "हवाई जहाज़ और यात्रा", "tap an answer. every activity says the answer out loud": "जवाब दबाओ। हर गतिविधि जवाब ज़ोर से बोलती है।", "teachers voice": "टीचर की आवाज़", "time for a break": "आराम का समय!", "great learning today. professor owl says bye": "आज बहुत अच्छा सीखा। प्रोफेसर उल्लू अलविदा कहते हैं!", "sleepy time": "सोने का समय", "little learners is resting. see you in the morning": "लिटिल लर्नर्स आराम कर रहा है। सुबह मिलते हैं!", "stretch break": "स्ट्रेच ब्रेक!", "stand up, reach for the sky, touch your toes and wiggle your fingers": "खड़े हो जाओ, आसमान छुओ, पंजे छुओ और उँगलियाँ हिलाओ।", "secret games": "गुप्त खेल", "you found them": "तुमने ढूँढ लिए!", "quick question": "छोटा सवाल", "quick quiz": "छोटी क्विज़", "free us resources": "अमेरिका के मुफ़्त संसाधन", "free learning resources": "सीखने के मुफ़्त संसाधन", "ideas for this week": "इस हफ़्ते के विचार", "class": "कक्षा", "theme": "थीम", "teacher voice": "टीचर की आवाज़", "festive mode": "त्योहार मोड", "real app lock": "असली ऐप लॉक", "trusted resources": "भरोसेमंद संसाधन", "childs name": "बच्चे का नाम", "daily time limit": "रोज़ की समय सीमा", "music & sound": "संगीत और आवाज़", "icon style (bottom bar)": "आइकन शैली (नीचे की पट्टी)", "birds": "पक्षी", "background icons (pick many)": "पृष्ठभूमि के आइकन (कई चुनें)", "daily goal (points)": "रोज़ का लक्ष्य (अंक)", "movement break": "हिलने-डुलने का ब्रेक", "bedtime (rests until 7 am)": "सोने का समय (सुबह 7 बजे तक आराम)", "settings": "सेटिंग्स", "menu": "मेनू", "language": "भाषा", "music": "संगीत", "colour theme": "रंग", "dark mode": "डार्क मोड", "child lock": "बच्चा लॉक", "reset": "फिर से", "next": "अगला", "back": "वापस", "say it": "बोलो", "find & learn": "खोजो और सीखो", "slow": "धीरे", "your turn": "तुम्हारी बारी", "listen": "सुनो", "hear it": "सुनो", "hear again": "फिर सुनो", "hear all": "सब सुनो", "hear": "सुनो", "explain": "समझाओ", "play again": "फिर खेलो", "cancel": "रद्द करें", "ok": "ठीक है", "close": "बंद करें", "go": "चलो", "start": "शुरू करें", "clear": "मिटाओ", "check": "जाँचो", "watch": "देखो", "count": "गिनो", "undo": "वापस", "new": "नया", "again": "फिर से", "send": "भेजें", "save": "सहेजें", "share": "शेयर करें", "run": "चलाओ", "pictures": "चित्र", "sing with me": "मेरे साथ गाओ", "tune": "धुन", "play story": "कहानी चलाओ", "replay story": "कहानी फिर चलाओ", "practise": "अभ्यास करो", "test voice": "आवाज़ जाँचो", "race again": "फिर दौड़ लगाओ", "learn the trick": "तरकीब सीखो", "speed round": "तेज़ राउंड", "teacher explains": "टीचर समझाते हैं", "say the time": "समय बोलो", "test me": "मेरी परीक्षा लो", "quiz me": "मुझसे पूछो", "continue learning": "सीखना जारी रखो", "next level": "अगला स्तर", "build again": "फिर बनाओ", "answer": "जवाब दो", "auto": "अपने आप", "yes": "हाँ", "no": "नहीं", "hot": "गर्म", "cold": "ठंडा", "hot & cold": "गर्म और ठंडा", "match": "मिलाओ", "other half": "दूसरा आधा", "spell it": "वर्तनी बोलो", "change pin": "पिन बदलें", "lock app": "ऐप लॉक करें", "reset progress": "प्रगति मिटाएँ", "share weekly report": "साप्ताहिक रिपोर्ट भेजें", "open grown-ups area": "बड़ों का हिस्सा खोलें", "secret game": "गुप्त खेल", "grown-up: add 10 minutes": "बड़े: 10 मिनट और दें", "grown-up: open for today": "बड़े: आज के लिए खोलें", "i stretched": "मैंने स्ट्रेच किया!", "download natural voice": "प्राकृतिक आवाज़ डाउनलोड करें", "hear the voice": "आवाज़ सुनो", "use phone voice for now": "अभी फ़ोन की आवाज़ इस्तेमाल करें", "turn natural voice off": "प्राकृतिक आवाज़ बंद करें", "from 5": "5 से", "from 10": "10 से", "hour −": "घंटा −", "hour +": "घंटा +", "min −5": "मिनट −5", "min +5": "मिनट +5", "hindi helper": "हिंदी मददगार", "search resources": "संसाधन खोजो", "points": "अंक", "minutes": "मिनट", "volume": "आवाज़ का स्तर", "speed": "गति", "preview festive mode now": "त्योहार मोड अभी देखें", "for grown-ups: progress and resources": "बड़ों के लिए: प्रगति और संसाधन", "count on": "आगे गिनो", "make 10": "10 बनाओ", "doubles": "दोगुना", "near doubles": "लगभग दोगुना", "mix": "मिलाजुला", "day streak": "लगातार दिन", "stars": "सितारे", "stamps": "स्टिकर", "ready to learn something fun today": "आज कुछ मज़ेदार सीखने के लिए तैयार?", "next adventure": "अगला साहसिक कारनामा", "all worlds done": "सारी दुनिया पूरी!", "you finished the map": "तुमने नक्शा पूरा कर लिया!", "featured lesson": "आज का पाठ", "ad-free": "विज्ञापन-मुक्त", "saved on this device": "इस डिवाइस पर सुरक्षित", "english & hindi": "अंग्रेज़ी और हिंदी", "you can do it": "तुम कर सकते हो!", "keep going": "लगे रहो!", "try another one": "एक और कोशिश करो।", "owl says": "उल्लू कहता है", "owl heard": "उल्लू ने सुना", "say it like this": "ऐसे बोलो", "perfect words": "बिल्कुल सही शब्द!", "tip": "सुझाव", "best sentence": "सबसे अच्छा वाक्य", "next time, practise": "अगली बार अभ्यास करो", "parent dashboard · last 7 days": "अभिभावक डैशबोर्ड · पिछले 7 दिन", "stars earned this week": "इस हफ़्ते कमाए सितारे", "active days": "सक्रिय दिन", "stars today": "आज के सितारे", "ready to talk": "बात करने के लिए तैयार?", "worlds": "दुनिया", "stories": "कहानियाँ", "study": "पढ़ाई", "write": "लिखना", "ncert": "एनसीईआरटी", "puzzles": "पहेलियाँ", "songs": "गीत", "paint": "रंग", "explore": "खोजो", "coder": "कोडर", "play": "खेल", "rhymes": "कविता", "talk": "बातचीत", "parents": "माता-पिता", "numbers": "संख्याएँ", "tables": "पहाड़े", "speak": "बोलो", "time": "समय", "fast": "तेज़", "space": "अंतरिक्ष", "travel": "यात्रा", "usa": "अमेरिका", "english": "अंग्रेज़ी"};
+const PAT=[["^brave tries:? (\\d+)$", "बहादुर कोशिशें: $1"], ["^scene (\\d+) of (\\d+)$", "दृश्य $1 / $2"], ["^level (\\d+)$", "स्तर $1"], ["^(\\d+) min$", "$1 मिनट"], ["^hands-free: on$", "हैंड्स-फ्री: चालू"], ["^hands-free: off$", "हैंड्स-फ्री: बंद"], ["^music on$", "संगीत चालू"], ["^music off$", "संगीत बंद"], ["^voice on$", "आवाज़ चालू"], ["^voice off$", "आवाज़ बंद"], ["^do these four things today\\.? (\\d+)/4 done$", "आज ये चार काम करो। $1/4 पूरे।"]].map(p=>[new RegExp(p[0]),p[1]]);
+PAT.push([/^class (\w+): tables (\d+) to (\d+)\. tap a line to hear it, or listen to the whole table$/,'कक्षा $1: पहाड़े $2 से $3। सुनने के लिए पंक्ति दबाओ, या पूरा पहाड़ा सुनो।'],[/^table of (\d+)$/,'$1 का पहाड़ा']);
+const norm=t=>t.replace(/[\u2018\u2019\u201C\u201D"'`]/g,'').replace(/\p{Extended_Pictographic}|\p{So}|[\uFE0F\u200D\u2190-\u21FF\u25A0-\u25FF\u2700-\u27BF\u2713\u2714\u2715\u2716\u279C\u203A\u2039]/gu,'').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim().toLowerCase().replace(/[.!?:\s]+$/,'');
+const EXTRA={"think": "सोचो", "off": "बंद", "on": "चालू", "nursery": "नर्सरी", "lkg": "एलकेजी", "ukg": "यूकेजी", "good start": "अच्छी शुरुआत!", "healthy growth": "सेहतमंद विकास", "future-ready and exam path": "भविष्य के लिए तैयार और परीक्षा का रास्ता", "save weekly report": "साप्ताहिक रिपोर्ट सहेजें", "share weekly report": "साप्ताहिक रिपोर्ट भेजें"};Object.assign(HI,EXTRA);const DK={};Object.keys(HI).forEach(k=>{DK[norm(k)]=HI[k]});
+const lookup=t=>{const k=norm(t);if(!k)return null;if(DK[k])return DK[k];for(const p of PAT){if(p[0].test(k))return k.replace(p[0],p[1])}return null};
+const SPAN_SEL='h2,h3,summary,.lead,.tag,.panel > p,#mapx p,.hc > p,#trust span,.hbs small,.hbg small,#fadv small,#fadv b,.pdc small,.pdg small';
+const ATTR_SEL='.nv,button.btn,button.alt,button.lv,button.ch[aria-label],.mbox label,#spk label,section label';
+const textOf=el=>{if(el.classList.contains('nv'))return [...el.childNodes].filter(n=>n.nodeType===3).map(n=>n.nodeValue).join('');const c=el.cloneNode(true);c.querySelectorAll('.hi-add').forEach(x=>x.remove());return c.textContent};
 const run=()=>{
-  document.querySelectorAll(SEL).forEach(el=>{
-    if(el.querySelector(':scope > [lang="hi"]'))return;
-    const en=clean(ownText(el));
-    const hi=HI[en];if(!hi)return;
-    const s=document.createElement('span');
-    s.lang='hi';s.className=el.tagName==='H2'||el.classList.contains('nv')?'i18n-hi':'i18n-hi i18n-in';
-    s.textContent=hi;el.appendChild(s);
+  document.querySelectorAll(SPAN_SEL+','+ATTR_SEL).forEach(el=>{
+    if(el.closest('#langSeg')||el.classList.contains('hi-add'))return;
+    const own=el.matches(SPAN_SEL);
+    if(el.querySelector('[lang="hi"]:not(.hi-add)')||el.getAttribute('lang')==='hi')return;
+    const tx=textOf(el);if(!tx||tx.length>400)return;
+    if(/[\u0900-\u097F]/.test(tx))return;
+    const hi=lookup(tx);
+    if(own){
+      let sp=null;for(const c of el.children){if(c.classList.contains('hi-add')){sp=c;break}}
+      if(hi){if(!sp){sp=document.createElement('span');sp.className='hi-add';sp.lang='hi';sp.setAttribute('aria-hidden','true');el.appendChild(sp)}if(sp.textContent!==hi)sp.textContent=hi}
+      else if(sp)sp.remove();
+    }else{
+      if(hi){if(el.getAttribute('data-hi')!==hi)el.setAttribute('data-hi',hi)}
+      else if(el.hasAttribute('data-hi'))el.removeAttribute('data-hi');
+    }
   });
 };
 let raf=0;const later=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;run()})};
 run();
-new MutationObserver(later).observe(document.body,{childList:true,subtree:true});
+new MutationObserver(later).observe(document.body,{childList:true,subtree:true,characterData:true});
+setInterval(run,2500);
+})();
+</script>
+<style id="v66">
+/* v66: celebration card (inspired by canvas-confetti cannons + Duolingo-style reward cards) */
+#cel2{position:fixed;inset:0;z-index:97;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .25s ease}
+#cel2.on{opacity:1}
+#cel2 .bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(255,214,102,.5),rgba(232,96,76,.26) 55%,rgba(20,16,40,.4))}
+#cel2 .rays{position:absolute;left:50%;top:46%;width:150vmax;height:150vmax;margin:-75vmax 0 0 -75vmax;border-radius:50%;background:repeating-conic-gradient(rgba(255,255,255,.26) 0 7deg,transparent 7deg 20deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 42%);mask:radial-gradient(circle,#000 0,transparent 42%);animation:c2spin 16s linear infinite}
+#cel2 .cd{position:relative;pointer-events:auto;width:min(86vw,360px);margin-top:46px;padding:70px 22px 20px;border-radius:32px;background:var(--card,#fff);color:var(--ink,#2a2438);text-align:center;box-shadow:0 24px 60px #0006,0 6px 0 #0001;animation:c2pop .6s cubic-bezier(.2,1.5,.4,1) both}
+#cel2 .bg{position:absolute;left:50%;top:-56px;width:116px;height:116px;margin-left:-58px;border-radius:50%;display:grid;place-items:center;font-size:60px;line-height:1;background:radial-gradient(circle at 35% 30%,#fff3b8,#ffc83d 55%,#f29b1d);border:5px solid #fff;box-shadow:0 8px 0 #c97a0c,0 16px 30px #0004;animation:c2badge .9s .08s cubic-bezier(.2,1.7,.4,1) both}
+#cel2 .tt{font:700 clamp(26px,7.4vw,34px)/1.12 Fredoka,'Trebuchet MS',sans-serif;color:var(--h1,#e8604c)}
+#cel2 .hi{display:block;margin-top:4px;font:800 21px/1.3 Nunito,'Noto Sans Devanagari',system-ui,sans-serif;color:#8a4fc7}
+#cel2 .sr2{display:flex;justify-content:center;gap:6px;margin:14px 0 12px}
+#cel2 .sr2 i{font-style:normal;font-size:40px;line-height:1;filter:drop-shadow(0 3px 0 #c97a0c66);animation:c2star .55s calc(.55s + var(--i)*.18s) cubic-bezier(.2,1.8,.4,1) both}
+#cel2 .ok{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:10px 24px;border:0;border-radius:999px;background:linear-gradient(135deg,#2f5bd0,#8a4fc7);color:#fff;font:700 19px Fredoka,'Trebuchet MS',sans-serif;box-shadow:0 5px 0 #1b2f7a;cursor:pointer}
+#cel2 .ok:active{transform:translateY(3px);box-shadow:0 2px 0 #1b2f7a}
+#cel2 .ok span{font:800 .8em Nunito,'Noto Sans Devanagari',sans-serif;opacity:.9}
+#cel2 .bar{height:5px;border-radius:5px;margin:14px 8px 0;background:#0001;overflow:hidden}
+#cel2 .bar u{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ffc83d,#e8604c);transform-origin:left;animation:c2bar var(--d,4.2s) linear forwards}
+#cf2{position:fixed;inset:0;width:100%;height:100%;z-index:96;pointer-events:none}
+@keyframes c2spin{to{transform:rotate(360deg)}}
+@keyframes c2pop{from{transform:scale(.4) translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@keyframes c2badge{from{transform:scale(0) rotate(-40deg)}to{transform:none}}
+@keyframes c2star{from{transform:scale(0) rotate(-60deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes c2bar{to{transform:scaleX(0)}}
+@media(prefers-reduced-motion:reduce){#cel2 .rays,#cel2 .cd,#cel2 .bg,#cel2 .sr2 i{animation:none!important}#cel2 .bar u{animation-duration:.01s!important}}
+</style>
+<script>
+/* v66: (1) release the loading cover once the new interface is ready, so the old layout never flashes;
+   (2) a richer celebration: confetti cannons, glowing badge, stars, English + Hindi message. */
+(()=>{
+const D=document,R=D.documentElement;
+let released=0;
+const t0=performance.now();window.__bootDone=()=>{if(released)return;const w=800-(performance.now()-t0);if(w>0){setTimeout(()=>{released||window.__bootDone()},w);released=0;if(!window.__bw){window.__bw=1;return}}released=1;const b=D.getElementById('bootsp');R.classList.remove('boot');if(b){b.classList.add('out');setTimeout(()=>b.remove(),400)}};
+const settle=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(window.__bootDone,450)));
+if(D.readyState==='complete')settle();else{D.addEventListener('DOMContentLoaded',settle,{once:true});addEventListener('load',settle,{once:true})}
+
+const RM=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+const PAL=['#ff5a5f','#ffc83d','#3fb7e8','#4c9a52','#8a4fc7','#ff8fab','#ff9f1c','#2f5bd0'];
+const rnd=(a,b)=>a+Math.random()*(b-a);
+let cv=null,cx=null,P=[],raf=0,W=0,H=0,dpr=1;
+function ensure(){
+  if(cv&&cv.isConnected)return;
+  cv=D.createElement('canvas');cv.id='cf2';cv.setAttribute('aria-hidden','true');D.body.appendChild(cv);cx=cv.getContext('2d');
+  dpr=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+}
+function star(c,r){c.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,d=i%2?r*.45:r;c[i?'lineTo':'moveTo'](Math.cos(a)*d,Math.sin(a)*d)}c.closePath();c.fill()}
+function fire(x,y,ang,spread,power,n,emo){
+  for(let i=0;i<n&&P.length<260;i++){
+    const a=(ang+rnd(-spread/2,spread/2))*Math.PI/180,v=power*rnd(.5,1);
+    const k=Math.random(),shape=k<.2&&emo.length?3:k<.5?0:k<.75?1:2;
+    P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,w:rnd(7,14),h:rnd(5,9),rot:rnd(0,6.28),vr:rnd(-.3,.3),wob:rnd(0,10),ws:rnd(.08,.2),sh:shape,col:PAL[(Math.random()*PAL.length)|0],em:emo[(Math.random()*emo.length)|0]||'⭐',t:0,max:rnd(110,190)});
+  }
+  if(!raf)raf=requestAnimationFrame(tick);
+}
+function tick(){
+  raf=0;if(!cx||!cv.isConnected)return;
+  cx.clearRect(0,0,W,H);
+  for(let i=P.length-1;i>=0;i--){
+    const p=P[i];p.t++;p.vx*=.985;p.vy=p.vy*.985+.24;p.wob+=p.ws;p.x+=p.vx+Math.sin(p.wob)*.8;p.y+=p.vy;p.rot+=p.vr;
+    if(p.t>p.max||p.y>H+40){P.splice(i,1);continue}
+    const al=p.t>p.max-30?(p.max-p.t)/30:1;
+    cx.save();cx.globalAlpha=Math.max(0,al);cx.translate(p.x,p.y);cx.rotate(p.rot);cx.fillStyle=p.col;
+    if(p.sh===0){cx.scale(1,.35+.65*Math.abs(Math.cos(p.wob)));cx.fillRect(-p.w/2,-p.h/2,p.w,p.h)}
+    else if(p.sh===1){cx.beginPath();cx.arc(0,0,p.h*.6,0,6.283);cx.fill()}
+    else if(p.sh===2){star(cx,p.w*.7)}
+    else{cx.font=(p.w*2)+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.em,0,0)}
+    cx.restore();
+  }
+  if(P.length)raf=requestAnimationFrame(tick);else{cv.remove();cv=null}
+}
+function fanfare(){
+  try{if(!window.__ug||D.hidden)return;const a=window._ac||(window._ac=new(window.AudioContext||window.webkitAudioContext)());if(a.state==='suspended')a.resume();
+    [523.25,659.25,783.99,1046.5].forEach((f,i)=>{const o=a.createOscillator(),g=a.createGain(),t=a.currentTime+i*.11;o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.09,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.5);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.55)});
+  }catch(e){}
+  try{navigator.vibrate&&navigator.vibrate([25,40,25])}catch(e){}
+}
+const HIMSG=[[/stamp/i,'नया स्टिकर!','🏅'],[/daily goal/i,'आज का लक्ष्य पूरा!','🎯'],[/sing/i,'बहुत बढ़िया गाना!','🎤'],[/coder/i,'छोटे कोडर, शाबाश!','🤖'],[/path/i,'आज का रास्ता पूरा!','🏆'],[/you are now/i,'बधाई! तुम आगे बढ़ गए!','🚀'],[/explor/i,'वाह, खोजी!','🔬'],[/super/i,'शानदार!','🌟'],[/perfect/i,'बिल्कुल सही!','🌟']];
+let timer=0,cur=null;
+function close(){clearTimeout(timer);if(!cur)return;const c=cur;cur=null;c.classList.remove('on');setTimeout(()=>c.remove(),280)}
+window.__celebrate2=function(msg,ic){
+  try{
+    msg=String(msg||'Great job!');
+    if(cur){cur.remove();cur=null;clearTimeout(timer)}
+    const em=(msg.match(/\p{Extended_Pictographic}/u)||[])[0];
+    const title=msg.replace(/\p{Extended_Pictographic}|[\uFE0F\u200D]/gu,'').replace(/\s+/g,' ').trim()||'Great job!';
+    let hi='शाबाश!',icon=em||'🏆';
+    for(const h of HIMSG){if(h[0].test(title)){hi=h[1];if(!em)icon=h[2];break}}
+    const el=D.createElement('div');el.id='cel2';el.setAttribute('role','status');el.setAttribute('aria-live','polite');
+    el.innerHTML='<div class="bd"></div><div class="rays"></div><div class="cd"><div class="bg" aria-hidden="true"></div><div class="tt"></div><span class="hi" lang="hi"></span><div class="sr2" aria-hidden="true"><i style="--i:0">⭐</i><i style="--i:1">⭐</i><i style="--i:2">⭐</i></div><button type="button" class="ok">Keep going! <span lang="hi">आगे बढ़ो</span></button><div class="bar" aria-hidden="true"><u></u></div></div>';
+    el.querySelector('.bg').textContent=icon;el.querySelector('.tt').textContent=title;el.querySelector('.hi').textContent=hi;
+    const dur=4200;el.style.setProperty('--d',dur+'ms');
+    D.body.appendChild(el);cur=el;requestAnimationFrame(()=>el.classList.add('on'));
+    el.addEventListener('click',close);
+    timer=setTimeout(close,dur);
+    fanfare();
+    if(!RM()){
+      ensure();const emo=(Array.isArray(ic)&&ic.length?ic:['🎉','⭐','🎊','✨','🌈']);
+      const base=H*.9;
+      fire(0,base,-60,50,26,70,emo);fire(W,base,-120,50,26,70,emo);
+      setTimeout(()=>{if(cv){fire(W*.5,H*.35,-90,360,13,60,emo)}},380);
+      setTimeout(()=>{if(cv){fire(0,base,-55,40,30,40,emo);fire(W,base,-125,40,30,40,emo)}},900);
+    }
+  }catch(e){}
+};
 })();
 </script>
 </body>
