@@ -1635,8 +1635,8 @@ D.addEventListener('keydown',e=>{const t=topM();
 const DOM=[['Feelings & friends','भावनाएँ और दोस्त'],['Talking & listening','बोलना और सुनना'],['Thinking & learning','सोच और सीखना'],['Hands & body','हाथ और शरीर']];
 const MS={
 3:[[['Calms down within about 10 minutes after you say goodbye','अलविदा कहने के लगभग 10 मिनट में शांत हो जाता है'],['Notices other children and joins them to play','दूसरे बच्चों को देखकर उनके साथ खेलने लगता है']],
- [['Talks with you in a conversation, at least two turns each','आपसे बातचीत करता है, कम से कम दो-दो बार बोलकर'],['Asks who, what, where or why questions','कौन, क्या, कहाँ या क्यों जैसे सवाल पूछता है'],['Says his or her first name when asked','पूछने पर अपना नाम बताता है'],['Most people can understand most of what is said','ज़्यादातर लोग उसकी बात समझ लेते हैं']],
- [[ 'Draws a circle after you show how','आपके दिखाने पर गोला बनाता है'],['Says what is happening in a picture or book','चित्र या किताब में क्या हो रहा है, बताता है'],['Avoids touching hot things when you warn','चेतावनी देने पर गर्म चीज़ों को नहीं छूता']],
+ [['Talks with you in a conversation, at least two turns each','आपसे बातचीत करता है, कम से कम दो-दो बार बोलकर'],['Asks who, what, where or why questions','कौन, क्या, कहाँ या क्यों जैसे सवाल पूछता है'],['Says his or her first name when asked','पूछने पर अपना नाम बताता है'],['Says what is happening in a picture or book when asked','पूछने पर चित्र या किताब में हो रही क्रिया बताता है'],['Talks clearly enough that most people understand most of the time','इतना साफ़ बोलता है कि ज़्यादातर लोग ज़्यादातर बार समझ लेते हैं']],
+ [[ 'Draws a circle after you show how','आपके दिखाने पर गोला बनाता है'],['Avoids touching hot things when you warn','चेतावनी देने पर गर्म चीज़ों को नहीं छूता']],
  [['Strings large beads or macaroni','बड़े मोती या मैकरोनी धागे में पिरोता है'],['Puts on some clothes alone, like loose pants or a jacket','ढीली पैंट या जैकेट जैसे कुछ कपड़े ख़ुद पहनता है'],['Uses a fork','काँटे का इस्तेमाल करता है']]],
 4:[[['Pretends to be something else, like a teacher, superhero or dog','खेल में शिक्षक, सुपरहीरो या कुत्ता बनने का नाटक करता है'],['Comforts others who are hurt or sad','चोट लगे या उदास बच्चों को दिलासा देता है'],['Likes to be a helper','मददगार बनना पसंद करता है']],
  [['Says sentences with four or more words','चार या ज़्यादा शब्दों के वाक्य बोलता है'],['Says some words from a song, story or rhyme','गाने, कहानी या कविता के कुछ शब्द बोलता है'],['Talks about something that happened in the day','दिन में हुई किसी बात के बारे में बताता है']],
@@ -1657,7 +1657,7 @@ function msHTML(){const ag=msAge||lvlAge();const tot=MS[ag].reduce((a,d)=>a+d.le
  <a class="btn alt" href="https://www.cdc.gov/act-early" target="_blank" rel="noopener">Full CDC checklists ↗</a></div>`}
 const DAY=`<div class="v16c" id="v16day"><h3 style="margin:0 0 4px"><span aria-hidden="true">🌙</span> A healthy day <span lang="hi">सेहतमंद दिन</span></h3><ul>
 <li><b>Move:</b> ages 3 to 4: at least 3 hours of active play spread through the day, with 1 hour of energetic play (WHO). From age 5, about 1 hour of energetic activity daily. <span lang="hi">दिन भर खेलकूद, कम से कम 1 घंटा ज़ोरदार।</span></li>
-<li><b>Screens:</b> no more than 1 hour a day, less is better (WHO). Watch together and talk about it. <span lang="hi">रोज़ 1 घंटे से कम, साथ बैठकर देखें।</span></li>
+<li><b>Screens:</b> ages 3 to 4: no more than 1 hour a day, less is better (WHO). At 5, keep it short and away from bedtime. Watch together and talk about it. <span lang="hi">रोज़ 1 घंटे से कम, साथ बैठकर देखें।</span></li>
 <li><b>Sleep:</b> 10 to 13 hours including naps, at regular times, for ages 3 to 5. <span lang="hi">नींद: 10 से 13 घंटे, झपकी मिलाकर।</span></li></ul>
 <a class="btn alt" href="https://www.who.int/publications/i/item/9789241550536" target="_blank" rel="noopener">WHO guideline ↗</a></div>`;
 const HAB=`<div class="v16c" id="v16hab"><h3 style="margin:0 0 4px"><span aria-hidden="true">💬</span> Five small habits a day <span lang="hi">रोज़ की पाँच आदतें</span></h3><ul>
@@ -2685,7 +2685,11 @@ document.getElementById('tb').addEventListener('click',e=>{if(!e.target.closest(
 (()=>{
 const $=q=>document.querySelector(q);
 /* Space nav icon in the same style as the others */
-window.SPICON=()=>{const c='#14919b';return `<span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,${c},${c}aa);box-shadow:0 3px 0 ${c}66"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 5 6 5 10l-2 3H9l-2-3c0-4 2-8 5-10z"/><circle cx="12" cy="9.5" r="1.6" fill="#fff"/><path d="M7 13l-3 3v3l4-2M17 13l3 3v3l-4-2M10 18c0 2 .5 3 2 4 1.500-1 2-2 2-4"/></svg></span>`};
+window.navX=(k)=>{let m='color';try{m=localStorage.getItem('ip')||'color'}catch(e){}
+const D={space:['M12 2c3 2 5 6 5 10l-2 3H9l-2-3c0-4 2-8 5-10zM12 9.5h.01M7 13l-3 3v3l4-2M17 13l3 3v3l-4-2M10 18c0 2 .5 3 2 4 1.5-1 2-2 2-4','#14919b','🚀'],nums:['M8 6l3-2v15M14 9a3 3 0 1 1 5 2l-5 8h5','#14919b','🔟'],talk:['M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5','#f08a24','💬']}[k];
+const sv=(f,fo,st,z)=>`<svg viewBox="0 0 24 24" width="${z}" height="${z}" fill="${f}" fill-opacity="${fo}" stroke="${st}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${D[0]}"/></svg>`;
+return m=='emoji'?`<span style="font-size:26px;line-height:1.2">${D[2]}</span>`:m=='line'?sv('var(--sun)','.3','currentColor',26):m=='bold'?sv(D[1],'1','currentColor',26):`<span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,${D[1]},${D[1]}aa);box-shadow:0 3px 0 ${D[1]}66">${sv('#fff','.25','#fff',24)}</span>`};
+window.SPICON=()=>navX('space');
 const sp=$('#nav [data-go="#space"] b');if(sp)sp.innerHTML=SPICON();
 const un=$('#nav [data-go="#usa"]');if(un)un.remove();
 /* USA resources live inside Explore */
@@ -3071,7 +3075,8 @@ if(typeof window.speak=='function'){const o=window.speak;let tm=0;const off=()=>
 /* ---------- Talk Time first-view tidy + English tab icon + highlight ---------- */
 const q=$('#tkq');if(q&&q.textContent=='Ready to talk?')q.innerHTML='<div><div style="margin-bottom:10px">Ready to talk?</div><div class="tkhow"><span>👂 Listen</span><span>🎤 Answer</span><span>✨ Improve</span></div></div>';
 const nav=$('#nav');if(nav){const ic='<svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>';
- const fixTab=()=>{const b=nav.querySelector('[data-go="#talk"]');if(b&&!b.dataset.v){b.dataset.v=1;b.style.setProperty('--c','#f08a24');b.style.setProperty('--cb','#f08a2433');const i=b.querySelector('b');if(i)i.innerHTML='<span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#f08a24,#f08a24aa);box-shadow:0 3px 0 #f08a2466">'+ic+'</span>'}};fixTab();new MutationObserver(fixTab).observe(nav,{childList:true});
+ const fixTab=()=>{const b=nav.querySelector('[data-go="#talk"]');if(!b)return;const m=(()=>{try{return localStorage.getItem('ip')||'color'}catch(e){return'color'}})();if(b.dataset.v===m)return;b.dataset.v=m;b.style.setProperty('--c','#f08a24');b.style.setProperty('--cb','#f08a2433');const i=b.querySelector('b');if(i)i.innerHTML=window.navX?navX('talk'):i.innerHTML};
+ fixTab();new MutationObserver(fixTab).observe(nav,{childList:true});
  const tk=$('#talk');if(tk)new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;nav.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.go=='#talk'))},{rootMargin:'-40% 0px -50% 0px'}).observe(tk)}
 })();
 </script>
@@ -3370,15 +3375,10 @@ const tile=(inner,c)=>`<span class="v55t" style="display:grid;place-items:center
 const ROCKET=`<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c3.2 2.6 4.6 6.2 4.2 10.2L14.4 15H9.6l-1.8-2.3C7.4 8.7 8.8 5.1 12 2.5z" fill="#fff" fill-opacity=".28"/><circle cx="12" cy="8.4" r="1.8" fill="#fff"/><path d="M9.6 12.6L6.4 15v3.2l3.2-1.4M14.4 12.6l3.2 2.4v3.2l-3.2-1.4"/><path d="M10.2 15.6L12 21.6l1.8-6" fill="#fff" fill-opacity=".7"/></svg>`;
 const NUM=`<span style="font:700 13px/1 Fredoka,'Trebuchet MS',sans-serif;color:#fff;letter-spacing:-.3px;text-shadow:0 1px 0 #0002">1·2·3</span>`;
 const apply=()=>{
-  const emoji=LS('ip')==='emoji';
-  nav.querySelectorAll('[data-go="#nums"] > b').forEach(b=>{
-    if(b.querySelector('.v55t')||(emoji&&b.textContent.trim()))return;
-    b.innerHTML=emoji?'🔢':tile(NUM,'#2f5bd0');
-  });
-  nav.querySelectorAll('[data-go="#space"] > b').forEach(b=>{
-    if(b.querySelector('.v55t')||(emoji&&b.textContent.trim()))return;
-    b.innerHTML=emoji?'🚀':tile(ROCKET,'#14919b');
-  });
+  const m=LS('ip')||'color';
+  [['#nums','nums'],['#space','space']].forEach(p=>nav.querySelectorAll('[data-go="'+p[0]+'"] > b').forEach(b=>{
+    if(b.dataset.m===m)return;b.dataset.m=m;b.innerHTML=window.navX?navX(p[1]):b.innerHTML;
+  }));
 };
 apply();
 new MutationObserver(apply).observe(nav,{childList:true,subtree:true});
@@ -3741,7 +3741,7 @@ const top0=()=>{if(!pm)return;pm.scrollTop=0;const mb=pm.querySelector('.mbox');
 const settle=()=>{const c=document.getElementById('pcl');if(c)try{c.focus({preventScroll:true})}catch(e){}top0()};
 if(pm){
   new MutationObserver(()=>{if(!pm.hidden){[0,80,250,700,1200].forEach(t=>setTimeout(()=>{if(!pm.hidden){settle()}},t))}}).observe(pm,{attributes:true,attributeFilter:['hidden']});
-  new MutationObserver(()=>{if(!pm.hidden)top0()}).observe(pm,{childList:true,subtree:true});
+  /* v66: removed the childList observer that reset scroll on every refresh */
 }
 /* 2. v65: Hindi under EVERY English label (headings, descriptions, buttons, tabs, nav, settings).
    Uses a data-hi attribute + CSS ::after, so button/heading text is never changed (speech and game logic stay safe). */
@@ -3883,5 +3883,12 @@ window.__celebrate2=function(msg,ic){
 };
 })();
 </script>
+<style id="v66">
+/* v66: Child development jump tabs wrap and never clip; bold-theme nav polish */
+#pm .v16jump{display:flex;flex-wrap:wrap;overflow:visible;gap:8px;padding:6px 0}
+#pm #pb .v16jump .lv{flex:0 0 auto;max-width:100%;overflow:visible;text-overflow:clip;white-space:normal;line-height:1.15;padding:10px 14px}
+#nav .nv b{display:grid;place-items:center;min-height:38px}
+#nav .nv b svg{display:block;overflow:visible}
+</style>
 </body>
 </html>
