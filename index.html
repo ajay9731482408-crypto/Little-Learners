@@ -3676,5 +3676,60 @@ const C=[['mu','🎵','Music <span lang="hi">संगीत</span>','background
 if(rows)rows.innerHTML=C.map(r=>`<button class="mrow" data-src="${r[0]}" style="--c:${r[4]};--c2:${r[5]}"><span class="mi" aria-hidden="true">${r[1]}</span><span class="mt"><b>${r[2]}</b><small>${r[3]}</small></span><span class="ms" data-state="${r[0]}"></span><span class="go" aria-hidden="true">›</span></button>`).join('');
 })();
 </script>
+<style id="v64">
+/* Bilingual labels: Hindi appears under English headings and buttons when "English + हिन्दी" is on. */
+.i18n-hi{font-family:Nunito,system-ui,'Noto Sans Devanagari',sans-serif;font-weight:700;opacity:.8}
+h2 .i18n-hi,.nv .i18n-hi{display:block;font-size:.5em;line-height:1.2;margin-top:2px}
+.nv .i18n-hi{font-size:10px}
+button .i18n-in{font-size:.8em;opacity:.8;margin-left:4px}
+/* Grown-ups panel opens at the top of the sheet */
+#pm.mod{place-items:start center}
+#pm .mbox{margin:24px auto}
+@media(max-width:640px){#pm.mod{place-items:end center}#pm .mbox{margin:0}}
+</style>
+<script>
+/* v64: (1) the grown-ups panel opens at the top, not wherever the focus lands; (2) Hindi labels for headings, navigation and buttons. */
+(()=>{
+const $=s=>document.querySelector(s);
+/* 1. grown-ups panel: keep focus on Close so the sheet does not scroll to the name field */
+const pm=document.getElementById('pm');
+const top0=()=>{if(!pm)return;pm.scrollTop=0;const mb=pm.querySelector('.mbox');if(mb)mb.scrollTop=0};
+const settle=()=>{const c=document.getElementById('pcl');if(c)try{c.focus({preventScroll:true})}catch(e){}top0()};
+if(pm){
+  new MutationObserver(()=>{if(!pm.hidden){[0,80,250,700,1200].forEach(t=>setTimeout(()=>{if(!pm.hidden){settle()}},t))}}).observe(pm,{attributes:true,attributeFilter:['hidden']});
+  new MutationObserver(()=>{if(!pm.hidden)top0()}).observe(pm,{childList:true,subtree:true});
+}
+/* 2. Hindi translations of the English labels */
+const HI={
+ 'Hello, friend!':'नमस्ते दोस्त!','Grown-up PIN':'बड़ों का पिन','Pick a world':'दुनिया चुनो','Story theatre':'कहानी मंच',
+ 'Study studio':'पढ़ाई का स्टूडियो','Write A to Z':'A से Z तक लिखो','Write numbers':'संख्याएँ लिखो','Maths':'गणित',
+ 'Maths tables':'पहाड़े','NCERT path':'एनसीईआरटी पथ','Puzzle time':'पहेली का समय','Rhymes & songs':'कविता और गीत',
+ 'Magic paint':'जादुई रंग','My stamps':'मेरे स्टिकर','For grown-ups':'बड़ों के लिए','Explore & discover':'खोजो और जानो',
+ 'Grown-ups':'बड़ों के लिए','Menu':'मेनू','Settings':'सेटिंग्स','Language':'भाषा','Music':'संगीत','Colour theme':'रंग',
+ 'Dark mode':'डार्क मोड','Child lock':'बच्चा लॉक','Worlds':'दुनिया','Stories':'कहानियाँ','Write':'लिखना','NCERT':'एनसीईआरटी',
+ 'Play':'खेल','Rhymes':'कविता','Paint':'रंग','Stamps':'स्टिकर','Talk':'बातचीत','Parents':'माता-पिता','Numbers':'संख्याएँ',
+ 'Tables':'पहाड़े','Speak':'बोलो','Time':'समय','Fast':'तेज़','English':'अंग्रेज़ी','Close':'बंद करें','Start':'शुरू करें',
+ 'Next':'अगला','Back':'वापस','Check':'जाँचो','Watch':'देखो','Clear':'मिटाओ','Quiz me':'मुझसे पूछो','Test me':'मेरी परीक्षा लो',
+ 'Say the time':'समय बोलो','Count':'गिनो','Listen':'सुनो','Lock app':'ऐप लॉक करें','Reset progress':'प्रगति मिटाएँ',
+ 'Share weekly report':'साप्ताहिक रिपोर्ट भेजें'
+};
+const clean=t=>t.replace(/[\p{Extended_Pictographic}️‍]/gu,'').replace(/\s+/g,' ').trim();
+const ownText=el=>[...el.childNodes].filter(n=>n.nodeType===3).map(n=>n.nodeValue).join('');
+const SEL='h2,.nv,button.btn,button.alt,button.lv';
+const run=()=>{
+  document.querySelectorAll(SEL).forEach(el=>{
+    if(el.querySelector(':scope > [lang="hi"]'))return;
+    const en=clean(ownText(el));
+    const hi=HI[en];if(!hi)return;
+    const s=document.createElement('span');
+    s.lang='hi';s.className=el.tagName==='H2'||el.classList.contains('nv')?'i18n-hi':'i18n-hi i18n-in';
+    s.textContent=hi;el.appendChild(s);
+  });
+};
+let raf=0;const later=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;run()})};
+run();
+new MutationObserver(later).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
 </body>
 </html>
