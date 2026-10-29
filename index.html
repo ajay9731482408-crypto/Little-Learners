@@ -473,6 +473,49 @@ const f=document.getElementById('flow');if(f){f.insertAdjacentHTML('afterbegin',
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js" defer></script>
+<style id="anime-fx">
+.an-hide{opacity:0}
+#nav .nv{will-change:transform}
+.mrow,.thc{will-change:transform}
+@media (prefers-reduced-motion:reduce){.an-hide{opacity:1!important}}
+</style>
+<script id="anime-fx-js">
+/* Anime.js (v4.5.0, MIT, github.com/juliangarnier/anime): staggered entrances,
+   spring-like owl hop, and a tap pulse on cards. Skipped for reduced motion and
+   when the library cannot load, so the page keeps working without it. */
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ready(f){ if(window.anime){f();return} var n=0,t=setInterval(function(){ if(window.anime||++n>60){clearInterval(t); if(window.anime)f()} },100); }
+  ready(function(){
+    if(reduce) return;
+    var A=window.anime, animate=A.animate||A.animate, stagger=A.stagger;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var items=e.target.querySelectorAll(':scope > .tile, :scope > .stamp, :scope > .mrow, :scope > .thc, :scope > .wx, :scope > .plc');
+        if(!items.length) return;
+        animate(items,{opacity:[0,1],translateY:[18,0],scale:[.96,1],delay:stagger(55),duration:520,ease:'outBack'});
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.grid,.wgrid,.wg,.usg').forEach(function(g){io.observe(g)});
+
+    var owl=document.getElementById('owl');
+    if(owl){
+      owl.addEventListener('click',function(){
+        animate(owl,{translateY:[0,-14,0],scale:[1,1.12,1],rotate:[0,-6,0],duration:620,ease:'outElastic(1,.5)'});
+      });
+    }
+
+    document.addEventListener('click',function(e){
+      var b=e.target.closest && e.target.closest('.btn,.lv,.tile,.wx');
+      if(!b) return;
+      animate(b,{scale:[.94,1],duration:380,ease:'outBack'});
+    },true);
+  });
+})();
+</script>
 
 
 <script>
@@ -4191,6 +4234,18 @@ W.speak=(t,cb,r,p)=>speak(t,cb,r,p);
 W.stopSpeech=stopSpeech;
 
 /* every direct speechSynthesis.speak() in the app (Hindi, Time world...) also gets the right voice */
+/* British English voice everywhere; "Superb!" is always a girl */
+const FEMV=/female|libby|sonia|hazel|serena|kate|martha|susan|fiona|moira|tessa|karen|samantha|aria|jenny|ava|olivia|amy|emma|mia|sara/i,MALV=/\bmale\b|daniel|george|ryan|oliver|arthur|thomas|james|guy|david|mark/i;
+function britVoice(girl){
+  try{
+    const all=sy.getVoices(),vs=all.filter(v=>/^en[-_]gb$/i.test(v.lang)&&!BAD.test(v.name));
+    if(!vs.length)return null;
+    if(!girl){const saved=LSg('vn')||LSg('sv');if(saved&&all.some(v=>v.name===saved))return null}
+    let wantF=true;if(!girl){try{wantF=VK[vk][3]=='f'}catch(e){}}
+    const sc=v=>(FEMV.test(v.name)&&!MALV.test(v.name)?(wantF?40:-40):MALV.test(v.name)?(wantF?-40:40):0)+(NAT.test(v.name)?60:0)+(/google/i.test(v.name)?30:0)+(v.localService?0:5);
+    return vs.slice().sort((a,b)=>sc(b)-sc(a))[0];
+  }catch(e){return null}
+}
 let hindiWarned=false;
 if(sy){
   const orig=sy.speak.bind(sy);
@@ -4203,9 +4258,12 @@ if(sy){
         else if(!hindiWarned){hindiWarned=true;toast('Hindi voice not found. Open Menu → Sound check to fix it.')}
         u.rate=clamp(u.rate||.85,.65,.95);u.pitch=1;
       }else if(l.startsWith('en')){
-        const v=bestVoice('en');
-        if(v&&(!u.voice||vscore(u.voice,'en-in')<vscore(v,'en-in'))){u.voice=v;u.lang=v.lang}
-        u.pitch=clamp(u.pitch||1,.8,1.1);
+        const sb=/^\s*superb\b/i.test(u.text||''),gb=britVoice(sb);
+        if(gb){u.voice=gb;u.lang=gb.lang}
+        else{const v=bestVoice('en');
+        if(v&&(!u.voice||vscore(u.voice,'en-in')<vscore(v,'en-in'))){u.voice=v;u.lang=v.lang}}
+        u.pitch=sb?1.25:clamp(u.pitch||1,.8,1.1);
+        if(sb)u.rate=.9;
       }
     }catch(e){}
     return orig(u);
@@ -4919,5 +4977,32 @@ html[data-skin=Space]:not([data-theme=dark]) body{color:var(--ink)}
 .thn{white-space:nowrap}
 @media(prefers-reduced-motion:reduce){html body,.box,#nav,.btn,.sh,.mrow,#hmenu .sheet,.thc{transition:none}}
 </style>
+<script id="superb-hook">
+/* A girl says "Superb!" after every correct answer in every section (letters, numbers, explore, days/weeks/months, games...) */
+(function(){
+ var sy=window.speechSynthesis;if(!sy)return;
+ var sup=0,armT=0,lastSup=0;
+ var o=window.speak;
+ if(typeof o=='function'&&!o.sb){
+  var n=function(t,cb,r,p,opt){
+   var s=String(t==null?'':t).replace(/\bSuper\b(?=\s*(!|$))/g,'Superb');
+   if(/^\s*Superb[!.]?\s*$/.test(s)){if(Date.now()-lastSup<900){cb&&setTimeout(cb,0);return}s='Superb!';lastSup=Date.now()}
+   else if(sup){sup=0;clearTimeout(armT);s=s.replace(/^\s*(Good|Great|Super|Superb)(\s+job)?!\s*/i,'');if(!/superb/i.test(s)){s='Superb! '+s;lastSup=Date.now()}}
+   return o.call(this,s,cb,r,p,opt)};
+  n.sb=1;window.speak=n;try{speak=n}catch(e){}
+ }
+ function arm(){sup=1;clearTimeout(armT);armT=setTimeout(function(){
+  if(!sup)return;sup=0;
+  try{if(localStorage.getItem('vo')==='0'||!window.__ug)return}catch(e){}
+  lastSup=Date.now();
+  try{
+   if(window.__kokOn&&window.__kokOn()){window.speak('Superb!');return}
+   var u=new SpeechSynthesisUtterance('Superb!');u.lang='en-GB';sy.speak(u);
+  }catch(e){}
+ },350)}
+ var a=window.addPts;
+ if(typeof a=='function'&&!a.sb){var h=function(){var r=a.apply(this,arguments);arm();return r};h.sb=1;try{addPts=h}catch(e){}window.addPts=h}
+})();
+</script>
 </body>
 </html>
