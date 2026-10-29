@@ -33,7 +33,7 @@ html[data-ui=en] #bootsp [lang=hi]{display:none!important}
 @keyframes btip{0%{opacity:0;transform:translateY(6px)}8%,30%{opacity:1;transform:none}38%,100%{opacity:0}}
 @keyframes bfl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(12deg)}}
 @media(prefers-reduced-motion:reduce){#bootsp *{animation:none!important}#bootsp .tp p:first-child{opacity:1}}</style>
-<script>document.documentElement.classList.add('boot');try{if(localStorage.getItem('uiL3')==='en')document.documentElement.dataset.ui='en'}catch(e){}setTimeout(function(){window.__bootDone&&window.__bootDone()},1800);</script>
+<script>document.documentElement.classList.add('boot');try{if(localStorage.getItem('uiL3')!=='both')document.documentElement.dataset.ui='en'}catch(e){}setTimeout(function(){window.__bootDone&&window.__bootDone()},1800);</script>
 <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"><link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"><link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"><link rel="preconnect" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://cdn.jsdelivr.net">
 <script>(function(){var si=window.setInterval,P={1500:1,2000:1,2500:1,3000:1};window.setInterval=function(f,t){var a=[].slice.call(arguments,2);if(typeof f==='function'&&P[t])return si.apply(window,[function(){if(!document.hidden)f.apply(this,a)},t]);return si.apply(window,arguments)}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -163,8 +163,7 @@ body.locked #grown,body.locked #sk,body.locked #tm{display:none}
 .tile{min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:transform .15s}.tile:active{transform:scale(.96) translateY(3px)}.tile i{font-style:normal;font-size:64px;line-height:1}
 #lyr span{display:block;font-size:22px;margin:4px 0;transition:transform .2s,background .2s}#lyr span.now{background:#fff3b0;color:#2a2438;transform:scale(1.05)}
 @media(prefers-reduced-motion:reduce){.stamp,.tile{animation:none!important}}
-</style><style id="v27css">.skn{display:flex;gap:10px;justify-content:center;width:100%;margin-bottom:6px}.skn button{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--line);cursor:pointer}
-.spl{display:inline-flex;gap:5px}.spl u{text-decoration:none;display:inline-block;min-width:34px;padding:2px 6px;border-radius:10px;background:#fff;color:#e8604c;font:700 26px Fredoka,sans-serif;box-shadow:0 3px 0 #0002}.spl u:nth-child(2n){color:#2f5bd0}.spl u:nth-child(3n){color:#4c9a52}
+</style><style id="v27css">.spl{display:inline-flex;gap:5px}.spl u{text-decoration:none;display:inline-block;min-width:34px;padding:2px 6px;border-radius:10px;background:#fff;color:#e8604c;font:700 26px Fredoka,sans-serif;box-shadow:0 3px 0 #0002}.spl u:nth-child(2n){color:#2f5bd0}.spl u:nth-child(3n){color:#4c9a52}
 #ec{text-align:center;font-size:18px}#es .dp{cursor:pointer}#es .dp:hover,#es .dp.hit{filter:brightness(1.08) drop-shadow(0 0 5px #f2b624)}</style><style id="v29css">#tb{position:relative}.tt .w{display:inline-block;border-radius:8px;padding:0 2px;transition:background .15s,transform .15s;cursor:pointer}.tt .w.on{background:#fff3b0;color:#2a2438;transform:scale(1.1)}
 .dots{display:flex;gap:8px;justify-content:center;margin:8px 0}.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}.dots i.on{background:#e8604c;transform:scale(1.3)}.dots i.dn{background:#7fae6b}
 .pet{position:absolute;right:10px;bottom:44px;font-size:40px;line-height:1;background:none;border:0;cursor:pointer;padding:4px}.pet span{position:absolute;right:48px;top:-6px;background:#fff;color:#2a2438;border-radius:14px;padding:2px 10px;font:700 14px Fredoka,sans-serif;white-space:nowrap;opacity:0;transition:opacity .2s;box-shadow:0 2px 6px #0003}.pet span.on{opacity:1}</style><style id="wl">
@@ -417,7 +416,7 @@ const f=document.getElementById('flow');if(f){f.insertAdjacentHTML('afterbegin',
 .sh small{font:700 13px Nunito,sans-serif;background:#fff9;border-radius:999px;padding:2px 10px}.sh h3{font-size:30px;margin:8px 0 4px;max-width:55%}.sh p{font-size:15px;max-width:52%}
 .sg{position:absolute;right:14px;top:14px;display:flex;align-items:flex-end;gap:4px;z-index:1}
 .sg b{font:700 130px/1 Fredoka,sans-serif;color:#f6c21c;text-shadow:0 2px #c98f00,0 4px #c98f00,0 6px #c98f00,0 8px 10px #0003}
-.sg i{font-style:normal;font-size:78px;margin-left:-26px;animation:sbob 2s ease-in-out infinite}@keyframes sbob{50%{transform:translateY(-8px)}}
+.sg i{font-style:normal;font-size:78px;margin-left:-26px;animation:sbob 2s ease-in-out infinite}@keyframes sbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .sh .er{position:relative;z-index:1;font-size:34px;line-height:1.25;margin-top:10px;max-width:100%;word-break:break-all}
 .sc{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:14px;margin-top:12px;text-align:left}
 .sc h4{font:700 20px Fredoka,sans-serif}.sc>small{opacity:.75;font-size:14px}
@@ -514,7 +513,20 @@ const shuf=a=>[...a].sort(()=>Math.random()-.5),pick=(a,n)=>shuf(a).slice(0,n);
 const AV=['🦊','🐼','🦁','🐸','🐙','🦄'],LV=['Nursery','LKG','UKG'];
 let av=LS('a')||AV[0],lv=LS('l')||'LKG',name=LS('n')||'',pts=+LS('p')||0;
 const BG=['#e8604c','#2f5bd0','#4c9a52','#8a4fc7','#a85f00','#0f8f9c'];
-const WORLDS=[['🐄','Farm',[['🐄','cow'],['🐖','pig'],['🐑','sheep'],['🐴','horse'],['🦆','duck'],['🐐','goat']]],['🐠','Ocean',[['🐠','fish'],['🐙','octopus'],['🐬','dolphin'],['🦀','crab'],['🐢','turtle'],['🐋','whale']]],['🦁','Jungle',[['🦁','lion'],['🐒','monkey'],['🐘','elephant'],['🦒','giraffe'],['🐍','snake'],['🦜','parrot']]],['🚀','Space',[['🚀','rocket'],['🌙','moon'],['⭐','star'],['🪐','planet'],['👩‍🚀','astronaut'],['☄️','comet']]],['🍎','Fruits',[['🍎','apple'],['🍌','banana'],['🍇','grapes'],['🍓','strawberry'],['🍊','orange'],['🍉','watermelon']]],['🚒','Helpers',[['🚒','fire truck'],['🚓','police car'],['🚑','ambulance'],['✈️','airplane'],['🚜','tractor'],['🚌','bus']]]];
+const WORLDS=[['🐄','Farm',[['🐄','cow'],['🐖','pig'],['🐑','sheep'],['🐴','horse'],['🦆','duck'],['🐐','goat']]],['🐠','Ocean',[['🐠','fish'],['🐙','octopus'],['🐬','dolphin'],['🦀','crab'],['🐢','turtle'],['🐋','whale']]],['🦁','Jungle',[['🦁','lion'],['🐒','monkey'],['🐘','elephant'],['🦒','giraffe'],['🐍','snake'],['🦜','parrot']]],['🚀','Space',[['🚀','rocket'],['🌙','moon'],['⭐','star'],['🪐','planet'],['👩‍🚀','astronaut'],['☄️','comet']]],['🍎','Fruits',[['🍎','apple'],['🍌','banana'],['🍇','grapes'],['🍓','strawberry'],['🍊','orange'],['🍉','watermelon'],['🥭','mango'],['🍍','pineapple'],['🍒','cherry'],['🍑','peach'],['🍋','lemon'],['🍐','pear']]],['🚒','Helpers',[['🚒','fire truck'],['🚓','police car'],['🚑','ambulance'],['✈️','airplane'],['🚜','tractor'],['🚌','bus']]],['🥕','Vegetables',[['🥕','carrot'],['🍅','tomato'],['🥔','potato'],['🌽','corn'],['🥦','broccoli'],['🧅','onion'],['🧄','garlic'],['🥒','cucumber'],['🍆','brinjal'],['🌶️','chilli'],['🍄','mushroom'],['🥬','lettuce'],['🎃','pumpkin'],['🫑','capsicum']]],['🌸','Flowers',[['🌹','rose'],['🌻','sunflower'],['🌷','tulip'],['🪷','lotus'],['🌺','hibiscus'],['🌸','cherry blossom'],['🌼','marigold'],['💐','bouquet']]],['🐶','Pets',[['🐶','dog'],['🐱','cat'],['🐰','rabbit'],['🐹','hamster'],['🐟','pet fish'],['🐦','little bird'],['🐭','mouse']]],['🐯','Wild animals',[['🐯','tiger'],['🐻','bear'],['🐺','wolf'],['🦊','fox'],['🦓','zebra'],['🦌','deer'],['🦘','kangaroo'],['🐼','panda'],['🦏','rhino'],['🦛','hippo'],['🐪','camel'],['🐨','koala']]],['🦚','Birds',[['🦚','peacock'],['🦉','owl'],['🦅','eagle'],['🦢','swan'],['🐧','penguin'],['🦩','flamingo'],['🐔','hen'],['🕊️','dove']]],['🦋','Bugs',[['🦋','butterfly'],['🐝','bee'],['🐞','ladybird'],['🐜','ant'],['🕷️','spider'],['🐌','snail'],['🦟','mosquito'],['🐛','caterpillar']]],['🚗','Road transport',[['🚗','car'],['🚌','school bus'],['🚂','train'],['🚲','bicycle'],['🏍️','motorbike'],['🛺','auto rickshaw'],['🚕','taxi'],['🚚','truck'],['🛵','scooter'],['🚇','metro']]],['⛵','Water transport',[['⛵','boat'],['🚢','ship'],['🛶','canoe'],['🚤','speedboat'],['⛴️','ferry']]],['✈️','Sky transport',[['✈️','aeroplane'],['🚁','helicopter'],['🚀','rocket ship'],['🪂','parachute'],['🚠','cable car'],['🛸','flying saucer']]]];
+BG.push('#d6336c','#1c7ed6','#2b8a3e','#e67700','#7048e8','#0b7285','#c2255c','#364fc7','#087f5b','#9c36b5','#d9480f','#1971c2','#2f9e44','#f03e3e','#6741d9');
+window.HW={apple:'सेब',banana:'केला',grapes:'अंगूर',strawberry:'स्ट्रॉबेरी',orange:'संतरा',watermelon:'तरबूज',mango:'आम',pineapple:'अनानास',cherry:'चेरी',peach:'आड़ू',lemon:'नींबू',pear:'नाशपाती',
+carrot:'गाजर',tomato:'टमाटर',potato:'आलू',corn:'मक्का',broccoli:'ब्रोकली',onion:'प्याज',garlic:'लहसुन',cucumber:'खीरा',brinjal:'बैंगन',chilli:'मिर्च',mushroom:'खुंभी',lettuce:'सलाद पत्ता',pumpkin:'कद्दू',capsicum:'शिमला मिर्च',
+rose:'गुलाब',sunflower:'सूरजमुखी',tulip:'ट्यूलिप',lotus:'कमल',hibiscus:'गुड़हल','cherry blossom':'चेरी का फूल',marigold:'गेंदा',bouquet:'गुलदस्ता',
+dog:'कुत्ता',cat:'बिल्ली',rabbit:'खरगोश',hamster:'हैमस्टर','pet fish':'मछली','little bird':'चिड़िया',mouse:'चूहा',
+tiger:'बाघ',bear:'भालू',wolf:'भेड़िया',fox:'लोमड़ी',zebra:'ज़ेबरा',deer:'हिरन',kangaroo:'कंगारू',panda:'पांडा',rhino:'गैंडा',hippo:'दरियाई घोड़ा',camel:'ऊँट',koala:'कोआला',
+peacock:'मोर',owl:'उल्लू',eagle:'गरुड़',swan:'हंस',penguin:'पेंगुइन',flamingo:'फ्लेमिंगो',hen:'मुर्गी',dove:'कबूतर',
+butterfly:'तितली',bee:'मधुमक्खी',ladybird:'लेडीबर्ड',ant:'चींटी',spider:'मकड़ी',snail:'घोंघा',mosquito:'मच्छर',caterpillar:'इल्ली',
+car:'कार','school bus':'स्कूल बस',train:'रेलगाड़ी',bicycle:'साइकिल',motorbike:'मोटरसाइकिल','auto rickshaw':'ऑटो रिक्शा',taxi:'टैक्सी',truck:'ट्रक',scooter:'स्कूटर',metro:'मेट्रो',
+boat:'नाव',ship:'जहाज़',canoe:'डोंगी',speedboat:'स्पीडबोट',ferry:'फेरी',
+aeroplane:'हवाई जहाज़',helicopter:'हेलीकॉप्टर','rocket ship':'रॉकेट',parachute:'पैराशूट','cable car':'केबल कार','flying saucer':'उड़न तश्तरी',
+cow:'गाय',pig:'सुअर',sheep:'भेड़',horse:'घोड़ा',duck:'बत्तख',goat:'बकरी',fish:'मछली',octopus:'ऑक्टोपस',dolphin:'डॉल्फ़िन',crab:'केकड़ा',turtle:'कछुआ',whale:'व्हेल',lion:'शेर',monkey:'बंदर',elephant:'हाथी',giraffe:'जिराफ़',snake:'साँप',parrot:'तोता',
+rocket:'रॉकेट',moon:'चाँद',star:'तारा',planet:'ग्रह',astronaut:'अंतरिक्ष यात्री',comet:'धूमकेतु','fire truck':'दमकल','police car':'पुलिस की गाड़ी',ambulance:'एम्बुलेंस',airplane:'हवाई जहाज़',tractor:'ट्रैक्टर',bus:'बस'};
 const RH=[['Twinkle, Twinkle','⭐',['Twinkle, twinkle, little star,','How I wonder what you are!','Up above the world so high,','Like a diamond in the sky.']],['Baa, Baa, Black Sheep','🐑',['Baa, baa, black sheep, have you any wool?','Yes sir, yes sir, three bags full.','One for the master, one for the dame,','And one for the little boy who lives down the lane.']],['Itsy Bitsy Spider','🕷️',['The itsy bitsy spider climbed up the waterspout.','Down came the rain and washed the spider out.','Out came the sun and dried up all the rain,','And the itsy bitsy spider climbed up the spout again.']],['Humpty Dumpty','🥚',['Humpty Dumpty sat on a wall,','Humpty Dumpty had a great fall.','All the king’s horses and all the king’s men','Couldn’t put Humpty together again.']],['Jack and Jill','⛰️',['Jack and Jill went up the hill','To fetch a pail of water.','Jack fell down and broke his crown,','And Jill came tumbling after.']]];
 /* rhymes by class: 4th item = Nursery / LKG / UKG */
 ['Nursery','Nursery','Nursery','LKG','LKG'].forEach((c,k)=>{RH[k][3]=c});RH.push(...[["Rain, Rain, Go Away","🌧️",["Rain, rain, go away,","Come again another day.","Little children want to play,","Rain, rain, go away."],"Nursery"],["Row, Row, Row Your Boat","🚣",["Row, row, row your boat,","Gently down the stream.","Merrily, merrily, merrily, merrily,","Life is but a dream."],"Nursery"],["Pat-a-Cake","🧁",["Pat-a-cake, pat-a-cake, baker’s man,","Bake me a cake as fast as you can.","Pat it and prick it and mark it with B,","And put it in the oven for baby and me."],"Nursery"],["Hickory Dickory Dock","🕰️",["Hickory, dickory, dock,","The mouse ran up the clock.","The clock struck one, the mouse ran down,","Hickory, dickory, dock."],"Nursery"],["ABC Song","🔤",["A B C D E F G,","H I J K L M N O P,","Q R S, T U V, W X Y and Z,","Now I know my ABCs, next time won’t you sing with me?"],"Nursery"],["Head, Shoulders, Knees and Toes","🙆",["Head, shoulders, knees and toes, knees and toes,","Head, shoulders, knees and toes, knees and toes,","Eyes and ears and mouth and nose,","Head, shoulders, knees and toes, knees and toes."],"Nursery"],["One, Two, Three, Four, Five","🖐️",["One, two, three, four, five,","Once I caught a fish alive.","Six, seven, eight, nine, ten,","Then I let it go again."],"Nursery"],["Mary Had a Little Lamb","🐏",["Mary had a little lamb,","Its fleece was white as snow.","And everywhere that Mary went,","The lamb was sure to go."],"LKG"],["Little Miss Muffet","🕸️",["Little Miss Muffet sat on a tuffet,","Eating her curds and whey.","Along came a spider who sat down beside her","And frightened Miss Muffet away."],"LKG"],["Jack Be Nimble","🕯️",["Jack be nimble, Jack be quick,","Jack jump over the candlestick."],"LKG"],["Hey Diddle Diddle","🐄",["Hey diddle diddle, the cat and the fiddle,","The cow jumped over the moon.","The little dog laughed to see such fun,","And the dish ran away with the spoon."],"LKG"],["Pussy Cat, Pussy Cat","🐱",["Pussy cat, pussy cat, where have you been?","I’ve been to London to visit the queen.","Pussy cat, pussy cat, what did you there?","I frightened a little mouse under her chair."],"LKG"],["Hot Cross Buns","🍞",["Hot cross buns, hot cross buns,","One a penny, two a penny,","Hot cross buns."],"LKG"],["Old MacDonald","🚜",["Old MacDonald had a farm, E-I-E-I-O.","And on his farm he had a cow, E-I-E-I-O.","With a moo moo here, and a moo moo there,","Here a moo, there a moo, everywhere a moo moo."],"LKG"],["Colours of the Rainbow","🌈",["Red and orange, yellow, green,","Blue, indigo, violet seen.","Seven colours in the sky,","Rainbow, rainbow, shining high!"],"LKG"],["London Bridge","🌉",["London Bridge is falling down,","Falling down, falling down.","London Bridge is falling down,","My fair lady."],"UKG"],["Little Bo Peep","🐑",["Little Bo Peep has lost her sheep,","And doesn’t know where to find them.","Leave them alone, and they’ll come home,","Wagging their tails behind them."],"UKG"],["Mary, Mary, Quite Contrary","🌷",["Mary, Mary, quite contrary,","How does your garden grow?","With silver bells and cockle shells,","And pretty maids all in a row."],"UKG"],["One, Two, Buckle My Shoe","👟",["One, two, buckle my shoe.","Three, four, knock at the door.","Five, six, pick up sticks.","Seven, eight, lay them straight.","Nine, ten, a big fat hen."],"UKG"],["Little Jack Horner","🥧",["Little Jack Horner sat in a corner,","Eating his Christmas pie.","He put in his thumb and pulled out a plum,","And said, “What a good boy am I!”"],"UKG"],["Sing a Song of Sixpence","🐦",["Sing a song of sixpence, a pocket full of rye,","Four and twenty blackbirds baked in a pie.","When the pie was opened, the birds began to sing,","Wasn’t that a dainty dish to set before the king?"],"UKG"],["Days of the Week","📅",["Monday, Tuesday, Wednesday, hey!","Thursday, Friday, we learn and play.","Saturday, Sunday, rest and fun,","Seven days, now the week is done!"],"UKG"],["Four Seasons","🍂",["Spring brings flowers, bright and new,","Summer skies are warm and blue.","Autumn leaves fall red and gold,","Winter days are crisp and cold."],"UKG"]]);
@@ -546,7 +558,7 @@ $('#av').onclick=e=>{const b=e.target.closest('button');if(b){av=b.textContent;[
 $('#lv').onclick=e=>{const b=e.target.closest('button');if(b){lv=b.textContent;[...$('#lv').children].forEach(x=>x.setAttribute('aria-pressed',x==b))}};
 $('#go').onclick=()=>{name=$('#nm').value.trim()||'Friend';LS('n',name);LS('a',av);LS('l',lv);$('#s1').hidden=true;$('#s2').hidden=false;$('#pn').focus()};
 $('#go2').onclick=async()=>{const v=$('#pn').value;if(!/^\d{4}$/.test(v)){$('#pne').textContent='Please enter 4 digits';return}LS('pin',await H(v));LS('d','1');closeFlow(true)};
-function closeFlow(first){hud();gsap.to('#flow',{opacity:0,duration:.5,onComplete:()=>{$('#flow').hidden=true;intro();if(first){openChat();say(`Hello ${name}! I am Professor Owl. What is your favourite animal?`)}}})}
+function closeFlow(first){hud();gsap.to('#flow',{opacity:0,duration:.5,onComplete:()=>{$('#flow').hidden=true;try{window.__tkRefresh&&window.__tkRefresh()}catch(e){}intro();if(first){openChat();say(`Hello ${name}! I am Professor Owl. What is your favourite animal?`)}}})}
 $('#ttl').innerHTML=[...'Little Learners'].map(c=>c==' '?'<br>':`<span aria-hidden="true">${c}</span>`).join('');
 function intro(){gsap.from('#ttl span',{y:-140,opacity:0,rotation:()=>gsap.utils.random(-40,40),duration:1.1,ease:'bounce.out',stagger:.06});gsap.from('.hc p,.hc .btn',{y:30,opacity:0,delay:.9,duration:.7,stagger:.15})}
 if(LS('d')){$('#flow').hidden=true;hud();intro()}
@@ -716,7 +728,7 @@ $('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(v){$('
 $('#cm').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return say('Type your words, please!');const r=new SR();r.lang='en-US';r.onresult=e=>ask(e.results[0][0].transcript);r.onerror=()=>say('I could not hear you. Try again!');speechSynthesis&&speechSynthesis.cancel();r.start()};
 
 // Skins, wallpaper, festivals
-const SK=[['🍬','Candy','#e8604c','#bfe3f5','#2a2438',0xbfe3f5,0xe8604c,0xf2b624,['🍬','🍭','🧁','🎈','⭐','🌈']],['🌊','Ocean','#3fb7e8','#a9e3f2','#12324a',0xa9e3f2,0x2f5bd0,0x3fb7e8,['🐠','🐙','🫧','🐬','🐚','🌊']],['🚀','Space','#b58cff','#1d1a4a','#fff6e0',0x1d1a4a,0xb58cff,0xffd166,['🚀','⭐','🪐','🌙','☄️','🛸']],['🌴','Jungle','#7ccf5a','#cdeccb','#173a1c',0xcdeccb,0x4c9a52,0xf2b624,['🦜','🐒','🦋','🌴','🍃','🐸']],['🧸','Clay','#c8714e','#f6dcc6','#4a2a1c',0xf6dcc6,0xc8714e,0xf2b624,['🧸','🧁','🎈','🍩','⭐','🌈']]];
+const SK=[['🍬','Candy','#e8604c','#bfe3f5','#2a2438',0xbfe3f5,0xe8604c,0xf2b624,['🍬','🍭','🧁','🎈','⭐','🌈']],['🌊','Ocean','#3fb7e8','#a9e3f2','#12324a',0xa9e3f2,0x2f5bd0,0x3fb7e8,['🐠','🐙','🫧','🐬','🐚','🌊']],['🚀','Space','#b58cff','#1d1a4a','#fff6e0',0x1d1a4a,0xb58cff,0xffd166,['🚀','⭐','🪐','🌙','☄️','🛸']],['🌴','Jungle','#7ccf5a','#cdeccb','#173a1c',0xcdeccb,0x4c9a52,0xf2b624,['🦜','🐒','🦋','🌴','🍃','🐸']],['🧸','Clay','#c8714e','#f6dcc6','#4a2a1c',0xf6dcc6,0xc8714e,0xf2b624,['🧸','🧁','🎈','🍩','⭐','🌈']],['🌅','Sunset','#ff8a5c','#ffd9c7','#4a2038',0xffd9c7,0xff6b4a,0xffb703,['🌅','🦩','🌺','🍑','⭐','🪁']]];
 const FE=[['Diwali','2026-11-08','🪔',['🪔','✨','🎆','🪷','🎇']],['Guru Nanak Jayanti','2026-11-24','🙏',['🙏','🪔','🌼','✨']],['Christmas','2026-12-25','🎄',['🎄','⭐','🎅','🎁','❄️']],['New Year','2027-01-01','🎆',['🎆','🥳','🎉','🎊']],['Republic Day','2027-01-26','🇮🇳',['🇮🇳','🪁','🧡','💚']],['Mahashivratri','2027-03-06','🔱',['🔱','🕉️','🌙']],['Eid al-Fitr','2027-03-10','🌙',['🌙','⭐','🕌','🎁']],['Holi','2027-03-22','🎨',['🎨','💦','🌈','🎈']],['Bakrid','2027-05-17','🌙',['🌙','🐑','🕌']],['Independence Day','2027-08-15','🇮🇳',['🇮🇳','🪁','🎆']]];
 function nf(){const t=new Date();t.setHours(0,0,0,0);let b=null;for(const f of FE){const d=Math.round((new Date(f[1]+'T00:00:00')-t)/864e5);if(d>=0&&(!b||d<b.d))b={n:f[0],d,i:f[2],ic:f[3]}}return b}
 const fest=()=>{if(LS('fp'))return{n:'Diwali',d:3,i:'🪔',ic:FE[0][3]};const f=nf();return f&&f.d<=4?f:null};
@@ -1174,7 +1186,10 @@ const chip=p=>{const w=p[0].length*9+20;return`<g pointer-events="none"><rect x=
 const lbs=()=>{const L=EX[et][2];$('#lbs').innerHTML=lb?L.map(chip).join(''):ps>=0?chip(L[ps]):''};
 const prog=()=>{{const n=(ED()[et]||[]).filter(x=>EX[et][2].some(p=>p[0]==x)).length,t=EX[et][2].length;$('#ep').innerHTML='⭐ '+n+' of '+t+' discovered<i class="epb"><u style="width:'+n/t*100+'%"></u></i>'}};
 const CLO='<g class="clo" pointer-events="none"><path d="M113 149H187L190 174Q189 190 176 190H156Q151 190 151 180V172H149V180Q149 190 144 190H124Q111 190 110 174z" style="fill:var(--bshorts,#5b7bd5)"/><rect x="113" y="149" width="74" height="6" rx="3" fill="#fff" opacity=".28"/><path d="M150 155v8" stroke="#fff" stroke-width="2" opacity=".5" stroke-linecap="round"/><path d="M122 96Q150 89 178 96L193 105L203 125L188 133L186 122L187 154Q150 161 113 154L114 122L112 133L97 125L107 105Z" style="fill:var(--bshirt,#e8604c)"/><path d="M137 95Q150 108 163 95" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><polygon points="150,118 152.4,123.6 158.5,124.2 154,128.2 155.2,134.2 150,131.2 144.8,134.2 146,128.2 141.5,124.2 147.6,123.6" fill="#ffd23c"/></g>';
-function drawE(){tourId++;if(!EX[et])et='body';const E=EX[et];$('#et').innerHTML=Object.keys(EX).map(k=>`<button class="lv" data-et="${k}" aria-pressed="${k==et}">${EX[k][0]}</button>`).join('');$('#es').innerHTML=E[1]+E[2].map((p,i)=>`<g class="dp" data-p="${i}">${p[2]}</g>`).join('')+(et=='body'?CLO:'')+'<g id="lbs"></g>';$('#ebt').innerHTML=(et=='body'?'<div class="skn" role="group" aria-label="Skin tone">'+['#ffe0c2|#f2c6a0','#ffd2a6|#f2b98a','#e0a979|#c98d5e','#a8704a|#8d5a37','#6b4429|#573520'].map(c=>'<button data-sk="'+c+'" style="background:'+c.split('|')[0]+'" aria-label="Skin tone"></button>').join('')+'</div>':'')+`<button class="btn alt" id="eq">❓ Quiz me</button><button class="btn alt" id="en">🏷 ${lb?'Hide':'Show'} names</button><button class="btn alt" id="exp">🔊 Explain</button><button class="btn alt" id="eh">🔊 Hear again</button>`;ps=-1;qz=null;$('#ec').textContent='Tap a part!';lbs();prog()}
+/* Language split: English = English only. English + Hindi = adds the Hindi word. */
+const HIRX=/\s*In Hindi:[^()]*\([^)]*\)\.?/g;
+Object.keys(EX).forEach(k=>EX[k][2].forEach(p=>{const raw=p[1];Object.defineProperty(p,1,{configurable:true,enumerable:true,get(){return document.documentElement.dataset.ui==='both'?raw:raw.replace(HIRX,'').trim()}})}));
+function drawE(){tourId++;if(!EX[et])et='body';const E=EX[et];$('#et').innerHTML=Object.keys(EX).map(k=>`<button class="lv" data-et="${k}" aria-pressed="${k==et}">${EX[k][0]}</button>`).join('');$('#es').innerHTML=E[1]+E[2].map((p,i)=>`<g class="dp" data-p="${i}">${p[2]}</g>`).join('')+(et=='body'?CLO:'')+'<g id="lbs"></g>';$('#ebt').innerHTML=`<button class="btn alt" id="eq">❓ Quiz me</button><button class="btn alt" id="en">🏷 ${lb?'Hide':'Show'} names</button><button class="btn alt" id="exp">🔊 Explain</button><button class="btn alt" id="eh">🔊 Hear again</button>`;ps=-1;qz=null;$('#ec').textContent='Tap a part!';lbs();prog()}
 function found(i,e){const d=ED(),a=d[et]||[],n=EX[et][2][i][0];if(!a.includes(n)){a.push(n);d[et]=a;LS('ed',JSON.stringify(d));addPts(1,e,'Words');if(EX[et][2].every(p=>a.includes(p[0]))){addPts(3,e,'Words');celebrate('Explorer! 🔬')}}prog()}
 $('#explore').addEventListener('click',e=>{const t=e.target.closest('[data-et]');if(t){et=t.dataset.et;LS('et',et);drawE();return}
  if(e.target.id=='en'){lb=!lb;e.target.textContent='🏷 '+(lb?'Hide':'Show')+' names';lbs();return}
@@ -1854,15 +1869,15 @@ const dash=()=>{const p=$('#pb');if(!p||!p.querySelector('#dsh'))return;let x=$(
  if(!x){x=document.createElement('div');x.id='pdx';p.querySelector('#dsh').before(x)}if(x.dataset.h!=h){x.dataset.h=h;x.innerHTML=h}};
 home();setInterval(()=>{if(!document.hidden){home();dash()}},1500)})();
 </script>
-<script>(()=>{const r=document.documentElement,$=q=>document.querySelector(q),OK=/^#[0-9a-f]{6}\|#[0-9a-f]{6}$/i,ap=v=>{if(!OK.test(v))return 0;const c=v.split('|');r.style.setProperty('--bsk',c[0]);r.style.setProperty('--bsk2',c[1]);return 1};
+<script>(()=>{const r=document.documentElement,$=q=>document.querySelector(q);
 const PAL=[['blue','#4cc3e8'],['red','#e8604c'],['green','#4c9a52'],['yellow','#f2b624'],['purple','#8a4fc7'],['pink','#f48fb1']],K={shirt:'--bshirt',shorts:'--bshorts',shoes:'--bshoes'},DEF={shirt:0,shorts:0,shoes:1};let CL={};
-try{const v=localStorage.getItem('bsk');if(v&&!ap(v))localStorage.removeItem('bsk');CL=JSON.parse(localStorage.getItem('bcl')||'{}')}catch(e){}
+try{localStorage.removeItem('bsk');CL=JSON.parse(localStorage.getItem('bcl')||'{}')}catch(e){}
 Object.keys(K).forEach(k=>{if(CL[k]!=null&&PAL[CL[k]])r.style.setProperty(K[k],PAL[CL[k]][1])});
-document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.skn button');if(b){if(ap(b.dataset.sk))try{localStorage.setItem('bsk',b.dataset.sk)}catch(x){}return}
+document.addEventListener('click',e=>{
  const g=e.target.closest&&e.target.closest('#es .dp');if(!g)return;const k=Object.keys(K).find(n=>g.innerHTML.includes(K[n]));if(!k)return;
  const i=((CL[k]==null?DEF[k]:CL[k])+1)%PAL.length;CL[k]=i;r.style.setProperty(K[k],PAL[i][1]);try{localStorage.setItem('bcl',JSON.stringify(CL))}catch(x){}
  const t=PAL[i][0][0].toUpperCase()+PAL[i][0].slice(1)+' '+k.replace(/s$/,k=='shoes'?'s':'')+'!';try{window.speak&&speak(t)}catch(x){}
- setTimeout(()=>{const c0=$('#ec');const c=c0&&c0.querySelector(':scope>div')||c0;if(c)c.insertAdjacentHTML('beforeend','<br><b>👕 '+t+'</b> Tap again to change the colour.')},80)})})();</script><script>(()=>{const H={learn:['A','🌍','Let’s explore','Pick a world and start learning.'],tales:['S','📖','Story time','Paper-craft stories that read to you.'],write:['A','✏️','Write it','Trace every letter, one stroke at a time.'],maths:['+','🔢','Number fun','Count, add and take away.'],ncert:['N','📘','School path','Learn step by step.'],play:['P','🧩','Puzzle time','Match, think and solve.'],rhy:['♪','🎵','Sing along','Tap a rhyme and sing.'],paint:['P','🎨','Magic paint','Colour anything you like.'],win:['★','🏆','My stamps','Every star helps you win a stamp.'],explore:['E','🔬','Discover','Tap, look and find out.'],future:['C','🤖','Little coder','Give the robot clear steps.']};
+ setTimeout(()=>{const c0=$('#ec');const c=c0&&c0.querySelector(':scope>div')||c0;if(c)c.insertAdjacentHTML('beforeend','<br><b>👕 '+t+'</b> Tap again to change the colour.')},80)})})();</script><script>(()=>{const H={learn:['A','🌍','Let’s explore','Pick a world and start learning.'],tales:['S','📖','Story time','Paper-craft stories that read to you.'],write:['A','✏️','Write it','Trace every letter, one stroke at a time.'],maths:['+','🔢','Number fun','Count, add and take away.'],ncert:['N','📘','School path','Learn step by step.'],play:['P','🧩','Puzzle time','Match, think and solve.'],rhy:['♪','🎵','Sing along','Tap a rhyme and sing.'],paint:['P','🎨','Magic paint','Colour anything you like.'],win:['★','🏆','My stamps','Every star helps you win a stamp.'],explore:['E','🔬','Discover','Tap, look and find out.'],future:['C','🤖','Little coder','Give the robot clear steps.'],study:['S','🌟','Study studio','Pick a tile. See it, hear it, then try it.'],nums:['1','✏️','Write numbers','Trace each number, one stroke at a time.'],tables:['×','✖️','Times tables','Tap a line to hear it, or listen to the whole table.'],usa:['U','🇺🇸','School in the USA','What children learn from pre-K to Grade 1.'],space:['S','🚀','Space lab','Little space games, no timers, no rush.'],grown:['G','💛','For grown-ups','Progress, tips and settings.']};
 Object.keys(H).forEach(id=>{const s=document.getElementById(id);if(!s||s.querySelector('.sh'))return;const h=s.querySelector('h2'),l=s.querySelector('.lead'),d=H[id],t=h?h.textContent.replace(/[^\p{L}\p{N}\s&’'!-]/gu,'').trim():d[2];
  const e=document.createElement('div');e.className='sh sx';e.innerHTML='<div class="sg" aria-hidden="true"><b>'+d[0]+'</b><i>'+d[1]+'</i></div><small>'+d[2]+'</small><h3>'+t+'</h3><p>'+(l?l.textContent:d[3])+'</p>';
  s.insertBefore(e,s.firstChild);if(h)h.classList.add('sr');if(l)l.classList.add('sr')})})();</script>
@@ -2129,7 +2144,7 @@ const ST={
   ['🏘️','Social studies','Community helpers and how people live and work together.'],
   ['🌱','Keep going','Read a little every day, talk about the story, and count everyday things.']]}};
 const QZ=[['Count by tens: 10, 20, 30, …','40',['31','40','35']],['Which word rhymes with cat?','hat',['dog','hat','sun']],['What sound does “sun” start with?','sss',['sss','mmm','ttt']],['How many? 🍎🍎🍎🍎🍎🍎🍎','7',['6','7','8']],['What do plants need to grow?','Water and light',['Candy','Water and light','Toys']],['Who helps put out fires?','Firefighter',['Baker','Firefighter','Pilot']]];
-const RS=[['📺','PBS Kids','Free videos and games for ages 2–8.','https://pbskids.org'],['🏫','PBS LearningMedia','Free classroom videos and activities.','https://www.pbslearningmedia.org'],['🚀','NASA Kids’ Club','Space games for pre-K to grade 4.','https://www.nasa.gov/kidsclub/'],['🏛️','Smithsonian Kids','Games, activities and projects.','https://www.si.edu/kids'],['🦁','National Geographic Kids','Animals, nature and cultures.','https://kids.nationalgeographic.com'],['📖','Read.gov (Library of Congress)','Classic books and read-aloud videos.','https://read.gov'],['🐱','ScratchJr (MIT)','Free first coding app for ages 5–7.','https://www.scratchjr.org'],['📋','Head Start Early Learning Outcomes Framework','What children 0–5 learn, for parents and teachers.','https://headstart.gov/interactive-head-start-early-learning-outcomes-framework-ages-birth-five'],['🗺️','Common Core: standards in your state','See which standards your state uses.','https://thecorestandards.org/standards-in-your-state/']];
+const RS=[['📺','PBS Kids','Free videos and games for ages 2–8.','https://pbskids.org'],['🏫','PBS LearningMedia','Free classroom videos and activities.','https://www.pbslearningmedia.org'],['🚀','NASA Kids Science','Space and Earth science for kids.','https://science.nasa.gov/kids/'],['🌍','NASA Space Place','Games, activities and short articles on space and Earth.','https://spaceplace.nasa.gov'],['🏛️','Smithsonian Kids','Games, activities and projects.','https://www.si.edu/kids'],['🦁','National Geographic Kids','Animals, nature and cultures.','https://kids.nationalgeographic.com'],['📖','Read.gov (Library of Congress)','Classic books and read-aloud videos.','https://read.gov'],['🐱','ScratchJr (MIT)','Free first coding app for ages 5–7.','https://www.scratchjr.org'],['📋','Head Start Early Learning Outcomes Framework','What children 0–5 learn, for parents and teachers.','https://headstart.gov/interactive-head-start-early-learning-outcomes-framework-ages-birth-five'],['🗺️','Common Core: standards in your state','See which standards your state uses.','https://thecorestandards.org/standards-in-your-state/'],['🫀','KidsHealth (Nemours)','Body, health and feelings for kids, with videos and games.','https://kidshealth.org/en/kids/'],['🔬','BBC Bitesize Primary','Science videos and quizzes for ages 5–11.','https://www.bbc.co.uk/bitesize/primary'],['🧪','Science Kids','Experiments, facts and games.','https://www.sciencekids.co.nz/'],['🦴','AMNH OLogy','Science games and activities from the American Museum of Natural History.','https://www.amnh.org/explore/ology'],['🧒','Khan Academy Kids','Free lessons for ages 2–8.','https://learn.khanacademy.org/khan-academy-kids/']];
 if(!$('#usa')){const a=$('#future')||$('#play');if(a)a.insertAdjacentHTML('beforebegin',`<section id="usa"><h2>School in the USA 🇺🇸</h2><p class="lead">What American children learn from pre-K to Grade 1. Tap a card to hear it, then try the quiz.</p><div class="ust" id="ut"></div><p class="usn" id="un"></p><div class="usg" id="ug"></div><h3 style="font:700 26px Fredoka;margin:18px 0 6px">Quick quiz ⭐</h3><div class="box" id="usq"></div><h3 style="font:700 26px Fredoka;margin:18px 0 6px">Free US resources</h3><div class="usr">${RS.map(r=>`<a href="${r[3]}" target="_blank" rel="noopener"><b>${r[0]} ${r[1]}</b><small>${r[2]}</small></a>`).join('')}</div></section>`)}
 let tab='k',qi=0,qs=0;
 const say=t=>{try{speak(t)}catch(e){}};
@@ -2372,6 +2387,8 @@ let KI=null;
 #wd .wk{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
 .wk button{position:relative;border:0;cursor:pointer;color:#fff;border-radius:22px;aspect-ratio:1/1.05;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font:700 18px Fredoka;box-shadow:0 5px 0 #0003;animation:wpop .35s both;animation-delay:calc(var(--n)*50ms)}
 .wk button i{font-style:normal;font-size:44px;line-height:1}
+.wk button .hn{display:none;font:700 15px 'Noto Sans Devanagari',Fredoka,sans-serif;line-height:1.1;opacity:.95}html[data-ui=both] .wk button .hn:not(:empty){display:block}
+.wk button{font-size:16px;text-align:center;padding:4px}
 .wk button.seen::after{content:"✓";position:absolute;top:6px;right:8px;width:22px;height:22px;border-radius:50%;background:#fff;color:#2a2438;font:700 15px/22px Fredoka}
 .wk button.say{animation:wsay .5s}
 .wk button:active{transform:translateY(3px)}
@@ -2437,10 +2454,10 @@ if(typeof WORLDS!='undefined'&&$$('#wg')){
  const draw=i=>{cur=i;const w=WORLDS[i];seq++;
   wg.querySelectorAll('.wx').forEach(b=>b.setAttribute('aria-pressed',b.dataset.i==i));
   wd.hidden=false;
-  wd.innerHTML=`<div class="wstp"><b>2</b>Tap a picture to hear it</div><div class="wh"><h3>${w[0]} ${w[1]}</h3><span class="wp" id="wpr"></span></div><div class="wk">${w[2].map((x,n)=>`<button style="background:${BG[i]};--n:${n}" data-w="${word(x)}" aria-label="${word(x)}"><i>${x[0]}</i>${word(x)}</button>`).join('')}</div><button class="wall" id="wallall">🔊 Hear all</button>`;
+  wd.innerHTML=`<div class="wstp"><b>2</b>Tap a picture to hear it</div><div class="wh"><h3>${w[0]} ${w[1]}</h3><span class="wp" id="wpr"></span></div><div class="wk">${w[2].map((x,n)=>`<button style="background:${BG[i]};--n:${n}" data-w="${word(x)}" aria-label="${word(x)}"><i>${x[0]}</i>${word(x)}<small class="hn">${(window.HW||{})[x[1]]||''}</small></button>`).join('')}</div><button class="wall" id="wallall">🔊 Hear all</button>`;
   prog();try{wd.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}catch(e){}};
  const prog=()=>{if(cur<0)return;const n=WORLDS[cur][2].filter(x=>heard.has(word(x))).length,t=WORLDS[cur][2].length,p=$$('#wpr');if(p)p.textContent=n>=t?'All heard! ⭐':n+' of '+t+' heard'};
- const hit=(b,e)=>{const t=b.dataset.w;try{speak(t)}catch(x){}b.classList.remove('say');void b.offsetWidth;b.classList.add('say');b.classList.add('seen');
+ const hit=(b,e)=>{const t=b.dataset.w;try{const hw=document.documentElement.dataset.ui==='both'&&(window.HW||{})[t];speak(t,hw?()=>speak(hw,null,.85,1,{lang:'hi'}):undefined)}catch(x){}b.classList.remove('say');void b.offsetWidth;b.classList.add('say');b.classList.add('seen');
   if(!heard.has(t)){heard.add(t);try{addPts(1,e||null,'Words')}catch(x){}}prog()};
  wg.onclick=e=>{const t=e.target.closest('.wx');if(t)draw(+t.dataset.i)};
  wd.onclick=e=>{const a=e.target.closest('.wall');if(a){const id=++seq,bs=[...wd.querySelectorAll('.wk button')];let k=0;const next=()=>{if(id!==seq||k>=bs.length)return;const b=bs[k++];b.classList.remove('say');void b.offsetWidth;b.classList.add('say','seen');heard.add(b.dataset.w);prog();try{speak(b.dataset.w,()=>setTimeout(next,250))}catch(x){next()}};next();return}
@@ -3669,19 +3686,26 @@ body:has(#pm:not([hidden])) #hmb,body:has(#pinm:not([hidden])) #hmb{display:none
 <script>
 /* v60: build the menu sheet and move the language switch into it. Rows click the original controls, so their behaviour is unchanged. */
 (()=>{
-const ROWS=[['mu','🎵','Music <span lang="hi">संगीत</span>','background music'],['sk','🎨','Colour theme <span lang="hi">रंग</span>','pick a look'],['tm','🌙','Dark mode <span lang="hi">डार्क मोड</span>','light or dark'],['lk','🔒','Child lock <span lang="hi">लॉक</span>','keep the app for the child'],['pgb','👨‍👩‍👧','Grown-ups <span lang="hi">बड़ों के लिए</span>','progress & settings']];
+const ROWS=[['mu','🎵','Music <span lang="hi">संगीत</span>','background music'],['tm','🌙','Dark mode <span lang="hi">डार्क मोड</span>','light or dark'],['lk','🔒','Child lock <span lang="hi">लॉक</span>','keep the app for the child'],['pgb','👨‍👩‍👧','Grown-ups <span lang="hi">बड़ों के लिए</span>','progress & settings']];
 const hm=document.createElement('div');
 hm.id='hmenu';hm.className='mod';hm.hidden=true;
 hm.setAttribute('role','dialog');hm.setAttribute('aria-modal','true');hm.setAttribute('aria-label','Menu');
 hm.innerHTML=`<div class="sheet"><div class="grip"></div>
  <h2><span>Menu<span lang="hi">मेनू</span></span><button class="mclose" aria-label="Close menu">✕</button></h2>
  <h3>Language · भाषा</h3><div id="hmlang"></div>
+ <h3>Theme · थीम</h3><div id="hmtheme" class="thgrid"></div>
  <h3>Settings · सेटिंग्स</h3><div id="hmrows"></div></div>`;
 document.body.appendChild(hm);
 const rows=hm.querySelector('#hmrows');
+/* theme picker: each tile is a data-sk button, so the app's own handler applies the theme */
+const TH=[['🍬','Candy','#cfeefa','#f0694f','#1f5fbf'],['🌊','Ocean','#b7e4f7','#ff7a59','#0f6fc0'],['🚀','Space','#14123a','#ff8fa3','#8f7bff'],['🌴','Jungle','#cdeccb','#e8793c','#2f7d3a'],['🧸','Clay','#f6dcc6','#c8714e','#b4573a'],['🌅','Sunset','#ffd0c2','#ff6b4a','#c2417a']];
+const thg=hm.querySelector('#hmtheme');
+thg.innerHTML=TH.map((t,i)=>`<button type="button" class="thc" data-sk="${i}" data-n="${t[1]}" aria-pressed="false" aria-label="${t[1]} theme"><span class="thp" style="background:${t[2]}"><i style="background:${t[3]}"></i><i style="background:${t[4]}"></i></span><span class="thn">${t[0]} ${t[1]}</span></button>`).join('');
+const mark=()=>{const c=document.documentElement.dataset.skin;thg.querySelectorAll('.thc').forEach(b=>b.setAttribute('aria-pressed',b.dataset.n===c))};
+thg.addEventListener('click',()=>setTimeout(mark,0));mark();
 rows.innerHTML=ROWS.map(r=>`<button class="mrow" data-src="${r[0]}"><span class="mi" aria-hidden="true">${r[1]}</span><span class="mt"><b>${r[2]}</b><small>${r[3]}</small></span><span class="ms" data-state="${r[0]}"></span><span class="go" aria-hidden="true">›</span></button>`).join('');
 const refresh=()=>ROWS.forEach(r=>{const src=document.getElementById(r[0]),el=rows.querySelector(`[data-state="${r[0]}"]`);if(el&&src)el.textContent=src.textContent.trim()});
-const open=()=>{refresh();hm.hidden=false;const c=hm.querySelector('.mclose');c&&c.focus()};
+const open=()=>{refresh();mark();hm.hidden=false;const c=hm.querySelector('.mclose');c&&c.focus()};
 const close=()=>{hm.hidden=true;const b=document.getElementById('hmb');b&&b.focus()};
 const btn=document.createElement('button');
 btn.id='hmb';btn.type='button';btn.setAttribute('aria-label','Menu');btn.setAttribute('aria-haspopup','dialog');btn.textContent='☰';
@@ -3732,7 +3756,7 @@ const host=document.getElementById('hmlang');
 if(host)host.replaceChildren(seg);
 seg.addEventListener('click',e=>{const b=e.target.closest('button[data-ui]');if(b)setUI(b.dataset.ui,1)});
 seg.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();const bs=[...seg.querySelectorAll('button')];const i=bs.findIndex(b=>b===document.activeElement);const n=bs[(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length];n.focus();setUI(n.dataset.ui,1)});
-setUI(get()||'both');
+setUI(get()||'en');
 const rows=document.getElementById('hmrows');
 const C=[['mu','🎵','Music <span lang="hi">संगीत</span>','background music','#ff4d8d','#ff8fab'],['sk','🎨','Colour theme <span lang="hi">रंग</span>','pick a look','#8a4fc7','#b58cff'],['tm','🌙','Dark mode <span lang="hi">डार्क मोड</span>','light or dark','#2f5bd0','#3fb7e8'],['vpb','🗣️','Voice <span lang="hi">आवाज़</span>','teacher natural voice','#14919b','#3fb7e8'],['lk','🔒','Child lock <span lang="hi">लॉक</span>','keep the app for the child','#e8604c','#ff9f1c'],['pgb','👨‍👩‍👧','Grown-ups <span lang="hi">बड़ों के लिए</span>','progress & settings','#2e8b57','#a3d977']];
 if(rows)rows.innerHTML=C.map(r=>`<button class="mrow" data-src="${r[0]}" style="--c:${r[4]};--c2:${r[5]}"><span class="mi" aria-hidden="true">${r[1]}</span><span class="mt"><b>${r[2]}</b><small>${r[3]}</small></span><span class="ms" data-state="${r[0]}"></span><span class="go" aria-hidden="true">›</span></button>`).join('');
@@ -3940,7 +3964,7 @@ body.talking #owl::after{animation-duration:1.4s}
 body.talking #talk .tk::before{animation:owlb .8s ease-in-out infinite}
 @keyframes owlb{0%,100%{transform:none}30%{transform:translateY(-7px) rotate(-6deg)}60%{transform:translateY(0) rotate(5deg) scale(1.04)}}
 .sg i{animation:sbob 2.4s ease-in-out infinite}
-@keyframes sbob{0%,100%{transform:none}50%{transform:translateY(-8px) rotate(-4deg)}}
+@keyframes sbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media(prefers-reduced-motion:reduce){#owl,body.talking #owl,#talk .tk::before,body.talking #talk .tk::before,.sg i{animation:none!important}}
 </style>
 <script>/* Explore > Body: polished 2D vector kid. Reuses the app's quiz, tour, progress, speech and skin-tone logic. */
@@ -3953,7 +3977,7 @@ const css=document.createElement('style');css.textContent=`#x2{width:100%;border
 #x2 [data-n]{cursor:pointer}#x2 .no{pointer-events:none}
 #x2 .fl{animation:xf 3.6s ease-in-out infinite}@keyframes xf{50%{transform:translateY(-4px)}}
 #x2 .bl{transform-box:fill-box;transform-origin:center;animation:xb 4.2s infinite}@keyframes xb{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
-#x2 .aw{transform-origin:278px 186px;animation:xw 3.2s ease-in-out 1}@keyframes xw{0%{transform:rotate(0)}12%,40%{transform:rotate(-150deg)}20%,32%{transform:rotate(-135deg)}60%,100%{transform:rotate(0)}}
+#x2 .aw{transform-box:view-box;transform-origin:202px 188px;animation:xw 3.2s ease-in-out 1}@keyframes xw{0%{transform:rotate(0)}12%,40%{transform:rotate(-150deg)}20%,32%{transform:rotate(-135deg)}60%,100%{transform:rotate(0)}}
 #x2 .cl{animation:xc 40s linear infinite}@keyframes xc{to{transform:translateX(420px)}}
 #x2 .sel{filter:drop-shadow(0 0 6px #ffb703) brightness(1.1);animation:xs .7s ease-in-out infinite alternate}@keyframes xs{to{filter:drop-shadow(0 0 12px #ff8fab) brightness(1.2)}}
 #x2 .pp{transform-box:fill-box;transform-origin:center;animation:xp .45s}@keyframes xp{40%{transform:scale(1.2)}}
@@ -4115,6 +4139,15 @@ function speak(text,cb,r,p,opt){
   opt=opt||{};
   if(LSg('vo')==='0'||!W.__ug||!sy){cb&&setTimeout(cb,0);return}
   let s=prep(text);
+  if(document.documentElement.dataset.ui!=='both'&&opt.lang!=='hi')s=s.replace(/\s*In Hindi:[^()]*\([^)]*\)\.?/g,'').trim();
+  /* Hindi words: speak them once, in a Hindi voice, never twice by two voices */
+  const hasHi=(()=>{try{return sy.getVoices().some(v=>/^hi/i.test(v.lang))}catch(e){return false}})();
+  if(/[\u0900-\u097F]/.test(s)){
+    s=hasHi
+      ? s.replace(/([\u0900-\u097F][\u0900-\u097F\s]*)\s*\([^)]*\)/g,'$1')
+      : s.replace(/[\u0900-\u097F][\u0900-\u097F\s]*\s*\(([^)]*)\)/g,'$1').replace(/[\u0900-\u097F]+/g,' ');
+    s=s.replace(/\s+/g,' ').trim();
+  }
   if(!s){cb&&setTimeout(cb,0);return}
   const now=Date.now();
   if(!opt.force&&s===lastTxt&&now-lastAt<2200){cb&&setTimeout(cb,0);return}
@@ -4129,7 +4162,8 @@ function speak(text,cb,r,p,opt){
   const rate=clamp((r||.88)*1.05*(k.rate/.9)*(+LSg('vr')||1),.7,1.05);
   const pitch=clamp(1+(k.pitch*(p||1.1)/1.1-1)*.5,.75,1.12);
   const lang=opt.lang||'en';
-  const parts=chunk(s);
+  const parts=[];
+  chunk(s).forEach(c=>{(c.match(/[\u0900-\u097F][\u0900-\u097F\s\u0964]*|[^\u0900-\u097F]+/g)||[c]).forEach(x=>{x=x.trim();if(x&&/[\p{L}\p{N}]/u.test(x))parts.push({t:x,l:/[\u0900-\u097F]/.test(x)?'hi':lang})})});
   const j={done:false,w1:0,w2:0,finish(){if(this.done)return;this.done=true;clearTimeout(this.w1);clearTimeout(this.w2);talk(false);cb&&setTimeout(cb,0)}};
   job=j;
   talk(true);
@@ -4138,8 +4172,8 @@ function speak(text,cb,r,p,opt){
     if(j.done)return;
     if(my!==epoch||job!==j){j.finish();return}
     if(i>=parts.length){job=null;j.finish();return}
-    const part=parts[i++],u=new SpeechSynthesisUtterance(part);
-    u.lang=lang==='hi'?'hi-IN':'en-US';u.rate=rate;u.pitch=pitch;
+    const seg=parts[i++],part=seg.t,u=new SpeechSynthesisUtterance(part);
+    u.lang=seg.l==='hi'?'hi-IN':'en-US';u.rate=rate;u.pitch=pitch;
     let started=false,ended=false;
     const fin=()=>{if(ended)return;ended=true;clearTimeout(j.w1);clearTimeout(j.w2);setTimeout(next,i>=parts.length?0:90)};
     u.onstart=()=>{started=true;clearTimeout(j.w1)};
@@ -4693,13 +4727,14 @@ function done(){bump('r');try{addPts(5,null,'English')}catch(e){}add('f','🚀 B
 /* ---------- screens ---------- */
 const START=['Hello! My name is ...','I like ... because ...','Today I ate ...','My best friend is ...','I want to ...','Yesterday I went to ...'];
 function chat(){const s=stat();root.querySelector('#pn').innerHTML='<div class="bar"><i id="fb"></i></div><div class="log" id="log"></div><div class="st" id="st">Tap the mic and talk, or type.</div><div class="row"><button class="mic" id="mic" aria-label="Speak">🎤</button><input id="in" placeholder="Type your answer…" autocomplete="off"><button id="sd">Send</button></div><div class="chips">'+START.map(x=>'<button data-s="'+esc(x)+'">'+esc(x)+'</button>').join('')+'</div><div class="st">🔥 Day streak: '+(s.s||1)+' · 💬 Today: '+(s.t||0)+'</div>';
- const hi='Hello '+nm()+'! I am Professor Owl. Let us talk in English. What is your name, and how are you today?';add('o',esc(hi));
+ const greet=()=>{const n=(LS.g('n')||'').trim();return n?'Hello '+n+'! I am Professor Owl. Let us talk in English. How are you today?':'Hello Friend! I am Professor Owl. Let us talk in English. What is your name, and how are you today?'};add('o',esc(greet()));
+ window.__tkRefresh=()=>{const l=L();if(l&&l.children.length<=1){l.innerHTML='';add('o',esc(greet()))}};
  root.querySelector('#mic').onclick=function(){const b=this;if(b.classList.contains('on'))return;hush();b.classList.add('on');root.querySelector('#st').textContent='Listening… speak now 👂';
   listen((t,e)=>{b.classList.remove('on');const st=root.querySelector('#st');if(!st)return;if(t){st.textContent='Got it!';turn(t)}else st.textContent=e=='nosr'?'This browser cannot listen. Please type instead.':e=='not-allowed'?'Please allow the microphone, or type.':'I did not hear you. Tap the mic and try again.'})};
  const go=()=>{const i=root.querySelector('#in');const v=i.value;i.value='';turn(v)};
  root.querySelector('#sd').onclick=go;root.querySelector('#in').onkeydown=e=>{if(e.key==='Enter')go()};
  root.querySelectorAll('.chips button').forEach(b=>b.onclick=()=>{root.querySelector('#in').value=b.dataset.s.replace('...','');root.querySelector('#in').focus()});
- say(hi)}
+ say(greet())}
 const SAY=[['Hello, my name is Sam.','I like to eat mango.','This is my red bag.'],['She goes to school by bus.','We play cricket in the park.','I want a glass of cold water.'],['The three thin birds sing together.','Please bring me a fresh green apple.','I am learning English every day.']];
 let sl=0,si=0;
 const nrm=s=>s.toLowerCase().replace(/[^a-z' ]/g,'').split(/\s+/).filter(Boolean);
@@ -4852,6 +4887,37 @@ const ex=D.getElementById('explore');if(ex){new MutationObserver(chk).observe(ex
 #kb .go{font-size:20px!important;min-height:48px!important;padding:8px 18px!important}
 #kb .face{font-size:34px!important;min-height:0!important}
 #kb .stars{font-size:22px!important}
+</style>
+
+<style id="themes">
+/* ---- themes: every theme re-colours the page, cards, buttons, hero and menu ---- */
+html body,.box,#nav,.btn,.sh,.mrow,#hmenu .sheet{transition:background-color .35s,color .35s,border-color .35s,box-shadow .35s}
+html:not([data-theme=dark]) body{background:linear-gradient(var(--g1,#cfeefa) 0,var(--g2,#e6f6f4) 420px,var(--bg) 900px) fixed}
+html:not([data-theme=dark]) .sh{background:linear-gradient(var(--h1,#bfe6fb),var(--h2,#e9f7ef) 70%);color:var(--ink)}
+#nav .nv.on{box-shadow:inset 0 -3px 0 var(--blue)}
+#nav{border:2px solid var(--line)}
+.btn.alt[aria-pressed=true],.lv[aria-pressed=true]{border-color:var(--blue)}
+html[data-skin=Candy]:not([data-theme=dark]){--bg:#e6f6f4;--g1:#cfeefa;--g2:#e6f6f4;--card:#fff;--ink:#1f3a5f;--line:#1f3a5f1f;--h1:#bfe6fb;--h2:#e9f7ef}
+html[data-skin=Ocean]:not([data-theme=dark]){--bg:#dff3fb;--g1:#b7e4f7;--g2:#d6f0fa;--card:#fff;--ink:#0f3a57;--line:#0f3a5726;--h1:#a8dcf5;--h2:#e3f6fb}
+html[data-skin=Space]:not([data-theme=dark]){--bg:#14123a;--g1:#0b0a2a;--g2:#1d1a4a;--card:#26235c;--ink:#fff6e0;--line:#fff6e033;--h1:#2a2670;--h2:#3a3490}
+html[data-skin=Jungle]:not([data-theme=dark]){--bg:#e4f4d8;--g1:#cdeccb;--g2:#e1f3d3;--card:#fffdf4;--ink:#173a1c;--line:#173a1c24;--h1:#bfe8b0;--h2:#eaf7d9}
+html[data-skin=Clay]:not([data-theme=dark]){--bg:#f6e6d6;--g1:#f6dcc6;--g2:#f8e8da;--card:#fff8f0;--ink:#4a2a1c;--line:#4a2a1c24;--h1:#f3cdb0;--h2:#fbeade}
+html[data-skin=Sunset]:not([data-theme=dark]){--bg:#ffe9dc;--g1:#ffd0c2;--g2:#ffe3d2;--card:#fffaf6;--ink:#4a2038;--line:#4a203826;--h1:#ffc4b0;--h2:#ffe9c9}
+html[data-skin=Ocean]{--blue:#0f6fc0;--coral:#ff7a59;--sun:#ffd166;--green:#1e9e8a}
+html[data-skin=Space]{--blue:#8f7bff;--coral:#ff8fa3;--sun:#ffd166;--green:#5de0b4}
+html[data-skin=Jungle]{--blue:#2f7d3a;--coral:#e8793c;--sun:#f2b624;--green:#3f9a4c}
+html[data-skin=Clay]{--blue:#b4573a;--coral:#c8714e;--sun:#f2b624;--green:#7a9a4c}
+html[data-skin=Sunset]{--blue:#c2417a;--coral:#ff6b4a;--sun:#ffb703;--green:#3aa17e}
+html[data-skin=Space]:not([data-theme=dark]) body{color:var(--ink)}
+.thgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:4px 0 6px}
+.thc{border:3px solid transparent;background:#8881;color:inherit;border-radius:20px;padding:8px 6px 10px;cursor:pointer;font:700 14px Fredoka,Nunito,sans-serif;display:grid;gap:6px;justify-items:center;min-height:88px;transition:transform .15s,border-color .2s}
+.thc:active{transform:scale(.95)}
+.thc[aria-pressed=true]{border-color:var(--blue);background:var(--card);box-shadow:0 4px 0 var(--line)}
+.thc:focus-visible{outline:3px solid #2f5bd0;outline-offset:2px}
+.thp{display:flex;align-items:flex-end;justify-content:flex-end;gap:5px;width:100%;height:42px;border-radius:14px;padding:6px;box-sizing:border-box;box-shadow:inset 0 0 0 2px #0002}
+.thp i{display:block;width:16px;height:16px;border-radius:50%}
+.thn{white-space:nowrap}
+@media(prefers-reduced-motion:reduce){html body,.box,#nav,.btn,.sh,.mrow,#hmenu .sheet,.thc{transition:none}}
 </style>
 </body>
 </html>
