@@ -1092,7 +1092,7 @@ navIcons();
 
 // ---- New sections ----
 $('#play').insertAdjacentHTML('beforebegin',`<section id="explore"><h2>Explore &amp; discover 🔬</h2><p class="lead">Tap a part to hear its name and a fun fact. Then press “Quiz me”.</p><div class="row" id="et"></div><div class="box"><svg id="es" viewBox="0 0 300 260" role="img" aria-label="Science picture"></svg><div id="ec" style="min-height:64px;font:700 22px Fredoka;margin-top:8px"></div><div id="ep" style="font:700 18px Fredoka;margin:6px 0"></div><div class="row" id="ebt"></div></div></section>
-<section id="future"><h2>Think like a coder 🤖</h2><p class="lead">Little games about robots, patterns and how computers learn from examples.</p><div class="row" id="ftab"></div><div class="box" id="fb"></div></section>`);
+<section id="future"><h2>Think like a coder 🤖</h2><p class="lead">Little games about robots, patterns and how computers learn from examples.</p><div class="row" id="ftab"></div><div class="box" id="fb"></div><p class="lead" style="margin-top:14px;font-size:16px">Grown-ups: want an AI tutor that makes quizzes and practice from your own materials? Try <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">DeepTutor</a>, a free open-source project (Apache-2.0). It needs a grown-up to set it up with an AI model key.</p></section>`);
 
 // ---- Explore: richer tap-to-learn diagrams ----
 D.head.insertAdjacentHTML('beforeend',`<style>
@@ -1549,9 +1549,8 @@ nav.addEventListener('click',e=>{const b=e.target.closest('[data-go="#time"],[da
 </script>
 <style>
 .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
-#spkgo{background:linear-gradient(110deg,var(--blue) 40%,#7d9bf2 50%,var(--blue) 60%) 0 0/250% 100%;color:#fff;box-shadow:0 5px 0 #1d3a8a;animation:shn 3.2s linear infinite}
-@keyframes shn{to{background-position:-150% 0}}
-@media (prefers-reduced-motion:reduce){#spkgo{animation:none}}
+#spkgo{background:var(--blue);color:#fff;box-shadow:0 5px 0 color-mix(in srgb,var(--blue) 62%,#000)}
+
 .btn{min-height:52px}.lv{min-height:48px}
 .nv[data-x] b{font-size:26px;line-height:1.1;font-weight:400}
 .ksp{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:200}
@@ -2300,6 +2299,7 @@ draw();
 {const sp=$('#space');if(sp)sp.addEventListener('pointerdown',()=>{SQ=1},{once:true,capture:true})}
 const nav=$('#nav');const add=()=>{if(!nav||nav.querySelector('[data-go="#space"]'))return;const b=D.createElement('button');b.className='nv';b.dataset.go='#space';b.setAttribute('aria-label','Space');b.innerHTML='<b>'+(window.SPICON?SPICON():'🚀')+'</b>Space';const a=nav.querySelector('[data-go="#usa"]')||nav.querySelector('[data-go="#ncert"]');a?a.after(b):nav.append(b)};
 add();if(nav)new MutationObserver(add).observe(nav,{childList:true});
+try{RES.push(['📚','StoryWeaver (Pratham Books)','Free · Hindi + English','Thousands of free picture stories in Hindi, English and many Indian languages. Read one together, then let your child retell it.','https://storyweaver.org.in'],['🐱','ScratchJr (MIT + Scratch Foundation)','Free · ages 5-7','Snap picture blocks together to make a character move, jump and sing. Same idea as Code the robot, on a tablet.','https://www.scratchjr.org'])}catch(e){}
 try{RES.push(['🌌','NASA Space Place','Free · ages 5+','Short space articles, games and crafts from NASA. Pick one planet a week.','https://spaceplace.nasa.gov'],['🛰️','Space Explorer for the Kids (darkaeon10)','Free · MIT license','Open-source game: fly a spaceship to the eight planets and read a fact on each. A model for a future flying game.','https://github.com/darkaeon10/SpaceExplorerForTheKids'],['🪐','Hello Bennu (quynhhgoogoo/Bennu)','Free · open source','NASA Space Apps game that teaches the order of planets: Earth, Mars, then the Sun.','https://github.com/quynhhgoogoo/Bennu'],['⭐','radarhere/spacegame','Free · open source','Calm space game with no lasers or explosions: dodge asteroids and collect stars.','https://github.com/radarhere/spacegame'],['🎙️','Kokoro TTS (hexgrad, via kokoro-js)','Free · Apache-2.0','Natural-sounding open voice that runs inside the browser. Used for the optional Natural voice button.','https://www.npmjs.com/package/kokoro-js'])}catch(e){}
 })();
 </script>
@@ -4636,7 +4636,7 @@ function refresh(){
     [Music.running?'✅':'➖','Background music',Music.running?'playing: '+Music.mood:'off']
   ];
   const sel=LSg('vn')||(en&&en.name)||'';
-  p.innerHTML=`<ul class="snd70l">${rows.map(r=>`<li><b>${r[0]} ${r[1]}</b><span>${r[2]}</span></li>`).join('')}</ul>
+  p.innerHTML=`<ul class="snd70l">${rows.map(r=>`<li class="${r[0]==='✅'?'ok':r[0]==='⚠️'?'warn':'off'}"><b>${r[0]} ${r[1]}</b><span>${r[2]}</span></li>`).join('')}</ul>
   <div class="snd70g"><button data-t="en">🔊 Test English</button><button data-t="hi">🔊 Test Hindi</button><button data-t="music">🎵 Test music</button><button data-t="fx">✨ Test sounds</button><button data-t="sing">🎤 Test singing</button></div>
   <label class="snd70f">English voice<select id="snd70v">${vs.map(v=>`<option value="${v.name.replace(/"/g,'&quot;')}"${v.name===sel?' selected':''}>${v.name} (${v.lang})</option>`).join('')||'<option>none</option>'}</select></label>
   <label class="snd70f">Speaking speed<input id="snd70r" type="range" min=".8" max="1.2" step=".05" value="${+LSg('vr')||1}"></label>
@@ -4647,7 +4647,7 @@ function openPanel(){const p=panel();refresh();p.hidden=false;const c=p.querySel
 (()=>{
   const rows=$('#hmrows');if(!rows)return;
   const hid=D.createElement('button');hid.id='snd70btn';hid.hidden=true;hid.type='button';hid.addEventListener('click',openPanel);D.body.appendChild(hid);
-  const r=D.createElement('button');r.className='mrow';r.dataset.src='snd70btn';
+  const r=D.createElement('button');r.className='mrow';r.dataset.src='snd70btn';r.style.cssText='--c:#14919b;--c2:#3fb7e8';
   r.innerHTML='<span class="mi" aria-hidden="true">🔧</span><span class="mt"><b>Sound check <span lang="hi">आवाज़ जाँच</span></b><small>voice, Hindi, music</small></span><span class="go" aria-hidden="true">›</span>';
   rows.appendChild(r);
 })();
@@ -4976,7 +4976,48 @@ html[data-skin=Space]:not([data-theme=dark]) body{color:var(--ink)}
 .thp i{display:block;width:16px;height:16px;border-radius:50%}
 .thn{white-space:nowrap}
 @media(prefers-reduced-motion:reduce){html body,.box,#nav,.btn,.sh,.mrow,#hmenu .sheet,.thc{transition:none}}
+
+/* ===== v4: readable titles on every theme, calmer Speak lab, nicer Settings + Sound check ===== */
+html{--tt:#d6453a}
+html[data-skin=Candy]:not([data-theme=dark]){--tt:#1d5fb8}
+html[data-skin=Ocean]:not([data-theme=dark]){--tt:#0a5aa6}
+html[data-skin=Space]:not([data-theme=dark]){--tt:#ffd166}
+html[data-skin=Jungle]:not([data-theme=dark]){--tt:#2a6b33}
+html[data-skin=Clay]:not([data-theme=dark]){--tt:#a4472b}
+html[data-skin=Sunset]:not([data-theme=dark]){--tt:#b02a6a}
+html[data-theme=dark]{--tt:#ffd98a}
+html section h2,html[data-theme=dark] section h2,html .panel h2,html[data-theme=dark] .panel h2,html #hb h2,html #arcB h2,html #cel2 .tt,html #hmenu h2,html #snd70 h2,html section>h3{color:var(--tt)}
+html:not([data-theme=dark]) section h2{text-shadow:none}
+#hmenu h3,#snd70 h3{display:flex;align-items:center;gap:8px;color:var(--tt);opacity:1}
+#hmenu h3::before{content:"";width:6px;height:16px;border-radius:4px;background:linear-gradient(var(--coral,#ff6b4a),var(--sun,#ffb703));flex:none}
+#hmenu .sheet{background:linear-gradient(180deg,color-mix(in srgb,var(--sun,#ffd23c) 26%,var(--card,#fff)) 0,var(--card,#fff) 220px)}
+.mrow{box-shadow:0 4px 0 color-mix(in srgb,var(--c,#888) 22%,transparent);min-height:68px}
+.mrow:active{box-shadow:0 1px 0 color-mix(in srgb,var(--c,#888) 22%,transparent);transform:translateY(3px)}
+.thc{position:relative;border-radius:22px}
+.thc[aria-pressed=true]::after{content:"✓";position:absolute;top:6px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font:800 13px/22px Fredoka,sans-serif;text-align:center}
+.thc[aria-pressed=true]{transform:translateY(-2px)}
+.thp{height:48px}
+/* Sound check panel */
+#snd70.mod{background:rgba(22,16,44,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);place-items:end center;padding:0}
+#snd70 .sheet{background:linear-gradient(180deg,color-mix(in srgb,#3fb7e8 24%,var(--card,#fff)) 0,var(--card,#fff) 190px);color:var(--ink,#2a2438);width:min(560px,100%);border-radius:28px 28px 0 0;padding:8px 18px 28px;max-height:92vh;overflow:auto;box-shadow:0 -10px 40px #0005}
+@media(min-width:700px){#snd70.mod{place-items:center}#snd70 .sheet{border-radius:28px}}
+#snd70 .grip{width:44px;height:5px;border-radius:9px;background:#8885;margin:4px auto 10px}
+#snd70 h2{font:700 26px/1.2 Fredoka,'Trebuchet MS',sans-serif;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+#snd70 .mclose{width:46px;height:46px;border-radius:50%;border:0;background:#8882;color:inherit;font-size:18px;cursor:pointer;flex:none}
+#snd70 .mclose:focus-visible{outline:3px solid #2f5bd0;outline-offset:2px}
+.snd70l li{--s:#8a8fa3;background:color-mix(in srgb,var(--s) 12%,var(--card,#fff));border:2px solid color-mix(in srgb,var(--s) 30%,transparent);border-left:7px solid var(--s)}
+.snd70l li.ok{--s:#3aa17e}.snd70l li.warn{--s:#e8604c}
+.snd70l b{color:var(--ink,#1f3a5f)}
+.snd70g button{border:0;color:#fff;-webkit-text-fill-color:#fff;background:linear-gradient(135deg,var(--b,#2f5bd0),color-mix(in srgb,var(--b,#2f5bd0) 65%,#fff));box-shadow:0 4px 0 color-mix(in srgb,var(--b,#2f5bd0) 60%,#000);transition:transform .12s,box-shadow .12s}
+.snd70g button:active{transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb,var(--b,#2f5bd0) 60%,#000)}
+.snd70g button:nth-child(1){--b:#2f5bd0}.snd70g button:nth-child(2){--b:#8a4fc7}.snd70g button:nth-child(3){--b:#ff4d8d}.snd70g button:nth-child(4){--b:#f08a00}.snd70g button:nth-child(5){--b:#14919b}
+.snd70g button[aria-pressed]{background:#fff;color:#1f3a5f;-webkit-text-fill-color:#1f3a5f;border:2px solid #2f5bd0;box-shadow:none}
+.snd70g button[aria-pressed=true]{background:#2f5bd0;color:#fff;-webkit-text-fill-color:#fff}
+.snd70f{background:color-mix(in srgb,var(--tt) 6%,var(--card,#fff));border-radius:16px;padding:10px 12px}
+.snd70f input[type=range]{accent-color:var(--tt)}
+html.tabhid *,html.tabhid *::before,html.tabhid *::after{animation-play-state:paused!important}
 </style>
+<script>document.addEventListener('visibilitychange',function(){document.documentElement.classList.toggle('tabhid',document.hidden)},{passive:true})</script>
 <script id="superb-hook">
 /* A girl says "Superb!" after every correct answer in every section (letters, numbers, explore, days/weeks/months, games...) */
 (function(){
