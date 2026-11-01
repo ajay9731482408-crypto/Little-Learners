@@ -824,7 +824,7 @@ const DIYA=z=>`<svg viewBox="0 0 120 120" width="${z}" height="${z}" style="filt
 function liveIcons(){const d=new Date(),M=d.toLocaleString('en',{month:'short'}).toUpperCase(),hh=d.getHours()%12*30+d.getMinutes()/2,mm=d.getMinutes()*6;
  $('#live').innerHTML=DIYA(76)+`<svg viewBox="0 0 100 100" width="72" role="img" aria-label="Today"><rect x="8" y="12" width="84" height="80" rx="14" fill="#fff" stroke="#4a0d3a" stroke-width="5"/><path d="M8 40V26a14 14 0 0 1 14-14h56a14 14 0 0 1 14 14v14Z" fill="#e8604c" stroke="#4a0d3a" stroke-width="5" stroke-linejoin="round"/><text x="50" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#fff" font-family="Fredoka">${M}</text><text x="50" y="80" text-anchor="middle" font-size="40" font-weight="700" fill="#4a0d3a" font-family="Fredoka">${d.getDate()}</text></svg><svg viewBox="-50 -50 100 100" width="72" role="img" aria-label="Time"><circle r="44" fill="#fff" stroke="#4a0d3a" stroke-width="5"/><line y2="-24" stroke="#4a0d3a" stroke-width="6" stroke-linecap="round" transform="rotate(${hh})"/><line y2="-34" stroke="#e8604c" stroke-width="4" stroke-linecap="round" transform="rotate(${mm})"/><circle r="4" fill="#4a0d3a"/></svg>`}
 // Music
-let ac,mt;const AC=()=>ac||(ac=new(window.AudioContext||window.webkitAudioContext)());
+let ac,mt;const AC=()=>{const c=window._ac||(window._ac=new(window.AudioContext||window.webkitAudioContext)());ac=c;if(c.state=='suspended')c.resume().catch(()=>{});return c};
 function tone(f,t=0,d=.5,v=.1,ty='triangle'){try{const c=AC(),o=c.createOscillator(),g=c.createGain(),b=c.currentTime+t;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(.0001,b);g.gain.exponentialRampToValueAtTime(v,b+.03);g.gain.exponentialRampToValueAtTime(.0001,b+d);o.connect(g);g.connect(c.destination);o.start(b);o.stop(b+d+.05)}catch(e){}}
 const NF={C:261.6,D:293.7,E:329.6,F:349.2,G:392,A:440},PN=[261.6,293.7,329.6,392,440,523.3];
 const playTune=()=>[...'CCGGAAGFFEEDDCGGFFEEDGGFFEEDCCGGAAGFFEEDDC'].forEach((n,i)=>tone(NF[n],i*.5,.45,.15));
@@ -1197,11 +1197,15 @@ water:['💧 Water',gr('gW','#bfe8ff','#e8f7ff'),[
 ['rain','Rain falls from the clouds.','<g class="a-fall" stroke="#3fb7e8" stroke-width="5" stroke-linecap="round"><path d="M98 98v22M124 98v26M150 98v22M111 130v18M137 130v18"/></g>',168,118]]],
 space:['🪐 Space',gr('gS','#0b0f2e','#2a1f5e')+ST,[
 ['sun','The sun is a star. It gives us light and heat.','<circle cx="34" cy="130" r="40" fill="#ffb703" opacity=".35"/><circle cx="34" cy="130" r="30" fill="#ffd166"/>',44,176],
+['mercury','Mercury is the smallest planet and the closest to the sun.','<circle cx=\"82\" cy=\"86\" r=\"6\" fill=\"#b8b2a7\"/><circle cx=\"80\" cy=\"84\" r=\"1.6\" fill=\"#8d877c\"/><circle cx=\"82\" cy=\"86\" r=\"15\" fill=\"#fff\" fill-opacity=\"0\"/>',82,112],
+['venus','Venus is the hottest planet. Its clouds trap the heat.','<circle cx=\"66\" cy=\"190\" r=\"10\" fill=\"#f0c27b\"/><path d=\"M58 187q8-4 16 0M58 194q8-3 16 0\" stroke=\"#d99a45\" stroke-width=\"2\" fill=\"none\" opacity=\".7\"/><circle cx=\"66\" cy=\"190\" r=\"17\" fill=\"#fff\" fill-opacity=\"0\"/>',66,216],
 ['earth','Earth is our home planet.','<circle cx="104" cy="130" r="13" fill="#3a86ff"/><path d="M98 124q6-6 10 0t-4 8z" fill="#4c9a52"/>',104,156],
 ['moon','The moon goes around the Earth.','<circle cx="126" cy="112" r="7" fill="#e5e5e5"/>',130,92],
 ['mars','Mars is the red planet.','<circle cx="158" cy="152" r="10" fill="#e8604c"/>',158,176],
 ['jupiter','Jupiter is the biggest planet.','<circle cx="208" cy="108" r="22" fill="#e9b872"/><path d="M188 100h40M187 112h42" stroke="#c88a4a" stroke-width="4"/>',208,142],
 ['saturn','Saturn has beautiful rings.','<circle cx="256" cy="176" r="14" fill="#f2d28a"/><ellipse cx="256" cy="176" rx="27" ry="7" fill="none" stroke="#c9a66b" stroke-width="3" transform="rotate(-18 256 176)"/>',256,208],
+['uranus','Uranus is an icy blue planet that spins on its side.','<circle cx=\"262\" cy=\"60\" r=\"12\" fill=\"#8fe3e8\"/><ellipse cx=\"262\" cy=\"60\" rx=\"4\" ry=\"19\" fill=\"none\" stroke=\"#bff2f4\" stroke-width=\"2\" transform=\"rotate(18 262 60)\"/><circle cx=\"262\" cy=\"60\" r=\"20\" fill=\"#fff\" fill-opacity=\"0\"/>',262,92],
+['neptune','Neptune is a deep blue planet with very strong winds.','<circle cx=\"186\" cy=\"208\" r=\"11\" fill=\"#3a5fcd\"/><path d=\"M177 205q9-3 18 0\" stroke=\"#9db6ff\" stroke-width=\"2\" fill=\"none\" opacity=\".8\"/><circle cx=\"186\" cy=\"208\" r=\"17\" fill=\"#fff\" fill-opacity=\"0\"/>',186,236],
 ['rocket','Rockets carry astronauts into space.','<text x="150" y="58" text-anchor="middle" font-size="34">🚀</text>',150,24]]],
 senses:['👀 Senses',gr('gE','#ffe5f1','#e6dcff'),[
 ['eyes','We see colours and shapes with our eyes.','<circle cx="75" cy="75" r="34" fill="#ffd166"/><text x="75" y="89" text-anchor="middle" font-size="40">👀</text>',75,124],
@@ -2248,7 +2252,7 @@ const fx=k=>{try{sfx(k)}catch(e){}};
 const pts=()=>{try{addPts(2,null,'Space')}catch(e){}};
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const pick=a=>a[Math.random()*a.length|0],shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
-function planet(k,s){const id='p'+(U++);const C={earth:['#7fd0ff','#2f7fd0'],mars:['#ffb08a','#d9583a'],saturn:['#ffe9a0','#e0a93a'],jupiter:['#ffd2a1','#d9893f']}[k];
+function planet(k,s){const id='p'+(U++);const C={earth:['#7fd0ff','#2f7fd0'],mars:['#ffb08a','#d9583a'],saturn:['#ffe9a0','#e0a93a'],jupiter:['#ffd2a1','#d9893f'],mercury:['#d9d4ca','#9b948a'],venus:['#ffe0a3','#e0a24a'],uranus:['#c8f4f6','#5fc7cf'],neptune:['#8fb0ff','#2f4fc0']}[k];
  let x='';if(k=='earth')x='<path d="M30 28q10-10 22-2q4 12-8 16q-12 2-14-14zM56 58q10-4 14 6q-6 10-16 4z" fill="#5cc26b"/>';
  if(k=='mars')x='<circle cx="38" cy="40" r="7" fill="#b9432a" opacity=".7"/><circle cx="62" cy="58" r="5" fill="#b9432a" opacity=".7"/><circle cx="55" cy="30" r="4" fill="#b9432a" opacity=".7"/>';
  if(k=='jupiter')x='<path d="M14 40h72M12 54h76M20 66h60" stroke="#b8672a" stroke-width="6" opacity=".55" stroke-linecap="round"/>';
@@ -2283,7 +2287,7 @@ async function launch(from){ // 3, 2, 1, blast off
  pts();fx('ok');from=='cd'?cd(1):rk('Great job, little astronaut! 🌟')}
 function cd(done){const s=st.cd||(st.cd={n:5,c:5});
  shell(`<div class="row"><button class="lv" data-cn="5" aria-pressed="${s.n==5}">From 5</button><button class="lv" data-cn="10" aria-pressed="${s.n==10}">From 10</button></div>${done?`<p class="tt">You launched the rocket! 🚀</p>${rocket(4,{})}<div class="opts"><button class="btn" data-cn="${s.n}">Again</button></div>`:`<p class="tt">Tap the button to count down</p><div class="spbig">${s.c}</div><div class="opts"><button class="btn" id="cdt" style="font-size:28px">Tap ${s.c}</button></div>`}`)}
-const PN={earth:'Earth is our home.',mars:'Mars is the red planet.',saturn:'Saturn has big rings.',jupiter:'Jupiter is the biggest planet.'};
+const PN={earth:'Earth is our home.',mars:'Mars is the red planet.',saturn:'Saturn has big rings.',jupiter:'Jupiter is the biggest planet.',mercury:'Mercury is the closest to the sun.',venus:'Venus is the hottest planet.',uranus:'Uranus spins on its side.',neptune:'Neptune is deep blue and windy.'};
 function pl(m){const s=st.pl||(st.pl={});s.t=s.t||pick(Object.keys(PN));const o=shuf(Object.keys(PN)).filter(k=>k!=s.t).slice(0,2).concat(s.t);
  shell(`<p class="tt">Find ${s.t[0].toUpperCase()+s.t.slice(1)}</p><div class="opts">${shuf(o).map(k=>`<button class="btn" data-pp="${k}" aria-label="${k}">${planet(k)}</button>`).join('')}</div><div class="tt">${m||''}</div>`);if(!m)say('Find '+s.t)}
 const PS=[['⭐','🌙'],['🪐','☄️'],['🚀','🌍']];
@@ -5165,7 +5169,7 @@ body:has(#pm:not([hidden])) #litefab,body:has(#pinm:not([hidden])) #litefab{disp
 /* keep header pills clear of menu + toggle */
 #top{padding-right:max(150px,calc((100vw - 1120px)/2))!important}
 /* nav: always begins at the first item, no sideways jump */
-#nav{scroll-behavior:auto;overscroll-behavior-x:contain}
+#nav{scroll-behavior:auto;overscroll-behavior-x:contain}#nav::before{order:-1}#nav::after{order:9999;flex:0 0 0!important;width:0!important}
 #nav .nv,#nav .nv b{transition:none!important;animation:none!important}#nav .nv.on b{transform:none!important}
 </style>
 <script>
@@ -5180,7 +5184,9 @@ Element.prototype.scrollIntoView=function(o){
     nav.scrollTo({left:Math.max(0,l),behavior:'smooth'});return}
   return osiv.apply(this,arguments)};
 function dedupe(){var seen={};[].slice.call(nav.children).forEach(function(b){var k=b.getAttribute&&b.getAttribute('data-go');if(!k)return;if(seen[k])b.remove();else seen[k]=1})}
-function home(){if((window.scrollY||0)<160&&nav.scrollLeft!==0)nav.scrollLeft=0}
+function order(){var b=[].slice.call(nav.children),y=window.scrollY||0,k=function(x){var g=x.getAttribute('data-go');if(g=='#owl')return 1e9;if(g=='#grown')return 1e9+1;var e=g&&document.querySelector(g);return e&&!e.hidden?e.getBoundingClientRect().top+y:1e8};
+  b.map(function(x){return[x,k(x)]}).sort(function(p,q){return p[1]-q[1]}).forEach(function(p,i){var v=String(i+1);if(p[0].style.order!==v)p[0].style.order=v})}
+function home(){order();if((window.scrollY||0)<160&&nav.scrollLeft!==0)nav.scrollLeft=0}
 var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){dedupe();home()},60)}).observe(nav,{childList:true});
 var cur=null,tk=0;
 function act(){tk=0;var y=innerHeight*.4,best=null;
@@ -5190,7 +5196,7 @@ function act(){tk=0;var y=innerHeight*.4,best=null;
   if(on&&(window.scrollY||0)>=160){var l=on.offsetLeft-(nav.clientWidth-on.offsetWidth)/2;nav.scrollTo({left:Math.max(0,l),behavior:'smooth'})}}
 addEventListener('scroll',function(){if(!tk)tk=requestAnimationFrame(act)},{passive:true});
 dedupe();home();act();
-[300,900,1800,3000,5000].forEach(function(ms){setTimeout(function(){dedupe();home()},ms)});
+[300,900,1800,3000,5000,8000,12000,16000,24000,32000].forEach(function(ms){setTimeout(function(){dedupe();home()},ms)});var so;addEventListener('scroll',function(){clearTimeout(so);so=setTimeout(order,350)},{passive:true});addEventListener('resize',function(){setTimeout(order,200)});
 addEventListener('load',home);addEventListener('pageshow',home);
 })();
 </script>
@@ -5288,6 +5294,17 @@ addEventListener('kokpct',function(e){loading=1;pct=(e.detail&&e.detail.pc)||0;p
 addEventListener('kokok',function(){loading=0;paint()});addEventListener('kokfail',function(){loading=0;paint()});
 var hb=document.getElementById('hmb');if(hb)hb.addEventListener('click',paint,true);
 setInterval(function(){if(!hm.hidden)paint()},700);paint();
+})();
+</script>
+
+<script>
+/* v98 sound: one shared audio engine, woken by the first touch; speech stops when the app is hidden */
+(function(){
+function wake(){var c=window._ac;if(c&&c.state=='suspended'){try{c.resume().catch(function(){})}catch(e){}}}
+['pointerdown','touchend','keydown'].forEach(function(e){addEventListener(e,wake,{passive:true,capture:true})});
+function hush(){try{speechSynthesis.cancel()}catch(e){}}
+document.addEventListener('visibilitychange',function(){if(document.hidden)hush();else wake()});
+addEventListener('pagehide',hush);
 })();
 </script>
 </body>
