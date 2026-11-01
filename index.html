@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google Search Console: paste your verification tag below, e.g. <meta name="google-site-verification" content="YOUR_TOKEN"> -->
 <script>/* low-end phone detection: manual override > saved result > device signals */
 (function(){var d=document.documentElement,n=navigator,c=n.connection||{},o=null,a=null;try{o=localStorage.getItem('lite');a=localStorage.getItem('litea')}catch(e){}
 var low=(n.deviceMemory&&n.deviceMemory<=4)||(n.hardwareConcurrency&&n.hardwareConcurrency<=6)||c.saveData||/(^|slow-)2g|3g/.test(c.effectiveType||'')||a==='1';
@@ -578,7 +579,7 @@ cow:'गाय',pig:'सुअर',sheep:'भेड़',horse:'घोड़ा',
 rocket:'रॉकेट',moon:'चाँद',star:'तारा',planet:'ग्रह',astronaut:'अंतरिक्ष यात्री',comet:'धूमकेतु','fire truck':'दमकल','police car':'पुलिस की गाड़ी',ambulance:'एम्बुलेंस',airplane:'हवाई जहाज़',tractor:'ट्रैक्टर',bus:'बस'};
 const RH=[['Twinkle, Twinkle','⭐',['Twinkle, twinkle, little star,','How I wonder what you are!','Up above the world so high,','Like a diamond in the sky.']],['Baa, Baa, Black Sheep','🐑',['Baa, baa, black sheep, have you any wool?','Yes sir, yes sir, three bags full.','One for the master, one for the dame,','And one for the little boy who lives down the lane.']],['Itsy Bitsy Spider','🕷️',['The itsy bitsy spider climbed up the waterspout.','Down came the rain and washed the spider out.','Out came the sun and dried up all the rain,','And the itsy bitsy spider climbed up the spout again.']],['Humpty Dumpty','🥚',['Humpty Dumpty sat on a wall,','Humpty Dumpty had a great fall.','All the king’s horses and all the king’s men','Couldn’t put Humpty together again.']],['Jack and Jill','⛰️',['Jack and Jill went up the hill','To fetch a pail of water.','Jack fell down and broke his crown,','And Jill came tumbling after.']]];
 /* rhymes by class: 4th item = Nursery / LKG / UKG */
-['Nursery','Nursery','Nursery','LKG','LKG'].forEach((c,k)=>{RH[k][3]=c});RH.push(...[["Rain, Rain, Go Away","🌧️",["Rain, rain, go away,","Come again another day.","Little children want to play,","Rain, rain, go away."],"Nursery"],["Row, Row, Row Your Boat","🚣",["Row, row, row your boat,","Gently down the stream.","Merrily, merrily, merrily, merrily,","Life is but a dream."],"Nursery"],["Pat-a-Cake","🧁",["Pat-a-cake, pat-a-cake, baker’s man,","Bake me a cake as fast as you can.","Pat it and prick it and mark it with B,","And put it in the oven for baby and me."],"Nursery"],["Hickory Dickory Dock","🕰️",["Hickory, dickory, dock,","The mouse ran up the clock.","The clock struck one, the mouse ran down,","Hickory, dickory, dock."],"Nursery"],["ABC Song","🔤",["A B C D E F G,","H I J K L M N O P,","Q R S, T U V, W X Y and Z,","Now I know my ABCs, next time won’t you sing with me?"],"Nursery"],["Head, Shoulders, Knees and Toes","🙆",["Head, shoulders, knees and toes, knees and toes,","Head, shoulders, knees and toes, knees and toes,","Eyes and ears and mouth and nose,","Head, shoulders, knees and toes, knees and toes."],"Nursery"],["One, Two, Three, Four, Five","🖐️",["One, two, three, four, five,","Once I caught a fish alive.","Six, seven, eight, nine, ten,","Then I let it go again."],"Nursery"],["Mary Had a Little Lamb","🐏",["Mary had a little lamb,","Its fleece was white as snow.","And everywhere that Mary went,","The lamb was sure to go."],"LKG"],["Little Miss Muffet","🕸️",["Little Miss Muffet sat on a tuffet,","Eating her curds and whey.","Along came a spider who sat down beside her","And frightened Miss Muffet away."],"LKG"],["Jack Be Nimble","🕯️",["Jack be nimble, Jack be quick,","Jack jump over the candlestick."],"LKG"],["Hey Diddle Diddle","🐄",["Hey diddle diddle, the cat and the fiddle,","The cow jumped over the moon.","The little dog laughed to see such fun,","And the dish ran away with the spoon."],"LKG"],["Pussy Cat, Pussy Cat","🐱",["Pussy cat, pussy cat, where have you been?","I’ve been to London to visit the queen.","Pussy cat, pussy cat, what did you there?","I frightened a little mouse under her chair."],"LKG"],["Hot Cross Buns","🍞",["Hot cross buns, hot cross buns,","One a penny, two a penny,","Hot cross buns."],"LKG"],["Old MacDonald","🚜",["Old MacDonald had a farm, E-I-E-I-O.","And on his farm he had a cow, E-I-E-I-O.","With a moo moo here, and a moo moo there,","Here a moo, there a moo, everywhere a moo moo."],"LKG"],["Colours of the Rainbow","🌈",["Red and orange, yellow, green,","Blue, indigo, violet seen.","Seven colours in the sky,","Rainbow, rainbow, shining high!"],"LKG"],["London Bridge","🌉",["London Bridge is falling down,","Falling down, falling down.","London Bridge is falling down,","My fair lady."],"UKG"],["Little Bo Peep","🐑",["Little Bo Peep has lost her sheep,","And doesn’t know where to find them.","Leave them alone, and they’ll come home,","Wagging their tails behind them."],"UKG"],["Mary, Mary, Quite Contrary","🌷",["Mary, Mary, quite contrary,","How does your garden grow?","With silver bells and cockle shells,","And pretty maids all in a row."],"UKG"],["One, Two, Buckle My Shoe","👟",["One, two, buckle my shoe.","Three, four, knock at the door.","Five, six, pick up sticks.","Seven, eight, lay them straight.","Nine, ten, a big fat hen."],"UKG"],["Little Jack Horner","🥧",["Little Jack Horner sat in a corner,","Eating his Christmas pie.","He put in his thumb and pulled out a plum,","And said, “What a good boy am I!”"],"UKG"],["Sing a Song of Sixpence","🐦",["Sing a song of sixpence, a pocket full of rye,","Four and twenty blackbirds baked in a pie.","When the pie was opened, the birds began to sing,","Wasn’t that a dainty dish to set before the king?"],"UKG"],["Days of the Week","📅",["Monday, Tuesday, Wednesday, hey!","Thursday, Friday, we learn and play.","Saturday, Sunday, rest and fun,","Seven days, now the week is done!"],"UKG"],["Four Seasons","🍂",["Spring brings flowers, bright and new,","Summer skies are warm and blue.","Autumn leaves fall red and gold,","Winter days are crisp and cold."],"UKG"]]);
+['Nursery','Nursery','Nursery','LKG','LKG'].forEach((c,k)=>{RH[k][3]=c});RH.push(...[["Zebra, Zebra","🦓",["Zebra, zebra, black and white,","Like a horse, you run so light.","Stripes on your back, stripes on your toes,","Stripes from your tail up to your nose.","Zebra, zebra, run and play,","Gallop, gallop, all the day!"],"Nursery"],["Rain, Rain, Go Away","🌧️",["Rain, rain, go away,","Come again another day.","Little children want to play,","Rain, rain, go away."],"Nursery"],["Row, Row, Row Your Boat","🚣",["Row, row, row your boat,","Gently down the stream.","Merrily, merrily, merrily, merrily,","Life is but a dream."],"Nursery"],["Pat-a-Cake","🧁",["Pat-a-cake, pat-a-cake, baker’s man,","Bake me a cake as fast as you can.","Pat it and prick it and mark it with B,","And put it in the oven for baby and me."],"Nursery"],["Hickory Dickory Dock","🕰️",["Hickory, dickory, dock,","The mouse ran up the clock.","The clock struck one, the mouse ran down,","Hickory, dickory, dock."],"Nursery"],["ABC Song","🔤",["A B C D E F G,","H I J K L M N O P,","Q R S, T U V, W X Y and Z,","Now I know my ABCs, next time won’t you sing with me?"],"Nursery"],["Head, Shoulders, Knees and Toes","🙆",["Head, shoulders, knees and toes, knees and toes,","Head, shoulders, knees and toes, knees and toes,","Eyes and ears and mouth and nose,","Head, shoulders, knees and toes, knees and toes."],"Nursery"],["One, Two, Three, Four, Five","🖐️",["One, two, three, four, five,","Once I caught a fish alive.","Six, seven, eight, nine, ten,","Then I let it go again."],"Nursery"],["Mary Had a Little Lamb","🐏",["Mary had a little lamb,","Its fleece was white as snow.","And everywhere that Mary went,","The lamb was sure to go."],"LKG"],["Little Miss Muffet","🕸️",["Little Miss Muffet sat on a tuffet,","Eating her curds and whey.","Along came a spider who sat down beside her","And frightened Miss Muffet away."],"LKG"],["Jack Be Nimble","🕯️",["Jack be nimble, Jack be quick,","Jack jump over the candlestick."],"LKG"],["Hey Diddle Diddle","🐄",["Hey diddle diddle, the cat and the fiddle,","The cow jumped over the moon.","The little dog laughed to see such fun,","And the dish ran away with the spoon."],"LKG"],["Pussy Cat, Pussy Cat","🐱",["Pussy cat, pussy cat, where have you been?","I’ve been to London to visit the queen.","Pussy cat, pussy cat, what did you there?","I frightened a little mouse under her chair."],"LKG"],["Hot Cross Buns","🍞",["Hot cross buns, hot cross buns,","One a penny, two a penny,","Hot cross buns."],"LKG"],["Old MacDonald","🚜",["Old MacDonald had a farm, E-I-E-I-O.","And on his farm he had a cow, E-I-E-I-O.","With a moo moo here, and a moo moo there,","Here a moo, there a moo, everywhere a moo moo."],"LKG"],["Colours of the Rainbow","🌈",["Red and orange, yellow, green,","Blue, indigo, violet seen.","Seven colours in the sky,","Rainbow, rainbow, shining high!"],"LKG"],["London Bridge","🌉",["London Bridge is falling down,","Falling down, falling down.","London Bridge is falling down,","My fair lady."],"UKG"],["Little Bo Peep","🐑",["Little Bo Peep has lost her sheep,","And doesn’t know where to find them.","Leave them alone, and they’ll come home,","Wagging their tails behind them."],"UKG"],["Mary, Mary, Quite Contrary","🌷",["Mary, Mary, quite contrary,","How does your garden grow?","With silver bells and cockle shells,","And pretty maids all in a row."],"UKG"],["One, Two, Buckle My Shoe","👟",["One, two, buckle my shoe.","Three, four, knock at the door.","Five, six, pick up sticks.","Seven, eight, lay them straight.","Nine, ten, a big fat hen."],"UKG"],["Little Jack Horner","🥧",["Little Jack Horner sat in a corner,","Eating his Christmas pie.","He put in his thumb and pulled out a plum,","And said, “What a good boy am I!”"],"UKG"],["Sing a Song of Sixpence","🐦",["Sing a song of sixpence, a pocket full of rye,","Four and twenty blackbirds baked in a pie.","When the pie was opened, the birds began to sing,","Wasn’t that a dainty dish to set before the king?"],"UKG"],["Days of the Week","📅",["Monday, Tuesday, Wednesday, hey!","Thursday, Friday, we learn and play.","Saturday, Sunday, rest and fun,","Seven days, now the week is done!"],"UKG"],["Four Seasons","🍂",["Spring brings flowers, bright and new,","Summer skies are warm and blue.","Autumn leaves fall red and gold,","Winter days are crisp and cold."],"UKG"]]);
 const RES=[['🏛️','Harvard Center on the Developing Child','Free · parents','Science of early brain building. Start with “Serve and Return”: answer your child’s words and wait for their next turn.','https://developingchild.harvard.edu'],['🧠','Childtime: Logic & reasoning at home','Free · parents','Give your child time to try before you help. Make number or letter patterns and ask them to continue.','https://childtime.com/blog/2021/11/encourage-the-development-of-logic-and-reasoning-at-home'],['🧩','WonderTree: Thinking games for preschoolers','Free · parents','Sorting, memory trays, sequence and pattern games. Keep each one short and play-based.','https://www.wondertree.co/cognitive-development-in-preschoolers'],['👕','Lingokids: Clothes Names','Free · ages 3-6','Clothes words with memory-card, dress-up and sorting games. Try: “Take the green shirt!”','https://lingokids.com/english-for-kids/clothes'],['📚','Oxford Owl','Free · ages 3-11','Oxford University Press ebooks by level. Read one book twice: first you read, then your child.','https://home.oxfordowl.co.uk'],['🇬🇧','British Council LearnEnglish Kids','Free · ages 5+','Songs, stories and games. Pick one song a week and sing it daily.','https://learnenglishkids.britishcouncil.org'],['🎓','Cambridge English Young Learners','Free tips','Shows the speaking and listening skills children build in early English.','https://www.cambridgeenglish.org'],['🎬','Storyline Online','Free · ages 3-8','Actors read picture books. Watch together, pause and ask “what happens next?”','https://storylineonline.net'],['🧸','Khan Academy Kids','Free · ages 2-8','Reading, math and social skills with no ads. Good for 15 minutes of guided play.','https://learn.khanacademy.org/khan-academy-kids/'],['🔤','Starfall','Free core · ages 3-7','Phonics step by step. Match the letter sound to the A to Z tracing here.','https://www.starfall.com'],['📖','Reading Rockets','Free · parents','Short tips and videos on reading aloud and building vocabulary.','https://www.readingrockets.org'],['📘','NCERT textbooks','Free · Class 1+','Official NCERT books (Class 1 English Mridang, Joyful Mathematics 1 and 2). Balvatika uses activity books instead of textbooks.','https://ncert.nic.in/textbook.php'],['🧺','Jaadui Pitara','Free · ages 3-8','NCERT’s play-based kit for Balvatika to Class 2: stories, songs, games.','https://diksha.gov.in/jadoo/explore.html'],['🎨','withicons.com','Free · MIT license','1000 animated icons in 34 styles, with festive sets (Utsav, Rangoli). Useful for printables and slides.','https://withicons.com']];
 const STAMPS=['🚲','📖','🌙','🕯️','🚂','🛋️','✉️','🎩','🎈','🦄'];
 
@@ -5307,5 +5308,567 @@ document.addEventListener('visibilitychange',function(){if(document.hidden)hush(
 addEventListener('pagehide',hush);
 })();
 </script>
+
+<style id="v99">
+/* v99 Diwali theme: turns on by itself from 4 days before Diwali to the day after; Menu > Festive mode preview shows it any time. */
+html.fx #wall{background:linear-gradient(180deg,var(--g2),var(--g1))}
+html.fx #wall::before{background:linear-gradient(135deg,var(--fxa),var(--fxb) 50%,var(--fxc));opacity:.2;-webkit-mask-image:var(--fxmask);mask-image:var(--fxmask);-webkit-mask-size:200px 200px;mask-size:200px 200px}
+html.fx #hero .hc p,html.fx #hero .hc>p{color:var(--fxgr)!important;text-shadow:0 2px 8px var(--fxsh)}
+html.fx #hero #hb{padding-top:120px}html.fx #hero #hb h2,html.fx #hero #hb .hi{color:var(--fxgh,var(--fxhi))!important;text-shadow:0 2px 8px var(--fxsh)}html.fx #hero #hb p,html.fx #hero #hb small{color:var(--fxgr)!important}html.fx #hero #hb .hbs small{color:#5a2a4a!important;opacity:.85}
+#diwali h2::after{display:none}
+html.fx #ttl{filter:drop-shadow(0 4px 14px var(--fxsh))}
+html.fx section h2{color:var(--tt)}
+html.fx #nav{border:2px solid color-mix(in srgb,var(--fxac) 60%,transparent);box-shadow:0 10px 26px color-mix(in srgb,var(--tt) 22%,transparent)}
+html.fx #nav .nv.on{background:var(--h2)}
+html.fx .box{border-top-color:var(--fxac)}
+/* hero decorations */
+#dwd{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+#dwd .dws{position:absolute;left:0;top:0;width:2px;height:2px;border-radius:50%;background:#fff;animation:dwt 3s ease-in-out infinite}
+#dwd .dwl{position:absolute;left:0;right:0;top:56px;height:30px;background:radial-gradient(circle at 12px 16px,var(--fl1) 0 4px,color-mix(in srgb,var(--fl1) 40%,transparent) 5px 9px,#0000 10px) 0 0/44px 30px repeat-x;animation:dwk 1.4s steps(1) infinite}
+#dwd .dwl+.dwl{background:radial-gradient(circle at 34px 16px,var(--fl2) 0 4px,color-mix(in srgb,var(--fl2) 40%,transparent) 5px 9px,#0000 10px) 0 0/44px 30px repeat-x;animation-delay:-.7s}
+#dwd .dwn{position:absolute;top:72px;width:26px;transform-origin:50% 0;animation:dwsw 4.5s ease-in-out infinite}
+#dwd .dwn.l{left:2%}#dwd .dwn.r{right:2%;animation-delay:-2s;width:24px}
+.dwb{position:absolute;width:130px;height:130px;margin:-65px 0 0 -65px;pointer-events:none;opacity:0;animation:dwb 3.8s ease-out infinite}
+.dwb svg{width:100%;height:100%;overflow:visible}
+@keyframes dwb{0%{transform:scale(.15);opacity:0}8%{opacity:1}55%{transform:scale(1);opacity:.95}100%{transform:scale(1.2);opacity:0}}
+@keyframes dwt{50%{opacity:.2}}
+@keyframes dwk{0%{opacity:1}50%{opacity:.25}}
+@keyframes dwsw{50%{transform:rotate(5deg)}0%,100%{transform:rotate(-5deg)}}
+.lite #dwd .dwl,.lite #dwd .dwn,.lite #dwd .dws,.lite #dwd .dwb{animation:none}.lite #dwd .dwb{display:none}
+@media(prefers-reduced-motion:reduce){#dwd *{animation:none!important}}
+/* Diwali corner */
+#fxs{padding-top:30px}
+#fxs .dwbox{position:relative;overflow:hidden;border-radius:34px;padding:22px 16px 26px;color:var(--fxink);text-align:center;background:var(--fxbox);box-shadow:0 10px 0 color-mix(in srgb,var(--fxac) 30%,transparent),0 18px 40px #0003;border:3px solid color-mix(in srgb,var(--fxac) 70%,transparent)}
+#fxs h2{margin:6px 0 4px;color:var(--fxhi);font-size:34px;line-height:1.05}
+#fxs h2 small{display:block;font-size:20px;color:var(--fxsoft);font-weight:600}
+#fxs h3{margin:26px 0 10px;color:var(--fxhi);font-size:22px}
+#fxs .dwbadge{display:inline-block;padding:5px 14px;border-radius:99px;background:color-mix(in srgb,var(--fxac) 20%,transparent);border:1px solid color-mix(in srgb,var(--fxac) 55%,transparent);font-weight:700;font-size:14px}
+#fxs p{margin:6px 0 0;opacity:.95}
+.dwdiyas{display:flex;justify-content:center;gap:4px;margin-top:16px}
+.dwd{position:relative;flex:0 1 66px;aspect-ratio:1;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dwd svg{width:100%;height:100%;overflow:visible}
+.dwd .gl{opacity:0;transition:opacity .4s}.dwd .fl{opacity:0;transform:scale(.2);transform-origin:32px 40px;transition:opacity .25s,transform .45s cubic-bezier(.3,1.7,.5,1)}
+.dwd.lit .gl{opacity:1}.dwd.lit .fl{opacity:1;transform:none;animation:dwfl .9s ease-in-out infinite alternate}
+@keyframes dwfl{to{transform:scale(.94,1.1) rotate(2deg)}}
+.dwd:active{transform:scale(.94)}
+.dwmsg{margin-top:6px;font-weight:700;min-height:24px}
+.dwbtn{margin-top:10px;border:0;border-radius:99px;padding:12px 22px;font:700 17px Fredoka,sans-serif;color:#1a1030;background:linear-gradient(180deg,var(--fxhi),#ffb703);box-shadow:0 5px 0 #b97800;cursor:pointer}
+.dwbtn:active{transform:translateY(3px);box-shadow:0 2px 0 #b97800}
+.dwwords{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.dww{border:0;border-radius:20px;padding:12px 8px;background:#ffffff1c;border:1px solid color-mix(in srgb,var(--fxac) 40%,transparent);color:var(--fxink);font:700 18px Fredoka,sans-serif;cursor:pointer;display:grid;gap:2px;justify-items:center}
+.dww i{font-style:normal;font-size:34px;line-height:1}.dww small{font:600 15px 'Noto Sans Devanagari',system-ui,sans-serif;color:var(--fxsoft)}
+.dww:active,.dww.on{background:color-mix(in srgb,var(--fxac) 33%,transparent)}
+.dwstory{list-style:none;margin:0;padding:0;display:grid;gap:10px;text-align:left}
+.dwstory li{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;background:#ffffff14;border-radius:18px;padding:10px 12px}
+.dwstory li i{font-style:normal;font-size:34px;text-align:center}.dwstory li.on{background:color-mix(in srgb,var(--fxac) 27%,transparent);outline:2px solid var(--fxhi)}
+.dwstory b{display:block;font-weight:600}.dwstory small{display:block;color:var(--fxsoft);font-family:'Noto Sans Devanagari',system-ui,sans-serif}
+.dwsafe{list-style:none;margin:0;padding:0;display:grid;gap:8px;text-align:left}
+.dwsafe li{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;background:#ffffff14;border-radius:16px;padding:8px 12px}.dwsafe i{font-style:normal;font-size:28px;text-align:center}
+.dwgu{font-size:15px;opacity:.9;margin-top:22px}
+@media(prefers-reduced-motion:reduce){.dwd.lit .fl{animation:none}}
+.lite .dwd.lit .fl{animation:none}
+
+/* extra decor + emoji items */
+.dwd .em{display:block;font-size:40px;line-height:1;filter:grayscale(1) brightness(.6);opacity:.8;transition:filter .3s,transform .4s cubic-bezier(.3,1.7,.5,1)}
+.dwd.lit .em{filter:none;opacity:1;transform:scale(1.25);text-shadow:0 0 18px var(--fxhi)}
+.dwd small{display:block;margin-top:2px;font:700 12px Fredoka,sans-serif;color:var(--fxsoft)}
+.dwd.emo{flex:0 1 62px;aspect-ratio:auto;padding:6px 0}
+#dwd .dwf{position:absolute;top:-24px;color:#fff;opacity:.85;animation:dwfall linear infinite}
+#dwd .dwc{position:absolute;top:-14px;width:7px;height:12px;border-radius:2px;animation:dwfall linear infinite}
+#dwd .dwp{position:absolute;border-radius:50%;opacity:.55;animation:dwpul 5s ease-in-out infinite}
+#dwd .dwt{position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,#ff9933 33.3%,#fff 33.3% 66.6%,#138808 66.6%);opacity:.95}
+#dwd .dwk{position:absolute;right:6%;top:64px;width:54px;animation:dwrot 24s linear infinite}
+#dwd .dwm{position:absolute;right:7%;top:70px;width:58px;filter:drop-shadow(0 0 12px #ffe9a8)}
+@keyframes dwfall{to{transform:translate3d(30px,880px,0) rotate(540deg)}}
+@keyframes dwpul{50%{transform:scale(1.25);opacity:.8}}
+@keyframes dwrot{to{transform:rotate(360deg)}}
+.lite #dwd .dwf,.lite #dwd .dwc,.lite #dwd .dwp,.lite #dwd .dwk{animation:none}
+html #fxs h2::after,html #fxs h2::before{display:none!important}
+</style>
+<script>
+(function(){
+var D=document,H=D.documentElement;
+function G(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function P(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function today(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+var MK={
+rangoli:'<g transform="translate(50 50)"><circle r="5"/><ellipse cy="-15" rx="5" ry="10"/><ellipse cy="15" rx="5" ry="10"/><ellipse cx="-15" rx="10" ry="5"/><ellipse cx="15" rx="10" ry="5"/><circle r="26"/></g><g transform="translate(150 140)"><path d="M-16 0h32c0 9-7 15-16 15S-16 9-16 0z"/><path d="M0-18c4 5 6 8 3 12-1 2-5 2-6 0-3-4-1-7 3-12z"/></g><path d="M150 30l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><circle cx="40" cy="150" r="3"/><circle cx="100" cy="100" r="2"/>',
+snow:'<g transform="translate(50 50)"><path d="M0-24v48M-21-12l42 24M-21 12l42-24"/><path d="M-5-20l5 4 5-4M-5 20l5-4 5 4"/></g><g transform="translate(150 140)"><path d="M0-26l16 22h-9l14 18h-12l12 14h-42l12-14h-12l14-18h-9z"/></g><path d="M150 30l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><circle cx="40" cy="150" r="3"/><circle cx="100" cy="100" r="2"/>',
+spark:'<g transform="translate(50 50)"><path d="M0-24c2 14 10 22 24 24-14 2-22 10-24 24-2-14-10-22-24-24 14-2 22-10 24-24z"/></g><g transform="translate(150 140)"><circle r="20"/><path d="M0-12v12l8 6"/></g><path d="M150 30l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><circle cx="40" cy="150" r="3"/><circle cx="110" cy="90" r="2"/><circle cx="30" cy="100" r="2"/>',
+tri:'<g transform="translate(50 50)"><circle r="22"/><circle r="3"/><path d="M0-22v44M-22 0h44M-15.5-15.5l31 31M-15.5 15.5l31-31"/></g><g transform="translate(150 140)"><path d="M-14 -20v44"/><path d="M-14-20h30l-6 8 6 8h-30"/></g><path d="M150 30l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><circle cx="40" cy="150" r="3"/><circle cx="100" cy="100" r="2"/>',
+holi:'<g transform="translate(50 50)"><circle r="18"/><circle cx="26" cy="-10" r="6"/><circle cx="-24" cy="12" r="5"/><circle cx="4" cy="28" r="4"/></g><g transform="translate(150 140)"><path d="M0-22c10 14 14 22 14 30a14 14 0 0 1-28 0c0-8 4-16 14-30z"/></g><circle cx="150" cy="40" r="10"/><circle cx="40" cy="150" r="6"/><circle cx="100" cy="100" r="3"/><circle cx="170" cy="90" r="4"/>',
+moon:'<g transform="translate(50 50)"><path d="M10-24A24 24 0 1 0 24 14 19 19 0 0 1 10-24z"/></g><g transform="translate(150 140)"><path d="M0-22l6 15 16 1-12 10 4 16-14-9-14 9 4-16-12-10 16-1z"/></g><path d="M150 30l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><circle cx="40" cy="150" r="3"/><circle cx="100" cy="100" r="2"/>'
+};
+function mask(k){var svg='<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="none" stroke="black" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+MK[k]+'</svg>';return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")'}
+function P1(o){return o}
+var TH={
+diwali:{n:'Diwali',h:'Happy Diwali!',hi:'शुभ दीपावली',ic:'🪔',nav:'दिवाली',mask:'rangoli',decor:['lights','lantern'],fl:['#ffd23c','#ff7a59'],bursts:[[18,34,'#ffd23c',0],[82,26,'#ff7a59',1.3],[60,14,'#7be0ff',2.5]],
+ p:{bg:'#fff1d6',g1:'#ffd89a',g2:'#fff1d6',card:'#fffaf0',ink:'#3b1030',tt:'#8a1456',h1:'#ffcf6b',h2:'#ffe3b0',coral:'#e8453c',blue:'#7a1fa2',sun:'#ffb703',hero:'radial-gradient(circle at 50% 32%,#ffb7035c 0,#0000 52%),linear-gradient(180deg,#1a0a3a 0%,#4a1560 42%,#a3274f 78%,#ff8a3d 100%)',box:'radial-gradient(circle at 50% 0,#ffb70355,#0000 55%),linear-gradient(180deg,#2a0f4a,#5a1a62 60%,#a3274f)',bi:'#fff3d6',hi:'#ffd23c',ac:'#ffb703',soft:'#ffd98a',gr:'#fff3d6',sh:'#1a0a3a99',fa:'#ffb703',fb:'#e8453c',fc:'#b5179e'},
+ tap:'Tap each diya to light it up.',done:'All five diyas are lit! Happy Diwali!',cel:['🪔','✨','🎆','🎇','🪔'],svg:1,
+ items:[['','Diya','दीया'],['','Diya','दीया'],['','Diya','दीया'],['','Diya','दीया'],['','Diya','दीया']],
+ words:[['🪔','Diya','दीया'],['🌸','Rangoli','रंगोली'],['🍬','Sweets','मिठाई'],['💡','Lights','रोशनी'],['🎆','Fireworks','आतिशबाज़ी'],['🙏','Puja','पूजा'],['👗','New clothes','नए कपड़े'],['👨‍👩‍👧','Family','परिवार']],
+ sh:'Why we light diyas',story:[['🌳','Prince Rama lived in a forest for many years.','राजकुमार राम कई साल जंगल में रहे।'],['🏹','Rama was brave and kind, and good won over bad.','राम बहादुर और दयालु थे, और अच्छाई की जीत हुई।'],['🏠','It was time to go home to Ayodhya.','अब अयोध्या घर लौटने का समय था।'],['🪔','The night was very dark, so everyone lit rows of diyas.','रात बहुत अंधेरी थी, इसलिए सबने दीयों की कतारें जलाईं।'],['✨','Now, every Diwali, we light diyas and share sweets. Light is stronger than dark!','अब हर दिवाली हम दीये जलाते हैं और मिठाई बाँटते हैं।']],
+ note:'Families celebrate Diwali in different ways.',
+ safe:[['🎆','Grown-ups light the fireworks. We watch from far away.'],['🪔','Keep diyas away from curtains and clothes.'],['💡','Pretty LED lights are safe and bright too!'],['🐶','Loud bangs scare pets. Keep them calm indoors.'],['🧼','Wash your hands before sharing sweets.']]},
+christmas:{n:'Christmas',h:'Merry Christmas!',hi:'मेरी क्रिसमस',ic:'🎄',nav:'क्रिसमस',mask:'snow',decor:['lights','snow'],fl:['#ff4d5e','#ffd166'],bursts:[],
+ p:{bg:'#f4fbf6',g1:'#cfeedd',g2:'#f4fbf6',card:'#ffffff',ink:'#14301f',tt:'#b3202a',h1:'#ffd166',h2:'#d9f3e4',coral:'#d62839',blue:'#1d6fb8',sun:'#ffcb47',hero:'radial-gradient(circle at 50% 30%,#ffffff22 0,#0000 50%),linear-gradient(180deg,#0b1d3a 0%,#123a5c 42%,#1e6b52 80%,#2f9e6a 100%)',box:'linear-gradient(180deg,#0f3b2e,#16624a 60%,#9c1c2b)',bi:'#ffffff',hi:'#ffd166',ac:'#ffcb47',soft:'#cdeedd',gr:'#f2fff7',sh:'#0b1d3a99',fa:'#d62839',fb:'#1e8a5c',fc:'#ffcb47'},
+ tap:'Tap each surprise to unwrap it.',done:'All five are open! Merry Christmas!',cel:['🎄','🎁','⭐','🔔','❄️'],
+ items:[['🎄','Tree','क्रिसमस ट्री'],['🎁','Gift','उपहार'],['⭐','Star','तारा'],['🔔','Bell','घंटी'],['🧦','Stocking','मोज़ा']],
+ words:[['🎅','Santa','सांता'],['🎄','Christmas tree','क्रिसमस ट्री'],['🎁','Gift','उपहार'],['⭐','Star','तारा'],['❄️','Snow','बर्फ़'],['🍰','Cake','केक'],['🔔','Bell','घंटी'],['🎶','Carol','क्रिसमस गीत']],
+ sh:'What is Christmas?',story:[['⭐','Christians celebrate Christmas on 25 December.','ईसाई लोग 25 दिसंबर को क्रिसमस मनाते हैं।'],['👶','It is the day they remember the birth of Jesus.','यह यीशु के जन्म को याद करने का दिन है।'],['🎄','Families decorate a tree with lights and stars.','परिवार पेड़ को रोशनी और तारों से सजाते हैं।'],['🎁','People share gifts and cake, and sing songs called carols.','लोग उपहार और केक बाँटते हैं और क्रिसमस गीत गाते हैं।'],['❤️','Christmas is a time for kindness and sharing.','क्रिसमस प्यार और बाँटने का समय है।']],
+ note:'Families celebrate Christmas in different ways.',
+ safe:[['💡','Keep fairy lights away from water, and ask a grown-up to plug them in.'],['🕯️','Candles are for grown-ups. Keep them away from the tree.'],['🍬','Share sweets, then brush your teeth.'],['🧸','Keep small toy parts away from little babies.'],['🤝','Share your gifts and be kind to everyone.']]},
+newyear:{n:'New Year',h:'Happy New Year!',hi:'नया साल मुबारक',ic:'🎉',nav:'नया साल',mask:'spark',decor:['confetti'],fl:['#ffd23c','#7be0ff'],bursts:[[20,36,'#ffd23c',0],[80,28,'#ff7ad9',1.1],[52,14,'#7be0ff',2.2],[30,70,'#b6ff7a',3]],
+ p:{bg:'#fdf6e3',g1:'#ffe3a8',g2:'#fdf6e3',card:'#fffdf5',ink:'#1a1a3e',tt:'#3b2a8a',h1:'#ffd23c',h2:'#ffe9b8',coral:'#e8453c',blue:'#3b2a8a',sun:'#ffc300',hero:'radial-gradient(circle at 50% 30%,#ffd23c33 0,#0000 52%),linear-gradient(180deg,#0a0a2e 0%,#2a1a6e 45%,#6a2c91 78%,#e6678a 100%)',box:'linear-gradient(180deg,#0d0d3a,#2b1b72 60%,#7a2c8f)',bi:'#fff8e1',hi:'#ffd23c',ac:'#ffc300',soft:'#d9ccff',gr:'#fff8e1',sh:'#0a0a2e99',fa:'#ffc300',fb:'#e8453c',fc:'#3b2a8a'},
+ tap:'Tap each one to start the party.',done:'The party has started! Happy New Year!',cel:['🎉','🎆','✨','🥳','🎇'],
+ items:[['🎆','Fireworks','आतिशबाज़ी'],['🎉','Party','पार्टी'],['✨','Sparkle','चमक'],['🥳','Cheers','जश्न'],['⏰','Clock','घड़ी']],
+ words:[['🎆','Fireworks','आतिशबाज़ी'],['🎉','Party','पार्टी'],['⏰','Clock','घड़ी'],['📅','Calendar','कैलेंडर'],['🌟','Wish','शुभकामना'],['📝','Promise','वादा'],['🥳','Cheers','जश्न'],['🌍','New year','नया साल']],
+ sh:'How a new year begins',story:[['⏰','At midnight, a brand new year begins.','आधी रात को नया साल शुरू होता है।'],['📅','A year has 12 months and about 365 days.','एक साल में 12 महीने और लगभग 365 दिन होते हैं।'],['🌟','We make wishes and good promises.','हम शुभकामनाएँ करते हैं और अच्छे वादे करते हैं।'],['🤗','We hug our family and say Happy New Year.','हम परिवार को गले लगाकर नया साल मुबारक कहते हैं।'],['📚','Let us be kind and learn something new every day!','आओ हर दिन दयालु बनें और कुछ नया सीखें!']],
+ note:'Different families start their new year on different days.',
+ safe:[['🎆','Fireworks are for grown-ups. We watch from far away.'],['👂','Loud bangs can hurt ears. Cover them if it is noisy.'],['👨‍👩‍👧','Hold a grown-up hand in a crowd.'],['🐶','Pets get scared. Keep them calm indoors.'],['😴','Sleep well so we can learn tomorrow.']]},
+republic:{n:'Republic Day',h:'Happy Republic Day!',hi:'गणतंत्र दिवस की शुभकामनाएँ',ic:'🇮🇳',nav:'गणतंत्र',mask:'tri',decor:['tri','confetti3'],fl:['#ff9933','#138808'],bursts:[[20,38,'#ff9933',0],[80,30,'#ffffff',1.2],[52,16,'#138808',2.4]],
+ p:{bg:'#fff8ee',g1:'#ffe0b8',g2:'#fff8ee',card:'#fffdf8',ink:'#0b2a55',tt:'#0b3d91',h1:'#ff9933',h2:'#ffe9cf',coral:'#e8651c',blue:'#0b3d91',sun:'#ff9933',hero:'radial-gradient(circle at 50% 30%,#ffffff55 0,#0000 52%),linear-gradient(180deg,#ff9933 0%,#ffd9a0 30%,#ffffff 52%,#b9e6c4 76%,#138808 100%)',box:'linear-gradient(180deg,#0b3d91,#1b5cc0 55%,#138808)',bi:'#ffffff',hi:'#ffd9a0',ac:'#ff9933',soft:'#cfe3ff',gr:'#0b2a55',sh:'#ffffffaa',fa:'#ff9933',fb:'#0b3d91',fc:'#138808',gh:'#0b3d91'},
+ tap:'Tap to discover our national symbols.',done:'You found them all! Jai Hind!',cel:['🇮🇳','🦚','🌸','🐅','✨'],
+ items:[['🇮🇳','Flag','झंडा'],['🦚','Peacock','मोर'],['🐅','Tiger','बाघ'],['🌸','Lotus','कमल'],['📜','Constitution','संविधान']],
+ words:[['🇮🇳','Tiranga','तिरंगा'],['📜','Constitution','संविधान'],['🪖','Parade','परेड'],['🦚','Peacock','मोर'],['🕊️','Freedom','आज़ादी'],['🤝','Unity','एकता'],['🫡','Salute','सलामी'],['🏛️','India','भारत']],
+ sh:'Our Republic Day',story:[['🗓️','India became free on 15 August 1947.','भारत 15 अगस्त 1947 को आज़ाद हुआ।'],['📜','On 26 January 1950, our Constitution began.','26 जनवरी 1950 को हमारा संविधान लागू हुआ।'],['⚖️','The Constitution has rules and rights for everyone.','संविधान में सबके लिए नियम और अधिकार हैं।'],['🪖','Every year there is a big parade and the flag is raised.','हर साल बड़ी परेड होती है और झंडा फहराया जाता है।'],['🙏','We say Jai Hind and promise to be good citizens.','हम जय हिंद कहते हैं और अच्छे नागरिक बनने का वादा करते हैं।']],
+ note:'',
+ safe:[['🇮🇳','Stand tall and still when the national anthem plays.'],['🧼','Keep the flag clean and never let it touch the ground.'],['♻️','Do not throw paper flags on the road.'],['🤝','Be kind and fair to all friends.'],['😊','Say Jai Hind with a smile!']]},
+independence:{n:'Independence Day',h:'Happy Independence Day!',hi:'स्वतंत्रता दिवस की शुभकामनाएँ',ic:'🇮🇳',nav:'आज़ादी',mask:'tri',decor:['tri','confetti3'],fl:['#ff9933','#138808'],bursts:[[20,38,'#ff9933',0],[80,30,'#ffffff',1.2],[52,16,'#138808',2.4]],
+ p:null,tap:'Tap to discover our national symbols.',done:'You found them all! Jai Hind!',cel:['🇮🇳','🪁','🌸','🦚','✨'],
+ items:[['🇮🇳','Flag','झंडा'],['🦚','Peacock','मोर'],['🪁','Kite','पतंग'],['🌸','Lotus','कमल'],['🏰','Red Fort','लाल किला']],
+ words:[['🇮🇳','Tiranga','तिरंगा'],['🕊️','Freedom','आज़ादी'],['🏰','Red Fort','लाल किला'],['🪁','Kite','पतंग'],['🦸','Hero','वीर'],['🤝','Unity','एकता'],['🫡','Salute','सलामी'],['🏛️','India','भारत']],
+ sh:'How India became free',story:[['⏳','For a long time, India was ruled by the British.','बहुत समय तक भारत पर अंग्रेज़ों का राज था।'],['🤝','Many brave people worked together to make India free.','कई बहादुर लोगों ने मिलकर भारत को आज़ाद कराया।'],['🇮🇳','On 15 August 1947, India became free.','15 अगस्त 1947 को भारत आज़ाद हुआ।'],['🏰','Every year the Prime Minister raises the flag at the Red Fort.','हर साल प्रधानमंत्री लाल किले पर झंडा फहराते हैं।'],['🙏','We remember our heroes and keep India happy and united.','हम अपने वीरों को याद करते हैं और भारत को खुश और एक रखते हैं।']],
+ note:'',safe:null},
+holi:{n:'Holi',h:'Happy Holi!',hi:'होली की शुभकामनाएँ',ic:'🎨',nav:'होली',mask:'holi',decor:['holi'],fl:['#ffe066','#ff8fd0'],bursts:[],
+ p:{bg:'#fff5fb',g1:'#ffd3ec',g2:'#fff5fb',card:'#fffafd',ink:'#3a1650',tt:'#b5179e',h1:'#ffe066',h2:'#ffe0f3',coral:'#f72585',blue:'#4361ee',sun:'#ffb703',hero:'linear-gradient(180deg,#7209b7 0%,#b5179e 35%,#f72585 65%,#ffb703 100%)',box:'linear-gradient(180deg,#5a189a,#b5179e 60%,#f72585)',bi:'#fff5fb',hi:'#ffe066',ac:'#ffe066',soft:'#ffd3ec',gr:'#fff5fb',sh:'#3a165099',fa:'#f72585',fb:'#4361ee',fc:'#ffb703'},
+ tap:'Tap each colour to splash it.',done:'What a colourful Holi! Happy Holi!',cel:['🎨','🌈','💦','🎉','✨'],
+ items:[['🔴','Red','लाल'],['🟡','Yellow','पीला'],['🟢','Green','हरा'],['🔵','Blue','नीला'],['🟣','Purple','बैंगनी']],
+ words:[['🎨','Colours','रंग'],['💦','Pichkari','पिचकारी'],['🌸','Gulal','गुलाल'],['🍬','Gujiya','गुझिया'],['🌼','Spring','वसंत'],['🧑‍🤝‍🧑','Friends','दोस्त'],['🎶','Music','संगीत'],['😄','Joy','खुशी']],
+ sh:'The story of Holi',story:[['🌈','Holi is the festival of colours.','होली रंगों का त्योहार है।'],['🌼','It welcomes spring after the cold winter.','यह सर्दी के बाद वसंत का स्वागत करता है।'],['👦','Long ago, a brave boy called Prahlad believed in goodness.','बहुत पहले प्रह्लाद नाम का बहादुर बच्चा अच्छाई पर विश्वास करता था।'],['🎨','We play with colours, sing and share sweets like gujiya.','हम रंग खेलते हैं, गाते हैं और गुझिया जैसी मिठाई बाँटते हैं।'],['🤗','We hug friends, forgive and say Happy Holi!','हम दोस्तों को गले लगाते हैं, माफ़ करते हैं और होली मुबारक कहते हैं!']],
+ note:'',
+ safe:[['🎨','Use soft, skin-safe colours only.'],['👀','Keep colours away from eyes and mouth.'],['👕','Wear old clothes. Put oil on your skin first.'],['🙋','Ask before putting colour on anyone.'],['🧼','Wash your hands before eating sweets.']]},
+eid:{n:'Eid al-Fitr',h:'Eid Mubarak!',hi:'ईद मुबारक',ic:'🌙',nav:'ईद',mask:'moon',decor:['moon','lights','lantern'],fl:['#ffd166','#7be0b0'],bursts:[],
+ p:{bg:'#f2fbf6',g1:'#c9efdc',g2:'#f2fbf6',card:'#fbfffd',ink:'#0f3b2e',tt:'#0b6b4f',h1:'#ffd166',h2:'#d7f2e5',coral:'#e07a1f',blue:'#0b6b4f',sun:'#ffd166',hero:'radial-gradient(circle at 78% 20%,#ffe9a855 0,#0000 40%),linear-gradient(180deg,#071a3a 0%,#0b3d5c 45%,#0b6b4f 85%,#26a37a 100%)',box:'linear-gradient(180deg,#07312b,#0b6b4f 60%,#1b8a6b)',bi:'#f2fff8',hi:'#ffd166',ac:'#ffd166',soft:'#bfeedd',gr:'#f2fff8',sh:'#071a3a99',fa:'#0b6b4f',fb:'#ffd166',fc:'#26a37a'},
+ tap:'Tap each one to see it shine.',done:'All shining bright! Eid Mubarak!',cel:['🌙','⭐','🏮','🎁','✨'],
+ items:[['🌙','Moon','चाँद'],['⭐','Star','तारा'],['🏮','Lantern','लालटेन'],['🍬','Sweets','मिठाई'],['🎁','Gift','उपहार']],
+ words:[['🌙','Moon','चाँद'],['🕌','Mosque','मस्जिद'],['👗','New clothes','नए कपड़े'],['🎁','Eidi','ईदी'],['🍮','Sewai','सेवइयाँ'],['🤝','Sharing','बाँटना'],['👨‍👩‍👧','Family','परिवार'],['🏮','Lantern','लालटेन']],
+ sh:'What is Eid al-Fitr?',story:[['🌙','Muslims fast during the month of Ramadan.','मुसलमान रमज़ान के महीने में रोज़े रखते हैं।'],['🌙','Eid al-Fitr comes when Ramadan ends and the new moon is seen.','रमज़ान खत्म होने पर ईद आती है।'],['👗','Families wear new clothes, pray and visit each other.','परिवार नए कपड़े पहनते हैं, नमाज़ पढ़ते हैं और एक-दूसरे से मिलते हैं।'],['🎁','People give gifts and sweets, and help those in need.','लोग उपहार और मिठाई देते हैं और ज़रूरतमंदों की मदद करते हैं।'],['🤗','We hug and say Eid Mubarak!','हम गले मिलते हैं और ईद मुबारक कहते हैं!']],
+ note:'Families celebrate Eid in different ways.',
+ safe:[['🍬','Share sweets with neighbours and friends.'],['🤲','Help someone who needs it. Giving is part of Eid.'],['🪔','Ask a grown-up before touching candles or lamps.'],['🧼','Wash your hands before the Eid meal.'],['😊','Greet everyone with a big smile.']]},
+gurunanak:{n:'Guru Nanak Jayanti',h:'Happy Guru Nanak Jayanti!',hi:'गुरु नानक जयंती की शुभकामनाएँ',ic:'🙏',nav:'गुरपुरब',mask:'rangoli',decor:['lights'],fl:['#ffd166','#ffffff'],bursts:[],
+ p:{bg:'#fff6df',g1:'#ffe2a0',g2:'#fff6df',card:'#fffcf2',ink:'#14306b',tt:'#14306b',h1:'#ffd166',h2:'#ffeab8',coral:'#f4a300',blue:'#14306b',sun:'#f4a300',hero:'radial-gradient(circle at 50% 80%,#ffd16688 0,#0000 50%),linear-gradient(180deg,#14306b 0%,#2a5db0 45%,#f4a300 88%,#ffd166 100%)',box:'linear-gradient(180deg,#14306b,#2a5db0 60%,#f4a300)',bi:'#ffffff',hi:'#ffd166',ac:'#f4a300',soft:'#d6e4ff',gr:'#ffffff',sh:'#14306b99',fa:'#f4a300',fb:'#14306b',fc:'#2a5db0'},
+ tap:'Tap each one to light it up.',done:'All lit up! Happy Guru Nanak Jayanti!',cel:['🙏','🪔','✨','🌅','📖'],
+ items:[['🪔','Diya','दीया'],['🌅','Sunrise','सूर्योदय'],['📖','Book','किताब'],['🍲','Langar','लंगर'],['🤝','Sharing','बाँटना']],
+ words:[['🙏','Guru','गुरु'],['🕍','Gurdwara','गुरुद्वारा'],['🍲','Langar','लंगर'],['🎶','Kirtan','कीर्तन'],['🤝','Seva','सेवा'],['⚖️','Equal','बराबर'],['🪔','Light','रोशनी'],['❤️','Love','प्यार']],
+ sh:'About Guru Nanak',story:[['🌅','Guru Nanak was born long ago in Punjab.','गुरु नानक का जन्म बहुत समय पहले पंजाब में हुआ था।'],['⚖️','He taught that everyone is equal.','उन्होंने सिखाया कि सब बराबर हैं।'],['🤝','He taught us to share, work honestly and be kind.','उन्होंने बाँटना, ईमानदारी से काम करना और दयालु होना सिखाया।'],['🎶','On his birthday, people visit the gurdwara and sing kirtan.','उनके जन्मदिन पर लोग गुरुद्वारे जाते हैं और कीर्तन गाते हैं।'],['🍲','Everyone eats together in langar. Sharing is love!','सब मिलकर लंगर खाते हैं। बाँटना ही प्यार है!']],
+ note:'',
+ safe:[['🧣','Cover your head when you enter the gurdwara.'],['👟','Take off your shoes at the door.'],['🍲','Sit together and share the langar with everyone.'],['🤝','Help with seva: set out plates or clean up.'],['🪔','Ask a grown-up before touching lamps.']]},
+shivratri:{n:'Mahashivratri',h:'Happy Mahashivratri!',hi:'महाशिवरात्रि की शुभकामनाएँ',ic:'🔱',nav:'शिवरात्रि',mask:'moon',decor:['moon','lights'],fl:['#cfd8ff','#ffffff'],bursts:[],
+ p:{bg:'#f1f3ff',g1:'#cdd5ff',g2:'#f1f3ff',card:'#fafbff',ink:'#1a1f4a',tt:'#3a3a9a',h1:'#cfd8ff',h2:'#dfe4ff',coral:'#7a5af8',blue:'#3a3a9a',sun:'#ffd166',hero:'radial-gradient(circle at 78% 20%,#cfd8ff55 0,#0000 40%),linear-gradient(180deg,#05061f 0%,#141a5a 50%,#2a3a9a 85%,#6b7bd6 100%)',box:'linear-gradient(180deg,#0b0f3a,#1f2a80 60%,#3a3a9a)',bi:'#f1f3ff',hi:'#cfd8ff',ac:'#8fa0ff',soft:'#c3ccff',gr:'#eef0ff',sh:'#05061f99',fa:'#8fa0ff',fb:'#ffd166',fc:'#7a5af8'},
+ tap:'Tap each one to light it up.',done:'All lit up! Happy Mahashivratri!',cel:['🔱','🌙','🔔','🌿','✨'],
+ items:[['🌙','Moon','चाँद'],['🔔','Bell','घंटी'],['🌿','Leaf','पत्ता'],['🪔','Diya','दीया'],['🙏','Prayer','प्रार्थना']],
+ words:[['🔱','Shiva','शिव'],['🛕','Temple','मंदिर'],['🔔','Bell','घंटी'],['🌙','Moon','चाँद'],['🙏','Prayer','प्रार्थना'],['🌸','Flowers','फूल'],['🎶','Bhajan','भजन'],['☮️','Peace','शांति']],
+ sh:'About Mahashivratri',story:[['🌙','Mahashivratri is a special night for Lord Shiva.','महाशिवरात्रि भगवान शिव की विशेष रात है।'],['🙏','Many families pray and stay awake at night.','कई परिवार प्रार्थना करते हैं और रात को जागते हैं।'],['🛕','People visit the temple and ring bells.','लोग मंदिर जाते हैं और घंटियाँ बजाते हैं।'],['🌸','They sing bhajans and offer flowers and leaves.','वे भजन गाते हैं और फूल-पत्ते चढ़ाते हैं।'],['☮️','It is a time for peace and thankfulness.','यह शांति और धन्यवाद का समय है।']],
+ note:'Families celebrate Mahashivratri in different ways.',
+ safe:[['🤫','Be quiet and respectful in the temple.'],['🍎','Fasting is for grown-ups. Kids should eat healthy food.'],['🪔','Ask a grown-up before touching diyas.'],['🧼','Wash your hands before eating prasad.'],['🤗','Be gentle and kind to everyone.']]}
+};
+TH.independence.p=TH.republic.p;TH.independence.safe=TH.republic.safe;
+TH.bakrid=JSON.parse(JSON.stringify(TH.eid));var B=TH.bakrid;B.n='Bakrid';B.h='Eid Mubarak!';B.sh='What is Eid al-Adha?';B.items=[['🌙','Moon','चाँद'],['🕌','Mosque','मस्जिद'],['🤝','Sharing','बाँटना'],['👨‍👩‍👧','Family','परिवार'],['🎁','Gift','उपहार']];B.tap='Tap each one to see it shine.';
+B.story=[['🤝','Eid al-Adha is a festival of giving and sharing.','ईद अल-अज़हा देने और बाँटने का त्योहार है।'],['💛','It remembers a story of trust and kindness.','यह भरोसे और दया की कहानी याद दिलाता है।'],['👗','Families pray together and wear new clothes.','परिवार साथ नमाज़ पढ़ते हैं और नए कपड़े पहनते हैं।'],['🍽️','They share food with relatives, friends and people in need.','वे रिश्तेदारों, दोस्तों और ज़रूरतमंदों के साथ खाना बाँटते हैं।'],['🤗','We hug and say Eid Mubarak!','हम गले मिलते हैं और ईद मुबारक कहते हैं!']];
+var MAP={'Diwali':'diwali','Christmas':'christmas','New Year':'newyear','Republic Day':'republic','Independence Day':'independence','Holi':'holi','Eid al-Fitr':'eid','Bakrid':'bakrid','Guru Nanak Jayanti':'gurunanak','Mahashivratri':'shivratri'};
+var FIX={christmas:[12,25],newyear:[1,1],republic:[1,26],independence:[8,15]};
+function activeId(){
+  var q=location.search.match(/[?&](?:fest|diwali)=?([a-z]*)/i);if(q){var v=(q[1]||'diwali').toLowerCase();if(TH[v])return v}
+  var fp=G('fp');if(fp&&fp!=='1'&&TH[fp])return fp;if(fp)return 'diwali';
+  var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),best=null,bd=99;
+  function chk(id,dt){var d=Math.round((dt-t0)/864e5);if(d>=-1&&d<=4&&d<bd){bd=d;best=id}}
+  Object.keys(FIX).forEach(function(id){[-1,0,1].forEach(function(o){chk(id,new Date(now.getFullYear()+o,FIX[id][0]-1,FIX[id][1]))})});
+  try{FE.forEach(function(f){var id=MAP[f[0]];if(id&&!FIX[id]){var p=f[1].split('-');chk(id,new Date(+p[0],+p[1]-1,+p[2]))}})}catch(e){}
+  return best}
+var RS={
+christmas:[['🎄','Twinkl: free Christmas activities for kids','Free · crafts','Ten free Christmas activities for kids.','https://www.twinkl.com/blog/free-christmas-activities-for-kids-usa'],['🖍️','Free Homeschool Deals: Christmas printables','Free · printables','A round-up of free Christmas worksheets and printables.','https://www.freehomeschooldeals.com/free-christmas-worksheets-printables-activities-and-more']],
+republic:[['🇮🇳','ParentCircle: Republic Day activities','Free · crafts','Arts, crafts and activities for Republic Day.','https://www.parentcircle.com/republic-day-arts-and-crafts-activities-ideas-for-kids/article'],['🎨','Artsy Crafts Mom: India national day crafts','Free · crafts','70+ tricolour crafts for 15 August and 26 January.','https://artsycraftsymom.com/happy-independence-day/'],['📘','Twinkl India: Republic Day resource pack','Free account · ages 5-11','Facts and activities about Republic Day.','https://www.twinkl.co.in/resource/republic-day-of-india-resource-pack-in-evs-1641373846']],
+holi:[['🎨','Twinkl: Holi activities for kids','Free account · crafts','Stories, crafts and homemade skin-safe colours.','https://www.twinkl.com/resources/holi-activities-for-kids-festivals-and-events-india-india'],['🖌️','Little Ladoo: Holi activities','Free · printables','Crafts, worksheets and books about Holi.','https://www.littleladoo.com/holi-activities-for-kids/'],['🌈','Artsy Crafts Mom: Holi crafts','Free · crafts','15 Holi crafts and colouring pages.','https://artsycraftsymom.com/holi-crafts-and-activities-for-kids/']],
+eid:[['🌙','Twinkl Parents: Eid crafts and activities','Free · crafts','Eid crafts, worksheets and parent guides.','https://www.twinkl.com/resources/festivals-celebrations-and-events-parents/april/parents-craft-activities-eid'],['🏮','Pastory: 25 Eid activities for kids','Free · crafts','Moon, lantern and card crafts, plus games.','https://pastory.app/articles/eid-activities-for-kids/']]};
+RS.independence=RS.republic;RS.bakrid=RS.eid;
+function addRes(id){try{if(typeof RES==='undefined')return;(RS[id]||[]).forEach(function(r){if(!RES.some(function(x){return x[4]==r[4]}))RES.push(r)})}catch(e){}}
+try{if(typeof RES!=='undefined'&&!RES.some(function(r){return r[1]=='NurtureStore: Diwali crafts'})){[
+['🪔','NurtureStore: Diwali crafts','Free · crafts','Diya and rangoli crafts, Rama and Sita puppets and printables.','https://nurturestore.co.uk/category/festivals/diwali/'],
+['🎨','Twinkl: Diwali crafts and activities','Free account · ages 5-11','Rangoli, diya crafts and stories for kids.','https://www.twinkl.com/resources/parents-craft-activities-diwali'],
+['📖','Kid World Citizen: Story of Diwali','Free · story','A kid-friendly story of Diwali with crafts, books and activities.','https://kidworldcitizen.org/teach-kids-the-story-of-diwali/'],
+['🧵','The Educators’ Spin On It: Diwali','Free · crafts','Rangoli, diya crafts, books and videos for kids.','https://theeducatorsspinonit.com/diwali-activities-for-kids/'],
+['🖍️','Aarika’s Closet: free Diwali crafts','Free · printables','Free printables, colouring cards and rangoli ideas.','https://aarikascloset.com/blogs/aarikas-tips/free-diwali-craft-resources'],
+['🧒','Teachit: Diwali activities for EYFS','Free · ages 3-5','Story time, rangoli and lights activities for little ones.','https://www.teachit.co.uk/resources/primary/diwali-activities-eyfs'],
+['🧯','ParentCircle: Diwali safety dos and don’ts','Free · safety','A checklist for keeping children safe with diyas and fireworks.','https://www.parentcircle.com/dos-donts-for-safe-diwali/article'],
+['🚒','Warwickshire Fire: Diwali fire safety','Free · safety','Safe diya placement and battery-operated candles.','https://www.warwickshire.gov.uk/fire-safety-home/seasonal-fire-safety/4']
+].forEach(function(r){RES.push(r)})}}catch(e){}
+var tok=0;
+function hi(t,cb){try{var u=new SpeechSynthesisUtterance(t);u.lang='hi-IN';u.rate=.85;var v=(speechSynthesis.getVoices()||[]).filter(function(x){return/^hi/i.test(x.lang)})[0];if(v)u.voice=v;var d=0,f=function(){if(!d){d=1;cb&&cb()}};u.onend=f;u.onerror=f;speechSynthesis.speak(u);setTimeout(f,9000)}catch(e){cb&&cb()}}
+function en(t,cb){try{if(typeof window.speak=='function'){window.speak(t,cb)}else{var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.onend=u.onerror=function(){cb&&cb()};speechSynthesis.speak(u)}}catch(e){cb&&cb()}}
+function run(list,onStep){var my=++tok;try{speechSynthesis.cancel()}catch(e){}
+  (function next(i){if(my!==tok||i>=list.length){onStep&&onStep(-1);return}onStep&&onStep(list[i].k);var it=list[i];(it.l=='hi'?hi:en)(it.t,function(){if(my===tok)next(i+1)})})(0)}
+function tone(f){try{var c=window._ac||(window._ac=new(window.AudioContext||window.webkitAudioContext)());if(c.state=='suspended')c.resume();var o=c.createOscillator(),g=c.createGain(),t=c.currentTime;o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.55);o.connect(g);g.connect(c.destination);o.start();o.stop(t+.6)}catch(e){}}
+function burstSVG(c){var s='<svg viewBox="-50 -50 100 100"><g stroke="'+c+'" stroke-width="3.2" stroke-linecap="round">';for(var i=0;i<14;i++){var a=i*Math.PI*2/14;s+='<line x1="'+(Math.cos(a)*16).toFixed(1)+'" y1="'+(Math.sin(a)*16).toFixed(1)+'" x2="'+(Math.cos(a)*40).toFixed(1)+'" y2="'+(Math.sin(a)*40).toFixed(1)+'"/>'}return s+'</g><g fill="#fff">'+[0,1,2,3,4,5,6].map(function(i){var a=i*Math.PI*2/7+.2;return'<circle cx="'+(Math.cos(a)*46).toFixed(1)+'" cy="'+(Math.sin(a)*46).toFixed(1)+'" r="2.2"/>'}).join('')+'</g></svg>'}
+function burst(host,x,y,c,delay,once){var b=D.createElement('div');b.className='dwb';b.style.cssText='left:'+x+'%;top:'+y+'%;animation-delay:'+delay+'s;'+(once?'animation-iteration-count:1;':'');b.innerHTML=burstSVG(c);host.appendChild(b);if(once)setTimeout(function(){b.remove()},4200)}
+var DIYA='<svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="dwg"><stop offset="0" stop-color="#ffd23c" stop-opacity=".9"/><stop offset="1" stop-color="#ffd23c" stop-opacity="0"/></radialGradient><linearGradient id="dwf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3a0"/><stop offset=".55" stop-color="#ffb703"/><stop offset="1" stop-color="#e8453c"/></linearGradient></defs><circle class="gl" cx="32" cy="28" r="30" fill="url(#dwg)"/><path class="fl" d="M32 6c7 9 10 14 5 20-2.5 3-7.5 3-10 0-5-6-2-11 5-20z" fill="url(#dwf)"/><path d="M5 36h54c0 13-11 22-27 22S5 49 5 36z" fill="#c8541f"/><path d="M5 36h54" stroke="#ffb703" stroke-width="3" stroke-linecap="round"/><path d="M14 44q18 8 36 0" stroke="#ffb703" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/><ellipse cx="32" cy="36" rx="27" ry="3.5" fill="#8a2b0e"/></svg>';
+function R(a,b){return a+Math.random()*(b-a)}
+var LAN=function(c){return'<svg viewBox="0 0 44 70"><path d="M22 0v14" stroke="#ffd23c" stroke-width="2"/><rect x="14" y="12" width="16" height="6" rx="2" fill="#ffb703"/><path d="M10 22c0-4 5-6 12-6s12 2 12 6v16c0 6-5 10-12 10S10 44 10 38z" fill="'+c+'"/><path d="M16 20v28M22 18v30M28 20v28" stroke="#ffd23c" stroke-width="1.4" opacity=".7"/><rect x="14" y="46" width="16" height="5" rx="2" fill="#ffb703"/><path d="M22 51v12" stroke="#ffd23c" stroke-width="2"/><circle cx="22" cy="65" r="3.5" fill="#ffd23c"/></svg>'};
+var CHK='<svg class="dwk" viewBox="-30 -30 60 60" fill="none" stroke="#0b3d91" stroke-width="2"><circle r="26"/><circle r="4" fill="#0b3d91"/>'+Array.apply(0,Array(12)).map(function(_,i){var a=i*Math.PI/6;return'<line x1="'+(Math.cos(a)*5).toFixed(1)+'" y1="'+(Math.sin(a)*5).toFixed(1)+'" x2="'+(Math.cos(a)*25).toFixed(1)+'" y2="'+(Math.sin(a)*25).toFixed(1)+'"/>'}).join('')+'</svg>';
+var MOON='<svg class="dwm" viewBox="0 0 60 60"><path d="M38 6A26 26 0 1 0 54 44 21 21 0 0 1 38 6z" fill="#ffe9a8"/><path d="M50 10l2 5 5 .5-4 3.5 1.5 5-4.5-3-4.5 3 1.5-5-4-3.5 5-.5z" fill="#ffe9a8"/></svg>';
+var cur=null;
+function varsCSS(id){var p=TH[id].p,t=TH[id];
+  var x='html.fx{--bg:'+p.bg+'!important;--g1:'+p.g1+'!important;--g2:'+p.g2+'!important;--card:'+p.card+'!important;--ink:'+p.ink+'!important;--line:'+p.ink+'26!important;--h1:'+p.h1+'!important;--h2:'+p.h2+'!important;--coral:'+p.coral+'!important;--blue:'+p.blue+'!important;--sun:'+p.sun+'!important;--tt:'+p.tt+'!important;--hero:'+p.hero+'!important;--heroink:'+p.gr+'!important;--fxbox:'+p.box+';--fxink:'+p.bi+';--fxhi:'+p.hi+';--fxac:'+p.ac+';--fxsoft:'+p.soft+';--fxgr:'+p.gr+';--fxgh:'+(p.gh||p.hi)+';--fxsh:'+p.sh+';--fxa:'+p.fa+';--fxb:'+p.fb+';--fxc:'+p.fc+';--fl1:'+t.fl[0]+';--fl2:'+t.fl[1]+';--fxmask:'+mask(t.mask)+'}';
+  x+='html.fx[data-theme=dark]{--bg:#16101f!important;--g1:#2a1f3a!important;--g2:#16101f!important;--card:#241a33!important;--ink:#f3ecff!important;--line:#f3ecff2a!important;--h1:#3a2a52!important;--h2:#2a1f3a!important;--tt:'+p.hi+'!important}';
+  return x}
+function buildHero(id){var h=D.getElementById('hero');if(!h||D.getElementById('dwd'))return;var t=TH[id],d=D.createElement('div');d.id='dwd';d.setAttribute('aria-hidden','true');var o='',i;
+  for(i=0;i<22;i++)o+='<i class="dws" style="left:'+R(0,98).toFixed(1)+'%;top:'+R(0,70).toFixed(1)+'%;animation-delay:-'+R(0,3).toFixed(1)+'s"></i>';
+  var dc=t.decor.join(' ');
+  if(/lights/.test(dc))o+='<i class="dwl"></i><i class="dwl"></i>';
+  if(/lantern/.test(dc))o+='<span class="dwn l">'+LAN(id=='diwali'?'#e8453c':'#0b6b4f')+'</span><span class="dwn r">'+LAN(id=='diwali'?'#b5179e':'#e07a1f')+'</span>';
+  if(/snow/.test(dc))for(i=0;i<16;i++)o+='<i class="dwf" style="left:'+R(0,96).toFixed(1)+'%;font-size:'+R(10,20).toFixed(0)+'px;animation-duration:'+R(7,13).toFixed(1)+'s;animation-delay:-'+R(0,10).toFixed(1)+'s">❄</i>';
+  if(/confetti/.test(dc)){var cc=/confetti3/.test(dc)?['#ff9933','#ffffff','#138808','#0b3d91']:['#ffd23c','#ff5d8f','#7be0ff','#b6ff7a','#ffffff'];for(i=0;i<18;i++)o+='<i class="dwc" style="left:'+R(0,98).toFixed(1)+'%;background:'+cc[i%cc.length]+';animation-duration:'+R(6,11).toFixed(1)+'s;animation-delay:-'+R(0,9).toFixed(1)+'s"></i>'}
+  if(/tri/.test(dc))o+='<i class="dwt"></i>'+CHK;
+  if(/holi/.test(dc)){var hc=['#f72585','#ffd23c','#4cc9f0','#7bd88f','#b5179e','#ff9933'];for(i=0;i<7;i++)o+='<i class="dwp" style="left:'+R(-5,90).toFixed(0)+'%;top:'+R(8,80).toFixed(0)+'%;width:'+R(70,130).toFixed(0)+'px;height:'+R(70,130).toFixed(0)+'px;background:radial-gradient(circle,'+hc[i%6]+',#0000 68%);animation-delay:-'+R(0,5).toFixed(1)+'s"></i>'}
+  if(/moon/.test(dc))o+=MOON;
+  d.innerHTML=o;t.bursts.forEach(function(b){burst(d,b[0],b[1],b[2],b[3])});h.insertBefore(d,h.firstChild)}
+function buildSection(id){if(D.getElementById('fxs'))return;var t=TH[id],h=D.getElementById('hero'),sec=D.createElement('section');sec.id='fxs';sec.setAttribute('aria-labelledby','dwh');
+  var bt='';t.items.forEach(function(it,i){bt+=t.svg?'<button type="button" class="dwd" aria-pressed="false" aria-label="Diya '+(i+1)+'">'+DIYA.replace(/id="dwg"/,'id="dwg'+i+'"').replace('url(#dwg)','url(#dwg'+i+')').replace(/id="dwf"/,'id="dwf'+i+'"').replace('url(#dwf)','url(#dwf'+i+')')+'</button>':'<button type="button" class="dwd emo" aria-pressed="false" aria-label="'+it[1]+'"><span class="em">'+it[0]+'</span><small>'+it[1]+'</small></button>'});
+  var n=t.items.length;
+  sec.innerHTML='<div class="dwbox"><span class="dwbadge">'+t.ic+' '+t.n+'</span><h2 id="dwh">'+t.h+'<small lang="hi">'+t.hi+'</small></h2><p>'+t.tap+'</p><div class="dwdiyas" role="group" aria-label="'+t.n+' game">'+bt+'</div><div class="dwmsg" aria-live="polite">0 of '+n+'</div><button type="button" class="dwbtn" id="dwagain" hidden>Play again</button>'
+  +'<h3>'+t.n+' words</h3><div class="dwwords">'+t.words.map(function(w,i){return'<button type="button" class="dww" data-i="'+i+'"><i>'+w[0]+'</i>'+w[1]+'<small lang="hi">'+w[2]+'</small></button>'}).join('')+'</div>'
+  +'<h3>'+t.sh+'</h3><ol class="dwstory">'+t.story.map(function(x,i){return'<li data-s="'+i+'"><i>'+x[0]+'</i><span><b>'+x[1]+'</b><small lang="hi">'+x[2]+'</small></span></li>'}).join('')+'</ol><button type="button" class="dwbtn" id="dwread">🔊 Read to me</button>'+(t.note?'<p style="font-size:14px">'+t.note+'</p>':'')
+  +'<h3>Stay safe and kind</h3><ul class="dwsafe">'+t.safe.map(function(x){return'<li><i>'+x[0]+'</i><span>'+x[1]+'</span></li>'}).join('')+'</ul>'
+  +'<p class="dwgu">Grown-ups: crafts, stories and printables are in the Grown-ups area under Trusted resources.</p><button type="button" class="dwbtn" id="dwgo">Open grown-ups area</button></div>';
+  (h&&h.parentNode?h.parentNode:D.getElementById('main')).insertBefore(sec,h?h.nextSibling:null);
+  var lit=0,ds=[].slice.call(sec.querySelectorAll('.dwd')),msg=sec.querySelector('.dwmsg'),again=sec.querySelector('#dwagain'),box=sec.querySelector('.dwbox');
+  function upd(){msg.textContent=lit>=n?t.done:lit+' of '+n}
+  ds.forEach(function(b,i){b.addEventListener('click',function(){if(b.classList.contains('lit'))return;b.classList.add('lit');b.setAttribute('aria-pressed','true');lit++;tone(523+i*110);upd();
+    if(!t.svg)run([{t:t.items[i][1],l:'en'},{t:t.items[i][2],l:'hi'}]);
+    if(lit>=n){again.hidden=false;var bc=[[20,30,'#ffd23c'],[80,24,'#ff7a59'],[50,12,'#7be0ff'],[30,70,'#ff9ee0'],[72,66,'#b6ff7a']];bc.forEach(function(a,k){burst(box,a[0],a[1],a[2],k*.35,1)});
+      setTimeout(function(){try{if(window.celebrate)celebrate(t.h,t.cel)}catch(e){}},t.svg?0:1800);
+      try{if(G('dwpts')!=today()){P('dwpts',today());window.addPts&&addPts(5,null,t.n)}}catch(e){}}})});
+  again.addEventListener('click',function(){ds.forEach(function(b){b.classList.remove('lit');b.setAttribute('aria-pressed','false')});lit=0;again.hidden=true;upd()});
+  sec.querySelectorAll('.dww').forEach(function(b){b.addEventListener('click',function(){var w=t.words[+b.dataset.i];sec.querySelectorAll('.dww.on').forEach(function(x){x.classList.remove('on')});b.classList.add('on');tone(660);run([{t:w[1],l:'en'},{t:w[2],l:'hi'}],function(k){if(k===-1)b.classList.remove('on')})})});
+  sec.querySelector('#dwread').addEventListener('click',function(){var list=[];t.story.forEach(function(x,i){list.push({t:x[1],l:'en',k:i});list.push({t:x[2],l:'hi',k:i})});
+    run(list,function(k){sec.querySelectorAll('.dwstory li').forEach(function(li,i){li.classList.toggle('on',i===k)});if(k>=0){var li=sec.querySelector('.dwstory li[data-s="'+k+'"]');try{li.scrollIntoView({block:'center',behavior:'smooth'})}catch(e){}}})});
+  sec.querySelector('#dwgo').addEventListener('click',function(){var g=D.getElementById('grown');if(g)g.scrollIntoView({behavior:'smooth',block:'start'})})}
+function buildNav(id){var nav=D.getElementById('nav');if(!nav||nav.querySelector('[data-go="#fxs"]'))return;var t=TH[id],b=D.createElement('button');b.type='button';b.className='nv';b.setAttribute('data-go','#fxs');b.setAttribute('aria-label',t.n);b.setAttribute('data-hi',t.nav);b.style.cssText='--c:'+t.p.ac+';--cb:'+t.p.ac+'33';
+  b.innerHTML='<b><span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,'+t.p.fa+','+t.p.fb+');box-shadow:0 3px 0 '+t.p.fb+'66"><i style="font-style:normal;font-size:20px;line-height:1">'+t.ic+'</i></span></b>'+(t.n.length>9?t.n.split(' ')[0]:t.n);nav.appendChild(b)}
+function clear(){H.classList.remove('fx');H.removeAttribute('data-fx');['dwd','fxs','fxvars'].forEach(function(i){var e=D.getElementById(i);if(e)e.remove()});var n=D.querySelector('#nav [data-go="#fxs"]');if(n)n.remove()}
+function on(id){if(cur===id&&D.getElementById('fxs'))return;clear();cur=id;var st=D.createElement('style');st.id='fxvars';st.textContent=varsCSS(id);D.head.appendChild(st);H.classList.add('fx');H.setAttribute('data-fx',id);addRes(id);buildHero(id);buildSection(id);buildNav(id)}
+function update(){var id=activeId();if(id&&TH[id])on(id);else if(cur){clear();cur=null}}
+if(D.readyState=='loading')D.addEventListener('DOMContentLoaded',function(){setTimeout(update,200)});else setTimeout(update,200);
+[1500,4000,9000].forEach(function(ms){setTimeout(update,ms)});
+D.addEventListener('change',function(e){if(e.target&&e.target.id=='fpv')setTimeout(update,80)});
+window.__festival=update;window.__festivals=Object.keys(TH);
+})();
+
+</script>
+
+<style id="v101">
+/* feedback */
+#fbd{border:0;padding:0;background:transparent;max-width:none;width:100%;max-height:100%;margin:auto 0 0}
+#fbd::backdrop{background:#0008}
+#fbd .fbs{max-width:560px;margin:0 auto;max-height:92vh;overflow:auto;border-radius:28px 28px 0 0;background:var(--card,#fff);color:var(--ink,#2a2438);padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px #0005}
+.fbx{font:inherit;color:var(--ink,#2a2438)}
+.fbx h2,.fbx h3{margin:0 0 6px;color:var(--tt,#2a2438)}
+.fbx .fbsub{margin:0 0 12px;opacity:.8}
+.fbx .fbr{display:flex;gap:6px;justify-content:space-between;margin:6px 0 12px}
+.fbx .fbr button{flex:1;border:2px solid var(--line,#0002);background:transparent;border-radius:16px;font-size:28px;padding:6px 0;cursor:pointer;filter:grayscale(.8);transition:transform .2s,filter .2s}
+.fbx .fbr button[aria-checked=true]{filter:none;border-color:var(--tt,#7a1fa2);transform:scale(1.08);background:color-mix(in srgb,var(--tt,#7a1fa2) 12%,transparent)}
+.fbx .fbc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.fbx .fbc button{border:2px solid var(--line,#0002);background:transparent;color:inherit;border-radius:99px;padding:7px 14px;font:700 15px Fredoka,sans-serif;cursor:pointer}
+.fbx .fbc button[aria-checked=true]{background:var(--tt,#7a1fa2);border-color:var(--tt,#7a1fa2);color:#fff}
+.fbx textarea,.fbx input[type=text],.fbx input[type=number]{width:100%;box-sizing:border-box;border:2px solid var(--line,#0003);border-radius:14px;background:transparent;color:inherit;font:inherit;padding:10px 12px;margin-bottom:8px}
+.fbx textarea{min-height:96px;resize:vertical}
+.fbx .fbn{font-size:13px;opacity:.7;text-align:right;margin:-4px 0 8px}
+.fbx label.fbk{display:flex;gap:8px;align-items:center;font-size:14px;margin-bottom:10px}
+.fbx .fbg{display:flex;gap:8px;align-items:center;margin-bottom:10px}.fbx .fbg input{width:90px;margin:0}
+.fbx .fba{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+.fbx .fba button,.fbx .fbcp{border:0;border-radius:99px;padding:13px 10px;font:700 16px Fredoka,sans-serif;color:#fff;cursor:pointer;box-shadow:0 4px 0 #0003}
+.fbx .fba button:disabled{opacity:.45;cursor:not-allowed}
+.fbx .fwa{background:#1fa855}.fbx .fem{background:#3b6fe0}
+.fbx .fbcp{background:transparent;color:inherit;box-shadow:none;border:2px solid var(--line,#0003);width:100%;margin-top:8px;padding:10px}
+.fbx .fbmsg{min-height:20px;margin-top:8px;font-size:14px}
+.fbx .fbct{margin-top:12px;font-size:14px;opacity:.85;line-height:1.7}.fbx .fbct a{color:var(--tt,#7a1fa2);font-weight:700}
+.fbx .fbclose{position:absolute;top:10px;right:14px;border:0;background:transparent;font-size:26px;color:inherit;cursor:pointer}
+#feedback{padding:30px 0 40px}
+#feedback .fbx{background:var(--card,#fff);border:2px solid var(--line,#0002);border-radius:28px;padding:18px 16px;max-width:560px;margin:0 auto;box-shadow:0 6px 0 var(--line,#0002)}
+</style>
+<script>
+(function(){
+var WA='919140426093',EM='ajayksharma9731@gmail.com';
+function $(s,r){return(r||document).querySelector(s)}
+function build(host,idp){
+  var state={r:0,c:'Idea'},a=Math.floor(Math.random()*6)+4,b=Math.floor(Math.random()*5)+3;
+  host.classList.add('fbx');
+  host.innerHTML='<h2>Send us feedback <small lang="hi">अपनी राय भेजें</small></h2><p class="fbsub">Tell us what you love, what is broken, or what to add. A grown-up should press send.</p>'
+  +'<div class="fbr" role="radiogroup" aria-label="How do you like the app?">'+['😞','😕','😐','🙂','😍'].map(function(e,i){return'<button type="button" role="radio" aria-checked="false" aria-label="'+(i+1)+' of 5" data-r="'+(i+1)+'">'+e+'</button>'}).join('')+'</div>'
+  +'<div class="fbc" role="radiogroup" aria-label="Topic">'+['Bug','Idea','Content','Sound','Other'].map(function(c){return'<button type="button" role="radio" aria-checked="'+(c=='Idea')+'" data-c="'+c+'">'+c+'</button>'}).join('')+'</div>'
+  +'<textarea id="'+idp+'m" maxlength="600" placeholder="Your message" aria-label="Your message"></textarea><div class="fbn"><span id="'+idp+'n">0</span>/600</div>'
+  +'<input type="text" id="'+idp+'u" maxlength="60" placeholder="Your name (optional)" aria-label="Your name, optional" autocomplete="off">'
+  +'<label class="fbk"><input type="checkbox" id="'+idp+'d"> Add device info to help fix bugs</label>'
+  +'<div class="fbg"><label for="'+idp+'g">Grown-up check: '+a+' + '+b+' =</label><input type="number" inputmode="numeric" id="'+idp+'g" aria-label="Answer"></div>'
+  +'<div class="fba"><button type="button" class="fwa" disabled>WhatsApp</button><button type="button" class="fem" disabled>Email</button></div>'
+  +'<button type="button" class="fbcp">Copy message</button><div class="fbmsg" role="status" aria-live="polite"></div>'
+  +'<div class="fbct">Or write to us directly:<br>WhatsApp <a href="https://wa.me/'+WA+'" target="_blank" rel="noopener">+91 91404 26093</a><br>Email <a href="mailto:'+EM+'">'+EM+'</a></div>'
+  +'<p class="fbsub" style="font-size:13px;margin-top:10px">This opens WhatsApp or your email app with the message ready. Nothing is sent until you press send there. The app collects nothing itself.</p>';
+  var ta=$('textarea',host),wa=$('.fwa',host),em=$('.fem',host),gate=$('input[type=number]',host),msg=$('.fbmsg',host);
+  function ok(){return +gate.value===a+b&&(ta.value.trim().length>0||state.r>0)}
+  function sync(){var k=ok();wa.disabled=!k;em.disabled=!k;$('#'+idp+'n',host).textContent=ta.value.length}
+  function compose(){var t='Little Learners feedback\n';if(state.r)t+='Rating: '+state.r+'/5\n';t+='Topic: '+state.c+'\n';if(ta.value.trim())t+='Message: '+ta.value.trim()+'\n';var u=$('#'+idp+'u',host).value.trim();if(u)t+='Name: '+u+'\n';
+    if($('#'+idp+'d',host).checked){var h=document.documentElement;t+='Device: '+navigator.userAgent+'\nScreen: '+innerWidth+'x'+innerHeight+'\nTheme: '+(h.dataset.theme||'light')+(h.dataset.fx?', festival '+h.dataset.fx:'')+(h.classList.contains('lite')?', lite':'')+'\n'}return t}
+  host.addEventListener('click',function(e){var r=e.target.closest('[data-r]'),c=e.target.closest('[data-c]');
+    if(r){state.r=+r.dataset.r;host.querySelectorAll('[data-r]').forEach(function(x){x.setAttribute('aria-checked',String(x===r))});sync()}
+    if(c){state.c=c.dataset.c;host.querySelectorAll('[data-c]').forEach(function(x){x.setAttribute('aria-checked',String(x===c))})}});
+  ta.addEventListener('input',sync);gate.addEventListener('input',sync);
+  wa.addEventListener('click',function(){if(!ok())return;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(compose()),'_blank','noopener');msg.textContent='Opening WhatsApp. Press send there. Thank you!'});
+  em.addEventListener('click',function(){if(!ok())return;location.href='mailto:'+EM+'?subject='+encodeURIComponent('Little Learners feedback ('+state.c+')')+'&body='+encodeURIComponent(compose());msg.textContent='Opening your email app. Press send there. Thank you!'});
+  $('.fbcp',host).addEventListener('click',function(){var t=compose();try{navigator.clipboard.writeText(t).then(function(){msg.textContent='Copied. You can paste it anywhere.'},function(){msg.textContent='Could not copy. Please select the text and copy.'})}catch(x){msg.textContent='Could not copy on this device.'}});
+  sync()}
+/* end-of-page section */
+var main=document.getElementById('main');
+var oldFb=document.getElementById('feedback');if(oldFb)oldFb.remove();
+/* menu sheet */
+var dlg=document.createElement('dialog');dlg.id='fbd';dlg.setAttribute('aria-label','Feedback');dlg.innerHTML='<div class="fbs" style="position:relative"><button type="button" class="fbclose" aria-label="Close">×</button><div class="fbbox"></div></div>';document.body.appendChild(dlg);
+var built=0;
+function openSheet(){if(!built){build($('.fbbox',dlg),'fm');built=1}try{dlg.showModal()}catch(e){dlg.setAttribute('open','')}}
+dlg.querySelector('.fbclose').addEventListener('click',function(){dlg.close()});
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+var hm=document.getElementById('hmenu'),rows=hm&&hm.querySelector('#hmrows');
+if(rows&&!rows.querySelector('[data-src=fbk]')){var row=document.createElement('button');row.type='button';row.className='mrow';row.dataset.src='fbk';row.style.cssText='--c:#1fa855;--c2:#3fb7e8';
+  row.innerHTML='<span class="mi" aria-hidden="true">\ud83d\udcac</span><span class="mt"><b>Feedback <span lang="hi">\u0930\u093e\u092f</span></b><small>Tell us what to fix or add</small></span><span class="go" aria-hidden="true"></span>';
+  var anchor=rows.querySelector('[data-src=vtg]')||rows.lastElementChild;anchor?anchor.after(row):rows.appendChild(row);
+  row.addEventListener('click',function(e){e.stopPropagation();hm.hidden=true;openSheet()})}
+window.__openFeedback=openSheet;
+})();
+</script>
+<script>
+/* v101 nav: sections resize while they load, so re-aim after a jump */
+(function(){
+document.addEventListener('click',function(e){var g=e.target.closest&&e.target.closest('[data-go]');if(!g||g.dataset.go=='#owl')return;var sel=g.dataset.go;
+  [650,1400].forEach(function(ms){setTimeout(function(){var t=document.querySelector(sel);if(!t)return;var top=t.getBoundingClientRect().top;if(Math.abs(top-84)>30){try{lenis.scrollTo(sel,{offset:-84,immediate:true})}catch(x){window.scrollTo(0,top+(window.scrollY||0)-84)}}},ms)})},true);
+})();
+</script>
+<style id="festive-v1">
+/* ===== Festive background ===== */
+#fxbg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+ --f1:var(--fxa,#ffb703);--f2:var(--fxb,#e8453c);
+ background:
+  radial-gradient(55% 38% at 12% 0%,color-mix(in srgb,var(--f1) 38%,transparent),transparent 70%),
+  radial-gradient(45% 36% at 92% 8%,color-mix(in srgb,var(--f2) 26%,transparent),transparent 70%),
+  radial-gradient(70% 45% at 50% 105%,color-mix(in srgb,var(--f1) 30%,transparent),transparent 70%),
+  linear-gradient(180deg,#fff6e0 0,#ffeccf 45%,#ffe3cc 100%)}
+#fxbg::before{content:"";position:absolute;inset:0;opacity:.5;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23d9962b' stroke-opacity='.35' stroke-width='1.2'%3E%3Ccircle cx='60' cy='60' r='5'/%3E%3Cpath d='M60 38c5 8 5 14 0 22-5-8-5-14 0-22zM60 82c5-8 5-14 0-22-5 8-5 14 0 22zM38 60c8-5 14-5 22 0-8 5-14 5-22 0zM82 60c-8-5-14-5-22 0 8 5 14 5 22 0z'/%3E%3C/g%3E%3Ccircle cx='0' cy='0' r='2' fill='%23d9962b' fill-opacity='.4'/%3E%3Ccircle cx='120' cy='0' r='2' fill='%23d9962b' fill-opacity='.4'/%3E%3Ccircle cx='0' cy='120' r='2' fill='%23d9962b' fill-opacity='.4'/%3E%3Ccircle cx='120' cy='120' r='2' fill='%23d9962b' fill-opacity='.4'/%3E%3C/svg%3E");
+ background-size:120px 120px;-webkit-mask-image:linear-gradient(#000,#0000 85%);mask-image:linear-gradient(#000,#0000 85%)}
+/* garland of lights along the top */
+#fxbg .gar{position:absolute;left:0;right:0;top:0;height:34px;
+ background:
+  radial-gradient(circle at 50% 14px,#ffd23c 0 4px,#ffd23c66 5px,transparent 10px) 0 0/54px 34px repeat-x,
+  radial-gradient(circle at 50% 14px,#ff5d8f 0 4px,#ff5d8f66 5px,transparent 10px) 18px 0/54px 34px repeat-x,
+  radial-gradient(circle at 50% 14px,#4cc9f0 0 4px,#4cc9f066 5px,transparent 10px) 36px 0/54px 34px repeat-x;
+ -webkit-mask-image:linear-gradient(#000 60%,#0000);mask-image:linear-gradient(#000 60%,#0000);opacity:.85;animation:fxtw 3.2s ease-in-out infinite}
+#fxbg .gar::before{content:"";position:absolute;left:0;right:0;top:6px;height:12px;border-top:2px solid #b8791f55;border-radius:50% 50% 0 0/100% 100% 0 0}
+#fxbg i{position:absolute;border-radius:50%;background:radial-gradient(circle,#fff 0,color-mix(in srgb,var(--f1) 70%,#fff) 30%,transparent 70%);opacity:.55;animation:fxfl 9s ease-in-out infinite}
+@keyframes fxfl{0%,100%{transform:translateY(0) scale(1);opacity:.25}50%{transform:translateY(-26px) scale(1.25);opacity:.7}}
+@keyframes fxtw{50%{opacity:.55}}
+html[data-theme=dark] #fxbg{background:
+  radial-gradient(50% 36% at 14% 0%,color-mix(in srgb,var(--f1) 22%,transparent),transparent 70%),
+  radial-gradient(45% 34% at 90% 10%,color-mix(in srgb,var(--f2) 22%,transparent),transparent 70%),
+  linear-gradient(180deg,#1d1233 0,#16101f 100%)}
+html[data-theme=dark] #fxbg::before{opacity:.18}
+html.lite #fxbg i,html.lite #fxbg .gar{animation:none}
+html.lite #fxbg i{display:none}
+@media(prefers-reduced-motion:reduce){#fxbg i,#fxbg .gar{animation:none}}
+/* ===== Festive nav ===== */
+#nav{background:linear-gradient(180deg,color-mix(in srgb,var(--card,#fff) 88%,#ffd98a),var(--card,#fff))!important;
+ border-top:2px solid #f2b62488!important;box-shadow:0 -6px 22px #b8791f26!important}
+.fit{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:15px;
+ background:linear-gradient(145deg,var(--a),var(--b));
+ box-shadow:0 3px 0 var(--d),inset 0 0 0 2px #ffe9a899,inset 0 8px 10px -6px #fff8}
+.fit svg{width:24px;height:24px;filter:drop-shadow(0 1px 0 #0003)}
+.fit::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;
+ background:#ffd23c;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
+ filter:drop-shadow(0 0 2px #ffb703)}
+#nav .nv.on .fit{box-shadow:0 3px 0 var(--d),0 0 0 3px #ffd23c,0 0 14px #ffd23ccc,inset 0 8px 10px -6px #fff8}
+@media(prefers-reduced-motion:no-preference){#nav .nv.on .fit svg{animation:fitp 1.8s ease-in-out infinite}}
+@keyframes fitp{50%{transform:scale(1.12) rotate(-4deg)}}
+/* ===== UX flow polish (kid-friendly touch + orientation) ===== */
+button,[role=button],.tile,.btn,.nv,a,summary,label{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #ffb703!important;outline-offset:3px;border-radius:14px}
+.btn,.tile{min-height:52px}
+.btn:active,.tile:active{transform:scale(.96)!important;filter:brightness(.96)}
+section[id]{scroll-margin-top:84px}
+#nav .nv{min-width:72px;min-height:60px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* ===== Simple nav: 5 main tabs + More sheet ===== */
+html.nvx #nav{overflow:visible!important;flex-wrap:nowrap!important;justify-content:space-around!important;gap:0!important;scroll-snap-type:none!important}
+html.nvx #nav .nv{flex:1 1 0!important;min-width:0!important;max-width:110px;padding-inline:2px!important}
+html.nvx #nav .nv[data-go]:not(.nvp){display:none!important}
+#navsheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center;background:#0009;animation:nsf .18s ease-out}
+#navsheet .ns{width:min(560px,100%);max-height:78vh;overflow:auto;background:var(--card,#fff);color:var(--ink,#2a2438);border-radius:28px 28px 0 0;padding:14px 14px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px #0006;animation:nsu .24s cubic-bezier(.2,.9,.3,1.1)}
+#navsheet .nh{display:flex;align-items:center;justify-content:space-between;margin:2px 4px 12px}
+#navsheet .nh b{font:800 20px Fredoka,Nunito,system-ui,sans-serif}
+#navsheet .nx{width:44px;height:44px;border-radius:50%;border:0;background:color-mix(in srgb,var(--ink,#2a2438) 10%,transparent);color:inherit;font:700 24px/1 system-ui;cursor:pointer}
+#navsheet .ng{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+#navsheet .ni{display:flex;flex-direction:column;align-items:center;gap:6px;min-height:92px;padding:10px 4px;border:2px solid transparent;border-radius:20px;background:color-mix(in srgb,var(--ink,#2a2438) 6%,transparent);color:inherit;font:800 13px/1.15 Nunito,system-ui,sans-serif;cursor:pointer;text-align:center}
+#navsheet .ni.on{border-color:#ffb703;background:#ffb70322}
+#navsheet .ni b{font-size:24px;display:grid;place-items:center}
+#navsheet .ni:active{transform:scale(.95)}
+@keyframes nsf{from{opacity:0}}@keyframes nsu{from{transform:translateY(40px);opacity:0}}
+#skipmain{position:fixed;left:8px;top:-60px;z-index:99999;background:#ffb703;color:#2a1a00;font:800 16px Nunito,system-ui,sans-serif;padding:12px 18px;border-radius:14px;text-decoration:none;transition:top .15s}#skipmain:focus{top:8px}
+#feedback{display:none!important}
+/* dark-mode polish */
+html[data-theme=dark] #fxbg::after{content:"";position:absolute;inset:0;opacity:.7;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1.5px 1.5px at 38% 8%,#ffe9a8,transparent),radial-gradient(2px 2px at 64% 22%,#fff,transparent),radial-gradient(1.5px 1.5px at 86% 12%,#ffd23c,transparent),radial-gradient(1.5px 1.5px at 24% 46%,#fff,transparent),radial-gradient(2px 2px at 74% 52%,#ffe9a8,transparent),radial-gradient(1.5px 1.5px at 8% 78%,#fff,transparent),radial-gradient(1.5px 1.5px at 56% 88%,#ffd23c,transparent);animation:fxtw 4s ease-in-out infinite}
+html[data-theme=dark] #nav{background:linear-gradient(180deg,#2e2050,#1a1030)!important;border-top:2px solid #ffd23c77!important;box-shadow:0 -8px 28px #0008,0 0 0 1px #ffd23c22 inset!important}
+html[data-theme=dark] #nav .nv{color:#fff3d6}
+#nav .nv.on{background:linear-gradient(180deg,#ffd23c26,#ffd23c0d)!important;border-radius:20px}
+#nav .nv{letter-spacing:.2px;text-shadow:0 1px 0 #0003}
+.fit{transition:transform .18s}#nav .nv:active .fit{transform:scale(.92)}
+</style>
+<script id="icons-day-v1">
+/* Day-streak / stars / stamps icons: glossy 3D look, drawn in the style of Fluent Emoji (MIT) */
+(function(){var D=document,n=0;
+function u(){return 'dx'+(n++)}
+function fire(z){var a=u();return '<svg class="fiv" viewBox="0 0 48 48" width="'+z+'" height="'+z+'" aria-hidden="true"><defs><linearGradient id="'+a+'o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb02e"/><stop offset=".55" stop-color="#ff6a1f"/><stop offset="1" stop-color="#e8232e"/></linearGradient><linearGradient id="'+a+'i" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6a8"/><stop offset="1" stop-color="#ffc21a"/></linearGradient></defs><g class="fi-flame"><path d="M24 2c1.6 7.500 4.500 10 8.500 15.500 3.800 5.200 5.700 9 5.700 13.700a14.200 14.200 0 0 1-28.400 0c0-5.300 2.600-8.500 5.300-11.500.5 3 2 5 4.200 6.300C19 18 20 10 24 2z" fill="url(#'+a+'o)"/><path d="M24 23.500c2.200 3.300 6.300 6.300 6.300 11.300a6.300 6.300 0 0 1-12.600 0c0-3.200 2.200-5.200 3.300-7.700 1.300 1.200 2.200 1.700 3-3.600z" fill="url(#'+a+'i)"/><ellipse cx="15.500" cy="31" rx="2" ry="4.200" fill="#fff" opacity=".28" transform="rotate(14 15.500 31)"/></g></svg>'}
+function star(z){var a=u();return '<svg class="fiv" viewBox="0 0 48 48" width="'+z+'" height="'+z+'" aria-hidden="true"><defs><linearGradient id="'+a+'s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff08a"/><stop offset=".5" stop-color="#ffc21a"/><stop offset="1" stop-color="#f08c00"/></linearGradient></defs><path d="M24.0 4.5 L29.6 17.7 L44.0 19.0 L33.1 28.5 L36.3 42.5 L24.0 35.1 L11.7 42.5 L14.9 28.5 L4.0 19.0 L18.4 17.7z" fill="url(#'+a+'s)" stroke="#e08a00" stroke-width="1.600" stroke-linejoin="round"/><path d="M24.0 25.5 L24.0 4.5 L29.6 17.7 L44.0 19.0 L33.1 28.5 L36.3 42.5 L24.0 35.1z" fill="#e8920a" opacity=".22"/><path d="M24.0 25.5 L24.0 4.5 L18.4 17.7 L4.0 19.0z" fill="#fff" opacity=".35"/><g class="fi-spark"><path d="M39 6l1.200 3 3 1.200-3 1.200L39 14.500l-1.200-3.100-3-1.200 3-1.200z" fill="#fff" stroke="#ffd23c" stroke-width=".8"/></g></svg>'}
+function medal(z){var a=u();return '<svg class="fiv" viewBox="0 0 48 48" width="'+z+'" height="'+z+'" aria-hidden="true"><defs><linearGradient id="'+a+'b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b9bff"/><stop offset="1" stop-color="#2455c8"/></linearGradient><linearGradient id="'+a+'r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a7a"/><stop offset="1" stop-color="#d62839"/></linearGradient><linearGradient id="'+a+'g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff08a"/><stop offset=".55" stop-color="#ffc21a"/><stop offset="1" stop-color="#e58f00"/></linearGradient></defs><path d="M12 2h9.500l6 17h-9.500z" fill="url(#'+a+'b)"/><path d="M36 2h-9.500l-6 17h9.500z" fill="url(#'+a+'r)"/><circle cx="24" cy="31" r="15" fill="url(#'+a+'g)" stroke="#d98200" stroke-width="1.600"/><circle cx="24" cy="31" r="10.800" fill="#ffd84a" stroke="#f0a000" stroke-width="1.200"/><path d="M24 24.300l2.100 4.300 4.700.7-3.400 3.300.8 4.700-4.200-2.200-4.200 2.200.8-4.700-3.400-3.300 4.700-.7z" fill="#fff" stroke="#f0a000" stroke-width=".9" stroke-linejoin="round"/><path d="M12.500 25a12.500 12.500 0 0 1 8-8" fill="none" stroke="#fff" stroke-width="2.200" stroke-linecap="round" opacity=".55"/></svg>'}
+var MAP={'day streak':fire,'stars':star,'stars today':star,'stamps':medal};
+function patch(){try{D.querySelectorAll('.hbs > div, .pdg > div').forEach(function(d){var s=d.querySelector('small'),b=d.querySelector('b'),f=s&&MAP[s.textContent.trim().toLowerCase()];if(!f||!b||b.dataset.dx)return;var v=b.querySelector('svg');if(!v)return;var sz=v.getAttribute('width')||34;v.outerHTML=f(sz);b.dataset.dx='1'})}catch(e){}}
+var t;function later(){clearTimeout(t);t=setTimeout(patch,60)}
+function go(){patch();new MutationObserver(later).observe(D.body,{childList:true,subtree:true});[600,1800,4000].forEach(function(x){setTimeout(patch,x)})}
+if(D.body)go();else D.addEventListener('DOMContentLoaded',go)})();
+</script>
+<style id="lite-v1">
+/* LITE mode: same look, no heavy effects (faster on slow phones). FULL mode keeps everything. */
+html.lite #fxbg::before,html.lite #fxbg::after{display:none!important}
+html.lite #fxbg .gar{display:none}
+html.lite #nav{box-shadow:0 -2px 0 #f2b62466!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lite .fi-flame,html.lite .fi-spark,html.lite #nav .nv.on .fit svg{animation:none!important}
+html.lite .fiv{filter:none}
+html.lite #navsheet,html.lite #navsheet .ns{animation:none!important}
+html.lite #navsheet{background:#000a}
+html.lite .btn:active,html.lite .tile:active{filter:none}
+</style>
+<style id="icons-day-css">
+.fiv{display:inline-block;vertical-align:middle;filter:drop-shadow(0 3px 2px #7a3a0033)}
+@media(prefers-reduced-motion:no-preference){.fi-flame{transform-origin:50% 92%;animation:fifl 1.7s ease-in-out infinite}.fi-spark{transform-origin:39px 10px;animation:fisp 2.4s ease-in-out infinite}}
+@keyframes fifl{0%,100%{transform:scale(1,1) rotate(0)}30%{transform:scale(.96,1.05) rotate(-2deg)}60%{transform:scale(1.03,.97) rotate(2deg)}}
+@keyframes fisp{0%,100%{transform:scale(.6);opacity:.4}50%{transform:scale(1.1);opacity:1}}
+</style>
+<script id="a11y-voice-v1">
+(function(){var D=document;
+/* skip link for keyboard / screen-reader users */
+function skip(){if(D.getElementById('skipmain')||!D.body)return;var a=D.createElement('a');a.id='skipmain';a.href='#main';a.textContent='Skip to content';a.addEventListener('click',function(){var m=D.getElementById('main');if(m)setTimeout(function(){m.focus()},0)});D.body.insertBefore(a,D.body.firstChild)}
+/* give every unnamed button, link and field an accessible name */
+function nm(el){var t=(el.getAttribute('aria-label')||el.getAttribute('aria-labelledby')||el.title||'').trim();if(t)return 1;if(el.matches('input,textarea,select')){if(el.labels&&el.labels.length||el.closest('label'))return 1;return 0}return (el.textContent||'').replace(/\s+/g,'').length>0?1:0}
+function fix(){try{D.querySelectorAll('button,[role=button],a[href],input:not([type=hidden]),textarea,select').forEach(function(el){if(nm(el))return;
+ var l=el.placeholder||el.getAttribute('data-label')||(el.dataset&&el.dataset.go?el.dataset.go.replace('#',''):'')||(el.id?el.id.replace(/[-_]+/g,' '):'')||(el.type==='range'?'Slider':el.type==='number'?'Number':el.type==='checkbox'?'Option':'');
+ if(l)el.setAttribute('aria-label',l)})}catch(e){}}
+var t;function later(){clearTimeout(t);t=setTimeout(fix,900)}
+/* say the section name when a nav tab is tapped (set localStorage navvoice=0 to turn off) */
+function say(s){try{if(localStorage.getItem('navvoice')==='0'||!window.speechSynthesis||!s)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(s);u.lang='en-US';u.rate=.95;u.volume=.9;speechSynthesis.speak(u)}catch(e){}}
+D.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#nav .nv,#navsheet .ni');if(!b)return;var l=b.getAttribute('aria-label')||(b.textContent||'').trim();if(l&&l!=='More sections'&&l!=='All sections')say(l.replace(/^More$/,''))},true);
+function go(){skip();fix();new MutationObserver(later).observe(D.body,{childList:true,subtree:true});[1500,4000].forEach(function(x){setTimeout(fix,x)})}
+if(D.body)go();else D.addEventListener('DOMContentLoaded',go)})();
+</script>
+<script id="nav-simple-v1">
+/* 5 main tabs in the bar, everything else in a big, easy "More" sheet */
+(function(){var D=document,H=D.documentElement,PR=['#learn','#tales','#play','#talk','#fxs','#win'];
+var n=D.getElementById('nav');if(!n)return;var busy=0;
+function all(){return[].slice.call(n.querySelectorAll('.nv[data-go]'))}
+function layout(){if(busy)return;busy=1;var b=all();
+ var pr=PR.filter(function(g){return b.some(function(x){return x.dataset.go===g})}).slice(0,5);
+ b.forEach(function(x){var i=pr.indexOf(x.dataset.go);x.classList.toggle('nvp',i>-1);x.style.order=i>-1?i:''});
+ var m=D.getElementById('navmore');
+ if(!m){m=D.createElement('button');m.type='button';m.id='navmore';m.className='nv';m.setAttribute('aria-label','More sections');m.setAttribute('aria-haspopup','dialog');
+  var d='';[6,12,18].forEach(function(y){[6,12,18].forEach(function(x){d+='<circle cx="'+x+'" cy="'+y+'" r="2.2"/>'})});
+  m.innerHTML='<b><span style="display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);box-shadow:0 3px 0 #4b3fb766"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" aria-hidden="true">'+d+'</svg></span></b>More';
+  m.addEventListener('click',function(e){e.stopPropagation();openSheet()});n.appendChild(m)}
+ m.style.order=9;H.classList.add('nvx');busy=0}
+function closeSheet(){var s=D.getElementById('navsheet');if(s)s.remove();D.removeEventListener('keydown',esc)}
+function esc(e){if(e.key==='Escape')closeSheet()}
+function openSheet(){closeSheet();var s=D.createElement('div');s.id='navsheet';s.setAttribute('role','dialog');s.setAttribute('aria-modal','true');s.setAttribute('aria-label','All sections');
+ var g='';all().forEach(function(x,i){var lab=x.getAttribute('aria-label')||x.textContent.trim(),ic=x.querySelector('b');g+='<button type="button" class="ni'+(x.classList.contains('on')?' on':'')+'" data-i="'+i+'"><b>'+(ic?ic.innerHTML:'')+'</b>'+lab+'</button>'});
+ s.innerHTML='<div class="ns"><div class="nh"><b>All sections</b><button type="button" class="nx" aria-label="Close">\u00d7</button></div><div class="ng">'+g+'</div></div>';
+ s.addEventListener('click',function(e){if(e.target===s||e.target.closest('.nx')){closeSheet();return}var t=e.target.closest('.ni');if(!t)return;var o=all()[+t.dataset.i];closeSheet();if(o)setTimeout(function(){o.click()},90)});
+ D.body.appendChild(s);D.addEventListener('keydown',esc);var c=s.querySelector('.nx');if(c)c.focus()}
+layout();new MutationObserver(function(){if(!busy)layout()}).observe(n,{childList:true,subtree:true});[500,1500,3500].forEach(function(t){setTimeout(layout,t)})})();
+</script>
+<script id="ux-flow-v1">
+/* keep the active tab in view and hint that the bar scrolls */
+(function(){var n=document.getElementById('nav');if(!n)return;var t;
+new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){var on=n.querySelector('.nv.on');if(!on)return;try{n.scrollTo({left:on.offsetLeft-(n.clientWidth-on.offsetWidth)/2,behavior:'smooth'})}catch(e){}},120)}).observe(n,{attributes:true,attributeFilter:['class'],subtree:true});
+setTimeout(function(){try{if(sessionStorage.getItem('navhint')||n.scrollWidth<=n.clientWidth+20)return;sessionStorage.setItem('navhint','1');n.scrollTo({left:70,behavior:'smooth'});setTimeout(function(){n.scrollTo({left:0,behavior:'smooth'})},750)}catch(e){}},3500)})();
+</script>
+<script id="analytics-v1">
+/* Paste your Microsoft Clarity project ID between the quotes. Left empty, nothing loads or is tracked. */
+(function(){var CLARITY_ID='';if(!CLARITY_ID)return;
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',CLARITY_ID)})();
+</script>
+<script id="festive-v1-js">
+(function(){
+var D=document,H=D.documentElement;
+/* ---------- background layer ---------- */
+function bg(){if(D.getElementById('fxbg'))return;var b=D.createElement('div');b.id='fxbg';b.setAttribute('aria-hidden','true');
+ var s='<div class="gar"></div>',i;for(i=0;i<14;i++){var z=6+Math.random()*12;s+='<i style="left:'+(Math.random()*96).toFixed(1)+'%;top:'+(8+Math.random()*88).toFixed(1)+'%;width:'+z.toFixed(0)+'px;height:'+z.toFixed(0)+'px;animation-delay:-'+(Math.random()*9).toFixed(1)+'s;animation-duration:'+(7+Math.random()*6).toFixed(1)+'s"></i>'}
+ b.innerHTML=s;D.body.insertBefore(b,D.body.firstChild)}
+/* ---------- nav icons (Lucide-style, ISC licence, hand-drawn paths) ---------- */
+var A=function(d){return d};
+var ICON={
+'#learn':['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18','#ff7a2f','#ffb703','#b34a0c'],
+'#tales':['M2 5.5C4.5 4 8.5 4 12 6c3.5-2 7.5-2 10-.5V19c-2.5-1.5-6.5-1.5-10 .5-3.5-2-7.5-2-10-.5zM12 6v13.5','#d6336c','#ff8fab','#8f1d49'],
+'#write':['M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19zM14 7l3 3M4 20h6','#e8890c','#f7c948','#9a5a05'],
+'#maths':['M5 8h6M8 5v6M14 8h5M5.5 14.5l5 5M10.5 14.5l-5 5M14 16h5M14 19h5','#2f5bd0','#4cc9f0','#1b3a8c'],
+'#ncert':['M2 9l10-5 10 5-10 5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6','#7b2cbf','#c77dff','#4a1a78'],
+'#explore':['M9 3h6M10 3v6l-4.6 9A2 2 0 0 0 7.2 21h9.6a2 2 0 0 0 1.8-3L14 9V3M8 14h8','#12a594','#5eead4','#0a6b60'],
+'#future':['M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z','#f59f00','#ffe066','#9a6400'],
+'#play':['M6 8h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.3 1.9L15.5 14h-7l-1.2 1.9A3 3 0 0 1 2 14v-2a4 4 0 0 1 4-4zM7 11v3M5.5 12.5h3M15.5 11.5h.01M18 13h.01','#4c9a52','#a3e635','#2c6a31'],
+'#rhy':['M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z','#e5383b','#ff8fab','#8f1d1f'],
+'#paint':['M12 3a9 9 0 1 0 0 18c1.4 0 2-1 1.6-2.1-.4-1.1.2-2.2 1.5-2.2H17a4 4 0 0 0 4-4c0-5-4-9.7-9-9.7zM7.5 11h.01M10 7.5h.01M14.5 7.5h.01','#f72585','#ff9e00','#9b1257'],
+'#win':['M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3','#d99a0b','#ffd23c','#8a5f00'],
+'#owl':['M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5','#2f5bd0','#7aa2ff','#1b3a8c'],
+'#grown':['M12 20s-7-4.4-9-9.2A5 5 0 0 1 12 6.5a5 5 0 0 1 9 4.3C19 15.6 12 20 12 20z','#e8453c','#ff8fab','#8f1f1a'],
+'#speak':['M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3','#e8604c','#ffb08a','#8f2f1f'],
+'#time':['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2','#8e5bd0','#c4a6ff','#55318a'],
+'#fast':['M13 2L4 14h7l-1 8 9-12h-7z','#d99a0b','#ffe066','#8a5f00'],
+'#space':['M12 2.5c3.2 2.6 4.6 6.2 4.2 10.2L14.4 15H9.6l-1.8-2.3C7.4 8.7 8.8 5.1 12 2.5zM9.6 12.6L6.4 15v3.2l3.2-1.4M14.4 12.6l3.2 2.4v3.2l-3.2-1.4M12 16.5v5M12 8.4h.01','#3a3f9e','#7c83ff','#20245f'],
+'#nums':['M5 9h14M5 15h14M10 4L8 20M16 4l-2 16','#2f5bd0','#4cc9f0','#1b3a8c'],
+'#talk':['M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12zM9 12h.01M12.5 12h.01M16 12h.01','#0e9aa7','#5eead4','#086a73'],
+'#usa':['M5 21V4M5 4h13l-2 4 2 4H5','#0b3d91','#5b8def','#072a66']
+};
+function mk(k){var d=ICON[k];return '<span class="fit" style="--a:'+d[1]+';--b:'+d[2]+';--d:'+d[3]+'"><svg viewBox="0 0 24 24" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d[0]+'"/></svg></span>'}
+var busy=0;
+function icons(){return;var n=D.getElementById('nav');if(!n||busy)return;busy=1;
+ n.querySelectorAll('.nv[data-go]').forEach(function(b){var k=b.dataset.go,i=b.querySelector('b');if(!ICON[k]||!i||i.dataset.fi===k)return;i.dataset.fi=k;i.innerHTML=mk(k)});
+ busy=0}
+function watch(){var n=D.getElementById('nav');if(!n)return setTimeout(watch,300);icons();new MutationObserver(function(){if(!busy)icons()}).observe(n,{childList:true,subtree:true});
+ [600,1500,3500].forEach(function(t){setTimeout(icons,t)})}
+/* ---------- festive favicon ---------- */
+var FAV={
+diwali:'<path d="M32 6c7 9 10 14 5 20-2.5 3-7.5 3-10 0-5-6-2-11 5-20z" fill="#fff3a0"/><path d="M32 12c4 6 5 9 2.5 12-1.5 1.6-3.5 1.6-5 0-2.5-3-1.5-6 2.5-12z" fill="#ff8a3d"/><path d="M8 36h48c0 13-10 21-24 21S8 49 8 36z" fill="#fff"/><path d="M8 36h48" stroke="#ffd23c" stroke-width="3" stroke-linecap="round"/><path d="M16 44q16 7 32 0" stroke="#e8453c" stroke-width="2.4" fill="none" stroke-linecap="round"/>',
+christmas:'<path d="M32 8l12 16H38l10 14H38l12 14H14l12-14H16l10-14H20z" fill="#fff"/><rect x="29" y="52" width="6" height="6" fill="#fff"/><circle cx="32" cy="8" r="3.5" fill="#ffd23c"/>',
+newyear:'<g stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M32 8v12M32 44v12M8 32h12M44 32h12M15 15l8 8M41 41l8 8M49 15l-8 8M23 41l-8 8"/></g><circle cx="32" cy="32" r="5" fill="#ffd23c"/>',
+holi:'<circle cx="24" cy="26" r="13" fill="#ffd23c"/><circle cx="42" cy="30" r="12" fill="#fff" fill-opacity=".9"/><circle cx="30" cy="44" r="11" fill="#4cc9f0"/>',
+eid:'<path d="M38 8A24 24 0 1 0 56 44 19 19 0 0 1 38 8z" fill="#fff"/><path d="M48 10l2.4 5.6 6 .6-4.5 4 1.4 6-5.3-3.2-5.3 3.2 1.4-6-4.5-4 6-.6z" fill="#ffd23c"/>',
+tri:'<rect x="8" y="14" width="48" height="12" fill="#ff9933"/><rect x="8" y="26" width="48" height="12" fill="#fff"/><rect x="8" y="38" width="48" height="12" fill="#138808"/><circle cx="32" cy="32" r="5" fill="none" stroke="#0b3d91" stroke-width="2"/>',
+star:'<path d="M32 6l7.5 17 18.5 1.6-14 12.4 4.2 18.2L32 45.5 15.8 55.2 20 37 6 24.6 24.5 23z" fill="#fff"/>'};
+var BG={diwali:['#7a1fa2','#ff7a2f'],christmas:['#0b6b4f','#e5383b'],newyear:['#2b1b6b','#7b2cbf'],holi:['#f72585','#ff9e00'],eid:['#0b6b4f','#0e9aa7'],republic:['#0b3d91','#ff9933'],independence:['#0b3d91','#138808'],gurunanak:['#f59f00','#e8453c'],shivratri:['#3a3f9e','#7c83ff']};
+function svgFav(id){var key=({republic:'tri',independence:'tri',gurunanak:'star',shivratri:'star'})[id]||id;var g=FAV[key]||FAV.diwali;var c=BG[id]||BG.diwali;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c[0]+'"/><stop offset="1" stop-color="'+c[1]+'"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#g)"/><rect x="2" y="2" width="60" height="60" rx="13" fill="none" stroke="#ffe9a8" stroke-width="2"/>'+g+'<path d="M52 8l1.6 4 4 1.6-4 1.6L52 19l-1.6-3.8-4-1.6 4-1.6z" fill="#ffd23c"/></svg>'}
+var lastFav='';
+function favicon(){var id=H.getAttribute('data-fx')||'diwali';if(lastFav===id)return;lastFav=id;var s=svgFav(id),u='data:image/svg+xml,'+encodeURIComponent(s);
+ D.querySelectorAll('link[rel=icon]').forEach(function(l){l.remove()});
+ var l=D.createElement('link');l.rel='icon';l.type='image/svg+xml';l.href=u;D.head.appendChild(l);
+ var im=new Image();im.onload=function(){try{var c=D.createElement('canvas');c.width=c.height=180;c.getContext('2d').drawImage(im,0,0,180,180);var p=c.toDataURL('image/png');
+  D.querySelectorAll('link[rel=apple-touch-icon]').forEach(function(a){a.remove()});var a=D.createElement('link');a.rel='apple-touch-icon';a.href=p;D.head.appendChild(a)}catch(e){}};im.src=u;
+ var tc=D.querySelector('meta[name=theme-color]');if(tc)tc.content=(BG[id]||BG.diwali)[0]}
+function boot(){bg();watch();favicon();new MutationObserver(favicon).observe(H,{attributes:true,attributeFilter:['data-fx']})}
+if(D.body)boot();else D.addEventListener('DOMContentLoaded',boot)
+})();
+</script>
+
 </body>
 </html>
