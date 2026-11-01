@@ -1030,7 +1030,7 @@ D.head.insertAdjacentHTML('beforeend',`<style>
 const NV=[['🏠','Worlds','#learn'],['🎭','Stories','#tales'],['✏️','Write','#write'],['🔢','Maths','#maths'],['📘','NCERT','#ncert'],['🧩','Play','#play'],['🎵','Rhymes','#rhy'],['🎨','Paint','#paint'],['🏆','Stamps','#win'],['🦉','Talk','#owl'],['💛','Parents','#grown']];
 $('#nav').innerHTML=NV.map(n=>`<button class="nv" data-go="${n[2]}"><b>${n[0]}</b>${n[1]}</button>`).join('');
 $('#nav').addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;const t=g.dataset.go;if(t=='#grown'){e.stopPropagation();$('#pa').click()}else if(t=='#owl'){e.stopPropagation();$('#owl').click()}});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const id='#'+e.target.id;$('#nav').querySelectorAll('.nv').forEach(b=>{const on=b.dataset.go==id;b.classList.toggle('on',on);if(on)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})})}),{rootMargin:'-40% 0px -50% 0px'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const id='#'+e.target.id;$('#nav').querySelectorAll('.nv').forEach(b=>{const on=b.dataset.go==id;void on})}),{rootMargin:'-40% 0px -50% 0px'});
 ['learn','tales','write','maths','ncert','play','rhy','paint','win','grown'].forEach(i=>{const s=$('#'+i);s&&io.observe(s)});
 
 // ---- Always-visible Grown-ups button (works even when child lock is on) ----
@@ -1268,7 +1268,7 @@ $('#future').addEventListener('click',e=>{const t=e.target,m=t.closest('[data-fm
 drawF();
 
 // ---- Section highlight for new items ----
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const id='#'+e.target.id;cur=id;$('#nav').querySelectorAll('.nv').forEach(b=>{const on=b.dataset.go==id;b.classList.toggle('on',on);if(on)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})})}),{rootMargin:'-40% 0px -50% 0px'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const id='#'+e.target.id;cur=id;$('#nav').querySelectorAll('.nv').forEach(b=>{const on=b.dataset.go==id;void on})}),{rootMargin:'-40% 0px -50% 0px'});
 ['learn','tales','write','maths','ncert','explore','future','play','rhy','paint','win','grown'].forEach(i=>{const s=$('#'+i);s&&io.observe(s)});
 
 // ---- Future and exam path card (inside Grown-ups) ----
@@ -2483,8 +2483,8 @@ addEventListener('kokok',()=>{LSs('kokcrash','0');busy=0;loading=0;pct=100;LSs('
 addEventListener('kokfail',e=>{busy=0;loading=0;fails++;$$('#vgo').disabled=false;show('#vp',false);txt('#vgo','↻ Try again');const w=$$('#vw');w.hidden=false;const dt=String(e.detail||'').slice(0,80);w.textContent=(fails>=2?'Still could not load the voice. You can use the phone voice and try again later from the menu.':'Could not load the voice. Check internet and free space, then try again.')+(dt?' ('+dt+')':'');skipUI()});
 /* ---------- onboarding: voice step between name and PIN ---------- */
 const go=$$('#go');
-if(go)go.addEventListener('click',()=>{if(LSg('kok')==='1'||!CAN()&&LSg('vskip')==='1')return;const s2=$$('#s2');if(s2)s2.hidden=true;window.openVoicePack('flow')});
-if(LSg('d')&&CAN()&&LSg('kok')!=='1'&&LSg('vskip')!=='1')setTimeout(()=>{if(!isOn())window.openVoicePack('gate')},1200);
+if(go)go.addEventListener('click',()=>{window.__voiceAuto&&window.__voiceAuto()});
+if(LSg('d')&&CAN()&&LSg('kok')!=='1'&&LSg('vskip')!=='1')setTimeout(()=>{if(!isOn())window.__voiceAuto&&window.__voiceAuto()},1200);
 /* menu entry: the settings menu collects any quick pill added to #top */
 {const right=D.querySelector('#top > span:last-child');if(right&&!D.getElementById('vpb')){const p=D.createElement('button');p.type='button';p.className='pill';p.id='vpb';p.textContent='🎙️';p.setAttribute('aria-label','Download natural voice');p.onclick=()=>window.openVoicePack('menu');right.append(p)}
  const lab=()=>{const p=D.getElementById('vpb');if(p){const st=isOn()?'on':loading?'loading':isDl()?'off':'none';p.setAttribute('aria-label',isOn()?'Natural voice: on':loading?'Natural voice: downloading '+pct+'%':isDl()?'Natural voice: downloaded, off':'Download natural voice');p.textContent=st=='on'?'🎙️✅':st=='loading'?'⏳'+pct+'%':st=='off'?'🎙️':'🎙️⬇'}};setInterval(()=>{if(!document.hidden)lab()},1000);lab()}
@@ -3162,7 +3162,7 @@ const q=$('#tkq');if(q&&q.textContent=='Ready to talk?')q.innerHTML='<div><div s
 const nav=$('#nav');if(nav){const ic='<svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>';
  const fixTab=()=>{const b=nav.querySelector('[data-go="#talk"]');if(!b)return;const m=(()=>{try{return localStorage.getItem('ip')||'color'}catch(e){return'color'}})();if(b.dataset.v===m)return;b.dataset.v=m;b.style.setProperty('--c','#f08a24');b.style.setProperty('--cb','#f08a2433');const i=b.querySelector('b');if(i)i.innerHTML=window.navX?navX('talk'):i.innerHTML};
  fixTab();new MutationObserver(fixTab).observe(nav,{childList:true});
- const tk=$('#talk');if(tk)new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;nav.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.go=='#talk'))},{rootMargin:'-40% 0px -50% 0px'}).observe(tk)}
+ const tk=$('#talk');if(tk)new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;0},{rootMargin:'-40% 0px -50% 0px'}).observe(tk)}
 })();
 </script>
 
@@ -3277,7 +3277,7 @@ $('#tbl-play').onclick=async()=>{if(ttok){stopAll();hl(0);return}const my=ttok=D
 /* ===== follow the class setting everywhere ===== */
 let L0='';const sync=()=>{const l=lvl();if(l==L0)return;L0=l;lvRow('#nw-lv');lvRow('#tbl-lv');$('#tbl-lead').textContent=`Class ${l}: tables 1 to ${MAXT[l]}. Tap a line to hear it, or listen to the whole table.`;go(Math.min(n,M()));tblDraw()};
 document.addEventListener('click',e=>{if(e.target.closest('[data-lv]'))setTimeout(sync,0)});
-['nums','tables'].forEach(id=>new IntersectionObserver(es=>{if(es[0].isIntersecting){sync();document.querySelectorAll('#nav .nv').forEach(b=>b.classList.toggle('on',b.dataset.go=='#'+id))}else stopAll()},{rootMargin:'-40% 0px -50% 0px'}).observe($('#'+id)));
+['nums','tables'].forEach(id=>new IntersectionObserver(es=>{if(es[0].isIntersecting){sync();0}else stopAll()},{rootMargin:'-40% 0px -50% 0px'}).observe($('#'+id)));
 sync();
 
 /* ===== bottom bar buttons (re-added whenever the bar is redrawn) ===== */
@@ -5166,6 +5166,7 @@ body:has(#pm:not([hidden])) #litefab,body:has(#pinm:not([hidden])) #litefab{disp
 #top{padding-right:max(150px,calc((100vw - 1120px)/2))!important}
 /* nav: always begins at the first item, no sideways jump */
 #nav{scroll-behavior:auto;overscroll-behavior-x:contain}
+#nav .nv,#nav .nv b{transition:none!important;animation:none!important}#nav .nv.on b{transform:none!important}
 </style>
 <script>
 /* v90 nav fixes: start at first item, remove duplicate buttons, never scroll the page from the nav */
@@ -5181,7 +5182,14 @@ Element.prototype.scrollIntoView=function(o){
 function dedupe(){var seen={};[].slice.call(nav.children).forEach(function(b){var k=b.getAttribute&&b.getAttribute('data-go');if(!k)return;if(seen[k])b.remove();else seen[k]=1})}
 function home(){if((window.scrollY||0)<160&&nav.scrollLeft!==0)nav.scrollLeft=0}
 var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){dedupe();home()},60)}).observe(nav,{childList:true});
-dedupe();home();
+var cur=null,tk=0;
+function act(){tk=0;var y=innerHeight*.4,best=null;
+  [].forEach.call(nav.children,function(b){var g=b.getAttribute('data-go');if(!g||g=='#owl'||g=='#grown')return;var e=document.querySelector(g);if(!e)return;var r=e.getBoundingClientRect();if(r.top<=y&&r.bottom>y)best=g});
+  if(best===cur)return;cur=best;var on=null;
+  [].forEach.call(nav.children,function(b){var m=b.getAttribute('data-go')==best;if(m!==b.classList.contains('on'))b.classList.toggle('on',m);if(m)on=b});
+  if(on&&(window.scrollY||0)>=160){var l=on.offsetLeft-(nav.clientWidth-on.offsetWidth)/2;nav.scrollTo({left:Math.max(0,l),behavior:'smooth'})}}
+addEventListener('scroll',function(){if(!tk)tk=requestAnimationFrame(act)},{passive:true});
+dedupe();home();act();
 [300,900,1800,3000,5000].forEach(function(ms){setTimeout(function(){dedupe();home()},ms)});
 addEventListener('load',home);addEventListener('pageshow',home);
 })();
@@ -5212,5 +5220,75 @@ var b=document.getElementById('bloom');if(b)b.remove();
 
 <style id="v94">#cbirds{display:none!important}</style>
 
+
+<script>
+/* v96 natural voice: downloads by itself on first run / install and becomes the default voice. No pop-up. */
+(function(){
+function G(k){try{return localStorage.getItem(k)}catch(e){return null}}function P(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var tries=0,bad=0;
+window.__voiceAuto=function(){
+  try{
+    if(bad)return;
+    if(!/^https?:$/.test(location.protocol)||typeof WebAssembly!='object')return;
+    if((window.__kokOn&&window.__kokOn())||window.__kokLoad)return;
+    if(G('kokdl')==='1'||G('kok')==='1'||G('kok')==='0'&&G('kokdl'))return; /* already have it (the launch code applies it) or the child turned it off */
+    if(G('kokcrash')==='1'||(+G('kokautofail')||0)>=2)return;
+    var c=navigator.connection||{};if(c.saveData||c.type==='cellular')return; /* wait for Wi-Fi, never burn mobile data */
+    if(window.__lite||document.documentElement.classList.contains('lite')||(navigator.deviceMemory&&navigator.deviceMemory<=2))return;
+    if(!window.__kokGo){if(++tries<8)setTimeout(window.__voiceAuto,1500);return}
+    P('kokauto','1');window.__kokGo(1);
+  }catch(e){}
+};
+addEventListener('kokfail',function(){bad=1;P('kokautofail',String((+G('kokautofail')||0)+1))});
+addEventListener('kokok',function(){P('kokautofail','0')});
+addEventListener('appinstalled',function(){setTimeout(window.__voiceAuto,1500)});
+if(navigator.connection&&navigator.connection.addEventListener)navigator.connection.addEventListener('change',function(){setTimeout(window.__voiceAuto,2000)});
+addEventListener('load',function(){if(G('d'))setTimeout(window.__voiceAuto,5000)});
+})();
+</script>
+
+<style id="v97">
+/* v97 menu: natural-voice on/off switch (speaker icon morphs between sound waves and muted) */
+.mrow[data-src=vtg] .ms{display:block!important;background:none!important;padding:0!important;max-width:none!important}
+.vtr{position:relative;display:block;width:64px;height:34px;border-radius:99px;background:linear-gradient(135deg,#9aa0b8,#c4c8dc);box-shadow:inset 0 2px 5px #0003;transition:background .35s}
+.vth{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#7b8199;box-shadow:0 3px 7px #0004;transition:transform .4s cubic-bezier(.3,1.6,.5,1),color .3s}
+.mrow[data-src=vtg]:active .vth{width:33px}
+.vth svg{width:18px;height:18px;overflow:visible;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vth .sp{fill:currentColor;fill-opacity:.2}
+.vth .w1,.vth .w2{opacity:0;transform:translateX(-4px) scale(.6);transform-origin:13px 12px;transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+.vth .w2{transition-delay:.06s}
+.vth .x{opacity:1;transition:opacity .25s,transform .35s;transform-origin:19px 12px}
+.mrow[data-vs=on] .vtr{background:linear-gradient(135deg,#14919b,#3fb7e8)}
+.mrow[data-vs=on] .vth{transform:translateX(30px);color:#14919b}
+.mrow[data-vs=on] .w1,.mrow[data-vs=on] .w2{opacity:1;transform:none}
+.mrow[data-vs=on] .x{opacity:0;transform:rotate(90deg) scale(.4)}
+.mrow[data-vs=load] .vtr{background:linear-gradient(135deg,#f2b624,#ff9f1c)}
+.mrow[data-vs=load] .vth{transform:translateX(15px);color:#ff9f1c;animation:vpl 1s ease-in-out infinite}
+.mrow[data-vs=load] .w1,.mrow[data-vs=load] .w2{opacity:1;transform:none}.mrow[data-vs=load] .x{opacity:0}
+@keyframes vpl{50%{box-shadow:0 0 0 6px #ff9f1c55}}
+.lite .vth,.lite .vtr{transition:none}.lite .mrow[data-vs=load] .vth{animation:none}
+@media(prefers-reduced-motion:reduce){.vth,.vtr,.vth *{transition:none!important;animation:none!important}}
+</style>
+<script>
+(function(){
+var hm=document.getElementById('hmenu'),rows=hm&&hm.querySelector('#hmrows');if(!rows||rows.querySelector('[data-src=vtg]'))return;
+function G(k){try{return localStorage.getItem(k)}catch(e){return null}}
+var pct=0,loading=0;
+var row=document.createElement('button');row.type='button';row.className='mrow';row.dataset.src='vtg';row.setAttribute('role','switch');row.style.cssText='--c:#14919b;--c2:#3fb7e8';
+row.innerHTML='<span class="mi" aria-hidden="true">\ud83d\udd0a</span><span class="mt"><b>Natural voice <span lang="hi">\u092a\u094d\u0930\u093e\u0915\u0943\u0924\u093f\u0915 \u0906\u0935\u093e\u091c\u093c</span></b><small></small></span><span class="ms"><span class="vtr"><span class="vth"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="sp" d="M3 9.5v5h3.6L11 18.5v-13L6.6 9.5z"/><path class="w1" d="M14.5 9.5a3.4 3.4 0 010 5"/><path class="w2" d="M17.3 7a7 7 0 010 10"/><path class="x" d="M15 9.5l5 5m0-5l-5 5"/></svg></span></span></span><span class="go" aria-hidden="true"></span>';
+var vp=rows.querySelector('[data-src=vpb]');if(vp){vp.after(row);vp.style.setProperty('display','none','important')}else rows.appendChild(row);
+function st(){return window.__kokOn&&window.__kokOn()?'on':(loading||window.__kokLoad)?'load':'off'}
+function paint(){var s=st(),sm=row.querySelector('small');row.dataset.vs=s;row.setAttribute('aria-checked',String(s=='on'));
+  sm.textContent=s=='on'?'On \u00b7 saved on this phone':s=='load'?(G('kokdl')==='1'?'Loading ':'Downloading ')+pct+'%':G('kokdl')==='1'?'Off \u00b7 tap to turn on':'Off \u00b7 tap to download (90 MB)'}
+row.addEventListener('click',function(e){e.stopPropagation();var s=st();if(s=='load')return;
+  if(s=='on'){try{window.__kokOff&&window.__kokOff()}catch(x){}}
+  else{loading=1;pct=0;try{window.__kokGo&&window.__kokGo()}catch(x){loading=0}}
+  paint()});
+addEventListener('kokpct',function(e){loading=1;pct=(e.detail&&e.detail.pc)||0;paint()});
+addEventListener('kokok',function(){loading=0;paint()});addEventListener('kokfail',function(){loading=0;paint()});
+var hb=document.getElementById('hmb');if(hb)hb.addEventListener('click',paint,true);
+setInterval(function(){if(!hm.hidden)paint()},700);paint();
+})();
+</script>
 </body>
 </html>
